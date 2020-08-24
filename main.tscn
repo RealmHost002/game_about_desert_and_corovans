@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
 [ext_resource path="res://car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://new_cubemesh.tres" type="CubeMesh" id=3]
+[ext_resource path="res://BGMASTER.gd" type="Script" id=4]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -39,4 +40,17 @@ material/0 = null
 
 [node name="Spatial" parent="cars" instance=ExtResource( 2 )]
 transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 8.33483, 2.15083, 5.66938 )
+
+[node name="Camera2" type="Camera" parent="cars/Spatial"]
+transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
+current = true
+
+[node name="BGMASTER" type="Spatial" parent="."]
+script = ExtResource( 4 )
+
+[node name="StepTimer" type="Timer" parent="BGMASTER"]
+wait_time = 2.0
+one_shot = true
+autostart = true
 [connection signal="input_event" from="StaticBody" to="cars/Spatial" method="_on_StaticBody_input_event"]
+[connection signal="timeout" from="BGMASTER/StepTimer" to="BGMASTER" method="_on_StepTimer_timeout"]

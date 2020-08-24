@@ -14,6 +14,7 @@ var rotation_speed = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	ntex = preload("res://noise.tres")
 	yield(ntex, "changed")
 	image = ntex.get_data()
@@ -42,25 +43,59 @@ func _process(delta):
 			s_height += wheel.global_transform.origin.y
 		s_height = s_height/4 + clearance
 		self.global_transform.origin.y = s_height
-	get_node("body").rotation_degrees.x = (-get_node("wheels/fl").global_transform.origin.y - get_node("wheels/fr").global_transform.origin.y + get_node("wheels/rl").global_transform.origin.y + get_node("wheels/rr").global_transform.origin.y) * 50
+#	get_node("body").rotation_degrees.x = (-get_node("wheels/fl").global_transform.origin.y - get_node("wheels/fr").global_transform.origin.y + get_node("wheels/rl").global_transform.origin.y + get_node("wheels/rr").global_transform.origin.y) * 50
 #	get_node("body").rotation_degrees.z = (-get_node("wheels/fl").global_transform.origin.y + get_node("wheels/fr").global_transform.origin.y - get_node("wheels/rl").global_transform.origin.y + get_node("wheels/rr").global_transform.origin.y) * 50
+	var vec1 = get_node("wheels/fr").global_transform.origin - get_node("wheels/rl").global_transform.origin
+	var vec2 = get_node("wheels/fl").global_transform.origin - get_node("wheels/rr").global_transform.origin
+	get_node("body").rotation = Vector3(0,0,0)
+	var vec01 = vec1
+	vec01.y = 0
+	var vec02 = vec2
+	vec01.y = 0
+	var a1 = vec01.angle_to(vec1) * sign(vec1.y)
+	var a2 = vec02.angle_to(vec2) * sign(vec2.y)
+	get_node("body").global_rotate(vec01.cross(Vector3(0, 1, 0)).normalized(), a1)
+	get_node("body").global_rotate(vec02.cross(Vector3(0, 1, 0)).normalized(), a2)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+func hide_path():
+	for child in get_node("Mypath").get_children():
+		child.queue_free()
+	pass
 
 
 func show_path():
+	hide_path()
 	var f = forward
 	var p = self.global_transform.origin
 	p.y = 2
 	var c = 0
 	while (p - destination).length() > 0.1:
 		var m = MeshInstance.new()
-		m.mesh = load("res://new_cubemesh.tres")
-		get_parent().add_child(m)
+		if c < 20:
+			m.mesh = load("res://new_cubemesh_green.tres")
+		else:
+			m.mesh = load("res://new_cubemesh.tres")
+		get_node("Mypath").add_child(m)
 		m.global_transform.origin = p
 		f = f.rotated(Vector3(0,1,0), sign(f.cross(destination - p).y) * 0.1 * rotation_speed)
 		p += f * 0.1 * speed
 		print((p - destination).length())
 		c += 1
+#		if c < 10:
+#			m.mesh.surface_set_material(0, load("res://green_color.tres"))
 		if c > 1000:
 #			print(1)
 			break
@@ -70,11 +105,12 @@ func show_path():
 
 
 func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and !get_node("../../BGMASTER").gamestate:
 		destination = click_position
 		destination.y = 2
 		var m = MeshInstance.new()
 		m.mesh = load("res://new_cubemesh.tres")
-		get_parent().add_child(m)
+		get_node("Mypath").add_child(m)
+#		m.scale = Vector3(10, 10, 10)
 		m.global_transform.origin = destination
 		show_path()

@@ -43,3 +43,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.29608 )
 
 [node name="right" type="Position3D" parent="dirs"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.16012, 0, 0 )
+
+[node name="Mypath" type="Spatial" parent="."]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
