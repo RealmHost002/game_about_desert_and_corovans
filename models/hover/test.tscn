@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://models/hover/hover_0.0.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.309804, 0.352941, 0.0117647, 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.192157, 1, 0.752941, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.45098, 0.45098, 0.45098, 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="hover_00" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+material/1 = SubResource( 2 )
+material/2 = SubResource( 3 )
+material/3 = SubResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.715181, 0.413113, 0.563786, 0, -0.80663, 0.591056, 0.69894, -0.422712, -0.576886, 0, 3.56932, 0 )
