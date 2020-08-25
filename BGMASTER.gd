@@ -5,6 +5,7 @@ var gamestate = true #true if unpause, false if pause
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_node("StepTimer").wait_time = constants.step_time
 #	for node in get_node("../cars").get_children():
 #		node.set_process(false)
 	pass # Replace with function body.

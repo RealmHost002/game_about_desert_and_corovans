@@ -19,6 +19,10 @@ config/name="Game About Desert And Corovans"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+constants="*res://constants.gd"
+
 [display]
 
 window/stretch/mode="viewport"

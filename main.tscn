@@ -25,6 +25,7 @@ transform = Transform( -0.360502, -0.727128, 0.584229, 0, 0.626345, 0.779546, -0
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.782652, 0.47899, -0.397524, 0, 0.638633, 0.769511, 0.62246, -0.602259, 0.499828, 4.75534, 13.2618, 19.6715 )
+current = true
 
 [node name="StaticBody" type="StaticBody" parent="."]
 
@@ -43,7 +44,6 @@ transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866
 
 [node name="Camera2" type="Camera" parent="cars/Spatial"]
 transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
-current = true
 
 [node name="BGMASTER" type="Spatial" parent="."]
 script = ExtResource( 4 )

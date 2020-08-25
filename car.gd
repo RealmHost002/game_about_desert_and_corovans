@@ -84,7 +84,7 @@ func show_path():
 	var c = 0
 	while (p - destination).length() > 0.1:
 		var m = MeshInstance.new()
-		if c < 20:
+		if c < 10 * constants.step_time:
 			m.mesh = load("res://new_cubemesh_green.tres")
 		else:
 			m.mesh = load("res://new_cubemesh.tres")
