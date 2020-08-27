@@ -1,6 +1,6 @@
 extends Spatial
 
-
+var is_active = false
 var ntex
 var noise
 var image
@@ -39,6 +39,11 @@ func _process(delta):
 		var s_height = 0
 		for wheel in get_node('wheels').get_children():
 			var some_pos = Vector2(wheel.global_transform.origin.x, wheel.global_transform.origin.z) / 20.0 * 1024
+			print(some_pos)
+			while some_pos.x >= 1024:
+				some_pos.y -= 1024
+			while some_pos.y >= 1024:
+				some_pos.y -= 1024
 			wheel.global_transform.origin.y = image.get_pixelv(some_pos).r * 3
 			s_height += wheel.global_transform.origin.y
 		s_height = s_height/4 + clearance
@@ -56,10 +61,6 @@ func _process(delta):
 	var a2 = vec02.angle_to(vec2) * sign(vec2.y)
 	get_node("body").global_rotate(vec01.cross(Vector3(0, 1, 0)).normalized(), a1)
 	get_node("body").global_rotate(vec02.cross(Vector3(0, 1, 0)).normalized(), a2)
-
-
-
-
 
 
 
@@ -92,7 +93,7 @@ func show_path():
 		m.global_transform.origin = p
 		f = f.rotated(Vector3(0,1,0), sign(f.cross(destination - p).y) * 0.1 * rotation_speed)
 		p += f * 0.1 * speed
-		print((p - destination).length())
+#		print((p - destination).length())
 		c += 1
 #		if c < 10:
 #			m.mesh.surface_set_material(0, load("res://green_color.tres"))
@@ -104,13 +105,26 @@ func show_path():
 
 
 
-func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed and !get_node("../../BGMASTER").gamestate:
-		destination = click_position
-		destination.y = 2
-		var m = MeshInstance.new()
-		m.mesh = load("res://new_cubemesh.tres")
-		get_node("Mypath").add_child(m)
-#		m.scale = Vector3(10, 10, 10)
-		m.global_transform.origin = destination
-		show_path()
+#func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
+#	print(self.name, is_active)
+#	if event is InputEventMouseButton and event.pressed and !get_node("../../BGMASTER").gamestate and is_active:
+#		destination = click_position
+#		destination.y = 2
+#		var m = MeshInstance.new()
+#		m.mesh = load("res://new_cubemesh.tres")
+#		get_node("Mypath").add_child(m)
+##		m.scale = Vector3(10, 10, 10)
+#		m.global_transform.origin = destination
+#		show_path()
+#		print('path for ', self)
+
+
+func _on_input_event(camera, event, click_position, click_normal, shape_idx, from_gui = 0):
+	if from_gui:
+		pass
+	else:
+		if event is InputEventMouseButton and event.pressed:
+			is_active = true
+			for node in get_parent().get_children():
+				if node != self:
+					node.is_active = false

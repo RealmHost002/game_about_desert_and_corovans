@@ -1,7 +1,7 @@
 extends Node
 
 
-var step_time = 10.0
+var step_time = 2.0
 
 
 # Called when the node enters the scene tree for the first time.
