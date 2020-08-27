@@ -94,7 +94,7 @@ func show_path():
 		f = f.rotated(Vector3(0,1,0), sign(f.cross(destination - p).y) * 0.1 * rotation_speed)
 		p += f * 0.1 * speed
 		c += 1
-		if c > 1000:
+		if c > 100:
 			break
 		pass
 	pass
