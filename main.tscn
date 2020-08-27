@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
 [ext_resource path="res://car.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://BGMASTER.gd" type="Script" id=4]
 [ext_resource path="res://Camera.gd" type="Script" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
+[ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -42,6 +43,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="camera_look_at"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86221, 0.251438, 0.860807 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 
@@ -77,5 +79,7 @@ script = ExtResource( 4 )
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="GUI" parent="." instance=ExtResource( 7 )]
 [connection signal="input_event" from="camera_look_at/StaticBody" to="BGMASTER" method="_on_StaticBody_input_event"]
 [connection signal="timeout" from="BGMASTER/StepTimer" to="BGMASTER" method="_on_StepTimer_timeout"]
