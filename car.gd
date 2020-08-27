@@ -93,12 +93,8 @@ func show_path():
 		m.global_transform.origin = p
 		f = f.rotated(Vector3(0,1,0), sign(f.cross(destination - p).y) * 0.1 * rotation_speed)
 		p += f * 0.1 * speed
-#		print((p - destination).length())
 		c += 1
-#		if c < 10:
-#			m.mesh.surface_set_material(0, load("res://green_color.tres"))
 		if c > 1000:
-#			print(1)
 			break
 		pass
 	pass
