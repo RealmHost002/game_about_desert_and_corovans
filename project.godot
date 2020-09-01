@@ -27,11 +27,6 @@ constants="*res://constants.gd"
 
 settings/stdout/print_fps=true
 
-[display]
-
-window/size/width=1920
-window/size/height=1080
-
 [input]
 
 TEST_BUTTON_1={

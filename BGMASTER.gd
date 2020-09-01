@@ -31,7 +31,7 @@ func GAME_PAUSE():
 func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
 	if !gamestate and event.is_action('left_click'):
 		for node in get_node("../cars").get_children():
-			print(node.is_active)
+
 			if node.is_active:
 				node.destination = click_position
 				node.destination.y = 2
@@ -41,7 +41,7 @@ func _on_StaticBody_input_event(camera, event, click_position, click_normal, sha
 		#		m.scale = Vector3(10, 10, 10)
 #				m.global_transform.origin = destination
 				node.show_path()
-#				print('path for ', self)
+
 
 
 func _on_StepTimer_timeout():
