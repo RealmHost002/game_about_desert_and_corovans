@@ -1,6 +1,6 @@
 extends Position3D
 
-var burst_size = 199.0
+var burst_size = 6.0
 var step_time = 1.0
 var death_zone = Vector2()
 var is_active = false
@@ -34,15 +34,20 @@ func fire():
 
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var counter = 0
+var some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
 func _process(delta):
 	t += delta
-	if t > step_time / burst_size:
+	if t > some_step:
 		t = 0
+		counter += 1
 		fire()
+		some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
+		print(counter)
 
 
 func _input(event):
-	if event.is_action_pressed("drag_camera"):
+	if event.is_action_pressed("drag_camera") and is_active:
 		unactivate()
 		target = 0
 
@@ -72,7 +77,7 @@ func unactivate():
 func activate():
 	constants.input_mode = 'target_select'
 	get_node("area").global_transform.basis = Basis(Vector3(1,0,0), Vector3(0,1,0), Vector3(0,0,1))
-	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
+#	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
 	get_node("area").show()
 	get_node("area").scale = Vector3(distance, distance, distance)
 	is_active = true

@@ -4,6 +4,5 @@
 
 [resource]
 flags_transparent = true
-albedo_color = Color( 0.917647, 0.133333, 0.133333, 1 )
+albedo_color = Color( 0.811765, 0.0901961, 0.0901961, 1 )
 albedo_texture = ExtResource( 1 )
-uv1_offset = Vector3( 0.049026, 0, 0 )

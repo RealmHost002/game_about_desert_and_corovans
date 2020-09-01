@@ -27,12 +27,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(self.global_transform.origin.y)
+#	print(self.global_transform.origin.y)
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 #	destination.y = 0.0
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
 #	destination.y = 2
-#	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
+	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
 	self.global_transform.origin += forward * delta * speed
 	if image:
 		var s_height = 0
