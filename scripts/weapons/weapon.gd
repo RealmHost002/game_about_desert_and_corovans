@@ -11,7 +11,7 @@ var distance = 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("area").hide()
+#	get_node("area").hide()
 	camera = get_tree().get_root().get_node('Spatial/camera_look_at/Camera')
 #	death_zone = get_parent().death_zones
 	pass # Replace with function body.
@@ -24,7 +24,7 @@ func fire():
 	self.add_child(lb)
 	lb.global_transform = self.global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
-	lb.scale.z = clamp((target.global_transform.origin - self.global_transform.origin).length() / 2.0, 0, distance / 2.0)
+	lb.scale.z = clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
 	lb.scale.x = 0.1
 	
 	#IVAN PIDARAS

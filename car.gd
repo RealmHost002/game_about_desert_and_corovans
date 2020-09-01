@@ -29,11 +29,7 @@ func _ready():
 func _process(delta):
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
-
-#	if angle_to_destination > 0.1:
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
-#	elif angle_to_destination > 0.05:
-#		self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * angle_to_destination / 2.0)
 	self.global_transform.origin += forward * delta * speed
 	if image:
 		var s_height = 0
