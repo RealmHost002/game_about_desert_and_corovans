@@ -5,7 +5,7 @@
 [ext_resource path="res://gui/TopIcon.gd" type="Script" id=3]
 
 [node name="Node2D" type="TextureRect"]
-margin_right = 75.0
+margin_right = 74.0
 margin_bottom = 64.0
 mouse_default_cursor_shape = 1
 texture = ExtResource( 1 )
