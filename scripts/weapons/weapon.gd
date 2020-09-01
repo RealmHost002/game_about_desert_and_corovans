@@ -25,7 +25,6 @@ func fire():
 	lb.global_transform = self.global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
 	lb.scale.z = clamp((target.global_transform.origin - self.global_transform.origin).length() / 2.0, 0, distance / 2.0)
-
 	lb.scale.x = 0.1
 	
 	#IVAN PIDARAS
