@@ -8,7 +8,7 @@ var clearance = 0.1
 var speed = 1
 var forward
 var right
-var destination = Vector3(0,0,0)
+var destination = Vector3(20,20,20)
 var rotation_speed = 1
 var abilities = ['weap', 'weap']
 
@@ -27,6 +27,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	print(self.global_transform.origin.y)
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
