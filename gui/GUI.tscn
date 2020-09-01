@@ -7,18 +7,8 @@
 [ext_resource path="res://gui/base.png" type="Texture" id=5]
 [ext_resource path="res://gui/textures/IconEgor.png" type="Texture" id=6]
 
-[node name="GUI" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_right = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_rotation = -0.115367
+[node name="GUI" type="Spatial"]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.5

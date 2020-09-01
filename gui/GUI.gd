@@ -1,4 +1,4 @@
-extends Control
+extends Spatial
 
 
 # Declare member variables here. Examples:
