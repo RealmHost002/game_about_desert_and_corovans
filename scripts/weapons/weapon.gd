@@ -20,14 +20,12 @@ func fire():
 	for node in get_parent().get_parent().get_parent().get_parent().get_children():
 		if node != get_parent().get_parent().get_parent():
 			target = node
-
 	var lb = preload("res://trash textures/laser_beam.tscn").instance()
 	self.add_child(lb)
 	lb.global_transform = self.global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
 	lb.scale.z = clamp((target.global_transform.origin - self.global_transform.origin).length() / 2.0, 0, distance / 2.0)
-	lb.scale.x = 0.1
-	
+#	self.add_child(lb)
 	
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +42,7 @@ func _input(event):
 		var to = from + camera.project_ray_normal(event.position) * ray_length
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(from, to, [self, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
+#		print(result)
 		if result:
 			target = result['collider'].get_parent()
 		print(target)
