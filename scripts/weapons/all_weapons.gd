@@ -1,7 +1,7 @@
 extends Spatial
 
 
-var death_zones = [Vector2(1, 2.14), Vector2(1, 2.14)]
+var death_zones = [Vector2(1, 2.14), Vector2(4.14, 5.28)]
 
 
 # Called when the node enters the scene tree for the first time.

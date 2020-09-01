@@ -1,18 +1,21 @@
 extends Position3D
 
-
+var burst_size = 6.0
+var step_time = 1.0
 var death_zone = Vector2()
 var is_active = false
 var camera
 var target = 0
 var distance = 3.0
-
-
+var path_to_fire_anim_node = "res://trash textures/laser_beam.tscn"
+var t = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	get_node("area").hide()
+	step_time = constants.step_time
+	get_node("area").hide()
 	camera = get_tree().get_root().get_node('Spatial/camera_look_at/Camera')
+#	set_process(false)
 #	death_zone = get_parent().death_zones
 	pass # Replace with function body.
 
@@ -20,7 +23,7 @@ func fire():
 	for node in get_parent().get_parent().get_parent().get_parent().get_children():
 		if node != get_parent().get_parent().get_parent():
 			target = node
-	var lb = preload("res://trash textures/laser_beam.tscn").instance()
+	var lb = load(path_to_fire_anim_node).instance()
 	self.add_child(lb)
 	lb.global_transform = self.global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
@@ -32,7 +35,12 @@ func fire():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
-#	pass
+#	t += delta
+#	if t > step_time / burst_size:
+#		t = 0
+#		fire()
+
+
 func _input(event):
 	if event.is_action_pressed("drag_camera"):
 		is_active = false
