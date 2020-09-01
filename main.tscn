@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
 [ext_resource path="res://car.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://BGMASTER.gd" type="Script" id=4]
 [ext_resource path="res://Camera.gd" type="Script" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
+[ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -17,9 +18,10 @@ extents = Vector3( 10, 0.394787, 10 )
 
 [node name="Spatial" type="Spatial"]
 
+[node name="GUI" parent="." instance=ExtResource( 7 )]
+
 [node name="MeshInstance3" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
-visible = false
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 

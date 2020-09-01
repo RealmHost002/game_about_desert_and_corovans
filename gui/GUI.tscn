@@ -4,7 +4,7 @@
 [ext_resource path="res://gui/textures/pipka.png" type="Texture" id=2]
 [ext_resource path="res://gui/GUI.gd" type="Script" id=3]
 [ext_resource path="res://gui/textures/GuiMashineIcon.png" type="Texture" id=4]
-[ext_resource path="res://gui/textures/подложка.png" type="Texture" id=5]
+[ext_resource path="res://gui/base.png" type="Texture" id=5]
 [ext_resource path="res://gui/textures/IconEgor.png" type="Texture" id=6]
 
 [node name="GUI" type="Control"]
