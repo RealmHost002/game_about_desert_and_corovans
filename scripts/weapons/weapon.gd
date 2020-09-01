@@ -71,9 +71,7 @@ func unactivate():
 
 func activate():
 	constants.input_mode = 'target_select'
-	
-#	get_node("area").global_transform.
-#	get_node("area").rotation_degrees.z = 0
+	get_node("area").global_transform.basis = Basis(Vector3(1,0,0), Vector3(0,1,0), Vector3(0,0,1))
 	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
 	get_node("area").show()
 	get_node("area").scale = Vector3(distance, distance, distance)

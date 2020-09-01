@@ -15,11 +15,15 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 uniform vec2 death_zone1;
 uniform vec2 death_zone2;
-
+//uniform sampler2D noize_tex;
 
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
+	
+//	vec2 world_pos = ((PROJECTION_MATRIX * WORLD_MATRIX) * vec4(VERTEX, 1.0) * inverse(PROJECTION_MATRIX)).xy;
+//	vec4 u = texture(noize_tex, world_pos);
+//	VERTEX.y += u.r * 1.0;
 }
 
 
