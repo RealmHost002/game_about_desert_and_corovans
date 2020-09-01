@@ -29,7 +29,7 @@ func _ready():
 func _process(delta):
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
-
+#	print(angle_to_destination)
 #	if angle_to_destination > 0.1:
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
 #	elif angle_to_destination > 0.05:
@@ -39,8 +39,9 @@ func _process(delta):
 		var s_height = 0
 		for wheel in get_node('wheels').get_children():
 			var some_pos = Vector2(wheel.global_transform.origin.x, wheel.global_transform.origin.z) / 20.0 * 1024
+			print(some_pos)
 			while some_pos.x >= 1024:
-				some_pos.x -= 1024
+				some_pos.y -= 1024
 			while some_pos.y >= 1024:
 				some_pos.y -= 1024
 			wheel.global_transform.origin.y = image.get_pixelv(some_pos).r * 3
@@ -101,7 +102,7 @@ func show_path():
 
 
 #func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
-
+#	print(self.name, is_active)
 #	if event is InputEventMouseButton and event.pressed and !get_node("../../BGMASTER").gamestate and is_active:
 #		destination = click_position
 #		destination.y = 2
@@ -111,7 +112,7 @@ func show_path():
 ##		m.scale = Vector3(10, 10, 10)
 #		m.global_transform.origin = destination
 #		show_path()
-
+#		print('path for ', self)
 
 
 func _on_input_event(camera, event, click_position, click_normal, shape_idx, from_gui = 0):
