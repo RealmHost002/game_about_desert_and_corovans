@@ -21,6 +21,7 @@ func AddingFuckingEgors(a):
 		get_node("HBoxContainer").add_child(TopIconScene)
 		TopIconScene.number = counter
 		counter += 1
+
 func AddingWeaponButtons():
 	var counter = 0
 	var weapons = get_node("../cars").get_child(selectedCar).get_node("body/weapons").get_children()

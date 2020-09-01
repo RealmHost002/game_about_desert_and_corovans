@@ -17,6 +17,6 @@ func _ready():
 
 
 func _on_Node2D_pressed():
-	selectedCar = get_parent().get_parent().get_parent().selectedCar
-	get_tree().get_root().get_node("Spatial/cars").get_child(selectedCar).ability_used(selectedWeapon)
+	if constants.selectedCar:
+		constants.selectedCar.ability_used(selectedWeapon)
 	pass # Replace with function body.

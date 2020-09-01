@@ -31,6 +31,7 @@ settings/stdout/print_fps=true
 
 window/size/width=1920
 window/size/height=1080
+window/size/fullscreen=true
 window/stretch/mode="viewport"
 
 [input]
@@ -61,4 +62,3 @@ tb2={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"

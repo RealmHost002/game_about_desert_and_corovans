@@ -35,7 +35,6 @@ func _process(delta):
 		var s_height = 0
 		for wheel in get_node('wheels').get_children():
 			var some_pos = Vector2(wheel.global_transform.origin.x, wheel.global_transform.origin.z) / 20.0 * 1024
-
 			while some_pos.x >= 1024:
 				some_pos.x -= 1024
 			while some_pos.y >= 1024:
@@ -111,14 +110,22 @@ func show_path():
 
 
 func _on_input_event(camera, event, click_position, click_normal, shape_idx, from_gui = 0):
+	if !(self in get_tree().get_nodes_in_group('ally')):
+		return
+	if constants.input_mode != 'car_select':
+		return
+
 	if from_gui:
-		is_active = true
-		for node in get_parent().get_children():
-			if node != self:
-				node.is_active = false
-	else:
-		if event is InputEventMouseButton and event.pressed:
-			is_active = true
-			for node in get_parent().get_children():
-				if node != self:
-					node.is_active = false
+		constants.selectedCar = self
+#		is_active = true
+#		for node in get_parent().get_children():
+#			if node != self:
+#				node.is_active = false
+	elif event.is_action('left_click'):
+		constants.selectedCar = self
+#		if event.is_action('left_click'):
+#			is_active = true
+#			for node in get_parent().get_children():
+#				if node != self:
+#					node.is_active = false
+#		constants.selectedCar = self

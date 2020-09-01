@@ -22,6 +22,7 @@ extents = Vector3( 10, 0.394787, 10 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
+visible = false
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 
@@ -60,16 +61,28 @@ material/0 = null
 
 [node name="cars" type="Spatial" parent="."]
 
-[node name="Spatial" parent="cars" instance=ExtResource( 2 )]
+[node name="Spatial" parent="cars" groups=[
+"ally",
+] instance=ExtResource( 2 )]
 transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835808, 12.7577, 2.15083, 11.1768 )
 
 [node name="Camera2" type="Camera" parent="cars/Spatial"]
 transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
 
-[node name="Spatial2" parent="cars" instance=ExtResource( 2 )]
-transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 9.01776, 2.15083, 13.1879 )
+[node name="Spatial2" parent="cars" groups=[
+"ally",
+] instance=ExtResource( 2 )]
+transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 8.98155, 2.15083, 9.75619 )
 
 [node name="Camera2" type="Camera" parent="cars/Spatial2"]
+transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
+
+[node name="SpatialE" parent="cars" groups=[
+"enemy",
+] instance=ExtResource( 2 )]
+transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 9.01776, 2.15083, 13.1879 )
+
+[node name="Camera2" type="Camera" parent="cars/SpatialE"]
 transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
 
 [node name="BGMASTER" type="Spatial" parent="."]

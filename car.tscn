@@ -1,14 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://car.gd" type="Script" id=1]
 [ext_resource path="res://models/weapons/lasergun/laergun.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://models/bigfoot/main_body.tres" type="Material" id=3]
 [ext_resource path="res://models/bigfoot/body.tres" type="ArrayMesh" id=4]
 [ext_resource path="res://scripts/weapons/weapon.gd" type="Script" id=5]
-[ext_resource path="res://models/area.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://models/weapons/area_mesh.tres" type="ArrayMesh" id=6]
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=7]
 [ext_resource path="res://models/weapons/area_material.tres" type="Material" id=8]
-[ext_resource path="res://models/weapon_area.obj" type="ArrayMesh" id=9]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.156863, 0.156863, 0.156863, 1 )
@@ -80,7 +79,7 @@ material/1 = SubResource( 2 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D"]
 transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, -0.899078, -1.29407, 1.18434 )
-mesh = ExtResource( 9 )
+mesh = ExtResource( 6 )
 material/0 = ExtResource( 8 )
 
 [node name="Position3D2" type="Position3D" parent="body/weapons"]
@@ -93,10 +92,9 @@ material/0 = SubResource( 1 )
 material/1 = SubResource( 2 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D2"]
-transform = Transform( 6.34164, 0, 7.73199, 0, 10, 0, -7.73199, 0, 6.34164, 0.899, -1.29431, 1.184 )
-visible = false
+transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, 0.899, -1.29431, 1.184 )
 mesh = ExtResource( 6 )
-material/0 = null
+material/0 = ExtResource( 8 )
 
 [node name="wheels" type="Spatial" parent="."]
 

@@ -43,8 +43,10 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("drag_camera"):
-		is_active = false
+		unactivate()
 		target = 0
+
+
 	var ray_length = 100
 	
 	if is_active and event.is_action_pressed("left_click"):
@@ -54,17 +56,21 @@ func _input(event):
 		var result = space_state.intersect_ray(from, to, [self, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
 #		print(result)
 		if result:
-			target = result['collider'].get_parent()
-			print(target)
-			unactivate()
+			if result['collider'].get_parent() in get_tree().get_nodes_in_group('ally'):
+				pass
+			else:
+				target = result['collider'].get_parent()
+				unactivate()
 	if event.is_action_pressed("tb2"):
 		fire()
 
 func unactivate():
+	constants.input_mode = 'car_select'
 	get_node("area").hide()
 	is_active = false
 
 func activate():
+	constants.input_mode = 'target_select'
 	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
 	get_node("area").show()
 	get_node("area").scale = Vector3(distance, distance, distance)

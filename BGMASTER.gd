@@ -31,18 +31,18 @@ func GAME_PAUSE():
 		gamestate = 0
 
 func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
-	if !gamestate and event.is_action('left_click'):
-		for node in get_node("../cars").get_children():
-			print(node.is_active)
-			if node.is_active:
-				node.destination = click_position
-				node.destination.y = 2
-#				var m = MeshInstance.new()
-#				m.mesh = load("res://new_cubemesh.tres")
-#				get_node("Mypath").add_child(m)
-		#		m.scale = Vector3(10, 10, 10)
-#				m.global_transform.origin = destination
-				node.show_path()
+	if constants.selectedCar and event.is_action('left_click'):
+		constants.selectedCar.destination = click_position
+		constants.selectedCar.destination.y = 2
+		constants.selectedCar.show_path()
+		
+#	if !gamestate and event.is_action('left_click'):
+#		for node in get_node("../cars").get_children():
+#			print(node.is_active)
+#			if node.is_active:
+#				node.destination = click_position
+#				node.destination.y = 2
+#				node.show_path()
 #				print('path for ', self)
 
 

@@ -2,7 +2,8 @@ extends Node
 
 
 var step_time = 2.0
-
+var input_mode = 'car_select'
+var selectedCar
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
