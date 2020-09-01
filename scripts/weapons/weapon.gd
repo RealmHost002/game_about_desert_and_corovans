@@ -28,7 +28,7 @@ func fire():
 	lb.scale.z = clamp((target.global_transform.origin - self.global_transform.origin).length() / 2.0, 0, distance / 2.0)
 	lb.scale.x = 0.1
 	
-	#IVAN PIDARAS
+	
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
