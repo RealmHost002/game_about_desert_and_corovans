@@ -1,6 +1,6 @@
 extends Position3D
 
-var burst_size = 6.0
+var burst_size = 199.0
 var step_time = 1.0
 var death_zone = Vector2()
 var is_active = false
@@ -24,11 +24,11 @@ func fire():
 		if node != get_parent().get_parent().get_parent():
 			target = node
 	var lb = load(path_to_fire_anim_node).instance()
-	self.add_child(lb)
+	get_parent().get_parent().get_parent().get_parent().get_parent().add_child(lb)
 	lb.global_transform = self.global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
-	lb.scale.z = clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
-	lb.scale.x = 0.1
+	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
+	lb.scale.x *= 0.1
 	
 	#IVAN PIDARAS
 
@@ -55,11 +55,16 @@ func _input(event):
 #		print(result)
 		if result:
 			target = result['collider'].get_parent()
-		print(target)
+			print(target)
+			unactivate()
 	if event.is_action_pressed("tb2"):
 		fire()
 
-func activated():
+func unactivate():
+	get_node("area").hide()
+	is_active = false
+
+func activate():
 	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
 	get_node("area").show()
 	get_node("area").scale = Vector3(distance, distance, distance)
