@@ -1,24 +1,26 @@
-extends Spatial
+extends TextureRect
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
-var counter = 0
+var number
 
 # Called when the node enters the scene tree for the first time.
-
 func _ready():
-	AddingFuckingEgors(get_node("../cars").get_children())
+	print("pipka")
 	pass # Replace with function body.
-func AddingFuckingEgors(a):
-	for i in a:
-		var TopIconScene = load("res://gui/TopIcon.tscn").instance()
-		get_node("HBoxContainer").add_child(TopIconScene)
-		TopIconScene.number = counter
-		counter += 1
-		
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+
+
+
+func _on_TextureButton_pressed():
+	print("hui" + str(number))
+	get_tree().get_root().get_node("Spatial/cars").get_child(number)._on_input_event(0,0,0,0,0,1)
+	pass # Replace with function body.
