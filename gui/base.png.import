@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/base.png-bbed7e63513c02a91afb85b52a629cdb.stex"
+path="res://.import/подложка.png-101a88ae32735264e149f77082ced012.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/base.png"
-dest_files=[ "res://.import/base.png-bbed7e63513c02a91afb85b52a629cdb.stex" ]
+source_file="res://подложка.png"
+dest_files=[ "res://.import/подложка.png-101a88ae32735264e149f77082ced012.stex" ]
 
 [params]
 
