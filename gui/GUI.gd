@@ -9,7 +9,7 @@ var a = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	AddingFuckingEgors(a)	
+	AddingFuckingEgors(a)
 	pass # Replace with function body.
 func AddingFuckingEgors(a):
 	for i in a:

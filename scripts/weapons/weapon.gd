@@ -34,11 +34,11 @@ func fire():
 
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	t += delta
-#	if t > step_time / burst_size:
-#		t = 0
-#		fire()
+func _process(delta):
+	t += delta
+	if t > step_time / burst_size:
+		t = 0
+		fire()
 
 
 func _input(event):

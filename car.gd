@@ -61,12 +61,6 @@ func _process(delta):
 
 
 
-
-
-
-
-
-
 func hide_path():
 	for child in get_node("Mypath").get_children():
 		child.queue_free()
@@ -95,19 +89,6 @@ func show_path():
 		pass
 	pass
 
-
-
-#func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
-
-#	if event is InputEventMouseButton and event.pressed and !get_node("../../BGMASTER").gamestate and is_active:
-#		destination = click_position
-#		destination.y = 2
-#		var m = MeshInstance.new()
-#		m.mesh = load("res://new_cubemesh.tres")
-#		get_node("Mypath").add_child(m)
-##		m.scale = Vector3(10, 10, 10)
-#		m.global_transform.origin = destination
-#		show_path()
 
 
 
