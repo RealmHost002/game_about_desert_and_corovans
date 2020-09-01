@@ -17,15 +17,17 @@ func _input(event):
 
 func GAME_UNPAUSE():
 	for node in get_node("../cars").get_children():
-		node.set_process(true)
-		node.hide_path()
+		node.unpause()
+#		node.set_process(true)
+#		node.hide_path()
 		gamestate = 1
 		get_node("StepTimer").start()
 
 func GAME_PAUSE():
 	for node in get_node("../cars").get_children():
-		node.set_process(false)
-		node.show_path()
+		node.pause()
+#		node.set_process(false)
+#		node.show_path()
 		gamestate = 0
 
 func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):

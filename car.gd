@@ -10,7 +10,7 @@ var forward
 var right
 var destination = Vector3(0,0,0)
 var rotation_speed = 1
-
+var abilities = ['weap', 'weap']
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,8 +59,26 @@ func _process(delta):
 	get_node("body").global_rotate(vec02.cross(Vector3(0, 1, 0)).normalized(), a2)
 
 
+func ability_used(id):
+	if abilities[id] == 'weap':
+		var w = get_node("body/weapons").get_child(id)
+		w.activate()
+	
+	pass
+	
+func pause():
+	self.set_process(false)
+	for w in get_node("body/weapons").get_children():
+		w.set_process(false)
+	show_path()
 
-
+func unpause():
+	self.set_process(true)
+	for w in get_node("body/weapons").get_children():
+		if w.target:
+			w.set_process(true)
+	hide_path()
+	
 func hide_path():
 	for child in get_node("Mypath").get_children():
 		child.queue_free()
@@ -94,7 +112,10 @@ func show_path():
 
 func _on_input_event(camera, event, click_position, click_normal, shape_idx, from_gui = 0):
 	if from_gui:
-		pass
+		is_active = true
+		for node in get_parent().get_children():
+			if node != self:
+				node.is_active = false
 	else:
 		if event is InputEventMouseButton and event.pressed:
 			is_active = true
