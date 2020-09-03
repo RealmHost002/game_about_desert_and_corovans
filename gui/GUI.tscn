@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://gui/textures/pipka.png" type="Texture" id=2]
@@ -35,7 +35,19 @@ expand_margin_bottom = 10.0
 shadow_color = Color( 0.0313726, 0.027451, 0.027451, 0.6 )
 shadow_size = 5
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://gui/tahoma.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 19
+outline_color = Color( 0.705882, 0, 0, 1 )
+extra_spacing_char = 1
+font_data = SubResource( 6 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+Fonts/fonts/large = null
+Fonts/fonts/normal = null
 TooltipPanel/styles/panel = SubResource( 3 )
 
 [node name="GUI" type="Spatial"]
@@ -123,8 +135,10 @@ grow_horizontal = 0
 grow_vertical = 0
 hint_tooltip = "Ya poshel kurit'
 Ya poshel kurit'
-YA POSHEL KURIT"
-theme = SubResource( 4 )
+YA POSHEL KURIT
+ПИПЕИСЬКА
+маленькая"
+theme = SubResource( 5 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 1 )
 __meta__ = {
