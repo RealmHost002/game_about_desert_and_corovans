@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 [gd_scene load_steps=11 format=2]
-=======
-[gd_scene load_steps=10 format=2]
->>>>>>> Stashed changes
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
 [ext_resource path="res://car.tscn" type="PackedScene" id=2]
@@ -11,10 +7,7 @@
 [ext_resource path="res://Camera.gd" type="Script" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=7]
-<<<<<<< Updated upstream
 [ext_resource path="res://trash textures/truck_test.tscn" type="PackedScene" id=8]
-=======
->>>>>>> Stashed changes
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
