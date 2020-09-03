@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
 [ext_resource path="res://car.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Camera.gd" type="Script" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://trash textures/truck_test.tscn" type="PackedScene" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -66,24 +67,20 @@ material/0 = null
 ] instance=ExtResource( 2 )]
 transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835808, 12.758, 2, 11.177 )
 
-[node name="Camera2" type="Camera" parent="cars/Spatial"]
-transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
-
 [node name="Spatial2" parent="cars" groups=[
 "ally",
 ] instance=ExtResource( 2 )]
 transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 8.982, 2, 9.756 )
 
-[node name="Camera2" type="Camera" parent="cars/Spatial2"]
-transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
+[node name="SpatialE2" parent="cars" groups=[
+"ally",
+] instance=ExtResource( 8 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 10.9281, 2.32924, 6.06943 )
 
 [node name="SpatialE" parent="cars" groups=[
 "enemy",
 ] instance=ExtResource( 2 )]
 transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 9.018, 2, 13.188 )
-
-[node name="Camera2" type="Camera" parent="cars/SpatialE"]
-transform = Transform( 3.68222, 7.15444, -5.93761, 0, 6.38633, 7.69511, 9.29738, -2.83351, 2.35159, -27.069, 27.9106, 8.6294 )
 
 [node name="BGMASTER" type="Spatial" parent="."]
 script = ExtResource( 4 )
@@ -91,6 +88,5 @@ script = ExtResource( 4 )
 [node name="StepTimer" type="Timer" parent="BGMASTER"]
 wait_time = 2.0
 one_shot = true
-autostart = true
 [connection signal="input_event" from="camera_look_at/StaticBody" to="BGMASTER" method="_on_StaticBody_input_event"]
 [connection signal="timeout" from="BGMASTER/StepTimer" to="BGMASTER" method="_on_StepTimer_timeout"]

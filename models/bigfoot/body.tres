@@ -2,16 +2,8 @@
 
 [ext_resource path="res://models/bigfoot/main_body.tres" type="Material" id=1]
 [ext_resource path="res://models/bigfoot/main_neutral.tres" type="Material" id=2]
-
-[sub_resource type="SpatialMaterial" id=1]
-resource_name = "Material.002"
-albedo_color = Color( 0.0509804, 0.890196, 0.713726, 1 )
-metallic = 0.5
-
-[sub_resource type="SpatialMaterial" id=2]
-resource_name = "3"
-albedo_color = Color( 0.231373, 0.231373, 0.231373, 1 )
-metallic = 0.5
+[ext_resource path="res://models/bigfoot/glass.tres" type="Material" id=3]
+[ext_resource path="res://models/bigfoot/cavity.tres" type="Material" id=4]
 
 [resource]
 surfaces/0 = {
@@ -47,7 +39,7 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": SubResource( 1 ),
+"material": ExtResource( 3 ),
 "name": "Material",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -60,7 +52,7 @@ surfaces/3 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6102,
-"material": SubResource( 2 ),
+"material": ExtResource( 4 ),
 "name": "3",
 "primitive": 4,
 "skeleton_aabb": [  ],

@@ -1,5 +1,10 @@
 extends Position3D
 
+
+
+var step = 0.1
+var mastercar
+var ntex
 var burst_size = 6.0
 var step_time = 1.0
 var death_zone = Vector2()
@@ -12,14 +17,22 @@ var t = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	step = constants.weapon_check_terrain_step
+	mastercar = get_parent().get_parent().get_parent()
 	step_time = constants.step_time
 	get_node("area").hide()
 	camera = get_tree().get_root().get_node('Spatial/camera_look_at/Camera')
+	ntex = mastercar.ntex
+#	print(ntex)
 #	set_process(false)
 #	death_zone = get_parent().death_zones
 	pass # Replace with function body.
 
 func fire():
+	if !ntex:
+		ntex = mastercar.image
+	var final_scale = Vector3(0,0,0)
+
 	for node in get_parent().get_parent().get_parent().get_parent().get_children():
 		if node != get_parent().get_parent().get_parent():
 			target = node
@@ -27,9 +40,34 @@ func fire():
 	get_parent().get_parent().get_parent().get_parent().get_parent().add_child(lb)
 	lb.global_transform = self.global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
-	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
+
+#	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
 	lb.scale.x *= 0.1
 	
+	var s_p = lb.global_transform.origin
+	var c = 1.0 / step
+	while c:
+		
+		var some_pos = Vector2(s_p.x, s_p.z) / 20.0 * 1024
+		while some_pos.x >= 1024:
+			some_pos.x -= 1024
+		while some_pos.y >= 1024:
+			some_pos.y -= 1024
+			
+		
+		s_p += (target.global_transform.origin - lb.global_transform.origin) * step
+		if (s_p - lb.global_transform.origin).length() > (target.global_transform.origin - lb.global_transform.origin).length():
+			break
+		
+		
+		if s_p.y < ntex.get_pixelv(some_pos).r * 3:
+			break
+		c -= 1
+	if c:
+		lb.scale.z *= (s_p - lb.global_transform.origin).length()
+	else:
+		lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
+#	print(c)
 	#IVAN PIDARAS
 
 	pass

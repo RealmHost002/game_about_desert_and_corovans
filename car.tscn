@@ -8,6 +8,7 @@
 [ext_resource path="res://models/weapons/area_mesh.tres" type="ArrayMesh" id=6]
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=7]
 [ext_resource path="res://models/weapons/area_material.tres" type="Material" id=8]
+[ext_resource path="res://models/useful materials/rubber_wheel.tres" type="Material" id=9]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.156863, 0.156863, 0.156863, 1 )
@@ -18,12 +19,6 @@ roughness = 0.69
 albedo_color = Color( 0.152941, 0.207843, 0.376471, 1 )
 metallic = 0.3
 
-[sub_resource type="SpatialMaterial" id=3]
-params_diffuse_mode = 4
-params_specular_mode = 1
-albedo_color = Color( 0.054902, 0.054902, 0.054902, 1 )
-metallic = 0.5
-
 [sub_resource type="ArrayMesh" id=4]
 surfaces/0 = {
 "aabb": AABB( -0.527216, -0.093225, -0.877441, 1.04671, 2.0767, 2.0767 ),
@@ -32,7 +27,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 792,
-"material": SubResource( 3 ),
+"material": ExtResource( 9 ),
 "name": "Material",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -79,6 +74,7 @@ material/1 = SubResource( 2 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D"]
 transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, -0.899078, -1.29407, 1.18434 )
+visible = false
 mesh = ExtResource( 6 )
 material/0 = ExtResource( 8 )
 
@@ -93,6 +89,7 @@ material/1 = SubResource( 2 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D2"]
 transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, 0.899, -1.29431, 1.184 )
+visible = false
 mesh = ExtResource( 6 )
 material/0 = ExtResource( 8 )
 
