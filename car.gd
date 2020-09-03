@@ -114,7 +114,9 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 		return
 	if constants.input_mode != 'car_select':
 		return
-
+#	print(self.get_index())
+#	get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
+	
 	if from_gui:
 		constants.selectedCar = self
 #		is_active = true
@@ -123,9 +125,11 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 #				node.is_active = false
 	elif event.is_action('left_click'):
 		constants.selectedCar = self
+		get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
 #		if event.is_action('left_click'):
 #			is_active = true
 #			for node in get_parent().get_children():
 #				if node != self:
 #					node.is_active = false
 #		constants.selectedCar = self
+	

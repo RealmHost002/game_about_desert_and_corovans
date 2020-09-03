@@ -23,12 +23,16 @@ func AddingFuckingEgors(a):
 		counter += 1
 
 func AddingWeaponButtons():
+	if !constants.selectedCar:
+		return
 	var counter = 0
-	var weapons = get_node("../cars").get_child(selectedCar).get_node("body/weapons").get_children()
+	
+	var weapons = constants.selectedCar.get_node("body/weapons").get_children()
 	for i in weapons:
 		var WeaponIconScene = load("res://gui/weaponIcon.tscn").instance()
 		get_node("HBoxContainer2/weaponContainer").add_child(WeaponIconScene)
 		WeaponIconScene.selectedWeapon = counter
+		print(str(counter) + "chlen")
 		counter += 1
 		
 	
