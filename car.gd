@@ -11,6 +11,9 @@ var right
 var destination = Vector3(20,20,20)
 var rotation_speed = 1
 var abilities = ['weap', 'weap']
+var current_pattern = 'truck'
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

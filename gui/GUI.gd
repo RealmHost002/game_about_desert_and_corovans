@@ -11,7 +11,8 @@ var selectedCar = 0
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	AddingFuckingEgors(get_node("../cars").get_children())
+#	print(get_tree().get_nodes_in_group('ally').size())
+	AddingFuckingEgors(get_tree().get_nodes_in_group('ally').size())
 	AddingWeaponButtons()
 	pass # Replace with function body.
 func AddingFuckingEgors(a):
