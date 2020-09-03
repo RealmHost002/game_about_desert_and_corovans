@@ -4,7 +4,11 @@
 [ext_resource path="res://gui/textures/pipka.png" type="Texture" id=2]
 [ext_resource path="res://gui/GUI.gd" type="Script" id=3]
 [ext_resource path="res://gui/textures/GuiMashineIcon.png" type="Texture" id=4]
+<<<<<<< Updated upstream
 [ext_resource path="res://gui/base.png" type="Texture" id=5]
+=======
+[ext_resource path="res://gui/textures/base.png" type="Texture" id=5]
+>>>>>>> Stashed changes
 [ext_resource path="res://gui/textures/IconEgor.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -62,7 +66,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer2" type="Panel" parent="."]
+[node name="Panel" type="Control" parent="."]
 anchor_left = 0.15
 anchor_top = 1.0
 anchor_right = 0.85
@@ -71,11 +75,8 @@ margin_left = 6.0
 margin_top = -103.0
 margin_bottom = -3.0
 grow_vertical = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="Panel"]
 margin_left = 24.145
 margin_top = -71.9515
 margin_right = 174.145
@@ -88,7 +89,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="Panel/TextureRect"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -80.0
@@ -101,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="HBoxContainer2/TextureRect"]
+[node name="Label" type="Label" parent="Panel/TextureRect"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -116,13 +117,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GuiMashineIcon2" type="Sprite" parent="HBoxContainer2/TextureRect"]
-position = Vector2( 73.8438, 74.1512 )
-rotation = 4.58591e-10
-scale = Vector2( 0.390376, 0.393753 )
+[node name="GuiMashineIcon2" type="TextureRect" parent="Panel/TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -105.221
+margin_top = -98.679
+margin_right = 394.779
+margin_bottom = 401.321
+rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer2"]
+[node name="TextureButton" type="TextureButton" parent="Panel"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -145,19 +155,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GuiMashineIcon" type="Sprite" parent="HBoxContainer2/TextureButton"]
-position = Vector2( 73.9178, 72.0389 )
-rotation = 4.21347e-10
-scale = Vector2( 0.403761, 0.391634 )
+[node name="GuiMashineIcon" type="TextureRect" parent="Panel/TextureButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -97.3159
+margin_top = -98.9001
+margin_right = 402.684
+margin_bottom = 401.1
+rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="подложка" type="Sprite" parent="HBoxContainer2"]
-position = Vector2( 657.126, 20.5208 )
-rotation = -7.01745e-10
-scale = Vector2( 0.995364, 1.51037 )
+[node name="TextureRect2" type="TextureRect" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -508.177
+margin_top = -98.7687
+margin_right = 491.823
+margin_bottom = 1.23126
+rect_scale = Vector2( 1, 1.5 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
+<<<<<<< Updated upstream
 [node name="weaponContainer" type="HBoxContainer" parent="HBoxContainer2"]
+=======
+[node name="huinya" type="HBoxContainer" parent="Panel"]
+>>>>>>> Stashed changes
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
@@ -172,3 +204,31 @@ size_flags_vertical = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+<<<<<<< Updated upstream
+=======
+
+[node name="TextureButton12" type="TextureButton" parent="Panel/huinya"]
+margin_right = 64.0
+margin_bottom = 64.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+
+[node name="TextureButton13" type="TextureButton" parent="Panel/huinya"]
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+
+[node name="TextureButton14" type="TextureButton" parent="Panel/huinya"]
+margin_left = 136.0
+margin_right = 200.0
+margin_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource( 1 )
+>>>>>>> Stashed changes
