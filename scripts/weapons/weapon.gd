@@ -11,7 +11,7 @@ var death_zone = Vector2()
 var is_active = false
 var camera
 var target = 0
-var distance = 10.0
+var distance = 3.0
 var path_to_fire_anim_node = "res://trash textures/laser_beam.tscn"
 var t = 0.0
 
@@ -33,14 +33,14 @@ func fire():
 		ntex = mastercar.image
 	var final_scale = Vector3(0,0,0)
 
-	for node in get_parent().get_parent().get_parent().get_parent().get_children():
-		if node != get_parent().get_parent().get_parent():
-			target = node
+#	for node in get_parent().get_parent().get_parent().get_parent().get_children():
+#		if node != get_parent().get_parent().get_parent():
+#			target = node
 	var lb = load(path_to_fire_anim_node).instance()
 	get_parent().get_parent().get_parent().get_parent().get_parent().add_child(lb)
 	lb.global_transform = self.global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
-
+	lb.set_surface_material(0, lb.get_surface_material(0).duplicate(true))
 #	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
 	lb.scale.x *= 0.1
 	
@@ -55,7 +55,7 @@ func fire():
 			some_pos.y -= 1024
 			
 		
-		s_p += (target.global_transform.origin - lb.global_transform.origin) * step
+		s_p += (target.global_transform.origin - lb.global_transform.origin) * step * 0.1
 		if (s_p - lb.global_transform.origin).length() > (target.global_transform.origin - lb.global_transform.origin).length():
 			break
 		
@@ -67,7 +67,8 @@ func fire():
 		lb.scale.z *= (s_p - lb.global_transform.origin).length()
 	else:
 		lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
-#	print(c)
+#		print('ds',(target.global_transform.origin - self.global_transform.origin).length(),'max', distance, 'scale', lb.scale.z )
+
 	#IVAN PIDARAS
 
 	pass
@@ -81,7 +82,7 @@ func _process(delta):
 		counter += 1
 		fire()
 		some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
-		print(counter)
+#		print(counter)
 
 
 func _input(event):
@@ -97,12 +98,13 @@ func _input(event):
 		var to = from + camera.project_ray_normal(event.position) * ray_length
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(from, to, [self, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
-#		print(result)
+		print(result)
 		if result:
 			if result['collider'].get_parent() in get_tree().get_nodes_in_group('ally'):
 				pass
 			else:
 				target = result['collider'].get_parent()
+				print(target.get_child(4))
 				unactivate()
 	if event.is_action_pressed("tb2"):
 		fire()

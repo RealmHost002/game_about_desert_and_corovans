@@ -89,6 +89,7 @@ radius = 4.86694
 script = ExtResource( 2 )
 
 [node name="body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.318583, 0 )
 mesh = SubResource( 6 )
 material/0 = ExtResource( 3 )
 material/1 = ExtResource( 11 )

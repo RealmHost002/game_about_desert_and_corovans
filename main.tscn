@@ -82,6 +82,26 @@ transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 10.9281, 2.32924, 6.0694
 ] instance=ExtResource( 2 )]
 transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 9.018, 2, 13.188 )
 
+[node name="Spatial3" parent="cars" groups=[
+"ally",
+] instance=ExtResource( 2 )]
+transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835808, 17.8365, 2, 14.5685 )
+
+[node name="Spatial4" parent="cars" groups=[
+"ally",
+] instance=ExtResource( 2 )]
+transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 14.0605, 2, 13.1475 )
+
+[node name="SpatialE3" parent="cars" groups=[
+"ally",
+] instance=ExtResource( 8 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.0066, 2.32924, 9.46098 )
+
+[node name="SpatialE4" parent="cars" groups=[
+"enemy",
+] instance=ExtResource( 2 )]
+transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 14.0965, 2, 16.5795 )
+
 [node name="BGMASTER" type="Spatial" parent="."]
 script = ExtResource( 4 )
 

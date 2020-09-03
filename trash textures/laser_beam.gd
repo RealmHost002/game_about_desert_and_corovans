@@ -6,6 +6,7 @@ var lifetime = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+#	self.set_surface_material(0, self.get_surface_material(0).duplicate(true))
 	get_node("AnimationPlayer").playback_speed = speed
 	lifetime /= speed
 	pass # Replace with function body.
