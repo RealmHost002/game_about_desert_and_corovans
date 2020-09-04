@@ -16,7 +16,7 @@ var distance_tex
 var distance = 0.0
 var damage_tex
 var damage = 0.0
-var path_to_fire_anim_node = "res://trash textures/laser_beam.tscn"
+var path_to_fire_anim_node = "res://models/weapons/lasergun/laser_beam.tscn"
 var t = 0.0
 var m
 var direction = Vector3()
@@ -97,6 +97,8 @@ func _process(delta):
 	to_target = target.global_transform.origin - get_node("dot").global_transform.origin
 	if !(abs(self.rotation.y) > death_zone.x and abs(self.rotation.y) < death_zone.y):
 		self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
+	else:
+		self.rotate_y(sign(direction.cross(to_target).y) * delta * -rot_speed)
 	t += delta
 	if t > some_step and direction.angle_to(to_target) < 0.3:
 		t = 0

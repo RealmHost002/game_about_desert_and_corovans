@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://car.gd" type="Script" id=1]
 [ext_resource path="res://models/weapons/lasergun/laergun.obj" type="ArrayMesh" id=2]
@@ -7,16 +7,10 @@
 [ext_resource path="res://scripts/weapons/weapon.gd" type="Script" id=5]
 [ext_resource path="res://models/weapons/area_material1.tres" type="Material" id=6]
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=7]
+[ext_resource path="res://models/weapons/lasergun/secondary_material.tres" type="Material" id=8]
+[ext_resource path="res://models/weapons/lasergun/main_material.tres" type="Material" id=9]
 [ext_resource path="res://scripts/engine.gd" type="Script" id=10]
-
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.156863, 0.156863, 0.156863, 1 )
-metallic = 0.5
-roughness = 0.69
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.152941, 0.207843, 0.376471, 1 )
-metallic = 0.3
+[ext_resource path="res://models/weapons/lasergun/Main_lasergun_scene.tres" type="ArrayMesh" id=11]
 
 [sub_resource type="SpatialMaterial" id=5]
 resource_name = "None"
@@ -77,9 +71,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899078, 2.89776, -1.18434 )
 script = ExtResource( 5 )
 
 [node name="body" type="MeshInstance" parent="body/weapons/Position3D"]
-mesh = ExtResource( 2 )
-material/0 = SubResource( 1 )
-material/1 = SubResource( 2 )
+mesh = ExtResource( 11 )
+material/0 = ExtResource( 9 )
+material/1 = ExtResource( 8 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D"]
 transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, 0, 0, 0 )
@@ -97,8 +91,8 @@ script = ExtResource( 5 )
 
 [node name="body" type="MeshInstance" parent="body/weapons/Position3D2"]
 mesh = ExtResource( 2 )
-material/0 = SubResource( 1 )
-material/1 = SubResource( 2 )
+material/0 = ExtResource( 9 )
+material/1 = ExtResource( 8 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D2"]
 transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, 0, 0, 0 )
