@@ -82,11 +82,14 @@ material/0 = SubResource( 1 )
 material/1 = SubResource( 2 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D"]
-transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, -0.899078, -1.29407, 1.18434 )
+transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, 0, 0, 0 )
 visible = false
 material_override = ExtResource( 6 )
 mesh = SubResource( 6 )
 material/0 = null
+
+[node name="dot" type="Position3D" parent="body/weapons/Position3D"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.657633, 2.39058 )
 
 [node name="Position3D2" type="Position3D" parent="body/weapons"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.899, 2.898, -1.184 )
@@ -98,10 +101,13 @@ material/0 = SubResource( 1 )
 material/1 = SubResource( 2 )
 
 [node name="area" type="MeshInstance" parent="body/weapons/Position3D2"]
-transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, 0.899, -1.29431, 1.184 )
+transform = Transform( 1.90249, 0, 2.3196, 0, 1, 0, -2.3196, 0, 1.90249, 0, 0, 0 )
 visible = false
 mesh = SubResource( 7 )
 material/0 = null
+
+[node name="dot" type="Position3D" parent="body/weapons/Position3D2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.657, 2.39 )
 
 [node name="wheels" type="Spatial" parent="."]
 

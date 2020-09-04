@@ -18,7 +18,7 @@ var rotation_speed = 1
 var abilities = ['engine','weap', 'weap']
 var sliders = [0, 0, 0]
 var current_pattern = 'truck'
-
+#var direction = Vector3()
 
 
 # Called when the node enters the scene tree for the first time.

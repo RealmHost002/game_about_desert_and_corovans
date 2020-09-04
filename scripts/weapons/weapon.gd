@@ -19,6 +19,9 @@ var damage = 0.0
 var path_to_fire_anim_node = "res://trash textures/laser_beam.tscn"
 var t = 0.0
 var m
+var direction = Vector3()
+var to_target = Vector3()
+var rot_speed = 1.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	distance_tex = load("res://models/weapons/lasergun/distance_tex.tres")
@@ -30,8 +33,12 @@ func _ready():
 	camera = get_tree().get_root().get_node('Spatial/camera_look_at/Camera')
 	ntex = mastercar.ntex
 
+
+#	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
 	m = load("res://models/weapons/area_material" + str(self.get_index()) + ".tres")
 	get_node("area").mesh.surface_set_material(0, m)
+	death_zone = get_parent().death_zones[self.get_index()]
+	m.set_shader_param('death_zone1', death_zone)
 
 #	set_process(false)
 #	death_zone = get_parent().death_zones
@@ -41,13 +48,12 @@ func fire():
 	if !ntex:
 		ntex = mastercar.image
 	var final_scale = Vector3(0,0,0)
-
 #	for node in get_parent().get_parent().get_parent().get_parent().get_children():
 #		if node != get_parent().get_parent().get_parent():
 #			target = node
 	var lb = load(path_to_fire_anim_node).instance()
 	get_parent().get_parent().get_parent().get_parent().get_parent().add_child(lb)
-	lb.global_transform = self.global_transform
+	lb.global_transform = get_node("dot").global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
 	lb.set_surface_material(0, lb.get_surface_material(0).duplicate(true))
 #	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
@@ -75,7 +81,7 @@ func fire():
 	if c:
 		lb.scale.z *= (s_p - lb.global_transform.origin).length()
 	else:
-		lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
+		lb.scale.z *= clamp((target.global_transform.origin - get_node("dot").global_transform.origin).length(), 0, distance)
 #		print('ds',(target.global_transform.origin - self.global_transform.origin).length(),'max', distance, 'scale', lb.scale.z )
 
 	#IVAN PIDARAS
@@ -85,8 +91,14 @@ func fire():
 var counter = 0
 var some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
 func _process(delta):
+	direction = get_node("dot").global_transform.origin - self.global_transform.origin
+	direction.y = 0
+	direction = direction.normalized()
+	to_target = target.global_transform.origin - get_node("dot").global_transform.origin
+	if !(abs(self.rotation.y) > death_zone.x and abs(self.rotation.y) < death_zone.y):
+		self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
 	t += delta
-	if t > some_step:
+	if t > some_step and direction.angle_to(to_target) < 0.3:
 		t = 0
 		counter += 1
 		fire()
@@ -135,6 +147,7 @@ func activate():
 	constants.input_mode = 'target_select'
 	get_node("area").global_transform.basis = Basis(Vector3(1,0,0), Vector3(0,1,0), Vector3(0,0,1))
 #	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
+	get_node("area").rotate(Vector3(0, 1, 0), get_node('../../../').rotation.y - deg2rad(90))
 	get_node("area").show()
 	get_node("area").scale = Vector3(distance, distance, distance)
 	is_active = true
