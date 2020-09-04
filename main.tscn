@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
 [ext_resource path="res://car.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Camera.gd" type="Script" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://trash textures/truck_test.tscn" type="PackedScene" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
@@ -72,11 +71,6 @@ transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835
 ] instance=ExtResource( 2 )]
 transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 8.982, 2, 9.756 )
 
-[node name="SpatialE2" parent="cars" groups=[
-"ally",
-] instance=ExtResource( 8 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 10.9281, 2.32924, 6.06943 )
-
 [node name="Spatial3" parent="cars" groups=[
 "ally",
 ] instance=ExtResource( 2 )]
@@ -86,11 +80,6 @@ transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835
 "ally",
 ] instance=ExtResource( 2 )]
 transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 14.0605, 2, 13.1475 )
-
-[node name="SpatialE3" parent="cars" groups=[
-"ally",
-] instance=ExtResource( 8 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 16.0066, 2.32924, 9.46098 )
 
 [node name="SpatialE4" parent="cars" groups=[
 "enemy",

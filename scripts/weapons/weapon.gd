@@ -12,19 +12,27 @@ var death_zone = Vector2()
 var is_active = false
 var camera
 var target = 0
-var distance = 3.0
+var distance_tex
+var distance = 0.0
+var damage_tex
+var damage = 0.0
 var path_to_fire_anim_node = "res://trash textures/laser_beam.tscn"
 var t = 0.0
-
+var m
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	distance_tex = load("res://models/weapons/lasergun/distance_tex.tres")
+	damage_tex = load("res://models/weapons/lasergun/damage_tex.tres")
 	step = constants.weapon_check_terrain_step
 	mastercar = get_parent().get_parent().get_parent()
 	step_time = constants.step_time
 	get_node("area").hide()
 	camera = get_tree().get_root().get_node('Spatial/camera_look_at/Camera')
 	ntex = mastercar.ntex
-#	print(ntex)
+
+	m = load("res://models/weapons/area_material" + str(self.get_index()) + ".tres")
+	get_node("area").mesh.surface_set_material(0, m)
+
 #	set_process(false)
 #	death_zone = get_parent().death_zones
 	pass # Replace with function body.
@@ -114,6 +122,14 @@ func unactivate():
 	constants.input_mode = 'car_select'
 	get_node("area").hide()
 	is_active = false
+
+func slider_changed(value):
+	distance = distance_tex.curve.interpolate(value / 100.0)
+	damage = damage_tex.curve.interpolate(value / 100.0)
+	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
+	get_node("area").scale = Vector3(distance, distance, distance)
+
+
 
 func activate():
 	constants.input_mode = 'target_select'

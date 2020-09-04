@@ -16,12 +16,14 @@ var right
 var destination = Vector3(20,20,20)
 var rotation_speed = 1
 var abilities = ['engine','weap', 'weap']
+var sliders = [0, 0, 0]
 var current_pattern = 'truck'
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	constants.sliders[name] = [0, 0, 0]
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	ntex = preload("res://noise.tres")
 	yield(ntex, "changed")
@@ -77,10 +79,14 @@ func ability_used(id):
 
 
 func slider_changed(id, value):
+	constants.sliders[name][id] = value
+	print(constants.sliders)
 	if abilities[id] == 'engine':
 		acc = value / 100.0 * acc_multiplyer
 		show_path()
-	else:
+	elif abilities[id] == 'weap':
+		var w = get_node("body/weapons").get_child(id)
+		w.slider_changed(value)
 		pass
 
 
@@ -138,7 +144,7 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 		return
 	if constants.input_mode != 'car_select':
 		return
-	print(self.get_index())
+#	print(self.get_index())
 #	get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
 	
 	if from_gui:
