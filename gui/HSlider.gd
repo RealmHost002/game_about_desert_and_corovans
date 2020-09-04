@@ -21,4 +21,6 @@ func _ready():
 
 func _on_HSlider_value_changed(value):
 	get_child(0).text = str(self.value) + "%"
+	if constants.selectedCar:
+		constants.selectedCar.slider_changed(get_parent().selectedWeapon, value)
 	pass # Replace with function body.

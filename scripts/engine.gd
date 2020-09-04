@@ -1,14 +1,10 @@
-extends Spatial
+extends Position3D
 
 
-var death_zones = [Vector2(1, 2.14), Vector2(4.14, 5.28)]
-
+var type = 'engine'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var c = 0
-#	for child in get_children():
-#		child.death_zone = death_zones[c]
 	pass # Replace with function body.
 
 

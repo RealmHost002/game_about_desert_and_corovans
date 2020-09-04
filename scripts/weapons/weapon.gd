@@ -1,7 +1,8 @@
 extends Position3D
 
 
-
+var type = 'weapon'
+var energy = 100
 var step = 0.1
 var mastercar
 var ntex

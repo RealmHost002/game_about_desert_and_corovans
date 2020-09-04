@@ -1,16 +1,21 @@
 extends Spatial
 
+
+var acc_multiplyer = 2.0
+var acc = 1.0
+var resistance = 1.0
+var energy = 100
 var is_active = false
 var ntex
 var noise
 var image
 var clearance = 0.1
-var speed = 1
+var speed = 0
 var forward
 var right
 var destination = Vector3(20,20,20)
 var rotation_speed = 1
-var abilities = ['weap', 'weap']
+var abilities = ['engine','weap', 'weap']
 var current_pattern = 'truck'
 
 
@@ -30,6 +35,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	speed += acc * delta
+	speed -= resistance * speed * speed * delta
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
@@ -65,9 +72,18 @@ func ability_used(id):
 	if abilities[id] == 'weap':
 		var w = get_node("body/weapons").get_child(id)
 		w.activate()
-	
-	pass
-	
+	if abilities[id] == 'engine':
+		pass
+
+
+func slider_changed(id, value):
+	if abilities[id] == 'engine':
+		acc = value / 100.0 * acc_multiplyer
+		show_path()
+	else:
+		pass
+
+
 func pause():
 	self.set_process(false)
 	for w in get_node("body/weapons").get_children():
@@ -77,8 +93,9 @@ func pause():
 func unpause():
 	self.set_process(true)
 	for w in get_node("body/weapons").get_children():
-		if w.target:
-			w.set_process(true)
+		if w.type == 'weapon':
+			if w.target:
+				w.set_process(true)
 	hide_path()
 	
 func hide_path():
@@ -89,11 +106,15 @@ func hide_path():
 
 func show_path():
 	hide_path()
+	var spd = speed
 	var f = forward
 	var p = self.global_transform.origin
 	p.y = 2
 	var c = 0
 	while (p - destination).length() > 0.1:
+		spd += acc * 0.1
+		spd -= resistance * spd * spd * 0.1
+		
 		var m = MeshInstance.new()
 		if c < 10 * constants.step_time:
 			m.mesh = load("res://new_cubemesh_green.tres")
@@ -102,7 +123,7 @@ func show_path():
 		get_node("Mypath").add_child(m)
 		m.global_transform.origin = p
 		f = f.rotated(Vector3(0,1,0), sign(f.cross(destination - p).y) * 0.1 * rotation_speed)
-		p += f * 0.1 * speed
+		p += f * 0.1 * spd
 		c += 1
 		if c > 100:
 			break
@@ -117,7 +138,7 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 		return
 	if constants.input_mode != 'car_select':
 		return
-#	print(self.get_index())
+	print(self.get_index())
 #	get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
 	
 	if from_gui:
