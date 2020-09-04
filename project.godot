@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 constants="*res://constants.gd"
+Saveload="*res://data/saveload.gd"
 
 [debug]
 
