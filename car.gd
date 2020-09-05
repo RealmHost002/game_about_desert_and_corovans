@@ -22,6 +22,7 @@ var abilities = ['engine','weap', 'weap']
 var sliders = [0, 0, 0]
 var current_pattern = 'truck'
 var hp = 1000
+var maxHp = 1000
 var shield = 200
 var shieldLimit = 200
 var energyProduction = 75
@@ -100,8 +101,8 @@ func take_damage(damage, weaponType, status = "no"):
 				damage -= shield
 				shield = 0
 				hp -= damage
-#				get_node("Sprite3D").surface_get_material(0).set_shader_param("a", 1)
-				
+				get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/maxHp)
+#				print("hp =", hp," ", maxHp," ",hp/maxHp)
 				if hp <=0:
 					self.destroy()
 	else:
