@@ -91,6 +91,7 @@ func _process(delta):
 #	move_and_collide(speed * (forward) * delta)
 	
 func destroy():
+	self.queue_free()
 	pass
 	
 func take_damage(damage, weaponType, status = "no"):
@@ -104,11 +105,12 @@ func take_damage(damage, weaponType, status = "no"):
 				shield = 0
 				hp -= damage
 #				print("hp =", hp," ", maxHp," ",hp/maxHp)
-				if hp <=0:
-					self.destroy()
+				
 		else:
 			hp -= damage
-		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/maxHp)
+			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/maxHp)
+			if hp <=0:
+					self.destroy()
 	if status != 'no':
 	
 		pass	

@@ -111,27 +111,28 @@ func fire():
 var counter = 0
 var some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
 func _process(delta):
-	direction = get_node("dot").global_transform.origin - self.global_transform.origin
-	direction.y = 0
-	direction = direction.normalized()
-	to_target = target.global_transform.origin - get_node("dot").global_transform.origin
-	var f = true
-	if (self.rotation.y) > self.death_zone.x and (self.rotation.y) < self.death_zone.y:
-		if self.rotation.x > -0.3:
-			self.rotation.x -= 0.7 * delta
-		f = false
-	else:
-		if self.rotation.x < 0.0:
-			self.rotation.x += delta * 0.7
-	self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
-
-
-	t += delta
-	if t > some_step and direction.angle_to(to_target) < 0.3 and f:
-		t = 0
-		counter += 1
-		fire()
-		some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
+	if target:
+		direction = get_node("dot").global_transform.origin - self.global_transform.origin
+		direction.y = 0
+		direction = direction.normalized()
+		to_target = target.global_transform.origin - get_node("dot").global_transform.origin
+		var f = true
+		if (self.rotation.y) > self.death_zone.x and (self.rotation.y) < self.death_zone.y:
+			if self.rotation.x > -0.3:
+				self.rotation.x -= 0.7 * delta
+			f = false
+		else:
+			if self.rotation.x < 0.0:
+				self.rotation.x += delta * 0.7
+		self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
+	
+	
+		t += delta
+		if t > some_step and direction.angle_to(to_target) < 0.3 and f:
+			t = 0
+			counter += 1
+			fire()
+			some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
 
 
 func _input(event):
