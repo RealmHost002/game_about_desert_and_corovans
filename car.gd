@@ -42,6 +42,7 @@ func _ready():
 	if image:
 		image.lock()
 	noise = ntex.noise
+	take_damage(500, "laser")
 #	set_process(false)
 	pass # Replace with function body.
 
@@ -94,16 +95,19 @@ func take_damage(damage, weaponType, status = "no"):
 	if weaponType == "laser":
 		if shield > 0:
 			if damage <= shield:
-				damage -= shield
+				shield -= damage
 			else:
 				damage -= shield
 				shield = 0
 				hp -= damage
+#				get_node("Sprite3D").surface_get_material(0).set_shader_param("a", 1)
+				
 				if hp <=0:
 					self.destroy()
 	else:
 		hp -= damage
 	if status != 'no':
+	
 		pass	
 				
 func ability_used(id):

@@ -13,7 +13,12 @@ func _ready():
 	var ourTeamDataJson =JSON.parse(saveFile.get_as_text())
 	saveFile.close()
 	ourTeamData = ourTeamDataJson.result
+	read_data(ourTeamData)
 	
+func read_data(ourTeamData):
+	
+	print(ourTeamData["laserGun"]["dot_position"])
+	print(typeof(ourTeamData["laserGun"]["dot_position"]))
 #	pass # Replace with function body.
 
 

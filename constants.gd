@@ -7,6 +7,7 @@ var selectedCar
 var weapon_check_terrain_step = 0.1
 var sliders = {}
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
