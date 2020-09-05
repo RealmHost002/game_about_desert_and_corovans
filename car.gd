@@ -1,4 +1,7 @@
-extends Spatial
+extends  KinematicBody 
+#RigidBody
+#KinematicBody 
+#Spatial
 
 
 var acc_multiplyer = 2.0
@@ -9,7 +12,7 @@ var is_active = false
 var ntex
 var noise
 var image
-var clearance = 0.1
+var clearance = 0.0
 var speed = 0
 var forward
 var right
@@ -50,9 +53,10 @@ func _process(delta):
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
-	self.global_transform.origin += forward * delta * speed
+#	self.global_transform.origin += forward * delta * speed
+	var s_height = 0
 	if image:
-		var s_height = 0
+#		var s_height = 0
 		for wheel in get_node('wheels').get_children():
 			var some_pos = Vector2(wheel.global_transform.origin.x, wheel.global_transform.origin.z) / 20.0 * 1024
 			while some_pos.x >= 1024:
@@ -61,10 +65,8 @@ func _process(delta):
 				some_pos.y -= 1024
 			wheel.global_transform.origin.y = image.get_pixelv(some_pos).r * 3
 			s_height += wheel.global_transform.origin.y
-		s_height = s_height/4 + clearance
-		self.global_transform.origin.y = s_height
-#	get_node("body").rotation_degrees.x = (-get_node("wheels/fl").global_transform.origin.y - get_node("wheels/fr").global_transform.origin.y + get_node("wheels/rl").global_transform.origin.y + get_node("wheels/rr").global_transform.origin.y) * 50
-#	get_node("body").rotation_degrees.z = (-get_node("wheels/fl").global_transform.origin.y + get_node("wheels/fr").global_transform.origin.y - get_node("wheels/rl").global_transform.origin.y + get_node("wheels/rr").global_transform.origin.y) * 50
+		s_height = s_height/4.0 + clearance
+#		self.global_transform.origin.y = s_height
 	var vec1 = get_node("wheels/fr").global_transform.origin - get_node("wheels/rl").global_transform.origin
 	var vec2 = get_node("wheels/fl").global_transform.origin - get_node("wheels/rr").global_transform.origin
 	get_node("body").rotation = Vector3(0,0,0)
@@ -77,6 +79,14 @@ func _process(delta):
 	get_node("body").global_rotate(vec01.cross(Vector3(0, 1, 0)).normalized(), a1)
 	get_node("body").global_rotate(vec02.cross(Vector3(0, 1, 0)).normalized(), a2)
 
+
+
+
+	self.global_transform.origin.y = s_height
+	forward.y = 0.0
+	move_and_slide(speed * (forward))
+#	move_and_collide(speed * (forward) * delta)
+	
 func destroy():
 	pass
 	
@@ -191,3 +201,4 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 #					node.is_active = false
 #		constants.selectedCar = self
 	
+

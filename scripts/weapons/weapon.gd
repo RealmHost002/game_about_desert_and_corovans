@@ -98,9 +98,10 @@ func fire():
 #		print('ds',(target.global_transform.origin - self.global_transform.origin).length(),'max', distance, 'scale', lb.scale.z )
 	lb.scale.z *= dist_to_ray_end
 	
-#	var space_state = get_world().direct_space_state
-#	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
-
+	var space_state = get_world().direct_space_state
+	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
+	if result:
+		print(result['collider'])
 	#IVAN PIDARAS
 
 	pass
