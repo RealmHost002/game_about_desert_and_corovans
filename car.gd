@@ -23,8 +23,8 @@ var sliders = [0, 0, 0]
 var current_pattern = 'truck'
 var hp = 1000
 var maxHp = 1000
-var shield = 200
-var shieldLimit = 200
+var shield = 0
+var shieldLimit = 0
 var energyProduction = 75
 
 #var direction = Vector3()
