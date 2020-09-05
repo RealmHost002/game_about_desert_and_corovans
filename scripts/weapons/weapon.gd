@@ -18,6 +18,7 @@ var damage_tex
 var damage = 0.0
 var path_to_fire_anim_node = "res://models/weapons/lasergun/laser_beam.tscn"
 var anim_color = Color(1.0, 0,0,1)
+var dot_position = Vector3(0, 0.658, 2.391)
 var t = 0.0
 var m
 var direction = Vector3()
@@ -102,6 +103,7 @@ func fire():
 	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
 	if result:
 		print(result['collider'])
+		result['collider'].take_damage(damage, 'laser')
 	#IVAN PIDARAS
 
 	pass
@@ -179,3 +181,13 @@ func activate():
 	get_node("area").scale = Vector3(distance, distance, distance)
 	is_active = true
 	pass
+
+func _load(params):
+	damage_tex = params['damimage']
+	distance_tex = params['distimage']
+	rot_speed = params['rot_speed']
+	get_child(0).mesh = load(params['mesh'])
+	path_to_fire_anim_node = params['buletScene']
+	anim_color = params['buletColor']
+	var v = params['dot_position']
+	get_node('dot').transform.origin = Vector3(v[0],v[1],v[2])

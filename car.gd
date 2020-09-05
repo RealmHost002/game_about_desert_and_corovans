@@ -21,8 +21,8 @@ var rotation_speed = 1
 var abilities = ['engine','weap', 'weap']
 var sliders = [0, 0, 0]
 var current_pattern = 'truck'
-var hp = 1000
-var maxHp = 1000
+var hp = 100
+var maxHp = 100
 var shield = 0
 var shieldLimit = 0
 var energyProduction = 75
@@ -43,7 +43,8 @@ func _ready():
 	if image:
 		image.lock()
 	noise = ntex.noise
-	take_damage(500, "laser")
+	get_node("Sprite3D").material_override = get_node("Sprite3D").material_override.duplicate(true)
+#	take_damage(500, "laser")
 #	set_process(false)
 	pass # Replace with function body.
 
@@ -93,6 +94,7 @@ func destroy():
 	pass
 	
 func take_damage(damage, weaponType, status = "no"):
+#	print(damage)
 	if weaponType == "laser":
 		if shield > 0:
 			if damage <= shield:
@@ -101,12 +103,12 @@ func take_damage(damage, weaponType, status = "no"):
 				damage -= shield
 				shield = 0
 				hp -= damage
-				get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/maxHp)
 #				print("hp =", hp," ", maxHp," ",hp/maxHp)
 				if hp <=0:
 					self.destroy()
-	else:
-		hp -= damage
+		else:
+			hp -= damage
+		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/maxHp)
 	if status != 'no':
 	
 		pass	
