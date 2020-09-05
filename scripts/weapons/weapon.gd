@@ -35,9 +35,14 @@ func _ready():
 
 
 #	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
+	print(self.get_index())
 	m = load("res://models/weapons/area_material" + str(self.get_index()) + ".tres")
+#	var s = load("res://models/weapons/area" + str(self.get_index()) + ".shader")
+#	m.shader = s
 	get_node("area").mesh.surface_set_material(0, m)
+	print(m)
 	death_zone = get_parent().death_zones[self.get_index()]
+	print(death_zone)
 	m.set_shader_param('death_zone1', death_zone)
 
 #	set_process(false)
@@ -58,23 +63,22 @@ func fire():
 	lb.set_surface_material(0, lb.get_surface_material(0).duplicate(true))
 #	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
 	lb.scale.x *= 0.1
-	
+	lb.mesh.surface_set_material(0, lb.mesh.surface_get_material(0).duplicate())
+	lb.mesh.surface_get_material(0).albedo_color = Color(0, 5.0, 0, 1)
+#	Mesh
 	var s_p = lb.global_transform.origin
 	var c = 1.0 / step
 	while c:
-		
 		var some_pos = Vector2(s_p.x, s_p.z) / 20.0 * 1024
 		while some_pos.x >= 1024:
 			some_pos.x -= 1024
 		while some_pos.y >= 1024:
 			some_pos.y -= 1024
-			
-		
+
 		s_p += (target.global_transform.origin - lb.global_transform.origin) * step * 0.1
 		if (s_p - lb.global_transform.origin).length() > (target.global_transform.origin - lb.global_transform.origin).length():
 			break
-		
-		
+
 		if s_p.y < ntex.get_pixelv(some_pos).r * 3:
 			break
 		c -= 1
@@ -83,7 +87,7 @@ func fire():
 	else:
 		lb.scale.z *= clamp((target.global_transform.origin - get_node("dot").global_transform.origin).length(), 0, distance)
 #		print('ds',(target.global_transform.origin - self.global_transform.origin).length(),'max', distance, 'scale', lb.scale.z )
-
+	
 	#IVAN PIDARAS
 
 	pass
@@ -95,17 +99,30 @@ func _process(delta):
 	direction.y = 0
 	direction = direction.normalized()
 	to_target = target.global_transform.origin - get_node("dot").global_transform.origin
-	if !(abs(self.rotation.y) > death_zone.x and abs(self.rotation.y) < death_zone.y):
-		self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
+#	print(self.rotation.y,'   ',self.get_index(),'    ', self.death_zone)
+	var f = true
+	if (self.rotation.y) > self.death_zone.x and (self.rotation.y) < self.death_zone.y:
+#		self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
+#		self.rotate_x(delta)
+#		print(self.get_index())
+		if self.rotation.x > -0.3:
+			self.rotation.x -= 0.7 * delta
+		f = false
+		pass
 	else:
-		self.rotate_y(sign(direction.cross(to_target).y) * delta * -rot_speed)
+#		print(self.get_index())
+#		self.rotate_y(sign(direction.cross(to_target).y) * delta * -rot_speed)
+		if self.rotation.x < 0.0:
+			self.rotation.x += delta * 0.7
+		pass
+	self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
+
 	t += delta
-	if t > some_step and direction.angle_to(to_target) < 0.3:
+	if t > some_step and direction.angle_to(to_target) < 0.3 and f:
 		t = 0
 		counter += 1
 		fire()
 		some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
-#		print(counter)
 
 
 func _input(event):
@@ -121,7 +138,6 @@ func _input(event):
 		var to = from + camera.project_ray_normal(event.position) * ray_length
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(from, to, [self, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
-		print(result)
 		if result:
 			if result['collider'].get_parent() in get_tree().get_nodes_in_group('ally'):
 				pass
@@ -149,7 +165,7 @@ func activate():
 	constants.input_mode = 'target_select'
 	get_node("area").global_transform.basis = Basis(Vector3(1,0,0), Vector3(0,1,0), Vector3(0,0,1))
 #	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
-	get_node("area").rotate(Vector3(0, 1, 0), get_node('../../../').rotation.y - deg2rad(90))
+	get_node("area").rotate(Vector3(0, 1, 0), get_node('../../../').rotation.y)
 	get_node("area").show()
 	get_node("area").scale = Vector3(distance, distance, distance)
 	is_active = true

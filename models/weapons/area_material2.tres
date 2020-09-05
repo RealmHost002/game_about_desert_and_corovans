@@ -31,12 +31,14 @@ void vertex() {
 
 void fragment() {
 	vec2 base_uv = UV - 0.5;
+	float b = 1.27 + 3.14;
+	base_uv *= mat2(vec2(cos(b), sin(b)), vec2(-sin(b), cos(b)));
 	vec4 albedo_tex = texture(texture_albedo,base_uv);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	SPECULAR = specular;
-	float a = atan(base_uv.y, base_uv.x) + 3.14;
+	float a = atan(base_uv.y, base_uv.x);
 	if (a > death_zone1.x && a < death_zone1.y){
 		albedo_tex.a = 0.0;
 		}
@@ -58,5 +60,5 @@ shader_param/uv1_scale = Vector3( 1, 1, 1 )
 shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/death_zone1 = Vector2( 3, 3 )
+shader_param/death_zone1 = Vector2( 0, 0 )
 shader_param/death_zone2 = Vector2( 0, 0 )

@@ -71,6 +71,9 @@ transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835
 ] instance=ExtResource( 2 )]
 transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 8.982, 2, 9.756 )
 
+[node name="Camera" type="Camera" parent="cars/Spatial2"]
+transform = Transform( 3.63398, 4.54776, -8.13093, 0, 8.7276, 4.88149, 9.31634, -1.77392, 3.17159, -15.0538, 11.3987, 5.17734 )
+
 [node name="Spatial3" parent="cars" groups=[
 "ally",
 ] instance=ExtResource( 2 )]

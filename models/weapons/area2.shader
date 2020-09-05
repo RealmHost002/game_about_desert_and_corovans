@@ -1,7 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type spatial;
+shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform vec4 albedo : hint_color;
 uniform sampler2D texture_albedo : hint_albedo;
@@ -47,18 +44,3 @@ void fragment() {
 		}
 	ALPHA = albedo.a * albedo_tex.a;
 }
-"
-
-[resource]
-shader = SubResource( 1 )
-shader_param/albedo = Color( 0.10791, 0.8125, 0.164277, 0.580392 )
-shader_param/specular = 0.5
-shader_param/metallic = 0.0
-shader_param/roughness = 1.0
-shader_param/point_size = 1.0
-shader_param/uv1_scale = Vector3( 1, 1, 1 )
-shader_param/uv1_offset = Vector3( 0, 0, 0 )
-shader_param/uv2_scale = Vector3( 1, 1, 1 )
-shader_param/uv2_offset = Vector3( 0, 0, 0 )
-shader_param/death_zone1 = Vector2( 0, 0 )
-shader_param/death_zone2 = Vector2( 0, 0 )
