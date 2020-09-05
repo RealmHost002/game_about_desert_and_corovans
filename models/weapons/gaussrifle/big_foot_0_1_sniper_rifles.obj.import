@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/big_foot_0_1_sniper_rifles.obj-598c15d27ba2f28587b9ac00e4aee60e.mesh"
+
+[deps]
+
+files=[ "res://.import/big_foot_0_1_sniper_rifles.obj-598c15d27ba2f28587b9ac00e4aee60e.mesh" ]
+
+source_file="res://models/weapons/gaussrifle/big_foot_0_1_sniper_rifles.obj"
+dest_files=[ "res://.import/big_foot_0_1_sniper_rifles.obj-598c15d27ba2f28587b9ac00e4aee60e.mesh", "res://.import/big_foot_0_1_sniper_rifles.obj-598c15d27ba2f28587b9ac00e4aee60e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

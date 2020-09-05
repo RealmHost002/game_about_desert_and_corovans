@@ -17,6 +17,7 @@ var distance = 0.0
 var damage_tex
 var damage = 0.0
 var path_to_fire_anim_node = "res://models/weapons/lasergun/laser_beam.tscn"
+var anim_color = Color(1.0, 0,0,1)
 var t = 0.0
 var m
 var direction = Vector3()
@@ -35,14 +36,14 @@ func _ready():
 
 
 #	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
-	print(self.get_index())
+#	print(self.get_index())
 	m = load("res://models/weapons/area_material" + str(self.get_index()) + ".tres")
 #	var s = load("res://models/weapons/area" + str(self.get_index()) + ".shader")
 #	m.shader = s
 	get_node("area").mesh.surface_set_material(0, m)
-	print(m)
+#	print(m)
 	death_zone = get_parent().death_zones[self.get_index()]
-	print(death_zone)
+#	print(death_zone)
 	m.set_shader_param('death_zone1', death_zone)
 
 #	set_process(false)
@@ -60,11 +61,17 @@ func fire():
 	get_parent().get_parent().get_parent().get_parent().get_parent().add_child(lb)
 	lb.global_transform = get_node("dot").global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
-	lb.set_surface_material(0, lb.get_surface_material(0).duplicate(true))
+
+
+	var material = lb.get_surface_material(0).duplicate(true)
+	material.albedo_color = anim_color
+	lb.set_surface_material(0, material)
+
 #	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
 	lb.scale.x *= 0.1
-	lb.mesh.surface_set_material(0, lb.mesh.surface_get_material(0).duplicate())
-	lb.mesh.surface_get_material(0).albedo_color = Color(0, 5.0, 0, 1)
+#	lb.mesh.surface_set_material(0, lb.mesh.surface_get_material(0).duplicate(true))
+#	lb.mesh.surface_set_material(0, preload()
+#	lb.mesh.surface_get_material(0).albedo_color = Color(0, 1.0, 0, 1)
 #	Mesh
 	var s_p = lb.global_transform.origin
 	var c = 1.0 / step
@@ -82,12 +89,18 @@ func fire():
 		if s_p.y < ntex.get_pixelv(some_pos).r * 3:
 			break
 		c -= 1
-	if c:
-		lb.scale.z *= (s_p - lb.global_transform.origin).length()
-	else:
-		lb.scale.z *= clamp((target.global_transform.origin - get_node("dot").global_transform.origin).length(), 0, distance)
-#		print('ds',(target.global_transform.origin - self.global_transform.origin).length(),'max', distance, 'scale', lb.scale.z )
 	
+	var dist_to_ray_end = 0
+	if c:
+		dist_to_ray_end = (s_p - lb.global_transform.origin).length()
+	else:
+		dist_to_ray_end = clamp((target.global_transform.origin - get_node("dot").global_transform.origin).length(), 0, distance)
+#		print('ds',(target.global_transform.origin - self.global_transform.origin).length(),'max', distance, 'scale', lb.scale.z )
+	lb.scale.z *= dist_to_ray_end
+	
+#	var space_state = get_world().direct_space_state
+#	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
+
 	#IVAN PIDARAS
 
 	pass
@@ -99,23 +112,16 @@ func _process(delta):
 	direction.y = 0
 	direction = direction.normalized()
 	to_target = target.global_transform.origin - get_node("dot").global_transform.origin
-#	print(self.rotation.y,'   ',self.get_index(),'    ', self.death_zone)
 	var f = true
 	if (self.rotation.y) > self.death_zone.x and (self.rotation.y) < self.death_zone.y:
-#		self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
-#		self.rotate_x(delta)
-#		print(self.get_index())
 		if self.rotation.x > -0.3:
 			self.rotation.x -= 0.7 * delta
 		f = false
-		pass
 	else:
-#		print(self.get_index())
-#		self.rotate_y(sign(direction.cross(to_target).y) * delta * -rot_speed)
 		if self.rotation.x < 0.0:
 			self.rotation.x += delta * 0.7
-		pass
 	self.rotate_y(sign(direction.cross(to_target).y) * delta * rot_speed)
+
 
 	t += delta
 	if t > some_step and direction.angle_to(to_target) < 0.3 and f:
@@ -142,9 +148,11 @@ func _input(event):
 			if result['collider'].get_parent() in get_tree().get_nodes_in_group('ally'):
 				pass
 			else:
-				target = result['collider'].get_parent()
-				print(target.get_child(4))
+				target = result['collider']
+#				print(target)
+#				print(result)
 				unactivate()
+#		print(target)
 	if event.is_action_pressed("tb2"):
 		fire()
 
