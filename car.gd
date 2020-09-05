@@ -18,10 +18,18 @@ var rotation_speed = 1
 var abilities = ['engine','weap', 'weap']
 var sliders = [0, 0, 0]
 var current_pattern = 'truck'
+var hp = 1000
+var shield = 200
+var shieldLimit = 200
+var energyProduction = 75
+
 #var direction = Vector3()
 
 
 # Called when the node enters the scene tree for the first time.
+
+		
+		
 func _ready():
 	constants.sliders[name] = [0, 0, 0]
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
@@ -69,7 +77,25 @@ func _process(delta):
 	get_node("body").global_rotate(vec01.cross(Vector3(0, 1, 0)).normalized(), a1)
 	get_node("body").global_rotate(vec02.cross(Vector3(0, 1, 0)).normalized(), a2)
 
-
+func destroy():
+	pass
+	
+func take_damage(damage, weaponType, status = "no"):
+	if weaponType == "laser":
+		if shield > 0:
+			if damage <= shield:
+				damage -= shield
+			else:
+				damage -= shield
+				shield = 0
+				hp -= damage
+				if hp <=0:
+					self.destroy()
+	else:
+		hp -= damage
+	if status != 'no':
+		pass	
+				
 func ability_used(id):
 	if abilities[id] == 'weap':
 		var w = get_node("body/weapons").get_child(id)
@@ -97,6 +123,8 @@ func pause():
 	show_path()
 
 func unpause():
+	if shield + energyProduction > shieldLimit :
+		shield = shieldLimit
 	self.set_process(true)
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
