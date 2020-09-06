@@ -220,3 +220,27 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 #		constants.selectedCar = self
 	
 
+
+func _load(params):
+	get_node("body").mesh = params['body']
+	get_node("wheels/fl").mesh = params['wheelFront']
+	get_node("wheels/fr").mesh = params['wheelFront']
+	get_node("wheels/rl").mesh = params['wheelBack']
+	get_node("wheels/rr").mesh = params['wheelBack']
+	self.hp = params['hp']
+	
+	
+func load_modules(params):
+	var modules_node = get_node("body/weapons")
+	modules_node.add_child()
+	for w in params['weapons']:
+		pass
+	
+	
+	
+	
+
+
+
+
+

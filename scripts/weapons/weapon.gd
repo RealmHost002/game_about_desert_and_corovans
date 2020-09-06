@@ -214,3 +214,4 @@ func _load(params):
 	var v = params['dot_position']
 	get_node('dot').transform.origin = Vector3(v[0],v[1],v[2])
 	image_path = params['image_path']
+	damage_type = params['damage_type']
