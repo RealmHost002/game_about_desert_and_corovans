@@ -272,6 +272,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50181, 5.34185, 0 )
 material_override = SubResource( 7 )
 cast_shadow = 0
 texture = ExtResource( 13 )
+region_enabled = true
+region_rect = Rect2( 6, 64, 0, 0 )
 
 [node name="shield" type="StaticBody" parent="." groups=[
 "shields",

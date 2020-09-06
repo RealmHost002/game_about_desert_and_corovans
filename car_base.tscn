@@ -2,9 +2,9 @@
 
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=1]
 [ext_resource path="res://car.gd" type="Script" id=2]
+[ext_resource path="res://gui/textures/hp.png" type="Texture" id=3]
 [ext_resource path="res://models/bigfoot/wheel.tres" type="ArrayMesh" id=5]
 [ext_resource path="res://models/bigfoot/body.tres" type="ArrayMesh" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=13]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 2.08602
@@ -137,7 +137,7 @@ editor_only = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50181, 5.34185, 0 )
 material_override = SubResource( 3 )
 cast_shadow = 0
-texture = ExtResource( 13 )
+texture = ExtResource( 3 )
 
 [node name="shield" type="StaticBody" parent="." groups=[
 "shields",

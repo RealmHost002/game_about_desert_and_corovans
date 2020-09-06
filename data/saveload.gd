@@ -3,6 +3,8 @@ extends Node
 var ourTeamData
 var corpusData
 var weapon_data
+var generators_data
+var shields_data
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -15,6 +17,16 @@ func _ready():
 	var ourTeamDataJson =JSON.parse(saveFile.get_as_text())
 	saveFile.close()
 	ourTeamData = ourTeamDataJson.result
+	var generators_file = File.new()
+	generators_file.open("res://data/engine_data.json", File.READ)
+	var generators_json =JSON.parse(generators_file.get_as_text())
+	generators_file.close()
+	generators_data = generators_json.result
+	var shield_file = File.new()
+	shield_file.open("res://data/shield_data.json", File.READ)
+	var shields_data_json =JSON.parse(shield_file.get_as_text())
+	shield_file.close()
+	shields_data = shields_data_json.result
 	var corpusFile = File.new()
 	corpusFile.open("res://data/hulls_data.json", File.READ)
 	var corpusDataJson =JSON.parse(corpusFile.get_as_text())
