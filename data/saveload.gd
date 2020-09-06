@@ -30,17 +30,19 @@ func _ready():
 	read_data(ourTeamData)
 	
 func read_data(ourTeamData):
+	var c = 0
 	for i in ourTeamData['config']:
 		var base_scene = load("res://car_base.tscn").instance()
 		get_tree().get_root().get_node("Spatial/cars").add_child(base_scene)
-#		print(corpusData)
 		base_scene._load(corpusData[i["corpus"]])
 		base_scene.remove_from_group("enemy")
-		base_scene.add_to_group('ally')
+		if c < 4:
+			base_scene.add_to_group('ally')
 		base_scene.load_modules(i)
 		base_scene.global_transform.origin = position
 		base_scene.scale = Vector3(0.1, 0.1, 0.1)
 		position += Vector3(3,0,3)
+		c += 1
 #	pass # Replace with function body.
 
 

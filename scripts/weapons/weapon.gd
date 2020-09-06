@@ -45,12 +45,14 @@ func _ready():
 #	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
 #	print(self.get_index())
 	m = load("res://models/weapons/area_material" + str(self.get_index()) + ".tres")
+	var area = load("res://models/weapons/area_mesh" + str(self.get_index()) + ".tres")
 #	var s = load("res://models/weapons/area" + str(self.get_index()) + ".shader")
 #	m.shader = s
+	get_node("area").mesh = area
 	get_node("area").mesh.surface_set_material(0, m)
 #	print(m)
 	death_zone = get_parent().death_zones[self.get_index()]
-#	print(death_zone)
+	print(death_zone)
 	m.set_shader_param('death_zone1', death_zone)
 
 #	set_process(false)

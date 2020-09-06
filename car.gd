@@ -84,7 +84,7 @@ func _process(delta):
 	get_node("body").global_rotate(vec01.cross(Vector3(0, 1, 0)).normalized(), a1)
 	get_node("body").global_rotate(vec02.cross(Vector3(0, 1, 0)).normalized(), a2)
 
-
+	get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
 
 
 	self.global_transform.origin.y = s_height
@@ -119,8 +119,9 @@ func take_damage(damage, weaponType, status = "no"):
 #			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
 			if hp <=0:
 					self.destroy()
-		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
-
+#		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
+	else:
+		hp -= damage
 	if status != 'no':
 		pass
 
