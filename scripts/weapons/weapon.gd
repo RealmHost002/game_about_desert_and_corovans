@@ -1,6 +1,11 @@
 extends Position3D
 
 
+
+
+var is_pressable = true
+var have_slider = true
+var image_path = "res://icon.png"
 var type = 'weapon'
 var energy = 100
 var step = 0.1
@@ -192,3 +197,4 @@ func _load(params):
 	anim_color = params['buletColor']
 	var v = params['dot_position']
 	get_node('dot').transform.origin = Vector3(v[0],v[1],v[2])
+	image_path = params['image_path']

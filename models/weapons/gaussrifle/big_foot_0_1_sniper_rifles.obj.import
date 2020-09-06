@@ -14,6 +14,6 @@ dest_files=[ "res://.import/big_foot_0_1_sniper_rifles.obj-598c15d27ba2f28587b9a
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3( 1, 1, 1 )
+scale_mesh=Vector3( -1, 1, -1 )
 offset_mesh=Vector3( 0, 0, 0 )
 optimize_mesh=true

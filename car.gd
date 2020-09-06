@@ -7,7 +7,6 @@ extends  KinematicBody
 var acc_multiplyer = 2.0
 var acc = 1.0
 var resistance = 1.0
-var energy = 100
 var is_active = false
 var ntex
 var noise
@@ -20,13 +19,16 @@ var destination = Vector3(20,20,20)
 var rotation_speed = 1
 var abilities = ['engine','weap', 'weap']
 var sliders = [0, 0, 0]
-var current_pattern = 'truck'
-var hp = 100
-var maxHp = 100
-var shield = 0
-var shieldLimit = 0
-var energyProduction = 75
 
+var current_pattern = 'truck'
+
+var hp = 100
+var max_hp = 100
+var shield = 0
+var shield_limit = 0
+var energy = 100
+var energy_production = 0
+var shield_production = 0
 #var direction = Vector3()
 
 
@@ -89,6 +91,10 @@ func _process(delta):
 	forward.y = 0.0
 	move_and_slide(speed * (forward))
 #	move_and_collide(speed * (forward) * delta)
+	if shield < shield_limit:
+		shield += shield_production
+	
+	
 	
 func destroy():
 	self.queue_free()
@@ -108,7 +114,7 @@ func take_damage(damage, weaponType, status = "no"):
 				
 		else:
 			hp -= damage
-			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/maxHp)
+			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
 			if hp <=0:
 					self.destroy()
 	if status != 'no':
@@ -142,8 +148,8 @@ func pause():
 	show_path()
 
 func unpause():
-	if shield + energyProduction > shieldLimit :
-		shield = shieldLimit
+#	if shield + energyProduction > shieldLimit :
+#		shield = shieldLimit
 	self.set_process(true)
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
