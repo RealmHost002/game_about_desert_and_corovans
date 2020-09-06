@@ -33,5 +33,4 @@ func _on_TextureButton_pressed():
 		
 		get_node("../../HBoxContainer2/weaponContainer").get_child(c).get_node("HSlider").value = slider
 		c += 1
-		
-	pass # Replace with function body.
+	
