@@ -32,12 +32,8 @@ func read_data(ourTeamData):
 	for i in ourTeamData:
 		var base_scene = load("res://car_base.tscn")
 		get_tree().get_root().get_node("cars").add_child(base_scene)
-		var hull = i["corpus"]
-		var node_corpus = load("res://data/corpusDataLoad.gd")
-		var params = get_node("res://data/corpusDataLoad.gd").corpusData[hull]
-		base_scene._load(params)
-		var weapons = get_node("res://data/weapon_load.gd").weapon_data[i["weapons"]]
-		base_scene.load_modules(weapons)
+		base_scene._load(corpusData[i["corpus"]])
+		base_scene.load_modules(i)
 		
 #	pass # Replace with function body.
 
