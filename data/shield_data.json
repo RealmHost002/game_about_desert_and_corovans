@@ -1,0 +1,6 @@
+{
+  "protector_mk1": {
+    "max_value": 50,
+    "image_path": "res://gui/textures/weaponIcons/protector_mk1.png"
+  }
+}

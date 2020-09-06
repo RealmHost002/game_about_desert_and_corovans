@@ -1,0 +1,24 @@
+{
+  "laserGun": {
+    "damimage ": "res://models/weapons/lasergun/damage_tex.tres",
+    "distimage ": "res://models/weapons/lasergun/distance_tex.tres",
+    "rot _speed ": 1,
+    "mesh": "res://models/weapons/lasergun/Main_lasergun_scene.tres",
+    "buletScene": "res://models/weapons/lasergun/laser_beam.tscn",
+    "buletColor": "cf1717",
+    "dot_position": "Vector3(0, 0.658, 2.391)",
+    "image_path": "res://gui/textures/weaponIcons/laser.png",
+    "damageType": "laser"
+  },
+  "gaussRifle": {
+    "damimage ": "res://models/weapons/gaussrifle/damage_tex.tres",
+    "distimage ": "res://models/weapons/gaussrifle/distance_tex.tres",
+    "rot _speed ": 0,
+    "mesh": "res://models/weapons/gaussrifle/Main_gaussrifle_scene.tres",
+    "buletScene": "res://models/weapons/lasergun/laser_beam.tscn",
+    "buletColor": "cf1718",
+    "dot_position": "Vector3(0, 0.658, 2.391)",
+    "image_path": "res://gui/textures/weaponIcons/gaus.png",
+    "damageType": "bullet"
+  }
+}

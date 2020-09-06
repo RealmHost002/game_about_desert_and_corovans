@@ -1,0 +1,10 @@
+{
+  "Convergenator_mk1": {
+    "energy_production": "0.05",
+    "image": "res://gui/textures/weaponIcons/Convergenator_mk1.png"
+  },
+  "Poopa": {
+    "energy_production": null,
+    "image": null
+  }
+}
