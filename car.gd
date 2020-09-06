@@ -22,20 +22,20 @@ var sliders = [0, 0, 0, 0, 0]
 
 var current_pattern = 'truck'
 
+
 var hp = 100
 var max_hp = 100
 var shield = 50
 var shield_limit = 50
 var energy = 100
-var energy_production = 10
-var shield_production = 0.05
+var energy_production = 0
+var shield_production = 0
 #var direction = Vector3()
 
 
 # Called when the node enters the scene tree for the first time.
 
-		
-		
+
 func _ready():
 	constants.sliders[name] = [0, 0, 0, 0, 0]
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
@@ -91,10 +91,15 @@ func _process(delta):
 	forward.y = 0.0
 	move_and_slide(speed * (forward))
 #	move_and_collide(speed * (forward) * delta)
-	if shield < shield_limit:
-		shield += shield_production
-#
+#	if shield < shield_limit:
+#		shield += shield_production
+	energy += energy_production * delta
+	if energy > 0:
+		energy -= 20 * acc * delta
+	else:
+		acc = 0.0
 	
+#	print(energy)
 	
 func destroy():
 	self.queue_free()
@@ -243,11 +248,20 @@ func load_modules(params):
 		weap.transform.origin = weapon_positions[c]
 		c += 1
 		weap._load(Saveload.weapon_data[w])
-		pass
-	modules_node.add_child(load("res://models/generator.tscn").instance())
-	modules_node.add_child(load("res://models/shield.tscn").instance())
-	
-	
+#	print(params['generator'])
+	for g in params['generator']:
+		if g:
+			var gen = load("res://models/generator.tscn").instance()
+			modules_node.add_child(gen)
+#			print(Saveload.generators_data)
+			gen._load(Saveload.generators_data[g])
+#	print(params)
+	for s in params['shields']:
+		if s:
+			var sh = load("res://models/shield.tscn").instance()
+			modules_node.add_child(sh)
+			sh._load(Saveload.shields_data[s])
+
 	
 
 

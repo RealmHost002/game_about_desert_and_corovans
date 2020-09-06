@@ -18,7 +18,7 @@ func _ready():
 	saveFile.close()
 	ourTeamData = ourTeamDataJson.result
 	var generators_file = File.new()
-	generators_file.open("res://data/engine_data.json", File.READ)
+	generators_file.open("res://data/generators_data.json", File.READ)
 	var generators_json =JSON.parse(generators_file.get_as_text())
 	generators_file.close()
 	generators_data = generators_json.result

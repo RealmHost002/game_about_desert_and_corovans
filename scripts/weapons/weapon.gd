@@ -30,6 +30,7 @@ var m
 var direction = Vector3()
 var to_target = Vector3()
 var rot_speed = 1.0
+var energy_cost = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	distance_tex = load("res://models/weapons/lasergun/distance_tex.tres")
@@ -63,6 +64,13 @@ func fire():
 	if !ntex:
 		ntex = mastercar.image
 	var final_scale = Vector3(0,0,0)
+	
+	if mastercar.energy < energy_cost / float(burst_size):
+		return
+	else:
+		mastercar.energy -= energy_cost / float(burst_size)
+	
+	
 #	for node in get_parent().get_parent().get_parent().get_parent().get_children():
 #		if node != get_parent().get_parent().get_parent():
 #			target = node
@@ -207,7 +215,6 @@ func activate():
 	pass
 
 func _load(params):
-	print(params)
 	damage_tex = params['damimage']
 	distance_tex = params['distimage']
 	rot_speed = params['rot_speed']
@@ -218,3 +225,5 @@ func _load(params):
 	get_node('dot').transform.origin = Vector3(v[0],v[1],v[2])
 	image_path = params['image_path']
 	damage_type = params['damage_type']
+	burst_size = params['burst_size']
+	energy_cost = params['energy_cost']

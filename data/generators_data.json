@@ -1,0 +1,10 @@
+{
+  "Convergenator_mk1": {
+    "energy_production": 20,
+    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk1.png"
+  },
+  "Convergenator_mk2": {
+    "energy_production": 30,
+    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png"
+  }
+}

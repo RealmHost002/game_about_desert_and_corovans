@@ -1,8 +1,8 @@
 {
   "BigFoot": {
     "body": "res://models/bigfoot/body.tres",
-    "wheelFront": "res://models/bigfoot/big_foot_wheel.obj",
-    "wheelBack": "res://models/bigfoot/big_foot_wheel.obj",
+    "wheelFront": "res://models/bigfoot/wheel.tres",
+    "wheelBack": "res://models/bigfoot/wheel.tres",
     "cont_of_items": 3,
     "cont_of_weapon": 2,
     "hp": 100,
