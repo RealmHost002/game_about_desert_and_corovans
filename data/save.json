@@ -1,20 +1,76 @@
 {
-  "laserGun": {
-    "damimage ": "res://models/weapons/lasergun/damage_tex.tres",
-    "distimage ": "res://models/weapons/lasergun/distance_tex.tres",
-    "rot _speed ": 1,
-    "mesh": "res://models/weapons/lasergun/Main_lasergun_scene.tres",
-    "buletScene": "res://models/weapons/lasergun/laser_beam.tscn",
-    "buletColor": "cf1717",
-    "dot_position": [0, 0.658, 2.391]
-  },
-  "gaussRifle": {
-    "damimage ": "res://models/weapons/gaussrifle/damage_tex.tres",
-    "distimage ": "res://models/weapons/gaussrifle/distance_tex.tres",
-    "rot _speed ": 0,
-    "mesh": "res://models/weapons/gaussrifle/Main_lasergun_scene.tres",
-    "buletScene": "res://models/weapons/lasergun/laser_beam.tscn",
-    "buletColor": "cf1718",
-    "dot_position": "Vector3(0, 0.658, 2.391)"
-  }
+  "config": [
+    {
+      "cars": 1,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "BigFoot",
+      "weapons": [
+        "laserGun",
+        "laserGun"
+      ],
+      "generator": "Convergenator_mk1",
+      "shields": "protector_mk1"
+    },
+    {
+      "cars": 2,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "BigFoot",
+      "weapons": [
+        "laserGun",
+        "laserGun"
+      ],
+      "generator": "Convergenator_mk1",
+      "shields": "protector_mk1"
+    },
+    {
+      "cars": 3,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "BigFoot",
+      "weapons": [
+        "laserGun",
+        "laserGun"
+      ],
+      "generator": "Convergenator_mk1",
+      "shields": "protector_mk1"
+    },
+    {
+      "cars": 4,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "BigFoot",
+      "weapons": [
+        "gaussRifle",
+        "gaussRifle"
+      ],
+      "generator": "Convergenator_mk1",
+      "shields": "protector_mk1"
+    },
+    {
+      "cars": 5,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "BigFoot",
+      "weapons": [
+        "gaussRifle",
+        "laserGun"
+      ],
+      "generator": "Convergenator_mk1",
+      "shields": "protector_mk1"
+    },
+    {
+      "cars": 6,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "BigFoot",
+      "weapons": [
+        "laserGun",
+        "gaussRifle"
+      ],
+      "generator": "Convergenator_mk1",
+      "shields": "protector_mk1"
+    }
+  ]
 }
