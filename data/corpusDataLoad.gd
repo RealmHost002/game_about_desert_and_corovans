@@ -9,7 +9,7 @@ var corpusData
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var corpusFile = File.new()
-	corpusFile.open("res://data/corpuses.json", File.READ)
+	corpusFile.open("hulls_data.json", File.READ)
 	var corpusDataJson =JSON.parse(corpusFile.get_as_text())
 	corpusFile.close()
 	corpusData = corpusDataJson.result

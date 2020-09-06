@@ -14,11 +14,19 @@ func _ready():
 	saveFile.close()
 	ourTeamData = ourTeamDataJson.result
 	read_data(ourTeamData)
+
+
 	
 func read_data(ourTeamData):
-	
-	print(ourTeamData["laserGun"]["dot_position"])
-	print(typeof(ourTeamData["laserGun"]["dot_position"]))
+	for i in ourTeamData:
+		var base_scene = load("res://car_base.tscn")
+		get_tree().get_root().get_node("cars").add_child(base_scene)
+		var hull = i["corpus"]
+		var params = get_node("res://data/corpusDataLoad.gd").corpusData[hull]
+		base_scene._load(params)
+		var weapons = get_node("res://data/weapon_load.gd").weapon_data[i["weapons"]]
+		base_scene.load_modules(weapons)
+		
 #	pass # Replace with function body.
 
 
