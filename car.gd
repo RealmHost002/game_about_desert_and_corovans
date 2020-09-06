@@ -17,8 +17,8 @@ var forward
 var right
 var destination = Vector3(20,20,20)
 var rotation_speed = 1
-var abilities = ['engine','weap', 'weap']
-var sliders = [0, 0, 0]
+var abilities = ['engine','weap', 'weap', 'generator', 'shield']
+var sliders = [0, 0, 0, 0, 0]
 
 var current_pattern = 'truck'
 
@@ -37,7 +37,7 @@ var shield_production = 0
 		
 		
 func _ready():
-	constants.sliders[name] = [0, 0, 0]
+	constants.sliders[name] = [0, 0, 0, 0, 0]
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	ntex = preload("res://noise.tres")
 	yield(ntex, "changed")
