@@ -122,9 +122,8 @@ func take_damage(damage, weaponType, status = "no"):
 		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
 
 	if status != 'no':
-	
-		pass	
-				
+		pass
+
 func ability_used(id):
 	if abilities[id] == 'weap':
 		var w = get_node("body/weapons").get_child(id)

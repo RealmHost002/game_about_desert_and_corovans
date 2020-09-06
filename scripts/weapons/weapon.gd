@@ -108,8 +108,12 @@ func fire():
 	var space_state = get_world().direct_space_state
 #	if damage_type !=
 	var shields_exceptions = []
-#	for s in 
-	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
+	for s in get_tree().get_nodes_in_group('shields'):
+		if s.get_parent().shield < damage:
+			shields_exceptions.append(s)
+#			s.hide()
+
+	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')] + shields_exceptions)
 	if result:
 		print(result['collider'])
 		if result['collider'].name == 'shield':
