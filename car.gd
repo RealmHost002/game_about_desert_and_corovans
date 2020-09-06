@@ -240,7 +240,7 @@ func load_modules(params):
 		modules_node.add_child(w)
 		w.transform.origin = weapon_positions[c]
 		c += 1
-#		w._load()
+		w._load(Saveload.weapon_data[w])
 		pass
 	modules_node.add_child(load("res://models/generator.tscn").instance())
 	modules_node.add_child(load("res://models/shield.tscn").instance())
