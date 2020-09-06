@@ -1,6 +1,6 @@
 extends Position3D
 
-var type = 'generator'
+var type = 'shield'
 var image_path = "res://icon.png"
 var is_pressable = false
 var have_slider = true

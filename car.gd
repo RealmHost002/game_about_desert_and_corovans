@@ -3,7 +3,7 @@ extends  KinematicBody
 #KinematicBody 
 #Spatial
 
-
+var weapon_positions = [Vector3(), Vector3()]
 var acc_multiplyer = 2.0
 var acc = 1.0
 var resistance = 1.0
@@ -228,14 +228,22 @@ func _load(params):
 	get_node("wheels/rl").mesh = params['wheelBack']
 	get_node("wheels/rr").mesh = params['wheelBack']
 	self.hp = params['hp']
-	
+	var v = params['weapon_positions']
+	self.weapon_positions = [Vector3(v[0], v[1], v[2]),Vector3( v[3], v[4], v[5])]
 	
 func load_modules(params):
 	var modules_node = get_node("body/weapons")
-	modules_node.add_child()
+	modules_node.add_child(load("res://models/engine.tscn").instance())
+	var c = 0
 	for w in params['weapons']:
+		var weap = load("res://models/weapons/weapon.tscn").instance()
+		modules_node.add_child(w)
+		w.transform.origin = weapon_positions[c]
+		c += 1
+#		w._load()
 		pass
-	
+	modules_node.add_child(load("res://models/generator.tscn").instance())
+	modules_node.add_child(load("res://models/shield.tscn").instance())
 	
 	
 	
