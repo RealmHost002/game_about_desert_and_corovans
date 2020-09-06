@@ -1,6 +1,6 @@
 {
-  "hulls": [
-    {
+  "hulls": {
+    "BigFoot" : {
       "hulls_names": "BigFoot",
       "body": "res://models/bigfoot/body.tres",
       "wheelFront": "res://models/bigfoot/big_foot_wheel.obj",
@@ -9,7 +9,8 @@
       "cont_of_weapon": 2,
       "hp": 100
     },
-    {
+    
+    "Truck" : {
       "hulls_names": "Truck",
       "body": null,
       "wheelFront": null,
@@ -18,5 +19,5 @@
       "cont_of_weapon": null,
       "hp": null
     }
-  ]
+  }
 }
