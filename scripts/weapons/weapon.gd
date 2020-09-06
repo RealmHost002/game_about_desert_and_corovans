@@ -108,7 +108,10 @@ func fire():
 	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
 	if result:
 		print(result['collider'])
-		result['collider'].take_damage(damage, 'laser')
+		if result['collider'].name == 'shield':
+			result['collider'].get_parent().take_damage(damage, 'laser')
+		else:
+			result['collider'].take_damage(damage, 'laser')
 	#IVAN PIDARAS
 
 	pass
