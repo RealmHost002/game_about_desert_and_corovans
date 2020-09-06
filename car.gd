@@ -91,8 +91,8 @@ func _process(delta):
 	forward.y = 0.0
 	move_and_slide(speed * (forward))
 #	move_and_collide(speed * (forward) * delta)
-#	if shield < shield_limit:
-#		shield += shield_production
+	if shield < shield_limit:
+		shield += shield_production
 #
 	
 	
@@ -116,9 +116,11 @@ func take_damage(damage, weaponType, status = "no"):
 				
 		else:
 			hp -= damage
-			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
+#			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
 			if hp <=0:
 					self.destroy()
+		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
+
 	if status != 'no':
 	
 		pass	
