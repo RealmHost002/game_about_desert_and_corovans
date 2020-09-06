@@ -24,11 +24,11 @@ var current_pattern = 'truck'
 
 var hp = 100
 var max_hp = 100
-var shield = 0
-var shield_limit = 0
+var shield = 50
+var shield_limit = 50
 var energy = 100
-var energy_production = 0
-var shield_production = 0
+var energy_production = 10
+var shield_production = 0.05
 #var direction = Vector3()
 
 
@@ -91,9 +91,9 @@ func _process(delta):
 	forward.y = 0.0
 	move_and_slide(speed * (forward))
 #	move_and_collide(speed * (forward) * delta)
-	if shield < shield_limit:
-		shield += shield_production
-	
+#	if shield < shield_limit:
+#		shield += shield_production
+#
 	
 	
 func destroy():
@@ -106,9 +106,11 @@ func take_damage(damage, weaponType, status = "no"):
 		if shield > 0:
 			if damage <= shield:
 				shield -= damage
+				get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
 			else:
 				damage -= shield
 				shield = 0
+				get_node("Sprite3D").material_override.set_shader_param("b", 0)
 				hp -= damage
 #				print("hp =", hp," ", maxHp," ",hp/maxHp)
 				
@@ -148,8 +150,8 @@ func pause():
 	show_path()
 
 func unpause():
-#	if shield + energyProduction > shieldLimit :
-#		shield = shieldLimit
+	if shield + energy_production > shield_limit :
+		shield = shield_limit
 	self.set_process(true)
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
