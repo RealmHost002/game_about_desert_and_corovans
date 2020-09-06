@@ -1,23 +1,27 @@
 {
-  "hulls": {
-    "BigFoot" : {
-      "hulls_names": "BigFoot",
-      "body": "res://models/bigfoot/body.tres",
-      "wheelFront": "res://models/bigfoot/big_foot_wheel.obj",
-      "wheelBack ": "res://models/bigfoot/big_foot_wheel.obj",
-      "cont_of_items": 3,
-      "cont_of_weapon": 2,
-      "hp": 100
-    },
-    
-    "Truck" : {
-      "hulls_names": "Truck",
-      "body": null,
-      "wheelFront": null,
-      "wheelBack ": null,
-      "cont_of_items": null,
-      "cont_of_weapon": null,
-      "hp": null
-    }
+  "BigFoot": {
+    "body": "res://models/bigfoot/body.tres",
+    "wheelFront": "res://models/bigfoot/big_foot_wheel.obj",
+    "wheelBack": "res://models/bigfoot/big_foot_wheel.obj",
+    "cont_of_items": 3,
+    "cont_of_weapon": 2,
+    "hp": 100,
+    "weapon_positions": [
+      0.966,
+      2.898,
+      -1.184,
+      -0.966,
+      2.898,
+      -1.184
+    ]
+  },
+  "Truck ": {
+    "body": null,
+    "wheelFront": null,
+    "wheelBack": null,
+    "cont_of_items": null,
+    "cont_of_weapon": null,
+    "hp": null,
+    "weapon_positions": null
   }
 }

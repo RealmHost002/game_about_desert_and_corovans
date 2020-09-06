@@ -205,6 +205,7 @@ func activate():
 	pass
 
 func _load(params):
+	print(params)
 	damage_tex = params['damimage']
 	distance_tex = params['distimage']
 	rot_speed = params['rot_speed']

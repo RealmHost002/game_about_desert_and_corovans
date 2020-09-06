@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
-[ext_resource path="res://car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://new_cubemesh.tres" type="CubeMesh" id=3]
 [ext_resource path="res://BGMASTER.gd" type="Script" id=4]
 [ext_resource path="res://Camera.gd" type="Script" id=5]
@@ -63,39 +62,6 @@ mesh = ExtResource( 3 )
 material/0 = null
 
 [node name="cars" type="Spatial" parent="."]
-
-[node name="Spatial" parent="cars" groups=[
-"ally",
-] instance=ExtResource( 2 )]
-transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835808, 12.758, 2.17, 11.177 )
-
-[node name="Spatial2" parent="cars" groups=[
-"ally",
-] instance=ExtResource( 2 )]
-transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 8.982, 2, 9.756 )
-
-[node name="Camera" type="Camera" parent="cars/Spatial2"]
-transform = Transform( 3.63398, 4.54776, -8.13093, 0, 8.7276, 4.88149, 9.31634, -1.77392, 3.17159, -15.0538, 11.3987, 5.17734 )
-
-[node name="Spatial3" parent="cars" groups=[
-"ally",
-] instance=ExtResource( 2 )]
-transform = Transform( 0.0835808, 0, -0.0549022, 0, 0.1, 0, 0.0549022, 0, 0.0835808, 17.8365, 2, 14.5685 )
-
-[node name="Spatial4" parent="cars" groups=[
-"ally",
-] instance=ExtResource( 2 )]
-transform = Transform( 0.0383924, 0, 0.0923365, 0, 0.1, 0, -0.0923365, 0, 0.0383924, 14.0605, 2, 13.1475 )
-
-[node name="SpatialE4" parent="cars" groups=[
-"enemy",
-] instance=ExtResource( 2 )]
-transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 14.0965, 2, 16.5795 )
-
-[node name="SpatialE" parent="cars" groups=[
-"enemy",
-] instance=ExtResource( 2 )]
-transform = Transform( 0.0866914, 0, 0.0498458, 0, 0.1, 0, -0.0498458, 0, 0.0866914, 9.018, 2, 13.188 )
 
 [node name="BGMASTER" type="Spatial" parent="."]
 script = ExtResource( 4 )

@@ -222,11 +222,12 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 
 
 func _load(params):
-	get_node("body").mesh = params['body']
-	get_node("wheels/fl").mesh = params['wheelFront']
-	get_node("wheels/fr").mesh = params['wheelFront']
-	get_node("wheels/rl").mesh = params['wheelBack']
-	get_node("wheels/rr").mesh = params['wheelBack']
+#	print(params)
+	get_node("body").mesh = load(params['body'])
+	get_node("wheels/fl").mesh = load(params['wheelFront'])
+	get_node("wheels/fr").mesh = load(params['wheelFront'])
+	get_node("wheels/rl").mesh = load(params['wheelBack'])
+	get_node("wheels/rr").mesh = load(params['wheelBack'])
 	self.hp = params['hp']
 	var v = params['weapon_positions']
 	self.weapon_positions = [Vector3(v[0], v[1], v[2]),Vector3( v[3], v[4], v[5])]
@@ -237,10 +238,10 @@ func load_modules(params):
 	var c = 0
 	for w in params['weapons']:
 		var weap = load("res://models/weapons/weapon.tscn").instance()
-		modules_node.add_child(w)
-		w.transform.origin = weapon_positions[c]
+		modules_node.add_child(weap)
+		weap.transform.origin = weapon_positions[c]
 		c += 1
-		w._load(Saveload.weapon_data[w])
+		weap._load(Saveload.weapon_data[w])
 		pass
 	modules_node.add_child(load("res://models/generator.tscn").instance())
 	modules_node.add_child(load("res://models/shield.tscn").instance())
