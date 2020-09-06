@@ -1,6 +1,8 @@
 extends Node
 
 var ourTeamData
+var corpusData
+var weapon_data
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -13,15 +15,25 @@ func _ready():
 	var ourTeamDataJson =JSON.parse(saveFile.get_as_text())
 	saveFile.close()
 	ourTeamData = ourTeamDataJson.result
+	var corpusFile = File.new()
+	corpusFile.open("hulls_data.json", File.READ)
+	var corpusDataJson =JSON.parse(corpusFile.get_as_text())
+	corpusFile.close()
+	corpusData = corpusDataJson.result
+	var weapon_file = File.new()
+	weapon_file.open("weapon_data.json", File.READ)
+	var weaponDataJson = JSON.parse(weapon_file.get_as_text())
+	weapon_file.close()
+	weapon_data = weaponDataJson.result
+
 	read_data(ourTeamData)
-
-
 	
 func read_data(ourTeamData):
 	for i in ourTeamData:
 		var base_scene = load("res://car_base.tscn")
 		get_tree().get_root().get_node("cars").add_child(base_scene)
 		var hull = i["corpus"]
+		var node_corpus = load("res://data/corpusDataLoad.gd")
 		var params = get_node("res://data/corpusDataLoad.gd").corpusData[hull]
 		base_scene._load(params)
 		var weapons = get_node("res://data/weapon_load.gd").weapon_data[i["weapons"]]
