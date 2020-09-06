@@ -288,6 +288,8 @@ texture = ExtResource( 13 )
 [node name="shield" type="StaticBody" parent="." groups=[
 "shields",
 ]]
+collision_layer = 256
+collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="shield"]
 shape = SubResource( 9 )
