@@ -2,7 +2,7 @@ extends Position3D
 
 
 var type = 'engine'
-var image_path = "res://gui/textures/IconWithEmtySpace.png"
+var image_path = "res://icon.png"
 var is_pressable = false
 var have_slider = true
 # Called when the node enters the scene tree for the first time.
