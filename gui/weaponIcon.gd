@@ -6,6 +6,7 @@ extends TextureButton
 # var b = "text"
 var selectedWeapon = 0
 var selectedCar
+var is_pressable
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,6 +18,7 @@ func _ready():
 
 
 func _on_Node2D_pressed():
-	if constants.selectedCar:
+	is_pressable = constants.selectedCar.get_node("body/weapons").get_child(selectedWeapon).is_pressable
+	if constants.selectedCar and is_pressable:
 		constants.selectedCar.ability_used(selectedWeapon)
 	pass # Replace with function body.
