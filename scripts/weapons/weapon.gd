@@ -5,7 +5,7 @@ extends Position3D
 
 var is_pressable = true
 var have_slider = true
-var image_path = "res://icon.png"
+var image_path = "res://gui/textures/IconWithEmtySpace.png"
 var type = 'weapon'
 var energy = 100
 var step = 0.1

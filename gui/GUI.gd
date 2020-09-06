@@ -33,7 +33,8 @@ func AddingWeaponButtons():
 		var WeaponIconScene = load("res://gui/weaponIcon.tscn").instance()
 		get_node("HBoxContainer2/weaponContainer").add_child(WeaponIconScene)
 		WeaponIconScene.selectedWeapon = counter
-		WeaponIconScene.set_normal_texture(i.image_path)
+		var texture = load(i.image_path)
+		WeaponIconScene.set_normal_texture(texture)
 		if not i.have_slider:
 			WeaponIconScene.get_node("HSlider").hide()
 		
