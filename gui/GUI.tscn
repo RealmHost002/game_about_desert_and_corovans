@@ -55,7 +55,7 @@ TooltipPanel/styles/panel = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 13
-outline_size = 2
+outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 

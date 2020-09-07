@@ -11,7 +11,10 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion and drag:
 		get_parent().global_transform.origin += (get_node("../x").global_transform.origin - get_parent().global_transform.origin) * event.relative.x / anti_speed + (get_node("../z").global_transform.origin - get_parent().global_transform.origin) * event.relative.y / anti_speed
-
+	if event.is_action_pressed('wheel_up'):
+		self.fov -= 7.0
+	if event.is_action_pressed('wheel_down'):
+		self.fov += 7.0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed('drag_camera'):

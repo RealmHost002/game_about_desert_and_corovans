@@ -109,7 +109,6 @@ func destroy():
 	pass
 	
 func take_damage(damage, weaponType, status = "no"):
-#	print(damage)
 	if weaponType == "laser":
 		if shield > 0:
 			if damage <= shield:
@@ -143,6 +142,7 @@ func ability_used(id):
 
 func slider_changed(id, value):
 	constants.sliders[name][id] = value
+
 	if abilities[id] == 'engine':
 		sliders[id] = value / 100.0
 		acc = value / 100.0 * acc_multiplyer
@@ -151,7 +151,6 @@ func slider_changed(id, value):
 		var w = get_node("body/weapons").get_child(id)
 		w.slider_changed(value)
 		sliders[id] = value / 100.0
-		pass
 	calc_en_drain()
 
 func pause():
@@ -221,9 +220,8 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 		return
 	if constants.input_mode != 'car_select':
 		return
-#	print(self.get_index())
 #	get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
-	
+
 	if from_gui:
 		constants.selectedCar = self
 #		is_active = true
@@ -243,13 +241,14 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 
 
 func _load(params):
-#	print(params)
 	get_node("body").mesh = load(params['body'])
 	get_node("wheels/fl").mesh = load(params['wheelFront'])
 	get_node("wheels/fr").mesh = load(params['wheelFront'])
 	get_node("wheels/rl").mesh = load(params['wheelBack'])
 	get_node("wheels/rr").mesh = load(params['wheelBack'])
 	self.hp = params['hp']
+	self.rotation_speed = params['rot_speed']
+	self.acc_multiplyer = float(params['acc_multiplyer'])
 	var v = params['weapon_positions']
 	for i in range(v.size() / 3):
 		i *= 3
@@ -267,7 +266,6 @@ func load_modules(params):
 			var weap = load("res://models/weapons/weapon.tscn").instance()
 			modules_node.add_child(weap)
 			weap.transform.origin = weapon_positions[c]
-			print(weapon_positions)
 			c += 1
 			weap._load(Saveload.weapon_data[w])
 			abilities.append('weap')
@@ -289,6 +287,7 @@ func load_modules(params):
 	for i in abilities.size():
 		sliders.append(0)
 	constants.sliders[name] = self.sliders
+
 
 
 func calc_en_drain():

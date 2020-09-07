@@ -19,7 +19,9 @@
       0,
       1.496,
       "- 0.097"
-    ]
+    ],
+    "rot_speed": 1,
+    "acc_multiplyer": "00000001.3"
   },
   "Hover": {
     "body": "res://models/hover/body.tres",
@@ -38,6 +40,8 @@
       0,
       1.496,
       "- 0.097"
-    ]
+    ],
+    "rot_speed": 1,
+    "acc_multiplyer": 2
   }
 }
