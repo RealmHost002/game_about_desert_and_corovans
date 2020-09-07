@@ -36,7 +36,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7.67887, 8.60534 )
 environment = ExtResource( 6 )
 current = true
-size = 30.0
 script = ExtResource( 5 )
 
 [node name="x" type="Position3D" parent="camera_look_at"]

@@ -33,8 +33,8 @@ var rot_speed = 1.0
 var energy_cost = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	distance_tex = load("res://models/weapons/lasergun/distance_tex.tres")
-	damage_tex = load("res://models/weapons/lasergun/damage_tex.tres")
+#	distance_tex = load("res://models/weapons/lasergun/distance_tex.tres")
+#	damage_tex = load("res://models/weapons/lasergun/damage_tex.tres")
 	step = constants.weapon_check_terrain_step
 	mastercar = get_parent().get_parent().get_parent()
 	step_time = constants.step_time
@@ -180,8 +180,8 @@ func _input(event):
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(from, to, [self, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
 		if result:
-			if result['collider'].get_parent() in get_tree().get_nodes_in_group('ally'):
-				pass
+			if !(result['collider'].get_parent() in get_tree().get_nodes_in_group('ally')):
+				return
 			else:
 				if result['collider'].name == 'shield':
 					target = result['collider'].get_parent().get_node('CollisionShape')
@@ -204,7 +204,6 @@ func slider_changed(value):
 	get_node("area").scale = Vector3(distance, distance, distance)
 
 
-
 func activate():
 	constants.input_mode = 'target_select'
 	get_node("area").global_transform.basis = Basis(Vector3(1,0,0), Vector3(0,1,0), Vector3(0,0,1))
@@ -216,8 +215,8 @@ func activate():
 	pass
 
 func _load(params):
-	damage_tex = params['damimage']
-	distance_tex = params['distimage']
+	damage_tex = load(params['damimage'])
+	distance_tex = load(params['distimage'])
 	rot_speed = params['rot_speed']
 	get_child(0).mesh = load(params['mesh'])
 	path_to_fire_anim_node = params['buletScene']

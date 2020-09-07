@@ -122,7 +122,7 @@ func take_damage(damage, weaponType, status = "no"):
 				shield = 0
 				get_node("Sprite3D").material_override.set_shader_param("b", 0)
 				hp -= damage
-				get_node("body/weapons").get_child(4).hide()
+				get_node("body/weapons").get_child(sliders.size() - 1).hide()
 
 		else:
 			hp -= damage

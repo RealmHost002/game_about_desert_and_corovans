@@ -68,6 +68,10 @@ wheel_down={
  ]
 }
 
+[network]
+
+limits/debugger_stdout/max_errors_per_second=1
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

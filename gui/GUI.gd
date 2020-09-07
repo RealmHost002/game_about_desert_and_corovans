@@ -54,10 +54,10 @@ func setting_car_params():
 				right_panel.get_node("Name").text = constants.selected_weapon._name
 				right_panel.get_node("type").text = constants.selected_weapon.damage_type
 				if constants.selected_weapon.damage_type == "laser":
-					print(constants.selected_weapon.damage_type)
+#					print(constants.selected_weapon.damage_type)
 					right_panel.get_node("type").add_color_override("font_color",Color(0,151,179,255)) 
 				else:
-					print(constants.selected_weapon.damage_type)
+#					print(constants.selected_weapon.damage_type)
 					right_panel.get_node("type").set("custom_colors/font_color",Color(255,255,255,255)) 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

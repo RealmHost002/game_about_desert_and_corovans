@@ -48,12 +48,17 @@ func read_data(ourTeamData):
 		get_tree().get_root().get_node("Spatial/cars").add_child(base_scene)
 		base_scene._load(corpusData[i["corpus"]])
 		base_scene.remove_from_group("enemy")
-		if c < 4:
+		if c < 777:
 			base_scene.add_to_group('ally')
 		base_scene.load_modules(i)
 		base_scene.global_transform.origin = position
 		base_scene.scale = Vector3(0.1, 0.1, 0.1)
-		position += Vector3(3,0,3)
+		if c == 3:
+			position += Vector3(20,0,0)
+		if c < 4:
+			position += Vector3(0,0,3)
+		else:
+			position -= Vector3(0,0,3)
 		c += 1
 #	pass # Replace with function body.
 

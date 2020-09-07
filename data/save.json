@@ -10,7 +10,7 @@
         "laserGun"
       ],
       "generator": [
-        "Convergenator_mk1",
+        "Convergenator_mk2",
         0
       ],
       "shields": [
@@ -24,8 +24,8 @@
       "modules": 1,
       "corpus": "BigFoot",
       "weapons": [
-        "laserGun",
-        "laserGun"
+        "gaussRifle",
+        "gaussRifle"
       ],
       "generator": [
         "Convergenator_mk1",
@@ -40,10 +40,10 @@
       "cars": 3,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "BigFoot",
+      "corpus": "Hover",
       "weapons": [
         "laserGun",
-        "laserGun"
+        0
       ],
       "generator": [
         "Convergenator_mk1",
@@ -78,11 +78,11 @@
       "modules": 1,
       "corpus": "BigFoot",
       "weapons": [
-        "gaussRifle",
+        "laserGun",
         "laserGun"
       ],
       "generator": [
-        "Convergenator_mk1",
+        "Convergenator_mk2",
         0
       ],
       "shields": [
@@ -97,7 +97,61 @@
       "corpus": "BigFoot",
       "weapons": [
         "laserGun",
-        "gaussRifle"
+        "laserGun"
+      ],
+      "generator": [
+        "Convergenator_mk1",
+        0
+      ],
+      "shields": [
+        "protector_mk1",
+        0
+      ]
+    },
+    {
+      "cars": 7,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "Hover",
+      "weapons": [
+        "gaussRifle",
+        0
+      ],
+      "generator": [
+        "Convergenator_mk1",
+        0
+      ],
+      "shields": [
+        "protector_mk1",
+        0
+      ]
+    },
+    {
+      "cars": 8,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "Hover",
+      "weapons": [
+        "gaussRifle",
+        0
+      ],
+      "generator": [
+        "Convergenator_mk1",
+        0
+      ],
+      "shields": [
+        "protector_mk1",
+        0
+      ]
+    },
+    {
+      "cars": 9,
+      "pilots": "Egor",
+      "modules": 1,
+      "corpus": "BigFoot",
+      "weapons": [
+        "laserGun",
+        "laserGun"
       ],
       "generator": [
         "Convergenator_mk1",
