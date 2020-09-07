@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://gui/tahoma.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://gui/weapon_params.tscn" type="PackedScene" id=2]
 [ext_resource path="res://gui/GUI.gd" type="Script" id=3]
 [ext_resource path="res://gui/textures/GuiMashineIcon.png" type="Texture" id=4]
 [ext_resource path="res://gui/base.png" type="Texture" id=5]
@@ -163,67 +164,105 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GuiMashineIcon" type="Sprite" parent="HBoxContainer2/TextureButton"]
-position = Vector2( 217.752, 95.1985 )
-rotation = 4.21347e-10
-scale = Vector2( 0.979099, 0.484272 )
-texture = ExtResource( 4 )
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer2/TextureButton"]
+margin_left = 42.0
+margin_top = 12.0
+margin_right = 395.0
+margin_bottom = 189.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="energy_regen_label" type="Label" parent="HBoxContainer2/TextureButton"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -362.124
-margin_top = 154.626
-margin_right = -286.124
-margin_bottom = 178.626
-grow_horizontal = 0
+[node name="Panel" type="Panel" parent="HBoxContainer2/TextureButton/VSeparator"]
+margin_right = 175.0
+margin_bottom = 174.0
+rect_min_size = Vector2( 150, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="energy_regen_label" type="Label" parent="HBoxContainer2/TextureButton/VSeparator/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.41431
+margin_top = -40.0
+margin_right = 82.4143
+margin_bottom = -16.0
 custom_fonts/font = SubResource( 7 )
 text = "Energy regen:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="shield_label" type="Label" parent="HBoxContainer2/TextureButton"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -361.124
-margin_top = 102.582
-margin_right = -285.124
-margin_bottom = 126.582
-grow_horizontal = 0
+[node name="energy_wasting" type="Label" parent="HBoxContainer2/TextureButton/VSeparator/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.41431
+margin_top = -85.0
+margin_right = 93.4143
+margin_bottom = -61.0
 custom_fonts/font = SubResource( 7 )
+text = "Energy drain:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="shield_label" type="Label" parent="HBoxContainer2/TextureButton/VSeparator/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = -23.0
+margin_right = 78.0
+margin_bottom = -5.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 0.705882, 0, 1 )
 text = "Shield:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="energy_label" type="Label" parent="HBoxContainer2/TextureButton"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -362.124
-margin_top = 119.445
-margin_right = -286.124
-margin_bottom = 143.445
-grow_horizontal = 0
+[node name="energy_label" type="Label" parent="HBoxContainer2/TextureButton/VSeparator/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -54.6985
+margin_right = 77.0
+margin_bottom = -30.6985
 custom_fonts/font = SubResource( 7 )
-text = "Energy:"
+custom_colors/font_color = Color( 0.054902, 0.254902, 0.878431, 1 )
+text = "Energy: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="hp_label" type="Label" parent="HBoxContainer2/TextureButton"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -361.442
-margin_top = 136.763
-margin_right = -285.442
-margin_bottom = 160.763
-grow_horizontal = 0
+[node name="hp_label" type="Label" parent="HBoxContainer2/TextureButton/VSeparator/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.82849
+margin_top = -69.8406
+margin_right = 77.8285
+margin_bottom = -45.8406
 custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.996078, 0.0352941, 0.0352941, 1 )
 text = "Hp:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Node2D" parent="HBoxContainer2/TextureButton/VSeparator" instance=ExtResource( 2 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -174.0
+margin_top = -1.0
+margin_right = 0.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="GuiMashineIcon" type="Sprite" parent="HBoxContainer2/TextureButton"]
+position = Vector2( 217.752, 95.1985 )
+rotation = 4.21347e-10
+scale = Vector2( 0.979099, 0.484272 )
+texture = ExtResource( 4 )
 
 [node name="podlojka" type="Sprite" parent="HBoxContainer2"]
 position = Vector2( 657.126, 20.5208 )
