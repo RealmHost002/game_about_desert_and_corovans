@@ -53,6 +53,8 @@ func setting_car_params():
 			if constants.selected_weapon.type == "weapon":
 				right_panel.get_node("Name").text = constants.selected_weapon._name
 				right_panel.get_node("type").text = constants.selected_weapon.damage_type
+				right_panel.get_node("distance").text = "Distance: " + str(constants.selected_weapon.distance)
+				right_panel.get_node("damage").text = "Damage: "+str(constants.selected_weapon.damage)
 				if constants.selected_weapon.damage_type == "laser":
 #					print(constants.selected_weapon.damage_type)
 					right_panel.get_node("type").add_color_override("font_color",Color(0,151,179,255)) 
