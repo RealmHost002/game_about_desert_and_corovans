@@ -103,7 +103,7 @@ func _process(delta):
 	if energy <= 0:
 		acc = 0.0
 	
-	print(acc)
+
 	
 func destroy():
 	self.queue_free()
@@ -257,17 +257,20 @@ func _load(params):
 	self.hp = params['hp']
 	var v = params['weapon_positions']
 	self.weapon_positions = [Vector3(v[0], v[1], v[2]),Vector3( v[3], v[4], v[5])]
-	
+	get_node("CollisionShape").shape = load(params['col_shape'])
+	v = params['col_shape_pos']
+	get_node("CollisionShape").transform.origin = Vector3(v[0], v[1], v[2])
 func load_modules(params):
 	var modules_node = get_node("body/weapons")
 	modules_node.add_child(load("res://models/engine.tscn").instance())
 	var c = 0
 	for w in params['weapons']:
-		var weap = load("res://models/weapons/weapon.tscn").instance()
-		modules_node.add_child(weap)
-		weap.transform.origin = weapon_positions[c]
-		c += 1
-		weap._load(Saveload.weapon_data[w])
+		if w:
+			var weap = load("res://models/weapons/weapon.tscn").instance()
+			modules_node.add_child(weap)
+			weap.transform.origin = weapon_positions[c]
+			c += 1
+			weap._load(Saveload.weapon_data[w])
 #	print(params['generator'])
 	for g in params['generator']:
 		if g:
@@ -291,7 +294,7 @@ func calc_en_drain():
 	for module in get_node("body/weapons").get_children():
 		energy_drain += sliders[c] * module.energy_cost
 		c += 1
-	print(energy_drain)
+#	print(energy_drain)
 	pass
 
 

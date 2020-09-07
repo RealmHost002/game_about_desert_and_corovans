@@ -13,15 +13,31 @@
       -0.966,
       2.898,
       -1.184
+    ],
+    "col_shape": "res://models/bigfoot/col_shape.tres",
+    "col_shape_pos": [
+      0,
+      1.496,
+      "- 0.097"
     ]
   },
-  "Truck ": {
-    "body": null,
-    "wheelFront": null,
-    "wheelBack": null,
+  "Hover": {
+    "body": "res://models/hover/body.tres",
+    "wheelFront": "res://models/hover/hover_wheel.tres",
+    "wheelBack": "res://models/hover/hover_wheel.tres",
     "cont_of_items": null,
     "cont_of_weapon": null,
-    "hp": null,
-    "weapon_positions": null
+    "hp": 80,
+    "weapon_positions": [
+      0,
+      2.197,
+      1.41
+    ],
+    "col_shape": "res://models/bigfoot/col_shape.tres",
+    "col_shape_pos": [
+      0,
+      1.496,
+      "- 0.097"
+    ]
   }
 }
