@@ -54,7 +54,7 @@ TooltipPanel/styles/panel = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 13
-outline_size = 3
+outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
@@ -147,10 +147,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -165.103
-margin_top = -166.988
-margin_right = -15.1028
-margin_bottom = -16.988
+margin_left = -165.0
+margin_top = -209.0
+margin_right = 241.0
+margin_bottom = -5.0
 grow_horizontal = 0
 grow_vertical = 0
 hint_tooltip = "Ya poshel kurit'
@@ -159,42 +159,71 @@ YA POSHEL KURIT
 ПИПЕИСЬКА
 маленькая"
 theme = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="GuiMashineIcon" type="Sprite" parent="HBoxContainer2/TextureButton"]
-position = Vector2( 73.9178, 72.0389 )
+position = Vector2( 217.752, 95.1985 )
 rotation = 4.21347e-10
-scale = Vector2( 0.403761, 0.391634 )
+scale = Vector2( 0.979099, 0.484272 )
 texture = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="HBoxContainer2/TextureButton"]
+[node name="energy_regen_label" type="Label" parent="HBoxContainer2/TextureButton"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -49.0002
-margin_top = 5.0
-margin_right = -6.00024
-margin_bottom = 29.0
+margin_left = -362.124
+margin_top = 154.626
+margin_right = -286.124
+margin_bottom = 178.626
 grow_horizontal = 0
 custom_fonts/font = SubResource( 7 )
-text = "Shield regen"
-align = 2
+text = "Energy regen:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label2" type="Label" parent="HBoxContainer2/TextureButton"]
-margin_left = 8.0
-margin_top = 7.0
-margin_right = 76.0
-margin_bottom = 31.0
+[node name="shield_label" type="Label" parent="HBoxContainer2/TextureButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -361.124
+margin_top = 102.582
+margin_right = -285.124
+margin_bottom = 126.582
+grow_horizontal = 0
+custom_fonts/font = SubResource( 7 )
+text = "Shield:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label3" type="Label" parent="HBoxContainer2/TextureButton"]
-margin_left = 8.0
-margin_top = 7.0
-margin_right = 76.0
-margin_bottom = 31.0
+[node name="energy_label" type="Label" parent="HBoxContainer2/TextureButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -362.124
+margin_top = 119.445
+margin_right = -286.124
+margin_bottom = 143.445
+grow_horizontal = 0
+custom_fonts/font = SubResource( 7 )
+text = "Energy:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label4" type="Label" parent="HBoxContainer2/TextureButton"]
-margin_left = 8.0
-margin_top = 7.0
-margin_right = 76.0
-margin_bottom = 31.0
+[node name="hp_label" type="Label" parent="HBoxContainer2/TextureButton"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -361.442
+margin_top = 136.763
+margin_right = -285.442
+margin_bottom = 160.763
+grow_horizontal = 0
+custom_fonts/font = SubResource( 7 )
+text = "Hp:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="podlojka" type="Sprite" parent="HBoxContainer2"]
 position = Vector2( 657.126, 20.5208 )

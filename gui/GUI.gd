@@ -40,8 +40,14 @@ func AddingWeaponButtons():
 		
 		counter += 1
 		
-	
-		
+func setting_car_params():
+	var labels_parent = get_node("HBoxContainer2/TextureButton")
+	if constants.selectedCar:
+		labels_parent.get_node("hp_label").text = "Hp: " + str(constants.selectedCar.hp)
+		labels_parent.get_node("energy_label").text = "Energy: " + str(constants.selectedCar.energy)		
+		labels_parent.get_node("shield_label").text = "Shield: " + str(constants.selectedCar.shield)	
+		labels_parent.get_node("energy_regen_label").text = "Energy regen: " + str(constants.selectedCar.energy_production)		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	setting_car_params()
+	pass
