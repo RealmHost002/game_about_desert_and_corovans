@@ -30,7 +30,7 @@ var shield = 0
 var shield_limit = 50
 var energy = 100
 var energy_production = 0
-var shield_production = 0
+var max_energy = 100
 #var direction = Vector3()
 
 
@@ -96,7 +96,10 @@ func _process(delta):
 	
 #	if shield < shield_limit:
 #		shield += shield_production
-	energy += energy_production * delta
+	if energy < max_energy:
+		energy += energy_production * delta
+	else:
+		energy = max_energy
 	if energy > 0:
 		energy -= 20 * acc * delta / acc_multiplyer
 	if energy <= 0:
@@ -247,7 +250,7 @@ func _load(params):
 	get_node("wheels/rl").mesh = load(params['wheelBack'])
 	get_node("wheels/rr").mesh = load(params['wheelBack'])
 	self.hp = params['hp']
-	self.rotation_speed = params['rot_speed']
+	self.rotation_speed = float(params['rot_speed'])
 	self.acc_multiplyer = float(params['acc_multiplyer'])
 	var v = params['weapon_positions']
 	for i in range(v.size() / 3):
@@ -257,6 +260,7 @@ func _load(params):
 	get_node("CollisionShape").shape = load(params['col_shape'])
 	v = params['col_shape_pos']
 	get_node("CollisionShape").transform.origin = Vector3(v[0], v[1], v[2])
+
 func load_modules(params):
 	var modules_node = get_node("body/weapons")
 	modules_node.add_child(load("res://models/engine.tscn").instance())

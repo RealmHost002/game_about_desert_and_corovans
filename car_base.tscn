@@ -68,7 +68,7 @@ shader_param/a = 0.0
 shader_param/b = 0.0
 
 [sub_resource type="SphereShape" id=4]
-radius = 20.0
+radius = 5.0
 
 [node name="KinematicBody " type="KinematicBody" groups=[
 "enemy",
