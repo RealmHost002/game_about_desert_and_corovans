@@ -271,7 +271,7 @@ func load_modules(params):
 			c += 1
 			weap._load(Saveload.weapon_data[w])
 			abilities.append('weap')
-
+			weap._name = str(w)
 	for g in params['generator']:
 		if g:
 			var gen = load("res://models/generator.tscn").instance()
