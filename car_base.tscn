@@ -3,11 +3,11 @@
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=1]
 [ext_resource path="res://car.gd" type="Script" id=2]
 [ext_resource path="res://gui/textures/hp.png" type="Texture" id=3]
-[ext_resource path="res://models/hover/body.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://models/bigfoot/body.tres" type="ArrayMesh" id=4]
 [ext_resource path="res://models/hover/hover_wheel.tres" type="SphereMesh" id=5]
 [ext_resource path="res://models/bigfoot/col_shape.tres" type="Shape" id=6]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=6]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform vec4 albedo : hint_color;
@@ -53,8 +53,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
 shader_param/specular = 0.5
 shader_param/metallic = 0.0
@@ -67,8 +67,8 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/a = 0.0
 shader_param/b = 0.0
 
-[sub_resource type="SphereShape" id=3]
-radius = 20.0
+[sub_resource type="SphereShape" id=4]
+radius = 5.0
 
 [node name="KinematicBody " type="KinematicBody" groups=[
 "enemy",
@@ -122,7 +122,7 @@ editor_only = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50181, 5.34185, 0 )
-material_override = SubResource( 2 )
+material_override = SubResource( 7 )
 cast_shadow = 0
 texture = ExtResource( 3 )
 
@@ -134,6 +134,6 @@ collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="shield"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="input_event" from="shield" to="." method="_on_input_event"]

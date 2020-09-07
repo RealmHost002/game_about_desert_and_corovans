@@ -97,11 +97,11 @@ func _process(delta):
 #	if shield < shield_limit:
 #		shield += shield_production
 	if energy < max_energy:
-		energy += energy_production * delta
+		energy += energy_production * delta / constants.step_time
 	else:
 		energy = max_energy
 	if energy > 0:
-		energy -= 20 * acc * delta / acc_multiplyer
+		energy -= 20 * acc * delta / acc_multiplyer / constants.step_time
 	if energy <= 0:
 		acc = 0.0
 	
