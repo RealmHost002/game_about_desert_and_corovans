@@ -1,6 +1,8 @@
 {
   "protector_mk1": {
-    "max_value": 50,
-    "image_path": "res://gui/textures/weaponIcons/protector_mk1.png"
+    "max_value": 30,
+    "image_path": "res://gui/textures/weaponIcons/protector_mk1.png",
+    "energy_cost": 30,
+    "prot_per_en": 1
   }
 }

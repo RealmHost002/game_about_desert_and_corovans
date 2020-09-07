@@ -183,9 +183,10 @@ func _input(event):
 			if result['collider'].get_parent() in get_tree().get_nodes_in_group('ally'):
 				pass
 			else:
-				target = result['collider']
-#				print(target)
-#				print(result)
+				if result['collider'].name == 'shield':
+					target = result['collider'].get_parent().get_node('CollisionShape')
+				else:
+					target = result['collider'].get_node('CollisionShape')
 				unactivate()
 #		print(target)
 	if event.is_action_pressed("tb2"):

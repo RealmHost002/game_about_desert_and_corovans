@@ -3,9 +3,10 @@ extends  KinematicBody
 #KinematicBody 
 #Spatial
 
+var energy_drain = 0
 var weapon_positions = [Vector3(), Vector3()]
 var acc_multiplyer = 2.0
-var acc = 1.0
+var acc = 0.0
 var resistance = 1.0
 var is_active = false
 var ntex
@@ -25,7 +26,7 @@ var current_pattern = 'truck'
 
 var hp = 100
 var max_hp = 100
-var shield = 50
+var shield = 0
 var shield_limit = 50
 var energy = 100
 var energy_production = 0
@@ -53,7 +54,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	speed += acc * delta
+	speed += acc * acc * delta
 	speed -= resistance * speed * speed * delta
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
@@ -91,15 +92,18 @@ func _process(delta):
 	forward.y = 0.0
 	move_and_slide(speed * (forward))
 #	move_and_collide(speed * (forward) * delta)
+
+
+	
 #	if shield < shield_limit:
 #		shield += shield_production
 	energy += energy_production * delta
 	if energy > 0:
-		energy -= 20 * acc * delta
-	else:
+		energy -= 20 * acc * delta / acc_multiplyer
+	if energy <= 0:
 		acc = 0.0
 	
-#	print(energy)
+	print(acc)
 	
 func destroy():
 	self.queue_free()
@@ -117,8 +121,10 @@ func take_damage(damage, weaponType, status = "no"):
 				shield = 0
 				get_node("Sprite3D").material_override.set_shader_param("b", 0)
 				hp -= damage
+				get_node("body/weapons").get_child(4).hide()
 #				print("hp =", hp," ", maxHp," ",hp/maxHp)
-				
+#			if shield <= 0:
+#				print(get_node("body/weapons").get_children())
 		else:
 			hp -= damage
 #			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
@@ -127,6 +133,7 @@ func take_damage(damage, weaponType, status = "no"):
 #		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
 	else:
 		hp -= damage
+	print(get_node("body/weapons").get_children())
 	if status != 'no':
 		pass
 
@@ -140,15 +147,17 @@ func ability_used(id):
 
 func slider_changed(id, value):
 	constants.sliders[name][id] = value
-	print(constants.sliders)
+#	print(constants.sliders)
 	if abilities[id] == 'engine':
+		sliders[id] = value / 100.0
 		acc = value / 100.0 * acc_multiplyer
 		show_path()
-	elif abilities[id] == 'weap':
+	elif abilities[id] == 'weap' or 'shield':
 		var w = get_node("body/weapons").get_child(id)
 		w.slider_changed(value)
+		sliders[id] = value / 100.0
 		pass
-
+	calc_en_drain()
 
 func pause():
 	self.set_process(false)
@@ -157,14 +166,25 @@ func pause():
 	show_path()
 
 func unpause():
-	if shield + energy_production > shield_limit :
-		shield = shield_limit
 	self.set_process(true)
+	self.shield = 0
+#	self.acc = sliders[0]
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
 			if w.target:
 				w.set_process(true)
+		elif w.type == 'shield':
+			if energy - w.current_en_cost >= 0:
+				self.shield += w.current_sh_gen
+				self.energy -= w.current_en_cost
+
+		elif w.type == 'generator':
+#			self.energy_production += w.energy_production
+			pass
+	if self.shield:
+		get_node("body/weapons").get_child(4).show()
 	hide_path()
+	
 	
 func hide_path():
 	for child in get_node("Mypath").get_children():
@@ -261,10 +281,17 @@ func load_modules(params):
 			var sh = load("res://models/shield.tscn").instance()
 			modules_node.add_child(sh)
 			sh._load(Saveload.shields_data[s])
-
+#			sh.transform.origin = Vector3(0,30,0)
 	
 
 
-
+func calc_en_drain():
+	energy_drain = 0
+	var c = 0
+	for module in get_node("body/weapons").get_children():
+		energy_drain += sliders[c] * module.energy_cost
+		c += 1
+	print(energy_drain)
+	pass
 
 

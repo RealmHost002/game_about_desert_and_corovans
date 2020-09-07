@@ -129,6 +129,7 @@ texture = ExtResource( 3 )
 [node name="shield" type="StaticBody" parent="." groups=[
 "shields",
 ]]
+input_ray_pickable = false
 collision_layer = 256
 collision_mask = 0
 

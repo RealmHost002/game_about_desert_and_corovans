@@ -65,6 +65,7 @@ shader_param/hexes_scale = 8.0
 shader_param/hex_tex = ExtResource( 2 )
 
 [node name="Position3D4" type="Position3D"]
+visible = false
 script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]

@@ -6,7 +6,7 @@ var image_path = "res://icon.png"
 var is_pressable = false
 var have_slider = false
 var energy_production = 0.0
-
+var energy_cost = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
