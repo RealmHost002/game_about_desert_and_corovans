@@ -30,7 +30,7 @@ func _on_TextureButton_pressed():
 	var c = 0
 	for slider in constants.sliders[constants.selectedCar.name]:
 #		var sliderpos = constants.sliders[constants.selectedCar.name]
-		
+		print(constants.sliders[constants.selectedCar.name])
 		get_node("../../HBoxContainer2/weaponContainer").get_child(c).get_node("HSlider").value = slider
 		c += 1
 	

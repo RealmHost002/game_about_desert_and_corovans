@@ -2,12 +2,12 @@
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_name = "Material"
-albedo_color = Color( 0.8, 0.8, 0.8, 1 )
+albedo_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
 metallic = 0.5
 
 [sub_resource type="SpatialMaterial" id=2]
 resource_name = "Material.002"
-albedo_color = Color( 0.8, 0.8, 0.8, 1 )
+albedo_color = Color( 0.25098, 0.227451, 0.392157, 1 )
 metallic = 0.5
 
 [resource]

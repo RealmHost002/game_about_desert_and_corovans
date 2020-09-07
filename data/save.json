@@ -58,10 +58,10 @@
       "cars": 4,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "BigFoot",
+      "corpus": "Hover",
       "weapons": [
-        "gaussRifle",
-        "gaussRifle"
+        "laserGun",
+        0
       ],
       "generator": [
         "Convergenator_mk1",

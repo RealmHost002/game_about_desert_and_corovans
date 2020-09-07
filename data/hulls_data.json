@@ -30,8 +30,8 @@
     "hp": 80,
     "weapon_positions": [
       0,
-      2.197,
-      1.41
+      0.735,
+      -0.715
     ],
     "col_shape": "res://models/bigfoot/col_shape.tres",
     "col_shape_pos": [

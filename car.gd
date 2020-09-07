@@ -4,7 +4,7 @@ extends  KinematicBody
 #Spatial
 
 var energy_drain = 0
-var weapon_positions = [Vector3(), Vector3()]
+var weapon_positions = []
 var acc_multiplyer = 2.0
 var acc = 0.0
 var resistance = 1.0
@@ -18,8 +18,8 @@ var forward
 var right
 var destination = Vector3(20,20,20)
 var rotation_speed = 1
-var abilities = ['engine','weap', 'weap', 'generator', 'shield']
-var sliders = [0, 0, 0, 0, 0]
+var abilities = ['engine']
+var sliders = []
 
 var current_pattern = 'truck'
 
@@ -38,7 +38,6 @@ var shield_production = 0
 
 
 func _ready():
-	constants.sliders[name] = [0, 0, 0, 0, 0]
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	ntex = preload("res://noise.tres")
 	yield(ntex, "changed")
@@ -122,9 +121,7 @@ func take_damage(damage, weaponType, status = "no"):
 				get_node("Sprite3D").material_override.set_shader_param("b", 0)
 				hp -= damage
 				get_node("body/weapons").get_child(4).hide()
-#				print("hp =", hp," ", maxHp," ",hp/maxHp)
-#			if shield <= 0:
-#				print(get_node("body/weapons").get_children())
+
 		else:
 			hp -= damage
 #			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
@@ -133,7 +130,6 @@ func take_damage(damage, weaponType, status = "no"):
 #		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
 	else:
 		hp -= damage
-	print(get_node("body/weapons").get_children())
 	if status != 'no':
 		pass
 
@@ -147,7 +143,6 @@ func ability_used(id):
 
 func slider_changed(id, value):
 	constants.sliders[name][id] = value
-#	print(constants.sliders)
 	if abilities[id] == 'engine':
 		sliders[id] = value / 100.0
 		acc = value / 100.0 * acc_multiplyer
@@ -182,7 +177,7 @@ func unpause():
 #			self.energy_production += w.energy_production
 			pass
 	if self.shield:
-		get_node("body/weapons").get_child(4).show()
+		get_node("body/weapons").get_child(sliders.size()-1).show()
 	hide_path()
 	
 	
@@ -256,7 +251,10 @@ func _load(params):
 	get_node("wheels/rr").mesh = load(params['wheelBack'])
 	self.hp = params['hp']
 	var v = params['weapon_positions']
-	self.weapon_positions = [Vector3(v[0], v[1], v[2]),Vector3( v[3], v[4], v[5])]
+	for i in range(v.size() / 3):
+		i *= 3
+		self.weapon_positions.append(Vector3(v[i], v[i+1], v[i+2]))
+#	self.weapon_positions = [Vector3(v[0], v[1], v[2]),Vector3( v[3], v[4], v[5])]
 	get_node("CollisionShape").shape = load(params['col_shape'])
 	v = params['col_shape_pos']
 	get_node("CollisionShape").transform.origin = Vector3(v[0], v[1], v[2])
@@ -269,23 +267,28 @@ func load_modules(params):
 			var weap = load("res://models/weapons/weapon.tscn").instance()
 			modules_node.add_child(weap)
 			weap.transform.origin = weapon_positions[c]
+			print(weapon_positions)
 			c += 1
 			weap._load(Saveload.weapon_data[w])
-#	print(params['generator'])
+			abilities.append('weap')
+
 	for g in params['generator']:
 		if g:
 			var gen = load("res://models/generator.tscn").instance()
 			modules_node.add_child(gen)
-#			print(Saveload.generators_data)
+
 			gen._load(Saveload.generators_data[g])
-#	print(params)
+			abilities.append('generator')
+			
 	for s in params['shields']:
 		if s:
 			var sh = load("res://models/shield.tscn").instance()
 			modules_node.add_child(sh)
 			sh._load(Saveload.shields_data[s])
-#			sh.transform.origin = Vector3(0,30,0)
-	
+			abilities.append('shield')
+	for i in abilities.size():
+		sliders.append(0)
+	constants.sliders[name] = self.sliders
 
 
 func calc_en_drain():
@@ -294,7 +297,7 @@ func calc_en_drain():
 	for module in get_node("body/weapons").get_children():
 		energy_drain += sliders[c] * module.energy_cost
 		c += 1
-#	print(energy_drain)
+
 	pass
 
 

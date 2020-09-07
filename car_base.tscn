@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=1]
 [ext_resource path="res://car.gd" type="Script" id=2]
 [ext_resource path="res://gui/textures/hp.png" type="Texture" id=3]
-[ext_resource path="res://models/hover/body.tres" type="ArrayMesh" id=4]
+[ext_resource path="res://models/bigfoot/body.tres" type="ArrayMesh" id=4]
 [ext_resource path="res://models/hover/hover_wheel.tres" type="SphereMesh" id=5]
 [ext_resource path="res://models/bigfoot/col_shape.tres" type="Shape" id=6]
 
