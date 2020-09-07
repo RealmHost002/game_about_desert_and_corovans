@@ -47,8 +47,12 @@ func setting_car_params():
 		labels_parent.get_node("energy_label").text = "Energy: " + str(constants.selectedCar.energy)		
 		labels_parent.get_node("shield_label").text = "Shield: " + str(constants.selectedCar.shield)	
 		labels_parent.get_node("energy_regen_label").text = "Energy regen: " + str(constants.selectedCar.energy_production)
-		labels_parent.get_node("energy_wasting").text = "Energy drain: " + str(constants.selectedCar.energy_drain)
-				
+		labels_parent.get_node("energy_wasting").text = "Energy drain: " + str(constants.selectedCar.energy_drain)		
+		var right_panel = get_node("HBoxContainer2/TextureButton/VSeparator/right_panel")
+		if constants.selected_weapon:
+#			print(constants.selected_weapon)
+			if constants.selected_weapon.type == "weapon":
+				right_panel.get_node("Name").text = constants.selected_weapon._name
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	setting_car_params()

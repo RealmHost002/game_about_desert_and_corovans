@@ -5,9 +5,9 @@
 [ext_resource path="res://gui/weaponIcon.gd" type="Script" id=3]
 
 [node name="Node2D" type="TextureButton"]
-margin_top = 2.37842
+margin_top = 2.0
 margin_right = 110.0
-margin_bottom = 112.378
+margin_bottom = 112.0
 texture_normal = ExtResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -16,9 +16,9 @@ __meta__ = {
 
 [node name="HSlider" type="HSlider" parent="."]
 margin_left = 6.42046
-margin_top = 77.0481
+margin_top = 79.1504
 margin_right = 106.42
-margin_bottom = 93.0481
+margin_bottom = 95.1504
 ticks_on_borders = true
 script = ExtResource( 2 )
 __meta__ = {

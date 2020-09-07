@@ -249,7 +249,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Node2D" parent="HBoxContainer2/TextureButton/VSeparator" instance=ExtResource( 2 )]
+[node name="right_panel" parent="HBoxContainer2/TextureButton/VSeparator" instance=ExtResource( 2 )]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -174.0
@@ -275,9 +275,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -50.0
-margin_top = -8.0
+margin_top = 1.0
 margin_right = 72.0
-margin_bottom = 6.0
+margin_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3

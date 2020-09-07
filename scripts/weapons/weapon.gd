@@ -2,7 +2,6 @@ extends Position3D
 
 
 
-
 var is_pressable = true
 var have_slider = true
 var image_path = "res://icon.png"
@@ -12,6 +11,7 @@ var energy = 100
 var step = 0.1
 var mastercar
 var ntex
+var _name = "Pistrunchik))"
 var burst_size = 6.0
 var step_time = 1.0
 var death_zone = Vector2()
