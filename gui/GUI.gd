@@ -67,7 +67,17 @@ func setting_car_params():
 				else:
 					right_panel.get_node("type").set("custom_colors/font_color",Color(255,255,255,255)) 
 		else:
-			right_panel.get_node("Name").text = "drochilla"	
+			right_panel.get_node("Name").text = "drochilla"
+		
+		for button_id in get_node("HBoxContainer2/weaponContainer").get_child_count():
+			var w = constants.selectedCar.get_node('body/weapons').get_child(button_id)
+			if w.type == 'weapon':
+				var b = get_node("HBoxContainer2/weaponContainer").get_child(button_id)
+				if w.max_cd_time:
+					b.get_node('TextureProgress').material.set_shader_param('a', w.current_cd_time / w.max_cd_time)
+				else:
+					b.get_node('TextureProgress').material.set_shader_param('a', 0.0)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	setting_car_params()

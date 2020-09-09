@@ -11,6 +11,8 @@ var type = "weapon"
 var _name
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_node("TextureProgress").material = get_node("TextureProgress").material.duplicate(true)
+#	get_node("TextureProgress").material.set_shader_param('a', randf())
 	pass # Replace with function body.
 
 

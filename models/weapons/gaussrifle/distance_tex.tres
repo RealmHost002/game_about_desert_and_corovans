@@ -1,7 +1,9 @@
 [gd_resource type="CurveTexture" load_steps=2 format=2]
 
-[ext_resource path="res://models/weapons/gaussrifle/new_curve.tres" type="Curve" id=1]
+[sub_resource type="Curve" id=1]
+max_value = 12.0
+_data = [ Vector2( 0, 0 ), 0.0, 3.01175, 0, 0, Vector2( 0.747423, 5.89091 ), 0.0, 0.0, 0, 0, Vector2( 1, 12 ), 3.01554, 0.0, 0, 0 ]
 
 [resource]
 width = 64
-curve = ExtResource( 1 )
+curve = SubResource( 1 )

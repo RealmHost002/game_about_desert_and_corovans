@@ -32,6 +32,17 @@ var to_target = Vector3()
 var rot_speed = 1.0
 var energy_cost = 0.0
 var s_value = 0.0
+
+
+var current_cd_time = 0.0
+var max_cd_time = 2.0
+var current_clip = 12
+var max_clip = 12
+
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	distance_tex = load("res://models/weapons/lasergun/distance_tex.tres")
@@ -70,7 +81,7 @@ func fire():
 		return
 	else:
 		mastercar.energy -= energy_cost / float(burst_size) * s_value
-	
+		current_clip -= 1
 	
 #	for node in get_parent().get_parent().get_parent().get_parent().get_children():
 #		if node != get_parent().get_parent().get_parent():
@@ -134,7 +145,9 @@ func fire():
 		dist_to_ray_end = (result['position'] - get_node("dot").global_transform.origin).length()
 	#IVAN PIDARAS
 	lb.scale.z *= dist_to_ray_end
-
+	if current_clip <= 0:
+		current_cd_time = max_cd_time
+		return
 
 
 
@@ -143,6 +156,16 @@ func fire():
 var counter = 0
 var some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
 func _process(delta):
+	if current_cd_time <= 0 and current_clip == 0:
+		current_clip = max_clip
+#		print('')
+	elif current_clip == 0:
+		current_cd_time -= delta / step_time
+		print('some')
+		return
+	
+	
+	
 	if target:
 		direction = get_node("dot").global_transform.origin - self.global_transform.origin
 		direction.y = 0
@@ -230,3 +253,10 @@ func _load(params):
 	damage_type = params['damage_type']
 	burst_size = params['burst_size']
 	energy_cost = params['energy_cost']
+	max_cd_time = params['cd_time']
+	max_clip = params['clip']
+	current_clip = max_clip
+	
+	
+	
+	

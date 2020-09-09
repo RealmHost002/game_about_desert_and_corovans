@@ -293,6 +293,8 @@ func _load(params):
 	get_node("wheels/rr").mesh = load(params['wheelBack'])
 	get_node("wheels/rr").transform.origin = Vector3(-wp[2], 0, wp[3])
 	self.hp = params['hp']
+#	max_hp 
+	self.max_hp  = params['hp']
 	self.resistance = float(params['resistance'])
 	self.rotation_speed = float(params['rot_speed'])
 	self.acc_multiplyer = float(params['acc_multiplyer'])
