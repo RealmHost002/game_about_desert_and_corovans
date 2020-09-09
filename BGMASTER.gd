@@ -1,7 +1,7 @@
 extends Spatial
 
 var gamestate = true #true if unpause, false if pause
-
+var path = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,12 +15,15 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("TEST_BUTTON_1"):
 		GAME_UNPAUSE()
+	if event.is_action_pressed("function_1"):
+		path = true
+	if event.is_action_released("function_1"):
+		path = false
+
 
 func GAME_UNPAUSE():
 	for node in get_node("../cars").get_children():
 		node.unpause()
-#		node.set_process(true)
-#		node.hide_path()
 		gamestate = 1
 		get_node("StepTimer").start()
 
@@ -32,11 +35,20 @@ func GAME_PAUSE():
 		gamestate = 0
 
 func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
-	if constants.selectedCar and event.is_action('left_click'):
+	if constants.selectedCar and event.is_action('left_click') and event.pressed and !path:
+		constants.selectedCar.path = []
 		constants.selectedCar.destination = click_position
 		constants.selectedCar.destination.y = 2
 		constants.selectedCar.show_path()
 		constants.selectedCar.target_to_follow = 0
+	
+	elif constants.selectedCar and event.is_action('left_click') and path and event.pressed:
+		var d = click_position
+		d.y = 2
+		if !constants.selectedCar.path:
+			constants.selectedCar.path.append(constants.selectedCar.destination)
+		constants.selectedCar.path.append(d)
+		constants.selectedCar.show_path()
 		
 #	if !gamestate and event.is_action('left_click'):
 #		for node in get_node("../cars").get_children():

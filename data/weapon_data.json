@@ -14,7 +14,10 @@
     "image_path": "res://gui/textures/weaponIcons/laser.png",
     "damage_type": "laser",
     "burst_size": 12,
-    "energy_cost": 10
+    "energy_cost": 10,
+    "max_dmg": 2,
+    "dmg_per_energy": 2.4,
+    "dmg_per_turn": 24
   },
   "gaussRifle": {
     "damimage": "res://models/weapons/gaussrifle/damage_tex.tres",
@@ -31,6 +34,29 @@
     "image_path": "res://gui/textures/weaponIcons/gaus.png",
     "damage_type": "bullet",
     "burst_size": 3,
-    "energy_cost": 10
+    "energy_cost": 10,
+    "max_dmg": 6,
+    "dmg_per_energy": 1.8,
+    "dmg_per_turn": 18
+  },
+  "4_gun": {
+    "damimage": "res://models/weapons/4_gun/damage_tex.tres",
+    "distimage": "res://models/weapons/4_gun/distance_tex.tres",
+    "rot_speed": 3,
+    "mesh": "res://models/weapons/4_gun/Main_4_gun_scene.tres",
+    "buletScene": "res://models/weapons/lasergun/laser_beam.tscn",
+    "buletColor": "cf1719",
+    "dot_position": [
+      0,
+      0.417,
+      1.078
+    ],
+    "image_path": "res://gui/textures/weaponIcons/4_gun.png",
+    "damage_type": "laser",
+    "burst_size": 24,
+    "energy_cost": 7,
+    "max_dmg": 0.5,
+    "dmg_per_energy": 1.7142857142857142,
+    "dmg_per_turn": 12
   }
 }

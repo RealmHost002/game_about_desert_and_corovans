@@ -2,7 +2,7 @@
 
 [ext_resource path="res://models/bigfoot/rubber.tres" type="Material" id=1]
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.870588, 0.705882, 0.788235, 1 )
 metallic = 0.5
 
@@ -27,7 +27,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 42,
-"material": SubResource( 4 ),
+"material": SubResource( 1 ),
 "name": "Material",
 "primitive": 4,
 "skeleton_aabb": [  ],

@@ -132,7 +132,7 @@
       "modules": 1,
       "corpus": "Retro",
       "weapons": [
-        "gaussRifle",
+        "4_gun",
         0
       ],
       "generator": [

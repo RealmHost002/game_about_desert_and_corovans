@@ -3,6 +3,8 @@ extends  KinematicBody
 #KinematicBody 
 #Spatial
 
+
+var path = []
 var energy_drain = 0
 var weapon_positions = []
 var acc_multiplyer = 2.0
@@ -54,6 +56,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if path:
+		destination = path[0]
+		
+		if (Vector3(self.global_transform.origin.x, 0, self.global_transform.origin.z) - Vector3(path[0].x, 0, path[0].z)).length() < 0.1:
+			path.pop_front()
+#		print(path)
 	if current_move == 'follow' and target_to_follow:
 		destination = target_to_follow.global_transform.origin
 		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0,0 , 1.0)
@@ -65,7 +73,8 @@ func _process(delta):
 	speed -= resistance * pow(speed, 2) * delta
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
-	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
+	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * rotation_speed)
+#	* clamp(angle_to_destination, 0.5, 1) * rotation_speed)
 #	self.global_transform.origin += forward * delta * speed
 	var s_height = 0
 	if image:
@@ -100,7 +109,8 @@ func _process(delta):
 	move_and_slide(speed * (forward))
 #	move_and_collide(speed * (forward) * delta)
 
-
+#	if Input.is_action_pressed("function_1"):
+#		print('popa')
 	
 #	if shield < shield_limit:
 #		shield += shield_production
@@ -109,7 +119,7 @@ func _process(delta):
 	else:
 		energy = max_energy
 	if energy > 0:
-		energy -= 20 * acc * delta / acc_multiplyer / constants.step_time
+		energy -= 20 * acc * delta / constants.step_time
 	if energy <= 0:
 		acc = 0.0
 	
@@ -203,9 +213,15 @@ func show_path():
 	var spd = speed
 	var f = forward
 	var p = self.global_transform.origin
+	var pa
+	if path:
+		pa = path.duplicate()
+	else:
+		pa = [destination]
+	
 	p.y = 2
 	var c = 0
-	while (p - destination).length() > 0.1:
+	while (p - pa[-1]).length() > 0.1:
 		spd += pow(acc, 1) * acc_multiplyer * 0.1
 		spd -= resistance * pow(spd, 2) * 0.1
 		
@@ -216,9 +232,13 @@ func show_path():
 			m.mesh = load("res://new_cubemesh.tres")
 		get_node("Mypath").add_child(m)
 		m.global_transform.origin = p
-		f = f.rotated(Vector3(0,1,0), sign(f.cross(destination - p).y) * 0.1 * rotation_speed)
+		f = f.rotated(Vector3(0,1,0), sign(f.cross(pa[0] - p).y) * 0.1 * rotation_speed)
 		p += f * 0.1 * spd
 		c += 1
+		if (p - pa[0]).length() < 0.1:
+			pa.pop_front()
+			if !pa:
+				break
 		if c > 100:
 			break
 		pass
@@ -284,7 +304,10 @@ func _load(params):
 	get_node("CollisionShape").shape = load(params['col_shape'])
 	v = params['col_shape_pos']
 	get_node("CollisionShape").transform.origin = Vector3(v[0], v[1], v[2])
+	v = params['death_zones']
+	get_node("body/weapons").death_zones = [0, Vector2(v[0], v[1]), Vector2(v[2], v[3])]
 
+	
 func load_modules(params):
 	var modules_node = get_node("body/weapons")
 	modules_node.add_child(load("res://models/engine.tscn").instance())

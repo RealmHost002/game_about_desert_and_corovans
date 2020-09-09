@@ -54,8 +54,8 @@ func _ready():
 	get_node("area").mesh.surface_set_material(0, m)
 #	print(m)
 	death_zone = get_parent().death_zones[self.get_index()]
-	print(death_zone)
-	m.set_shader_param('death_zone1', death_zone)
+#	print(death_zone)
+#	m.set_shader_param('death_zone1', death_zone)
 
 #	set_process(false)
 #	death_zone = get_parent().death_zones
@@ -213,6 +213,8 @@ func activate():
 	get_node("area").show()
 	get_node("area").scale = Vector3(distance, distance, distance)
 	is_active = true
+	m.set_shader_param('death_zone1', death_zone)
+	m.set_shader_param('death_zone2', death_zone)
 	pass
 
 func _load(params):
