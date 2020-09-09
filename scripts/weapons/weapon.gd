@@ -31,6 +31,7 @@ var direction = Vector3()
 var to_target = Vector3()
 var rot_speed = 1.0
 var energy_cost = 0.0
+var s_value = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	distance_tex = load("res://models/weapons/lasergun/distance_tex.tres")
@@ -65,10 +66,10 @@ func fire():
 		ntex = mastercar.image
 	var final_scale = Vector3(0,0,0)
 	
-	if mastercar.energy < energy_cost / float(burst_size):
+	if mastercar.energy < energy_cost / float(burst_size) * s_value:
 		return
 	else:
-		mastercar.energy -= energy_cost / float(burst_size)
+		mastercar.energy -= energy_cost / float(burst_size) * s_value
 	
 	
 #	for node in get_parent().get_parent().get_parent().get_parent().get_children():
@@ -85,7 +86,7 @@ func fire():
 	lb.set_surface_material(0, material)
 
 #	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
-	lb.scale.x *= 0.1
+	lb.scale.x *= 0.2
 #	lb.mesh.surface_set_material(0, lb.mesh.surface_get_material(0).duplicate(true))
 #	lb.mesh.surface_set_material(0, preload()
 #	lb.mesh.surface_get_material(0).albedo_color = Color(0, 1.0, 0, 1)
@@ -202,7 +203,7 @@ func slider_changed(value):
 	damage = damage_tex.curve.interpolate(value / 100.0)
 	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
 	get_node("area").scale = Vector3(distance, distance, distance)
-
+	s_value = value / 100.0
 
 func activate():
 	constants.input_mode = 'target_select'

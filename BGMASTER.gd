@@ -36,6 +36,7 @@ func _on_StaticBody_input_event(camera, event, click_position, click_normal, sha
 		constants.selectedCar.destination = click_position
 		constants.selectedCar.destination.y = 2
 		constants.selectedCar.show_path()
+		constants.selectedCar.target_to_follow = 0
 		
 #	if !gamestate and event.is_action('left_click'):
 #		for node in get_node("../cars").get_children():

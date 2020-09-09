@@ -13,7 +13,7 @@
     ],
     "image_path": "res://gui/textures/weaponIcons/laser.png",
     "damage_type": "laser",
-    "burst_size": 6,
+    "burst_size": 12,
     "energy_cost": 10
   },
   "gaussRifle": {
@@ -30,7 +30,7 @@
     ],
     "image_path": "res://gui/textures/weaponIcons/gaus.png",
     "damage_type": "bullet",
-    "burst_size": 2,
+    "burst_size": 3,
     "energy_cost": 10
   }
 }

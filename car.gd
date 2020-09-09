@@ -22,7 +22,8 @@ var abilities = ['engine']
 var sliders = []
 
 var current_pattern = 'truck'
-
+var current_move = 'follow'
+var target_to_follow
 
 var hp = 100
 var max_hp = 100
@@ -53,8 +54,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	speed += acc * acc * delta
-	speed -= resistance * speed * speed * delta
+	if current_move == 'follow' and target_to_follow:
+		destination = target_to_follow.global_transform.origin
+		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0,0 , 1.0)
+	
+	
+	
+
+	speed += pow(acc, 1) * delta * acc_multiplyer
+	speed -= resistance * pow(speed, 2) * delta
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * clamp(angle_to_destination, 0.5, 1) * rotation_speed)
@@ -112,6 +120,7 @@ func destroy():
 	pass
 	
 func take_damage(damage, weaponType, status = "no"):
+	print(damage)
 	if weaponType == "laser":
 		if shield > 0:
 			if damage <= shield:
@@ -148,7 +157,7 @@ func slider_changed(id, value):
 
 	if abilities[id] == 'engine':
 		sliders[id] = value / 100.0
-		acc = value / 100.0 * acc_multiplyer
+		acc = value / 100.0
 		show_path()
 	elif abilities[id] == 'weap' or 'shield':
 		var w = get_node("body/weapons").get_child(id)
@@ -197,8 +206,8 @@ func show_path():
 	p.y = 2
 	var c = 0
 	while (p - destination).length() > 0.1:
-		spd += acc * 0.1
-		spd -= resistance * spd * spd * 0.1
+		spd += pow(acc, 1) * acc_multiplyer * 0.1
+		spd -= resistance * pow(spd, 2) * 0.1
 		
 		var m = MeshInstance.new()
 		if c < 10 * constants.step_time:
@@ -224,7 +233,9 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 	if constants.input_mode != 'car_select':
 		return
 #	get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
-
+	
+	
+	
 	if from_gui:
 		constants.selectedCar = self
 #		is_active = true
@@ -234,22 +245,35 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 	elif event.is_action('left_click'):
 		constants.selectedCar = self
 		get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
+	
+	elif event.is_action('right_click'):
+		constants.selectedCar.target_to_follow = self
+		constants.selectedCar.destination = self.global_transform.origin
+		constants.selectedCar.show_path()
+
+
 #		if event.is_action('left_click'):
 #			is_active = true
 #			for node in get_parent().get_children():
 #				if node != self:
 #					node.is_active = false
 #		constants.selectedCar = self
-	
+
 
 
 func _load(params):
 	get_node("body").mesh = load(params['body'])
+	var wp = params['wheel_pos']
 	get_node("wheels/fl").mesh = load(params['wheelFront'])
+	get_node("wheels/fl").transform.origin = Vector3(wp[0], 0, wp[1])
 	get_node("wheels/fr").mesh = load(params['wheelFront'])
+	get_node("wheels/fr").transform.origin = Vector3(-wp[0], 0, wp[1])
 	get_node("wheels/rl").mesh = load(params['wheelBack'])
+	get_node("wheels/rl").transform.origin = Vector3(wp[2], 0, wp[3])
 	get_node("wheels/rr").mesh = load(params['wheelBack'])
+	get_node("wheels/rr").transform.origin = Vector3(-wp[2], 0, wp[3])
 	self.hp = params['hp']
+	self.resistance = float(params['resistance'])
 	self.rotation_speed = float(params['rot_speed'])
 	self.acc_multiplyer = float(params['acc_multiplyer'])
 	var v = params['weapon_positions']
@@ -300,7 +324,6 @@ func calc_en_drain():
 	for module in get_node("body/weapons").get_children():
 		energy_drain += sliders[c] * module.energy_cost
 		c += 1
-
 	pass
 
 
