@@ -35,7 +35,7 @@ func AddingWeaponButtons():
 		WeaponIconScene.selectedWeapon = counter
 		var texture = load(i.image_path)
 		var i_place = i.image_path.find(".")
-		print(str(i_place) + "vot tut")
+#		print(str(i_place) + "vot tut")
 		var pipka = i.image_path
 		pipka.erase(i_place, 4)
 		var texture_click = load(pipka + "_clicked.png")
