@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shield1.png-d7ef1ea633b817264d1ffdce57e8d64d.stex"
+path="res://.import/Convergenator_mk1_clicked.png-4be5581c50c77a8e7be8593a1d1e819b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/textures/weaponIcons/shield1.png"
-dest_files=[ "res://.import/shield1.png-d7ef1ea633b817264d1ffdce57e8d64d.stex" ]
+source_file="res://gui/textures/weaponIcons/Convergenator_mk1_clicked.png"
+dest_files=[ "res://.import/Convergenator_mk1_clicked.png-4be5581c50c77a8e7be8593a1d1e819b.stex" ]
 
 [params]
 

@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gui/textures/IconWithEmtySpace.png" type="Texture" id=1]
 [ext_resource path="res://gui/HSlider.gd" type="Script" id=2]
 [ext_resource path="res://gui/weaponIcon.gd" type="Script" id=3]
+[ext_resource path="res://gui/textures/weaponIcons/gaus_clicked.png" type="Texture" id=4]
 
 [node name="Node2D" type="TextureButton"]
 margin_top = 2.0
 margin_right = 110.0
 margin_bottom = 112.0
 texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 4 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

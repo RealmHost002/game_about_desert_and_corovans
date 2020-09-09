@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=1]
 [ext_resource path="res://car.gd" type="Script" id=2]
@@ -51,16 +51,7 @@ surfaces/1 = {
 albedo_color = Color( 0.870588, 0.705882, 0.788235, 1 )
 metallic = 0.5
 
-[sub_resource type="SpatialMaterial" id=5]
-params_specular_mode = 1
-albedo_color = Color( 0, 0, 0, 1 )
-metallic = 0.5
-
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0.870588, 0.705882, 0.788235, 1 )
-metallic = 0.5
-
-[sub_resource type="Shader" id=7]
+[sub_resource type="Shader" id=5]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform vec4 albedo : hint_color;
@@ -106,8 +97,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
 shader_param/specular = 0.5
 shader_param/metallic = 0.0
@@ -120,7 +111,7 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/a = 0.0
 shader_param/b = 0.0
 
-[sub_resource type="SphereShape" id=9]
+[sub_resource type="SphereShape" id=7]
 radius = 5.0
 
 [node name="KinematicBody " type="KinematicBody" groups=[
@@ -160,8 +151,8 @@ material/1 = null
 [node name="rl" type="MeshInstance" parent="wheels"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.831828, 0.00105518, -1.44263 )
 mesh = ExtResource( 9 )
-material/0 = SubResource( 5 )
-material/1 = SubResource( 6 )
+material/0 = null
+material/1 = null
 
 [node name="rr" type="MeshInstance" parent="wheels"]
 transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8298, -0.25799, -2.41419 )
@@ -183,7 +174,7 @@ editor_only = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50181, 5.34185, 0 )
-material_override = SubResource( 8 )
+material_override = SubResource( 6 )
 cast_shadow = 0
 texture = ExtResource( 3 )
 
@@ -195,6 +186,6 @@ collision_layer = 256
 collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="shield"]
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="input_event" from="shield" to="." method="_on_input_event"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/protector_mk2.png-6edc8e0876627eb6270537f5d45a8e56.stex"
+path="res://.import/Convergenator_mk2_clicked.png-fdc987dbd6f2b548bda92e8cd186789f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/textures/weaponIcons/protector_mk2.png"
-dest_files=[ "res://.import/protector_mk2.png-6edc8e0876627eb6270537f5d45a8e56.stex" ]
+source_file="res://gui/textures/weaponIcons/Convergenator_mk2_clicked.png"
+dest_files=[ "res://.import/Convergenator_mk2_clicked.png-fdc987dbd6f2b548bda92e8cd186789f.stex" ]
 
 [params]
 

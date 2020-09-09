@@ -34,7 +34,14 @@ func AddingWeaponButtons():
 		get_node("HBoxContainer2/weaponContainer").add_child(WeaponIconScene)
 		WeaponIconScene.selectedWeapon = counter
 		var texture = load(i.image_path)
+		var i_place = i.image_path.find(".")
+		print(str(i_place) + "vot tut")
+		var pipka = i.image_path
+		pipka.erase(i_place, 4)
+		var texture_click = load(pipka + "_clicked.png")
+#		var texture_busy = load(i.image_path)
 		WeaponIconScene.set_normal_texture(texture)
+		WeaponIconScene.set_pressed_texture(texture_click)
 		if not i.have_slider:
 			WeaponIconScene.get_node("HSlider").hide()
 		
@@ -54,13 +61,13 @@ func setting_car_params():
 				right_panel.get_node("Name").text = constants.selected_weapon._name
 				right_panel.get_node("type").text = constants.selected_weapon.damage_type
 				right_panel.get_node("distance").text = "Distance: " + str(constants.selected_weapon.distance)
-				right_panel.get_node("damage").text = "Damage: "+str(constants.selected_weapon.damage)
+				right_panel.get_node("damage").text = "Damage: " + str(constants.selected_weapon.damage)
 				if constants.selected_weapon.damage_type == "laser":
-#					print(constants.selected_weapon.damage_type)
 					right_panel.get_node("type").add_color_override("font_color",Color(0,151,179,255)) 
 				else:
-#					print(constants.selected_weapon.damage_type)
 					right_panel.get_node("type").set("custom_colors/font_color",Color(255,255,255,255)) 
+		else:
+			right_panel.get_node("Name").text = "drochilla"	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	setting_car_params()
