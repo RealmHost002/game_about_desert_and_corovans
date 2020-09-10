@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://car.gd" type="Script" id=1]
 [ext_resource path="res://models/weapons/lasergun/laergun.obj" type="ArrayMesh" id=2]
@@ -156,9 +156,6 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/a = 0.0
 shader_param/b = 0.0
 
-[sub_resource type="SphereShape" id=8]
-radius = 9.90151
-
 [node name="KinematicBody " type="KinematicBody"]
 script = ExtResource( 1 )
 
@@ -274,14 +271,4 @@ cast_shadow = 0
 texture = ExtResource( 13 )
 region_enabled = true
 region_rect = Rect2( 6, 64, 0, 0 )
-
-[node name="shield" type="StaticBody" parent="." groups=[
-"shields",
-]]
-collision_layer = 256
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="shield"]
-shape = SubResource( 8 )
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="input_event" from="shield" to="." method="_on_input_event"]

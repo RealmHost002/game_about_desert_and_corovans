@@ -1,4 +1,4 @@
-extends Position3D
+extends StaticBody
 
 var type = 'shield'
 var image_path = "res://icon.png"
@@ -9,13 +9,25 @@ var max_value = 0
 var energy_cost = 0
 var current_sh_gen = 0
 var current_en_cost = 0
+var shield = 0
+var mastercar
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	mastercar = get_parent().get_parent().get_parent()
+	self.connect("input_event", mastercar, "_on_input_event")
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
+func enable_shield():
+	shield = current_sh_gen
+	mastercar = get_parent().get_parent().get_parent()
+	mastercar.energy -= current_en_cost
+	self.visible = true
+
+
+
 func slider_changed(v):
 	current_sh_gen = v / 100.0 * max_value
 	current_en_cost = v / 100.0  * energy_cost
@@ -28,3 +40,19 @@ func _load(params):
 	image_path = params['image_path']
 	max_value = params['max_value']
 	energy_cost= params['energy_cost']
+
+
+func take_damage(damage, weaponType, status = "no"):
+	if damage > shield:
+		damage -= shield
+		mastercar.take_damage(damage, weaponType, status)
+		shield = 0
+		self.hide()
+	else:
+		shield -= damage
+	
+	
+	pass
+
+
+

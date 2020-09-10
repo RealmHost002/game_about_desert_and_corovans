@@ -148,6 +148,12 @@ mesh = ExtResource( 5 )
 material/0 = null
 material/1 = null
 
+[node name="mr" type="MeshInstance" parent="wheels"]
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, -0.801832, 0, 0.0293492 )
+
+[node name="ml" type="MeshInstance" parent="wheels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.870726, 0.00105518, 0.01899 )
+
 [node name="rl" type="MeshInstance" parent="wheels"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.831828, 0.00105518, -1.44263 )
 mesh = ExtResource( 9 )

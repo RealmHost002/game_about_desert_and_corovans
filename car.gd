@@ -86,7 +86,8 @@ func _process(delta):
 			while some_pos.y >= 1024:
 				some_pos.y -= 1024
 			wheel.global_transform.origin.y = image.get_pixelv(some_pos).r * 3
-			s_height += wheel.global_transform.origin.y
+			if wheel.name == 'fl' or wheel.name == 'fr' or wheel.name == 'rl' or wheel.name == 'rr':
+				s_height += wheel.global_transform.origin.y
 		s_height = s_height/4.0 + clearance
 #		self.global_transform.origin.y = s_height
 	var vec1 = get_node("wheels/fr").global_transform.origin - get_node("wheels/rl").global_transform.origin
@@ -190,6 +191,8 @@ func unpause():
 			if w.target:
 				w.set_process(true)
 		elif w.type == 'shield':
+			w.enable_shield()
+			
 			if energy - w.current_en_cost >= 0:
 				self.shield += w.current_sh_gen
 				self.energy -= w.current_en_cost
@@ -292,6 +295,14 @@ func _load(params):
 	get_node("wheels/rl").transform.origin = Vector3(wp[2], 0, wp[3])
 	get_node("wheels/rr").mesh = load(params['wheelBack'])
 	get_node("wheels/rr").transform.origin = Vector3(-wp[2], 0, wp[3])
+	get_node("wheels/ml").mesh = load(params['wheelBack'])
+#	get_node("wheels/ml").transform.origin = Vector3(wp[4], 0, wp[5])
+	get_node("wheels/mr").mesh = load(params['wheelBack'])
+#	get_node("wheels/mr").transform.origin = Vector3(-wp[4], 0, wp[5])
+	
+	
+	
+	
 	self.hp = params['hp']
 #	max_hp 
 	self.max_hp  = params['hp']

@@ -1,4 +1,5 @@
-extends Spatial
+extends Control
+#Node2D
 
 
 # Declare member variables here. Examples:
@@ -11,6 +12,10 @@ var selectedCar = 0
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
+	print(constants.res_mult)
+	self.rect_scale = constants.res_mult
+	
+	
 #	print(get_tree().get_nodes_in_group('ally').size())
 	AddingFuckingEgors(get_tree().get_nodes_in_group('ally').size())
 	AddingWeaponButtons()
