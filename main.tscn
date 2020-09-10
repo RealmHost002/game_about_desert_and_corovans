@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
+[ext_resource path="res://scenes/watchingCar/watchingCar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://new_cubemesh.tres" type="CubeMesh" id=3]
 [ext_resource path="res://BGMASTER.gd" type="Script" id=4]
 [ext_resource path="res://Camera.gd" type="Script" id=5]
@@ -73,5 +74,8 @@ one_shot = true
 
 [node name="Spatial" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78515, 1.06858, 1.74316 )
+
+[node name="invetory" parent="." instance=ExtResource( 2 )]
+visible = false
 [connection signal="input_event" from="camera_look_at/StaticBody" to="BGMASTER" method="_on_StaticBody_input_event"]
 [connection signal="timeout" from="BGMASTER/StepTimer" to="BGMASTER" method="_on_StepTimer_timeout"]
