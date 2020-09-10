@@ -8,7 +8,7 @@ var weapon_check_terrain_step = 0.1
 var sliders = {}
 var selected_weapon
 
-var default_resolution = Vector2(1920.0, 1080.0) * 2.0
+var default_resolution = Vector2(1920.0, 1080.0)
 var machine_resolution = Vector2(1920.0, 1080.0)
 var res_mult = Vector2(1.0, 1.0)
 # Called when the node enters the scene tree for the first time.
