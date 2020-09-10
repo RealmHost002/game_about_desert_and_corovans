@@ -3,13 +3,14 @@
     "type": "weapon",
     "count": 7
   },
+
   "gaussRifle": {
     "type": "weapon",
-    "count": 7
+    "count": 11
   },
   "4_gun": {
     "type": "weapon",
-    "count": 7
+    "count": 9
   },
   
   "BigFoot": {
@@ -32,10 +33,12 @@
     "type": "generator",
     "count": 7
   },
+   
   "Convergenator_mk2": {
     "type": "generator",
     "count": 7
   },
+
   "Slush": {
     "type": "money",
     "count": 777

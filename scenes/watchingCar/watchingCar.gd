@@ -16,6 +16,7 @@ var container
 func _ready():
 	container = get_node("Panel/ScrollContainer/hcontainer")
 	add_from_data()
+	add_fucking_Egors()
 	#self.add_child("res://car.tscn")
 	pass # Replace with function body.
 
@@ -48,21 +49,30 @@ func read_extra_data():
 	weapon_file.close()
 	weapon_data = weaponDataJson.result
 
+func add_fucking_Egors():
+	read_data()
+	for i in invetoryData:
+		var fucking_Egor = load("res://gui/TopIcon.tscn").instance()
+		get_node("Panel2/GridContainer").add_child(fucking_Egor)
+		var texture = load("res://gui/textures/IconEgor.png")
+		fucking_Egor.get_node("TextureRect/ReferenceRect/TextureButton").set_normal_texture(texture)
+
 func add_from_data():
 	read_data()
 	read_extra_data()
-#	print(invetoryData)
+	print(invetoryData)
 #	print(generators_data)
 	
 	for i in invetoryData:		
 		match invetoryData[i]["type"]:
 			"weapon":
 				var icon = load(weapon_data[i]["image_path"])
-				var current_item = load("res://scenes/watchingCar/Item.tscn").instance()
+				var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
 				container.add_child(current_item)
+				current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 				current_item.get_node("item_icon").texture = icon
 				current_item.get_node("description").clear()
-				current_item.get_node("description").add_text(weapon_data[i]["damage_type"])
+				current_item.get_node("description").add_text(i  + ": ")
 				current_item.get_node("description").add_text(weapon_data[i]["damage_type"])
 				current_item.get_node("description").newline()
 				current_item.get_node("description").add_text("pipka")
@@ -71,15 +81,31 @@ func add_from_data():
 				var icon = load(shields_data[i]["image_path"])
 				var current_item = load("res://scenes/watchingCar/Item.tscn").instance()
 				container.add_child(current_item)
+				print(str(invetoryData[i]["count"]))
+				current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 				current_item.get_node("item_icon").texture = icon
 			"generator":
+				
 				var icon = load(generators_data[i]["image_path"])
 				var current_item = load("res://scenes/watchingCar/Item.tscn").instance()
 				container.add_child(current_item)
+				current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 				current_item.get_node("item_icon").texture = icon
+				current_item.get_node("description").add_text("ppopa_jopa")
+				current_item.get_node("description").newline()
+				current_item.get_node("description").add_text("ppopa_jopa")
+				current_item.get_node("description").newline()
+				current_item.get_node("description").add_text("ppopa_jopa")
+				current_item.get_node("description").newline()
+				current_item.get_node("description").add_text("ppopa_jopa")
+				current_item.get_node("description").newline()
+				
+				
+				print(str(invetoryData[i]))
 			"money":
 				print(invetoryData[i])
 				get_node("money").text = "Money: " + str(invetoryData[i]["count"])
+	print(get_node("Panel/ScrollContainer/hcontainer").get_child_count())
 #func _input(event):
 #	if event.is_action_pressed("open_inventory"):
 #		get_tree().get_root().get_node("Spatial").remove_child(self)

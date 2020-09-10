@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://scenes/watchingCar/Item_weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/watchingCar/watchingCar.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -42,16 +43,78 @@ __meta__ = {
 }
 
 [node name="hcontainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+margin_bottom = 1540.0
 custom_constants/separation = 220
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 604.0
-margin_top = 696.0
-margin_right = 1616.0
-margin_bottom = 1078.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Control" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="Control6" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 220.0
+margin_right = 0.0
+margin_bottom = 220.0
+
+[node name="Control7" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 440.0
+margin_right = 0.0
+margin_bottom = 440.0
+
+[node name="Control8" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 660.0
+margin_right = 0.0
+margin_bottom = 660.0
+
+[node name="Control2" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 880.0
+margin_right = 0.0
+margin_bottom = 880.0
+
+[node name="Control3" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 1100.0
+margin_right = 0.0
+margin_bottom = 1100.0
+
+[node name="Control4" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 1320.0
+margin_right = 0.0
+margin_bottom = 1320.0
+
+[node name="Control5" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 1540.0
+margin_right = 0.0
+margin_bottom = 1540.0
+
+[node name="TextureRect" type="Control" parent="."]
+margin_left = 661.0
+margin_top = 702.0
+margin_right = 1627.0
+margin_bottom = 1077.0
 
 [node name="Panel2" type="Panel" parent="."]
 anchor_top = 1.0
@@ -62,6 +125,14 @@ custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GridContainer" type="GridContainer" parent="Panel2"]
+margin_left = 15.0
+margin_right = 661.0
+margin_bottom = 213.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 5
 
 [node name="money" type="Label" parent="."]
 anchor_top = 1.0
