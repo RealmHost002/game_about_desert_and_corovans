@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=1]
 [ext_resource path="res://car.gd" type="Script" id=2]
@@ -111,9 +111,6 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/a = 1.0
 shader_param/b = 0.0
 
-[sub_resource type="SphereShape" id=7]
-radius = 5.0
-
 [node name="KinematicBody " type="KinematicBody" groups=[
 "enemy",
 ]]
@@ -183,15 +180,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50181, 5.34185, 0 )
 material_override = SubResource( 6 )
 cast_shadow = 0
 texture = ExtResource( 3 )
-
-[node name="shield" type="StaticBody" parent="." groups=[
-"shields",
-]]
-input_ray_pickable = false
-collision_layer = 256
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="shield"]
-shape = SubResource( 7 )
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="input_event" from="shield" to="." method="_on_input_event"]
