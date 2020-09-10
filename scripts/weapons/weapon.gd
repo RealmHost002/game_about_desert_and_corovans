@@ -56,14 +56,13 @@ func _ready():
 
 
 #	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
-#	print(self.get_index())
 	m = load("res://models/weapons/area_material" + str(self.get_index()) + ".tres")
 	var area = load("res://models/weapons/area_mesh" + str(self.get_index()) + ".tres")
 #	var s = load("res://models/weapons/area" + str(self.get_index()) + ".shader")
 #	m.shader = s
 	get_node("area").mesh = area
 	get_node("area").mesh.surface_set_material(0, m)
-#	print(m)
+
 	death_zone = get_parent().death_zones[self.get_index()]
 #	print(death_zone)
 #	m.set_shader_param('death_zone1', death_zone)
@@ -128,18 +127,16 @@ func fire():
 #	lb.scale.z *= dist_to_ray_end
 	
 	var space_state = get_world().direct_space_state
-#	if damage_type !=
 	var shields_exceptions = []
 	for s in get_tree().get_nodes_in_group('shields'):
-		if s.get_parent().shield < damage:
+		if s.shield <= 0:
 			shields_exceptions.append(s)
-#			s.hide()
+
 
 	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')] + shields_exceptions)
 	if result:
-		print(result['collider'])
 		if result['collider'].name == 'shield':
-			result['collider'].get_parent().take_damage(damage, damage_type)
+			result['collider'].take_damage(damage, damage_type)
 		else:
 			result['collider'].take_damage(damage, damage_type)
 		dist_to_ray_end = (result['position'] - get_node("dot").global_transform.origin).length()
@@ -158,10 +155,8 @@ var some_step = step_time / burst_size * (constants.rng.randf() + 0.5)
 func _process(delta):
 	if current_cd_time <= 0 and current_clip == 0:
 		current_clip = max_clip
-#		print('')
 	elif current_clip == 0:
 		current_cd_time -= delta / step_time
-		print('some')
 		return
 	
 	
@@ -204,15 +199,14 @@ func _input(event):
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(from, to, [self, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
 		if result:
-			if !(result['collider'].get_parent() in get_tree().get_nodes_in_group('ally')):
+			if !(result['collider'].get_parent().get_parent().get_parent() in get_tree().get_nodes_in_group('ally')):
 				return
 			else:
-				if result['collider'].name == 'shield':
-					target = result['collider'].get_parent().get_node('CollisionShape')
+				if result['collider'] in get_tree().get_nodes_in_group('shields'):
+					target = result['collider'].get_parent().get_parent().get_parent().get_node('CollisionShape')
 				else:
 					target = result['collider'].get_node('CollisionShape')
 				unactivate()
-#		print(target)
 	if event.is_action_pressed("tb2"):
 		fire()
 

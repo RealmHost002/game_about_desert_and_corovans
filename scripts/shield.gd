@@ -10,6 +10,7 @@ var energy_cost = 0
 var current_sh_gen = 0
 var current_en_cost = 0
 var shield = 0
+#var radius = 
 var mastercar
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,11 +22,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 func enable_shield():
-	shield = current_sh_gen
-	mastercar = get_parent().get_parent().get_parent()
-	mastercar.energy -= current_en_cost
-	self.visible = true
-
+	if mastercar.energy > current_en_cost:
+		shield = current_sh_gen
+		mastercar = get_parent().get_parent().get_parent()
+		mastercar.energy -= current_en_cost
+		mastercar.shield += current_sh_gen
+		self.show()
+	else:
+		pass
 
 
 func slider_changed(v):
@@ -43,15 +47,17 @@ func _load(params):
 
 
 func take_damage(damage, weaponType, status = "no"):
-	if damage > shield:
+	mastercar.shield -= self.shield
+	if damage >= shield:
 		damage -= shield
 		mastercar.take_damage(damage, weaponType, status)
 		shield = 0
 		self.hide()
+		print('gg_wp')
 	else:
 		shield -= damage
-	
-	
+		print(shield) 
+	mastercar.shield += self.shield
 	pass
 
 

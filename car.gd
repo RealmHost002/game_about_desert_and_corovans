@@ -30,7 +30,7 @@ var target_to_follow
 var hp = 100
 var max_hp = 100
 var shield = 0
-var shield_limit = 50
+var shield_limit = 0
 var energy = 100
 var energy_production = 0
 var max_energy = 100
@@ -61,7 +61,6 @@ func _process(delta):
 		
 		if (Vector3(self.global_transform.origin.x, 0, self.global_transform.origin.z) - Vector3(path[0].x, 0, path[0].z)).length() < 0.1:
 			path.pop_front()
-#		print(path)
 	if current_move == 'follow' and target_to_follow:
 		destination = target_to_follow.global_transform.origin
 		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0,0 , 1.0)
@@ -123,7 +122,7 @@ func _process(delta):
 		energy -= 20 * acc * delta / constants.step_time
 	if energy <= 0:
 		acc = 0.0
-	
+	get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
 
 	
 func destroy():
@@ -131,27 +130,9 @@ func destroy():
 	pass
 	
 func take_damage(damage, weaponType, status = "no"):
-	print(damage)
-	if weaponType == "laser":
-		if shield > 0:
-			if damage <= shield:
-				shield -= damage
-				get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
-			else:
-				damage -= shield
-				shield = 0
-				get_node("Sprite3D").material_override.set_shader_param("b", 0)
-				hp -= damage
-				get_node("body/weapons").get_child(sliders.size() - 1).hide()
-
-		else:
-			hp -= damage
-#			get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
-			if hp <=0:
-					self.destroy()
-#		get_node("Sprite3D").material_override.set_shader_param("a", float(hp)/max_hp)
-	else:
-		hp -= damage
+	hp -= damage
+	if hp <= 0:
+		destroy()
 	if status != 'no':
 		pass
 
@@ -192,10 +173,9 @@ func unpause():
 				w.set_process(true)
 		elif w.type == 'shield':
 			w.enable_shield()
-			
-			if energy - w.current_en_cost >= 0:
-				self.shield += w.current_sh_gen
-				self.energy -= w.current_en_cost
+
+#			self.shield += w.current_sh_gen
+#				self.energy -= w.current_en_cost
 
 		elif w.type == 'generator':
 #			self.energy_production += w.energy_production
@@ -295,10 +275,14 @@ func _load(params):
 	get_node("wheels/rl").transform.origin = Vector3(wp[2], 0, wp[3])
 	get_node("wheels/rr").mesh = load(params['wheelBack'])
 	get_node("wheels/rr").transform.origin = Vector3(-wp[2], 0, wp[3])
+	if wp[4] == 0:
+		get_node("wheels/ml").hide()
+		get_node("wheels/mr").hide()
+	
 	get_node("wheels/ml").mesh = load(params['wheelBack'])
-#	get_node("wheels/ml").transform.origin = Vector3(wp[4], 0, wp[5])
+	get_node("wheels/ml").transform.origin = Vector3(wp[4], 0, wp[5])
 	get_node("wheels/mr").mesh = load(params['wheelBack'])
-#	get_node("wheels/mr").transform.origin = Vector3(-wp[4], 0, wp[5])
+	get_node("wheels/mr").transform.origin = Vector3(-wp[4], 0, wp[5])
 	
 	
 	
@@ -348,6 +332,8 @@ func load_modules(params):
 			modules_node.add_child(sh)
 			sh._load(Saveload.shields_data[s])
 			abilities.append('shield')
+			shield_limit += sh.max_value
+
 	for i in abilities.size():
 		sliders.append(0)
 	constants.sliders[name] = self.sliders
