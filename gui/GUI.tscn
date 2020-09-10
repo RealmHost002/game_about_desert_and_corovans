@@ -1,14 +1,15 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://gui/tahoma.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/weapon_params.tscn" type="PackedScene" id=2]
 [ext_resource path="res://gui/GUI.gd" type="Script" id=3]
 [ext_resource path="res://gui/textures/GuiMashineIcon.png" type="Texture" id=4]
-[ext_resource path="res://gui/base.png" type="Texture" id=5]
+[ext_resource path="res://gui/textures/base.png" type="Texture" id=5]
 [ext_resource path="res://gui/textures/IconEgor.png" type="Texture" id=6]
 [ext_resource path="res://gui/textures/carIcon.png" type="Texture" id=7]
 [ext_resource path="res://gui/textures/manIcon.png" type="Texture" id=8]
 [ext_resource path="res://gui/textures/portrets/froggy.png" type="Texture" id=9]
+[ext_resource path="res://gui/textures/rightcorner.png" type="Texture" id=10]
 
 [sub_resource type="StyleBoxTexture" id=1]
 region_rect = Rect2( 987, 129, 1, 0 )
@@ -90,18 +91,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="carIcon" type="Sprite" parent="HBoxContainer2"]
-position = Vector2( 241.956, 52.7637 )
-scale = Vector2( 0.12635, 0.12635 )
-z_index = 5
-texture = ExtResource( 7 )
-
-[node name="manIcon" type="Sprite" parent="HBoxContainer2"]
-position = Vector2( 242.271, -4.30469 )
-scale = Vector2( 0.0960211, 0.0960211 )
-z_index = 5
-texture = ExtResource( 8 )
-
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
 margin_left = 24.145
 margin_top = -71.9515
@@ -156,8 +145,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -165.0
 margin_top = -209.0
-margin_right = 241.0
-margin_bottom = -5.0
+margin_right = 281.0
+margin_bottom = 5.0
 grow_horizontal = 0
 grow_vertical = 0
 hint_tooltip = "Ya poshel kurit'
@@ -265,16 +254,28 @@ margin_bottom = 172.0
 rect_min_size = Vector2( 150, 0 )
 
 [node name="GuiMashineIcon" type="Sprite" parent="HBoxContainer2/TextureButton"]
-position = Vector2( 217.752, 95.1985 )
+position = Vector2( 215.768, 149.567 )
 rotation = 4.21347e-10
-scale = Vector2( 0.979099, 0.484272 )
-texture = ExtResource( 4 )
+scale = Vector2( 0.787288, 0.602004 )
+texture = ExtResource( 10 )
 
 [node name="podlojka" type="Sprite" parent="HBoxContainer2"]
 position = Vector2( 657.126, 20.5208 )
 rotation = -7.01745e-10
 scale = Vector2( 0.995364, 1.51037 )
 texture = ExtResource( 5 )
+
+[node name="manIcon" type="Sprite" parent="HBoxContainer2/podlojka"]
+position = Vector2( -416.787, -16.4366 )
+rotation = 4.62464e-10
+scale = Vector2( 0.0964683, 0.0635746 )
+texture = ExtResource( 8 )
+
+[node name="carIcon" type="Sprite" parent="HBoxContainer2/podlojka"]
+position = Vector2( -417.104, 21.3477 )
+rotation = 4.62464e-10
+scale = Vector2( 0.126938, 0.083655 )
+texture = ExtResource( 7 )
 
 [node name="weaponContainer" type="HBoxContainer" parent="HBoxContainer2"]
 anchor_left = 0.5

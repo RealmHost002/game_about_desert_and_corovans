@@ -84,6 +84,17 @@ func setting_car_params():
 					b.get_node('TextureProgress').material.set_shader_param('a', 0.0)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+func _input(event):
+	if event.is_action_pressed("open_inventory"):
+		if get_node("../invetory").is_visible():
+			get_node("../invetory").hide()
+		else:
+			get_node("../invetory").show()
+#		var inventory_scene = load("res://scenes/watchingCar/watchingCar.tscn").instance()
+#		get_tree().get_root().get_node("Spatial").add_child(inventory_scene)
+		
 func _process(delta):
 	setting_car_params()
+	
+   
 	pass

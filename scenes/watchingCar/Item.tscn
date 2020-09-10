@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gui/textures/IconWithEmtySpace.png" type="Texture" id=1]
+[ext_resource path="res://gui/tahoma.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.78381
+margin_top = -0.594604
+margin_right = 1.78381
+margin_bottom = -0.594604
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="item_icon" type="TextureRect" parent="."]
+margin_right = 110.0
+margin_bottom = 110.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="item_icon"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.18921
+margin_bottom = 1.18921
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="description" type="RichTextLabel" parent="."]
+margin_left = 111.595
+margin_top = 1.0
+margin_right = 282.595
+margin_bottom = 109.0
+custom_fonts/mono_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "когда из зоны вышел опять я  скоро сел когда из зоны вышел опять я  скоро сел когда из зоны вышел опять я  скоро сел "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -1.0
+margin_top = 111.0
+margin_right = 277.0
+margin_bottom = 185.0
+text = "zdes' mogla bi bit vasha reklama
+zdes' mogla bi bit vasha reklama
+zdes' mogla bi bit vasha reklama
+zdes' mogla bi bit vasha reklama
+zdes' mogla bi bit vasha reklama
+zdes' mogla bi bit vasha reklama
+zdes' mogla bi bit vasha reklama
+zdes' mogla bi bit vasha reklama"

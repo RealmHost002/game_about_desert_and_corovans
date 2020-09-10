@@ -1,0 +1,43 @@
+{
+  "laserGun": {
+    "type": "weapon",
+    "count": 7
+  },
+  "gaussRifle": {
+    "type": "weapon",
+    "count": 7
+  },
+  "4_gun": {
+    "type": "weapon",
+    "count": 7
+  },
+  
+  "BigFoot": {
+    "type": "hull",
+    "count": 7
+  },
+  "Hover": {
+    "type": "hull",
+    "count": 7
+  },
+  "Retro": {
+    "type": "hull",
+    "count": 7
+  },
+  "protector_mk1": {
+    "type": "shield",
+    "count": 7
+  },
+  "Convergenator_mk1": {
+    "type": "generator",
+    "count": 7
+  },
+  "Convergenator_mk2": {
+    "type": "generator",
+    "count": 7
+  },
+  "Slush": {
+    "type": "money",
+    "count": 777
+  }
+}
