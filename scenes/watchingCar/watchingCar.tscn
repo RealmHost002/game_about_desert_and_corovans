@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scenes/watchingCar/Item_weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/watchingCar/watchingCar.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -32,89 +31,28 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
+anchor_left = 0.846
+anchor_right = 1.002
 anchor_bottom = 1.0
-margin_left = -296.0
-margin_right = 4.0
+margin_left = -0.320068
+margin_right = 0.15979
 custom_styles/bg = SubResource( 1 )
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="hcontainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
-margin_bottom = 1540.0
 custom_constants/separation = 220
-
-[node name="Control" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 0.0
-margin_bottom = 0.0
-
-[node name="Control6" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 220.0
-margin_right = 0.0
-margin_bottom = 220.0
-
-[node name="Control7" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 440.0
-margin_right = 0.0
-margin_bottom = 440.0
-
-[node name="Control8" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 660.0
-margin_right = 0.0
-margin_bottom = 660.0
-
-[node name="Control2" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 880.0
-margin_right = 0.0
-margin_bottom = 880.0
-
-[node name="Control3" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 1100.0
-margin_right = 0.0
-margin_bottom = 1100.0
-
-[node name="Control4" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 1320.0
-margin_right = 0.0
-margin_bottom = 1320.0
-
-[node name="Control5" parent="Panel/ScrollContainer/hcontainer" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 1540.0
-margin_right = 0.0
-margin_bottom = 1540.0
 
 [node name="TextureRect" type="Control" parent="."]
 margin_left = 661.0
 margin_top = 702.0
 margin_right = 1627.0
 margin_bottom = 1077.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel2" type="Panel" parent="."]
 anchor_top = 1.0

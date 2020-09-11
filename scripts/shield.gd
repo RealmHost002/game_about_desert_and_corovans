@@ -27,7 +27,8 @@ func enable_shield():
 		mastercar = get_parent().get_parent().get_parent()
 		mastercar.energy -= current_en_cost
 		mastercar.shield += current_sh_gen
-		self.show()
+		if current_sh_gen > 0:
+			self.show()
 	else:
 		pass
 
@@ -53,10 +54,10 @@ func take_damage(damage, weaponType, status = "no"):
 		mastercar.take_damage(damage, weaponType, status)
 		shield = 0
 		self.hide()
-		print('gg_wp')
+#		print('gg_wp')
 	else:
 		shield -= damage
-		print(shield) 
+#		print(shield) 
 	mastercar.shield += self.shield
 	pass
 

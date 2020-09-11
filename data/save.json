@@ -112,10 +112,10 @@
       "cars": 7,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "Hover",
+      "corpus": "The_Toad",
       "weapons": [
-        "gaussRifle",
-        0
+      	"4_gun",
+        "gaussRifle"
       ],
       "generator": [
         "Convergenator_mk1",

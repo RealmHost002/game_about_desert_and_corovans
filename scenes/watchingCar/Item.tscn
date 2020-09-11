@@ -3,20 +3,20 @@
 [ext_resource path="res://gui/textures/IconWithEmtySpace.png" type="Texture" id=1]
 [ext_resource path="res://gui/tahoma.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.027451, 0.454902, 0.294118, 0.541176 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 14
 font_data = ExtResource( 2 )
 
 [node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.78381
-margin_top = -0.594604
-margin_right = 1.78381
-margin_bottom = -0.594604
+anchor_right = 0.153
+anchor_bottom = 0.184
+margin_left = 2.0
+margin_top = -1.0
+margin_right = 0.23999
+margin_bottom = 0.279984
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -34,7 +34,7 @@ margin_left = 1.0
 margin_top = 88.0
 margin_right = 32.0
 margin_bottom = 109.0
-custom_styles/normal = SubResource( 2 )
+custom_styles/normal = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -53,8 +53,8 @@ margin_left = 111.595
 margin_top = 1.0
 margin_right = 282.595
 margin_bottom = 109.0
-custom_fonts/mono_font = SubResource( 1 )
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/mono_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 2 )
 text = "когда из зоны вышел опять я  скоро сел когда из зоны вышел опять я  скоро сел когда из зоны вышел опять я  скоро сел "
 __meta__ = {
 "_edit_use_anchors_": false

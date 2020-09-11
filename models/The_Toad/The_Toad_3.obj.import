@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh"
+
+[deps]
+
+files=[ "res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh" ]
+
+source_file="res://models/The_Toad/The_Toad_3.obj"
+dest_files=[ "res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh", "res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( -1, 1, -1 )
+offset_mesh=Vector3( 0, 0.3, 0 )
+optimize_mesh=true

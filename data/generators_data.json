@@ -6,5 +6,9 @@
   "Convergenator_mk2": {
     "energy_production": 30,
     "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png"
+  },
+  "Convergenator_mk3": {
+    "energy_production": 30,
+    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png"
   }
 }

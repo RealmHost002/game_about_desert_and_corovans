@@ -17,6 +17,11 @@ func _ready():
 	container = get_node("Panel/ScrollContainer/hcontainer")
 	add_from_data()
 	add_fucking_Egors()
+	for child in get_node("Panel/ScrollContainer/hcontainer").get_children():
+		child.rect_position = Vector2(0, 148)
+		
+	get_node("Panel/ScrollContainer").scroll_vertical = 999
+		
 	#self.add_child("res://car.tscn")
 	pass # Replace with function body.
 
@@ -91,17 +96,6 @@ func add_from_data():
 				container.add_child(current_item)
 				current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 				current_item.get_node("item_icon").texture = icon
-				current_item.get_node("description").add_text("ppopa_jopa")
-				current_item.get_node("description").newline()
-				current_item.get_node("description").add_text("ppopa_jopa")
-				current_item.get_node("description").newline()
-				current_item.get_node("description").add_text("ppopa_jopa")
-				current_item.get_node("description").newline()
-				current_item.get_node("description").add_text("ppopa_jopa")
-				current_item.get_node("description").newline()
-				
-				
-				print(str(invetoryData[i]))
 			"money":
 				print(invetoryData[i])
 				get_node("money").text = "Money: " + str(invetoryData[i]["count"])
