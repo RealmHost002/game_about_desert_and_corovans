@@ -33,7 +33,7 @@ var shield = 0
 var shield_limit = 0
 var energy = 100
 var energy_production = 0
-var max_energy = 100
+var max_energy = 0
 #var direction = Vector3()
 
 
@@ -325,6 +325,8 @@ func load_modules(params):
 
 			gen._load(Saveload.generators_data[g])
 			abilities.append('generator')
+#			self.energy_production += Saveload.generators_data[g]['energy_production']
+			
 			
 	for s in params['shields']:
 		if s:

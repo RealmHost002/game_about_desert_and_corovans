@@ -1,14 +1,22 @@
 {
   "Convergenator_mk1": {
     "energy_production": 20,
-    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk1.png"
+    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk1.png",
+    "max_energy": 40
   },
   "Convergenator_mk2": {
     "energy_production": 30,
-    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png"
+    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png",
+    "max_energy": 90
+  },
+  "sublimation_streaming_generator": {
+    "energy_production": 40,
+    "image_path": "res://gui/textures/weaponIcons/sublimation_streaming_generator.png",
+    "max_energy": 60
   },
   "Convergenator_mk3": {
     "energy_production": 30,
-    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png"
+    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png",
+    "max_energy": 100
   }
 }

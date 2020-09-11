@@ -1,8 +1,26 @@
 {
   "protector_mk1": {
-    "max_value": 30,
+    "max_value": 20,
     "image_path": "res://gui/textures/weaponIcons/protector_mk1.png",
-    "energy_cost": 30,
+    "energy_cost": 20,
+    "shape": "res://models/shields/protector_mk1/collision.tres",
+    "mesh": "res://models/shields/protector_mk1/body.tres",
     "prot_per_en": 1
+  },
+  "protector_mk2": {
+    "max_value": 50,
+    "image_path": "res://gui/textures/weaponIcons/protector_mk2.png",
+    "energy_cost": 30,
+    "shape": "res://models/shields/protector_mk2/collision.tres",
+    "mesh": "res://models/shields/protector_mk2/body.tres",
+    "prot_per_en": 1.6666666666666667
+  },
+  "ion_inversive_shield": {
+    "max_value": 100,
+    "image_path": "res://gui/textures/weaponIcons/ion_inversive_shield.png",
+    "energy_cost": 40,
+    "shape": "res://models/shields/ion_inversive_shield/collision.tres",
+    "mesh": "res://models/shields/ion_inversive_shield/body.tres",
+    "prot_per_en": 2.5
   }
 }
