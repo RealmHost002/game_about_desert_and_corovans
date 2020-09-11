@@ -56,12 +56,13 @@ func read_extra_data():
 
 func add_fucking_Egors():
 	read_data()
-	for i in invetoryData:
+	for i in Saveload.ourTeamData["config"]:
 		var fucking_Egor = load("res://gui/TopIcon.tscn").instance()
 		get_node("Panel2/GridContainer").add_child(fucking_Egor)
 		var texture = load("res://gui/textures/IconEgor.png")
 		fucking_Egor.get_node("TextureRect/ReferenceRect/TextureButton").set_normal_texture(texture)
-
+#	print(get_node("Panel2/GridContainer").get_child_count())
+	
 func add_from_data():
 	read_data()
 	read_extra_data()
