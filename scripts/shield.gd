@@ -45,6 +45,9 @@ func _load(params):
 	image_path = params['image_path']
 	max_value = params['max_value']
 	energy_cost= params['energy_cost']
+	get_node("MeshInstance").mesh = load(params['mesh'])
+	get_node("CollisionShape").shape = load(params['shape'])
+	
 
 
 func take_damage(damage, weaponType, status = "no"):

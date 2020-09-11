@@ -1,0 +1,8 @@
+[gd_resource type="SphereMesh" load_steps=2 format=2]
+
+[ext_resource path="res://models/shields/shield_material_hexes.tres" type="Material" id=1]
+
+[resource]
+material = ExtResource( 1 )
+radius = 5.0
+height = 10.0

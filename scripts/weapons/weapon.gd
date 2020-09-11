@@ -64,7 +64,7 @@ func _ready():
 	get_node("area").mesh.surface_set_material(0, m)
 
 	death_zone = get_parent().death_zones[self.get_index()]
-#	print(death_zone)
+	print(death_zone)
 #	m.set_shader_param('death_zone1', death_zone)
 
 #	set_process(false)
@@ -131,7 +131,9 @@ func fire():
 	for s in get_tree().get_nodes_in_group('shields'):
 		if s.shield <= 0:
 			shields_exceptions.append(s)
-
+	for s in mastercar.get_node('body/weapons').get_children():
+		if s.type == 'shield':
+			shields_exceptions.append(s)
 
 	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')] + shields_exceptions)
 	if result:
@@ -167,6 +169,8 @@ func _process(delta):
 		direction = direction.normalized()
 		to_target = target.global_transform.origin - get_node("dot").global_transform.origin
 		var f = true
+		if self.death_zone == Vector2(-1.2, 0.2):
+			print(self.rotation.y)
 		if (self.rotation.y) > self.death_zone.x and (self.rotation.y) < self.death_zone.y:
 			if self.rotation.x > -0.3:
 				self.rotation.x -= 0.7 * delta
@@ -219,7 +223,7 @@ func slider_changed(value):
 	distance = distance_tex.curve.interpolate(value / 100.0)
 	damage = damage_tex.curve.interpolate(value / 100.0)
 	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
-	get_node("area").scale = Vector3(distance, distance, distance)
+	get_node("area").scale = Vector3(distance, distance, -distance)
 	s_value = value / 100.0
 
 func activate():
@@ -228,7 +232,7 @@ func activate():
 #	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)
 	get_node("area").rotate(Vector3(0, 1, 0), get_node('../../../').rotation.y)
 	get_node("area").show()
-	get_node("area").scale = Vector3(distance, distance, distance)
+	get_node("area").scale = Vector3(distance, distance, -distance)
 	is_active = true
 	m.set_shader_param('death_zone1', death_zone)
 	m.set_shader_param('death_zone2', death_zone)

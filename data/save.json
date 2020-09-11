@@ -68,7 +68,7 @@
         0
       ],
       "shields": [
-        "protector_mk1",
+        "ion_inversive_shield",
         0
       ]
     },
@@ -115,14 +115,14 @@
       "corpus": "The_Toad",
       "weapons": [
       	"4_gun",
-        "gaussRifle"
+        "laserGun"
       ],
       "generator": [
         "Convergenator_mk1",
         0
       ],
       "shields": [
-        "protector_mk1",
+        "protector_mk2",
         0
       ]
     },
