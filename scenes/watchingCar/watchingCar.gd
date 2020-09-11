@@ -79,9 +79,11 @@ func add_from_data():
 				current_item.get_node("item_icon").texture = icon
 				var curve_dam = load(weapon_data[i]["damimage"])
 				var curve_dist= load(weapon_data[i]["distimage"])
-				print(curve_dam)
+#				print(curve_dam)
 				current_item.distimage = curve_dist
 				current_item.damimage = curve_dam
+				current_item.i = i
+				current_item.weapon_data = weapon_data
 				current_item.get_node("description").clear()
 				current_item.get_node("description").add_text(i  + ": ")
 				current_item.get_node("description").add_text(weapon_data[i]["damage_type"])
@@ -91,7 +93,7 @@ func add_from_data():
 				current_item.get_node("description").add_text("damage: 123")
 				current_item.get_node("description").newline()
 				current_item.get_node("description").add_text("distance: 321")
-
+				
 				
 			"shield":
 				var icon = load(shields_data[i]["image_path"])

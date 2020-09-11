@@ -6,6 +6,8 @@ extends Control
 # var b = "text"
 var damimage
 var distimage 
+var i 
+var weapon_data
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var desc = get_node("description")
@@ -29,15 +31,13 @@ func _on_HSlider_value_changed(value):
 	var distance = distimage.curve.interpolate(value / 100.0)
 	var damage = damimage.curve.interpolate(value / 100.0)
 	var desc = get_node("description")
-	print(desc)
-	var a = desc.remove_line(desc.get_line_count() - 2)
-	print(a)
-	print(desc.get_visible_line_count())
-	desc.remove_line(desc.get_line_count() - 1)
-	print("damage: " + str(damage))
+	desc.clear()
+	desc.add_text(i  + ": ")
+	desc.add_text(weapon_data[i]["damage_type"])
+	desc.newline()
+	# kurva_poshla
 	desc.newline()
 	desc.add_text("damage: " + str(damage))
 	desc.newline()
 	desc.add_text("distance: " + str(distance))
-	print(desc.text)
 
