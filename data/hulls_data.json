@@ -1,5 +1,5 @@
 {
-  "BigFoot": {
+  "bigfoot": {
     "body": "res://models/bigfoot/body.tres",
     "wheelFront": "res://models/bigfoot/wheel.tres",
     "wheelBack": "res://models/bigfoot/wheel.tres",
@@ -21,8 +21,8 @@
       -0.097
     ],
     "rot_speed": 0.7,
-    "acc_multiplyer": 2.2,
-    "resistance": 1.1,
+    "acc_multiplyer": 2,
+    "resistance": 1.2,
     "wheel_pos": [
       1.984,
       2.844,
@@ -36,12 +36,14 @@
       -1.17,
       1.17,
       1.97
-    ]
+    ],
+    "engine_cost": 40,
+    "blueprint": null
   },
-  "Hover": {
+  "hover": {
     "body": "res://models/hover/body.tres",
-    "wheelFront": "res://models/hover/hover_wheel.tres",
-    "wheelBack": "res://models/hover/hover_wheel.tres",
+    "wheelFront": "res://models/hover/wheel.tres",
+    "wheelBack": "res://models/hover/wheel.tres",
     "cont_of_items": null,
     "cont_of_weapon": null,
     "hp": 80,
@@ -50,7 +52,7 @@
       0.735,
       -0.715
     ],
-    "col_shape": "res://models/bigfoot/col_shape.tres",
+    "col_shape": "res://models/hover/col_shape.tres",
     "col_shape_pos": [
       0,
       1.496,
@@ -72,12 +74,14 @@
       0,
       0,
       0
-    ]
+    ],
+    "engine_cost": 26,
+    "blueprint": null
   },
-  "Retro": {
-    "body": "res://models/Retro/body.tres",
-    "wheelFront": "res://models/Retro/wheel.tres",
-    "wheelBack": "res://models/Retro/wheel.tres",
+  "retro": {
+    "body": "res://models/retro/body.tres",
+    "wheelFront": "res://models/retro/wheel.tres",
+    "wheelBack": "res://models/retro/wheel.tres",
     "cont_of_items": null,
     "cont_of_weapon": null,
     "hp": 100,
@@ -86,7 +90,7 @@
       1.312,
       -1.209
     ],
-    "col_shape": "res://models/bigfoot/col_shape.tres",
+    "col_shape": "res://models/retro/col_shape.tres",
     "col_shape_pos": [
       0,
       1.496,
@@ -108,12 +112,14 @@
       0,
       0,
       0
-    ]
+    ],
+    "engine_cost": 40,
+    "blueprint": null
   },
-  "The_Toad": {
-    "body": "res://models/The_toad/body.tres",
-    "wheelFront": "res://models/The_toad/wheel.tres",
-    "wheelBack": "res://models/The_toad/wheel.tres",
+  "the_toad": {
+    "body": "res://models/the_toad/body.tres",
+    "wheelFront": "res://models/the_toad/wheel.tres",
+    "wheelBack": "res://models/the_toad/wheel.tres",
     "cont_of_items": null,
     "cont_of_weapon": null,
     "hp": 100,
@@ -125,15 +131,15 @@
       1.752,
       -1.734
     ],
-    "col_shape": "res://models/bigfoot/col_shape.tres",
+    "col_shape": "res://models/the_toad/col_shape.tres",
     "col_shape_pos": [
       0,
       1.496,
       -0.099
     ],
     "rot_speed": 2.2,
-    "acc_multiplyer": 2.0,
-    "resistance": 1.7,
+    "acc_multiplyer": 1.8,
+    "resistance": 1.1,
     "wheel_pos": [
       0.878,
       1.543,
@@ -147,6 +153,8 @@
       -1.95,
       0,
       0
-    ]
+    ],
+    "engine_cost": 36,
+    "blueprint": null
   }
 }

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/plasma_dispencer.obj-a65fa2975a0dd7109ecfc8657176aee5.mesh"
+
+[deps]
+
+files=[ "res://.import/plasma_dispencer.obj-a65fa2975a0dd7109ecfc8657176aee5.mesh" ]
+
+source_file="res://models/weapons/plasma_dispencer/plasma_dispencer.obj"
+dest_files=[ "res://.import/plasma_dispencer.obj-a65fa2975a0dd7109ecfc8657176aee5.mesh", "res://.import/plasma_dispencer.obj-a65fa2975a0dd7109ecfc8657176aee5.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( -1, 1, -1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

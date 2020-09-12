@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/wheel.obj-8eba5398da38f239eed2dc9c5034de1b.mesh"
+path="res://.import/wheel.obj-ce5e5817e38b6f96b37cadff503cc2c3.mesh"
 
 [deps]
 
-files=[ "res://.import/wheel.obj-8eba5398da38f239eed2dc9c5034de1b.mesh" ]
+files=[ "res://.import/wheel.obj-ce5e5817e38b6f96b37cadff503cc2c3.mesh" ]
 
-source_file="res://models/The_Toad/wheel.obj"
-dest_files=[ "res://.import/wheel.obj-8eba5398da38f239eed2dc9c5034de1b.mesh", "res://.import/wheel.obj-8eba5398da38f239eed2dc9c5034de1b.mesh" ]
+source_file="res://models/the_toad/wheel.obj"
+dest_files=[ "res://.import/wheel.obj-ce5e5817e38b6f96b37cadff503cc2c3.mesh", "res://.import/wheel.obj-ce5e5817e38b6f96b37cadff503cc2c3.mesh" ]
 
 [params]
 

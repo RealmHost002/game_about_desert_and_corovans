@@ -4,7 +4,7 @@
       "cars": 1,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "BigFoot",
+      "corpus": "bigfoot",
       "weapons": [
         "lasergun",
         "lasergun"
@@ -22,7 +22,7 @@
       "cars": 2,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "BigFoot",
+      "corpus": "bigfoot",
       "weapons": [
         "lasergun",
         "lasergun"
@@ -40,7 +40,7 @@
       "cars": 3,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "Hover",
+      "corpus": "hover",
       "weapons": [
         "lasergun",
         0
@@ -58,7 +58,7 @@
       "cars": 4,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "Hover",
+      "corpus": "hover",
       "weapons": [
         "lasergun",
         0
@@ -76,7 +76,7 @@
       "cars": 5,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "BigFoot",
+      "corpus": "bigfoot",
       "weapons": [
         "lasergun",
         "lasergun"
@@ -94,7 +94,7 @@
       "cars": 6,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "BigFoot",
+      "corpus": "the_toad",
       "weapons": [
         "lasergun",
         "lasergun"
@@ -112,7 +112,7 @@
       "cars": 7,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "Hover",
+      "corpus": "retro",
       "weapons": [
         "lasergun",
         0
@@ -130,7 +130,7 @@
       "cars": 8,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "Hover",
+      "corpus": "hover",
       "weapons": [
         "lasergun",
         0
@@ -148,7 +148,7 @@
       "cars": 9,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "BigFoot",
+      "corpus": "bigfoot",
       "weapons": [
         "lasergun",
         "lasergun"

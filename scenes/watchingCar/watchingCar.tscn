@@ -1,7 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://models/Retro/retro.tscn" type="PackedScene" id=1]
+[ext_resource path="res://models/retro/retro.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/watchingCar/watchingCar.gd" type="Script" id=2]
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0784314, 0, 0, 1 )

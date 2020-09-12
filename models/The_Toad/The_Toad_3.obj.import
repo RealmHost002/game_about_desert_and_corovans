@@ -2,14 +2,14 @@
 
 importer="wavefront_obj"
 type="Mesh"
-path="res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh"
+path="res://.import/The_Toad_3.obj-b72741dcad7eb126bdf7d4bdeab23078.mesh"
 
 [deps]
 
-files=[ "res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh" ]
+files=[ "res://.import/The_Toad_3.obj-b72741dcad7eb126bdf7d4bdeab23078.mesh" ]
 
-source_file="res://models/The_Toad/The_Toad_3.obj"
-dest_files=[ "res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh", "res://.import/The_Toad_3.obj-fa3314b8a389679434a0ee5dc64013dd.mesh" ]
+source_file="res://models/the_toad/The_Toad_3.obj"
+dest_files=[ "res://.import/The_Toad_3.obj-b72741dcad7eb126bdf7d4bdeab23078.mesh", "res://.import/The_Toad_3.obj-b72741dcad7eb126bdf7d4bdeab23078.mesh" ]
 
 [params]
 

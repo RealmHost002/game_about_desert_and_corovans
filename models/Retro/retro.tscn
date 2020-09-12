@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://models/Retro/retro.gd" type="Script" id=1]
-[ext_resource path="res://gui/textures/car_scheme/retro_blueprint.png" type="Texture" id=2]
-[ext_resource path="res://scenes/watchingCar/Item_slot.gd" type="Script" id=3]
+[ext_resource path="res://models/retro/retro.gd" type="Script" id=1]
+[ext_resource path="res://scenes/watchingCar/Item_slot.gd" type="Script" id=2]
+[ext_resource path="res://gui/textures/car_scheme/retro_blueprint.png" type="Texture" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -15,7 +15,7 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,7 +43,7 @@ margin_left = 32.9336
 margin_top = 104.526
 margin_right = 96.9336
 margin_bottom = 168.526
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

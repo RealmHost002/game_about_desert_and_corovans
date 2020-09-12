@@ -27,6 +27,7 @@ var current_pattern = 'truck'
 var current_move = 'follow'
 var target_to_follow
 
+var engine_energy_cost = 20.0
 var hp = 100
 var max_hp = 100
 var shield = 0
@@ -119,7 +120,7 @@ func _process(delta):
 	else:
 		energy = max_energy
 	if energy > 0:
-		energy -= 20 * acc * delta / constants.step_time
+		energy -= engine_energy_cost * acc * delta / constants.step_time
 	if energy <= 0:
 		acc = 0.0
 	get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
@@ -286,7 +287,7 @@ func _load(params):
 	
 	
 	
-	
+	self.engine_energy_cost = params['engine_cost']
 	self.hp = params['hp']
 #	max_hp 
 	self.max_hp  = params['hp']
@@ -307,7 +308,9 @@ func _load(params):
 	
 func load_modules(params):
 	var modules_node = get_node("body/weapons")
-	modules_node.add_child(load("res://models/engine.tscn").instance())
+	var engine = load("res://models/engine.tscn").instance()
+	modules_node.add_child(engine)
+	engine.energy_cost = self.engine_energy_cost
 	var c = 0
 	for w in params['weapons']:
 		if w:
@@ -349,5 +352,3 @@ func calc_en_drain():
 		energy_drain += sliders[c] * module.energy_cost
 		c += 1
 	pass
-
-

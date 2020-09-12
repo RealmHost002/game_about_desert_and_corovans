@@ -2,7 +2,8 @@
 
 [ext_resource path="res://scripts/weapons/weapon.gd" type="Script" id=1]
 [ext_resource path="res://models/weapons/area_mesh2.tres" type="ArrayMesh" id=2]
-[ext_resource path="res://models/weapons/plasma_dispenser/body.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://models/weapons/plasma_dispencer/body.tres" type="ArrayMesh" id=3]
+
 
 [node name="Position3D" type="Position3D"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.899078, 2.89776, -1.18434 )
