@@ -38,7 +38,7 @@
       1.97
     ],
     "engine_cost": 40,
-    "blueprint": null
+    "blueprint": "res://models/bigfoot/blueprint.tscn"
   },
   "hover": {
     "body": "res://models/hover/body.tres",
@@ -76,7 +76,7 @@
       0
     ],
     "engine_cost": 26,
-    "blueprint": null
+    "blueprint": "res://models/hover/blueprint.tscn"
   },
   "retro": {
     "body": "res://models/retro/body.tres",
@@ -114,7 +114,7 @@
       0
     ],
     "engine_cost": 40,
-    "blueprint": null
+    "blueprint": "res://models/retro/blueprint.tscn"
   },
   "the_toad": {
     "body": "res://models/the_toad/body.tres",
@@ -155,6 +155,6 @@
       0
     ],
     "engine_cost": 36,
-    "blueprint": null
+    "blueprint": "res://models/the_toad/blueprint.tscn"
   }
 }

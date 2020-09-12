@@ -58,6 +58,7 @@ func _take(event):
 	if event.is_action_pressed('left_click'):
 		var target = super_parent
 		var source = self
+		print(str(super_parent.invetoryData[i]['count']) + "pisos")
 		get_parent().remove_child(source)
 		target.add_child(source)
 		source.set_owner(target)
@@ -66,6 +67,7 @@ func _take(event):
 		get_node("item_icon/ReferenceRect").mouse_filter = MOUSE_FILTER_IGNORE
 		get_node("description").hide()
 		get_node("RichTextLabel").hide()
+		print(str(super_parent.invetoryData[i]['count']) + "pisos")
 		super_parent.invetoryData[i]['count'] -= 1
 		is_taken = true
 		super_parent.taken_node = self

@@ -57,7 +57,7 @@ func read_extra_data():
 func add_fucking_Egors():
 	read_data()
 	for i in Saveload.ourTeamData["config"]:
-		print(i)
+#		print(i)
 		var fucking_Egor = load("res://scenes/watchingCar/pilot_icon.tscn").instance()
 		fucking_Egor.car_inf = i
 		get_node("Panel2/GridContainer").add_child(fucking_Egor)

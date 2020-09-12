@@ -9,10 +9,14 @@ var weapon
 var slot
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if self.get_name().substr(0,6) == "weapon":
+		slot_type = "weapon"
+	else:
+		slot_type = "item"
+	print(slot_type)
 
 func change_item(item):
-	if item.type == "weapon":
+	if item.type == slot_type:
 		slot = item
 		get_node("TextureRect").texture = load(Saveload.weapon_data[item.i]["image_path"])
 		get_parent().get_parent().get_parent().get_parent().taken_node.queue_free()

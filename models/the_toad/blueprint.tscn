@@ -51,7 +51,7 @@ points = PoolVector2Array( 29.9234, 68.812, -35.3517, 68.8589, -136.481, -13.629
 width = 2.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
-[node name="weapon" type="Panel" parent="TextureRect"]
+[node name="weapon1" type="Panel" parent="TextureRect"]
 margin_left = 124.934
 margin_top = 25.526
 margin_right = 188.934
@@ -61,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextureRect/weapon"]
+[node name="Label" type="Label" parent="TextureRect/weapon1"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,7 +69,7 @@ margin_top = -14.0
 text = "weapon 1"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/weapon"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/weapon1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.749161
@@ -184,9 +184,9 @@ margin_right = 0.749161
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="focus_entered" from="TextureRect/weapon" to="TextureRect/weapon" method="_on_weapon_gui_input"]
-[connection signal="gui_input" from="TextureRect/weapon" to="TextureRect/weapon" method="_on_weapon_gui_inpu1t"]
-[connection signal="mouse_entered" from="TextureRect/weapon" to="TextureRect/weapon" method="_on_weapon_gui_input"]
+[connection signal="focus_entered" from="TextureRect/weapon1" to="TextureRect/weapon1" method="_on_weapon_gui_input"]
+[connection signal="gui_input" from="TextureRect/weapon1" to="TextureRect/weapon1" method="_on_weapon_gui_inpu1t"]
+[connection signal="mouse_entered" from="TextureRect/weapon1" to="TextureRect/weapon1" method="_on_weapon_gui_input"]
 [connection signal="focus_entered" from="TextureRect/weapon2" to="TextureRect/weapon2" method="_on_weapon_gui_input"]
 [connection signal="gui_input" from="TextureRect/weapon2" to="TextureRect/weapon2" method="_on_weapon_gui_inpu1t"]
 [connection signal="mouse_entered" from="TextureRect/weapon2" to="TextureRect/weapon2" method="_on_weapon_gui_input"]
