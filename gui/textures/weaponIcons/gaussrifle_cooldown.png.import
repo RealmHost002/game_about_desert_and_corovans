@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/laser.png-8d7bc29044cda2d0c9bd4f60ecd1f1eb.stex"
+path="res://.import/gaussrifle_cooldown.png-a37de8e74699ee32324ff686aa49a570.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/textures/weaponIcons/laser.png"
-dest_files=[ "res://.import/laser.png-8d7bc29044cda2d0c9bd4f60ecd1f1eb.stex" ]
+source_file="res://gui/textures/weaponIcons/gaussrifle_cooldown.png"
+dest_files=[ "res://.import/gaussrifle_cooldown.png-a37de8e74699ee32324ff686aa49a570.stex" ]
 
 [params]
 

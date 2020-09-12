@@ -14,7 +14,7 @@
     "image_path": "res://gui/textures/weaponIcons/sublimation_streaming_generator.png",
     "max_energy": 60
   },
-  "Convergenator_mk3": {
+  "zzzConvergenator_mk3": {
     "energy_production": 30,
     "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png",
     "max_energy": 100

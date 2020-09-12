@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gaus.png-4c14c72922c9dafc331bc0991996dea5.stex"
+path="res://.import/hover_blueprint.png-c0c1d64de5ae91b409f03f948c4139cc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/textures/weaponIcons/gaus.png"
-dest_files=[ "res://.import/gaus.png-4c14c72922c9dafc331bc0991996dea5.stex" ]
+source_file="res://gui/textures/car_scheme/hover_blueprint.png"
+dest_files=[ "res://.import/hover_blueprint.png-c0c1d64de5ae91b409f03f948c4139cc.stex" ]
 
 [params]
 
