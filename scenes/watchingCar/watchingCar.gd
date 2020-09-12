@@ -57,11 +57,13 @@ func read_extra_data():
 func add_fucking_Egors():
 	read_data()
 	for i in Saveload.ourTeamData["config"]:
+		print(i)
 		var fucking_Egor = load("res://scenes/watchingCar/pilot_icon.tscn").instance()
+		fucking_Egor.car_inf = i
 		get_node("Panel2/GridContainer").add_child(fucking_Egor)
 		var texture = load("res://gui/textures/IconEgor.png")
 		fucking_Egor.get_node("TextureRect/ReferenceRect/TextureButton").set_normal_texture(texture)
-		fucking_Egor.car_inf = i
+		
 #	print(get_node("Panel2/GridContainer").get_child_count())
 	
 func add_from_data():
