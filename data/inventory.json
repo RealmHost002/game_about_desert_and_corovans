@@ -1,1 +1,54 @@
-{"4_gun":{"count":4,"type":"weapon"},"BigFoot":{"count":7,"type":"hull"},"Convergenator_mk1":{"count":7,"type":"generator"},"Convergenator_mk2":{"count":7,"type":"generator"},"Convergenator_mk3":{"count":7,"type":"generator"},"Hover":{"count":7,"type":"hull"},"Retro":{"count":7,"type":"hull"},"Slush":{"count":777,"type":"money"},"gaussRifle":{"count":12,"type":"weapon"},"laserGun":{"count":12,"type":"weapon"},"protector_mk1":{"count":7,"type":"shield"}}
+{
+  "lasergun": {
+    "type": "weapon",
+    "count": 7
+  },
+  "gaussrifle": {
+    "type": "weapon",
+    "count": 7
+  },
+  "4_gun": {
+    "type": "weapon",
+    "count": 7
+  },
+  "plasma_dispencer": {
+    "type": "weapon",
+    "count": 7
+  },
+  "": {
+    "type": null,
+    "count": null
+  },
+  "BigFoot": {
+    "type": "hull",
+    "count": 7
+  },
+  "Hover": {
+    "type": "hull",
+    "count": 7
+  },
+  "Retro": {
+    "type": "hull",
+    "count": 7
+  },
+  "protector_mk1": {
+    "type": "shield",
+    "count": 7
+  },
+  "Convergenator_mk1": {
+    "type": "generator",
+    "count": 7
+  },
+  "Convergenator_mk2": {
+    "type": "generator",
+    "count": 7
+  },
+  "zzzConvergenator_mk3": {
+    "type": "generator",
+    "count": 7
+  },
+  "Slush": {
+    "type": "money",
+    "count": 777
+  }
+}
