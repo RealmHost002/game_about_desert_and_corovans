@@ -8,6 +8,7 @@ var damimage
 var distimage 
 var i 
 var weapon_data
+var type = "weapon"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var desc = get_node("description")
@@ -39,5 +40,4 @@ func _on_HSlider_value_changed(value):
 	desc.newline()
 	desc.add_text("damage: " + str(damage))
 	desc.newline()
-	desc.add_text("distance: " + str(distance))
 

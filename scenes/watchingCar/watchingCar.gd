@@ -90,9 +90,9 @@ func add_from_data():
 				current_item.get_node("description").newline()
 				# kurva_poshla
 				current_item.get_node("description").newline()
-				current_item.get_node("description").add_text("damage: 123")
+				current_item.get_node("description").add_text("damage: 0")
 				current_item.get_node("description").newline()
-				current_item.get_node("description").add_text("distance: 321")
+				current_item.get_node("description").add_text("distance: 0")
 				
 				
 			"shield":
