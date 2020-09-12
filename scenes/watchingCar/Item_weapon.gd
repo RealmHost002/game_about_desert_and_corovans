@@ -28,19 +28,21 @@ func _ready():
 
 func _on_HSlider_value_changed(value):
 	get_node("item_icon/HSlider/Label").text = str(get_node("item_icon/HSlider").value) + "%"
-	
-	
-	var distance = distimage.curve.interpolate(value / 100.0)
-	var damage = damimage.curve.interpolate(value / 100.0)
+		
 	var desc = get_node("description")
-	desc.clear()
-	desc.add_text(i  + ": ")
-	desc.add_text(weapon_data[i]["damage_type"])
-	desc.newline()
+	if type == "weapon":
+		desc.clear()
+		desc.add_text(i  + ": ")
+		desc.add_text(weapon_data[i]["damage_type"])
+		desc.newline()
 	# kurva_poshla
-	desc.newline()
-	desc.add_text("damage: " + str(damage))
-	desc.newline()
+
+		var distance = distimage.curve.interpolate(value / 100.0)
+		var damage = damimage.curve.interpolate(value / 100.0)
+		desc.newline()
+		desc.add_text("damage: " + str(damage))
+		desc.newline()
+		desc.add_text("distance: " + str(distance))
 
 func _input(event):
 	if is_taken and event is InputEventMouseMotion:
@@ -67,7 +69,10 @@ func _take(event):
 		super_parent.invetoryData[i]['count'] -= 1
 		is_taken = true
 		super_parent.taken_node = self
+		
+			
 		super_parent.update()
+	
 #		else:
 #			var new_node = self.duplicate()
 #			super_parent.add_child(new_node)

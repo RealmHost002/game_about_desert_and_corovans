@@ -57,10 +57,11 @@ func read_extra_data():
 func add_fucking_Egors():
 	read_data()
 	for i in Saveload.ourTeamData["config"]:
-		var fucking_Egor = load("res://gui/TopIcon.tscn").instance()
+		var fucking_Egor = load("res://scenes/watchingCar/pilot_icon.tscn").instance()
 		get_node("Panel2/GridContainer").add_child(fucking_Egor)
 		var texture = load("res://gui/textures/IconEgor.png")
 		fucking_Egor.get_node("TextureRect/ReferenceRect/TextureButton").set_normal_texture(texture)
+		fucking_Egor.car_inf = i
 #	print(get_node("Panel2/GridContainer").get_child_count())
 	
 func add_from_data():
@@ -74,48 +75,49 @@ func update():
 		child.queue_free()
 	
 	for i in invetoryData:
-		match invetoryData[i]["type"]:
-			"weapon":
-				var icon = load(weapon_data[i]["image_path"])
-				var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
-				container.add_child(current_item)
-				current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
-				current_item.get_node("item_icon").texture = icon
-				var curve_dam = load(weapon_data[i]["damimage"])
-				var curve_dist= load(weapon_data[i]["distimage"])
-#				print(curve_dam)
-				current_item.distimage = curve_dist
-				current_item.damimage = curve_dam
-				current_item.i = i
-				current_item.weapon_data = weapon_data
-				current_item.get_node("description").clear()
-				current_item.get_node("description").add_text(i  + ": ")
-				current_item.get_node("description").add_text(weapon_data[i]["damage_type"])
-				current_item.get_node("description").newline()
-				# kurva_poshla
-				current_item.get_node("description").newline()
-				current_item.get_node("description").add_text("damage: 0")
-				current_item.get_node("description").newline()
-				current_item.get_node("description").add_text("distance: 0")
-				
-				
-			"shield":
-				var icon = load(shields_data[i]["image_path"])
-				var current_item = load("res://scenes/watchingCar/Item.tscn").instance()
-				container.add_child(current_item)
-				print(str(invetoryData[i]["count"]))
-				current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
-				current_item.get_node("item_icon").texture = icon
-			"generator":
-				
-				var icon = load(generators_data[i]["image_path"])
-				var current_item = load("res://scenes/watchingCar/Item.tscn").instance()
-				container.add_child(current_item)
-				current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
-				current_item.get_node("item_icon").texture = icon
-			"money":
-				print(invetoryData[i])
-				get_node("money").text = "Money: " + str(invetoryData[i]["count"])
+		if invetoryData[i]["count"] > 0:
+			match invetoryData[i]["type"]:
+				"weapon":
+					var icon = load(weapon_data[i]["image_path"])
+					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
+					container.add_child(current_item)
+					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
+					current_item.get_node("item_icon").texture = icon
+					var curve_dam = load(weapon_data[i]["damimage"])
+					var curve_dist= load(weapon_data[i]["distimage"])
+	#				print(curve_dam)
+					current_item.distimage = curve_dist
+					current_item.damimage = curve_dam
+					current_item.i = i
+					current_item.weapon_data = weapon_data
+					current_item.get_node("description").clear()
+					current_item.get_node("description").add_text(i  + ": ")
+					current_item.get_node("description").add_text(weapon_data[i]["damage_type"])
+					current_item.get_node("description").newline()
+					# kurva_poshla
+					current_item.get_node("description").newline()
+					current_item.get_node("description").add_text("damage: 0")
+					current_item.get_node("description").newline()
+					current_item.get_node("description").add_text("distance: 0")
+					
+					
+				"shield":
+					var icon = load(shields_data[i]["image_path"])
+					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
+					container.add_child(current_item)
+					print(str(invetoryData[i]["count"]))
+					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
+					current_item.get_node("item_icon").texture = icon
+				"generator":
+					
+					var icon = load(generators_data[i]["image_path"])
+					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
+					container.add_child(current_item)
+					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
+					current_item.get_node("item_icon").texture = icon
+				"money":
+					print(invetoryData[i])
+					get_node("money").text = "Money: " + str(invetoryData[i]["count"])
 	print(get_node("Panel/ScrollContainer/hcontainer").get_child_count())
 
 	var invetory_file = File.new()
