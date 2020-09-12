@@ -11,7 +11,7 @@ var shields_data
 var corpusData
 var weapon_data
 var container 
-
+var taken_node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	container = get_node("Panel/ScrollContainer/hcontainer")
@@ -66,10 +66,14 @@ func add_fucking_Egors():
 func add_from_data():
 	read_data()
 	read_extra_data()
+	update()
 	print(invetoryData)
 #	print(generators_data)
+func update():
+	for child in get_node("Panel/ScrollContainer/hcontainer").get_children():
+		child.queue_free()
 	
-	for i in invetoryData:		
+	for i in invetoryData:
 		match invetoryData[i]["type"]:
 			"weapon":
 				var icon = load(weapon_data[i]["image_path"])
@@ -113,6 +117,13 @@ func add_from_data():
 				print(invetoryData[i])
 				get_node("money").text = "Money: " + str(invetoryData[i]["count"])
 	print(get_node("Panel/ScrollContainer/hcontainer").get_child_count())
+
+	var invetory_file = File.new()
+	invetory_file.open("res://data/inventory.json", File.WRITE)
+	invetory_file.store_string(to_json(invetoryData))
+	invetory_file.close()
+
+
 #func _input(event):
 #	if event.is_action_pressed("open_inventory"):
 #		get_tree().get_root().get_node("Spatial").remove_child(self)

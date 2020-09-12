@@ -18,6 +18,7 @@ margin_left = 2.0
 margin_top = -1.0
 margin_right = 0.559998
 margin_bottom = 0.119995
+mouse_filter = 1
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -36,6 +37,7 @@ margin_left = 1.0
 margin_top = 55.0
 margin_right = 20.0
 margin_bottom = 73.0
+mouse_filter = 1
 custom_styles/normal = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -48,15 +50,20 @@ margin_left = 1.78381
 margin_top = -0.594603
 margin_right = 1.78381
 margin_bottom = -0.594604
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HSlider" type="HSlider" parent="item_icon"]
-margin_left = 8.78381
-margin_top = 79.2702
-margin_right = 101.784
-margin_bottom = 95.2702
+anchor_left = 0.08
+anchor_top = 0.721
+anchor_right = 0.925
+anchor_bottom = 0.866
+margin_left = -0.0161905
+margin_top = -0.0398026
+margin_right = 0.033989
+margin_bottom = 0.0101929
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,6 +76,7 @@ anchor_bottom = 1.0
 margin_left = -16.0
 margin_right = 24.0
 margin_bottom = 14.0
+mouse_filter = 1
 align = 1
 
 [node name="description" type="RichTextLabel" parent="."]
@@ -99,4 +107,5 @@ zdes' mogla bi bit vasha reklama"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="gui_input" from="." to="." method="_take"]
 [connection signal="value_changed" from="item_icon/HSlider" to="." method="_on_HSlider_value_changed"]

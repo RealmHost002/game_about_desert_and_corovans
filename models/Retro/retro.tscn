@@ -7,8 +7,6 @@
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -6.29962
-margin_right = -6.29956
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -118,3 +116,6 @@ margin_right = 0.749161
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="focus_entered" from="TextureRect/weapon" to="TextureRect/weapon" method="_on_weapon_gui_input"]
+[connection signal="gui_input" from="TextureRect/weapon" to="TextureRect/weapon" method="_on_weapon_gui_inpu1t"]
+[connection signal="mouse_entered" from="TextureRect/weapon" to="TextureRect/weapon" method="_on_weapon_gui_input"]

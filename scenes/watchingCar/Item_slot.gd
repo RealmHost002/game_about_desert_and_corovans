@@ -14,7 +14,15 @@ func _ready():
 func change_item(item):
 	if item.type == "weapon":
 		slot = item
-		get_node("TextureRect/weapon/TextureRect").texture = load(Saveload.weapon_data[item.i]["image_path"])
+		get_node("TextureRect").texture = load(Saveload.weapon_data[item.i]["image_path"])
+		get_parent().get_parent().get_parent().get_parent().taken_node.queue_free()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_weapon_gui_input():
+	if get_parent().get_parent().get_parent().get_parent().taken_node:
+		change_item(get_parent().get_parent().get_parent().get_parent().taken_node)
+
