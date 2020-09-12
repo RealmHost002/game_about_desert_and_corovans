@@ -13,10 +13,10 @@ corner_detail = 15
 shadow_color = Color( 0.407843, 0.0627451, 0.964706, 0.6 )
 shadow_size = 5
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.709804, 0.709804, 0.709804, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.00392157, 0.109804, 0.117647, 1 )
 
 [node name="Control" type="Control"]
@@ -54,10 +54,7 @@ margin_left = 661.0
 margin_top = 702.0
 margin_right = 1627.0
 margin_bottom = 1077.0
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_styles/panel = SubResource( 3 )
 
 [node name="Control" parent="TextureRect" instance=ExtResource( 1 )]
 
@@ -66,7 +63,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -380.0
 margin_right = 665.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
