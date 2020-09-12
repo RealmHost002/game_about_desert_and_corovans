@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gaus_clicked.png-e678c2eb1bbf2df4ff458c8191e53079.stex"
+path="res://.import/gaussrifle_clicked.png-c92d2fc4b50b094dcee3ab70b05d3771.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/textures/weaponIcons/gaus_clicked.png"
-dest_files=[ "res://.import/gaus_clicked.png-e678c2eb1bbf2df4ff458c8191e53079.stex" ]
+source_file="res://gui/textures/weaponIcons/gaussrifle_clicked.png"
+dest_files=[ "res://.import/gaussrifle_clicked.png-c92d2fc4b50b094dcee3ab70b05d3771.stex" ]
 
 [params]
 

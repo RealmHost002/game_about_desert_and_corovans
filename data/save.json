@@ -6,8 +6,8 @@
       "modules": 1,
       "corpus": "BigFoot",
       "weapons": [
-        "laserGun",
-        "laserGun"
+        "lasergun",
+        "lasergun"
       ],
       "generator": [
         "Convergenator_mk2",
@@ -24,8 +24,8 @@
       "modules": 1,
       "corpus": "BigFoot",
       "weapons": [
-        "gaussRifle",
-        "gaussRifle"
+        "lasergun",
+        "lasergun"
       ],
       "generator": [
         "Convergenator_mk1",
@@ -42,7 +42,7 @@
       "modules": 1,
       "corpus": "Hover",
       "weapons": [
-        "laserGun",
+        "lasergun",
         0
       ],
       "generator": [
@@ -60,7 +60,7 @@
       "modules": 1,
       "corpus": "Hover",
       "weapons": [
-        "laserGun",
+        "lasergun",
         0
       ],
       "generator": [
@@ -68,7 +68,7 @@
         0
       ],
       "shields": [
-        "ion_inversive_shield",
+        "protector_mk1",
         0
       ]
     },
@@ -78,8 +78,8 @@
       "modules": 1,
       "corpus": "BigFoot",
       "weapons": [
-        "laserGun",
-        "laserGun"
+        "lasergun",
+        "lasergun"
       ],
       "generator": [
         "Convergenator_mk2",
@@ -96,8 +96,8 @@
       "modules": 1,
       "corpus": "BigFoot",
       "weapons": [
-        "laserGun",
-        "laserGun"
+        "lasergun",
+        "lasergun"
       ],
       "generator": [
         "Convergenator_mk1",
@@ -112,17 +112,17 @@
       "cars": 7,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "The_Toad",
+      "corpus": "Hover",
       "weapons": [
-      	"4_gun",
-        "laserGun"
+        "lasergun",
+        0
       ],
       "generator": [
         "Convergenator_mk1",
         0
       ],
       "shields": [
-        "protector_mk2",
+        "protector_mk1",
         0
       ]
     },
@@ -130,9 +130,9 @@
       "cars": 8,
       "pilots": "Egor",
       "modules": 1,
-      "corpus": "Retro",
+      "corpus": "Hover",
       "weapons": [
-        "4_gun",
+        "lasergun",
         0
       ],
       "generator": [
@@ -150,8 +150,8 @@
       "modules": 1,
       "corpus": "BigFoot",
       "weapons": [
-        "laserGun",
-        "laserGun"
+        "lasergun",
+        "lasergun"
       ],
       "generator": [
         "Convergenator_mk1",

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/laser_clicked.png-345a42f562f03e9619eadc2265f3c9a8.stex"
+path="res://.import/plasma_dispencer.png-d1bc8e12b4c44273b1b6164e38ed9bb1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/textures/weaponIcons/laser_clicked.png"
-dest_files=[ "res://.import/laser_clicked.png-345a42f562f03e9619eadc2265f3c9a8.stex" ]
+source_file="res://gui/textures/weaponIcons/plasma_dispencer.png"
+dest_files=[ "res://.import/plasma_dispencer.png-d1bc8e12b4c44273b1b6164e38ed9bb1.stex" ]
 
 [params]
 
