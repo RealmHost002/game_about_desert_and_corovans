@@ -110,6 +110,7 @@ func update():
 					print(str(invetoryData[i]["count"]))
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
+					current_item.i = i
 				"generator":
 					
 					var icon = load(generators_data[i]["image_path"])
@@ -117,6 +118,7 @@ func update():
 					container.add_child(current_item)
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
+					current_item.i = i
 				"money":
 					print(invetoryData[i])
 					get_node("money").text = "Money: " + str(invetoryData[i]["count"])
