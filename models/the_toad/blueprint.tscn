@@ -51,7 +51,14 @@ points = PoolVector2Array( 29.9234, 68.812, -35.3517, 68.8589, -136.481, -13.629
 width = 2.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
-[node name="weapon1" type="Panel" parent="TextureRect"]
+[node name="items" type="Control" parent="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="weapon1" type="Panel" parent="TextureRect/items"]
 margin_left = 124.934
 margin_top = 25.526
 margin_right = 188.934
@@ -61,7 +68,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextureRect/weapon1"]
+[node name="Label" type="Label" parent="TextureRect/items/weapon1"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,7 +76,7 @@ margin_top = -14.0
 text = "weapon 1"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/weapon1"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/weapon1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.749161
@@ -78,7 +85,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="weapon2" type="Panel" parent="TextureRect"]
+[node name="weapon2" type="Panel" parent="TextureRect/items"]
 margin_left = 793.682
 margin_top = 126.265
 margin_right = 857.682
@@ -88,7 +95,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextureRect/weapon2"]
+[node name="Label" type="Label" parent="TextureRect/items/weapon2"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -97,7 +104,7 @@ margin_right = 7.62939e-06
 text = "weapon 2"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/weapon2"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/weapon2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.749161
@@ -106,16 +113,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="item1" type="Panel" parent="TextureRect"]
+[node name="item1" type="Panel" parent="TextureRect/items"]
 margin_left = 249.36
 margin_top = 217.658
 margin_right = 313.36
 margin_bottom = 281.658
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextureRect/item1"]
+[node name="Label" type="Label" parent="TextureRect/items/item1"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -123,7 +131,7 @@ margin_top = -14.0
 text = "item 1"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/item1"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/item1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.749161
@@ -132,16 +140,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="item3" type="Panel" parent="TextureRect"]
+[node name="item3" type="Panel" parent="TextureRect/items"]
 margin_left = 698.278
 margin_top = 214.184
 margin_right = 762.278
 margin_bottom = 278.184
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextureRect/item3"]
+[node name="Label" type="Label" parent="TextureRect/items/item3"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -150,7 +159,7 @@ margin_bottom = -1.52588e-05
 text = "item 3"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/item3"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/item3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.749161
@@ -159,16 +168,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="item2" type="Panel" parent="TextureRect"]
+[node name="item2" type="Panel" parent="TextureRect/items"]
 margin_left = 514.104
 margin_top = 290.633
 margin_right = 578.104
 margin_bottom = 354.633
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextureRect/item2"]
+[node name="Label" type="Label" parent="TextureRect/items/item2"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -176,7 +186,7 @@ margin_top = -14.0
 text = "item 2"
 align = 1
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/item2"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/item2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.749161
@@ -184,9 +194,9 @@ margin_right = 0.749161
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="focus_entered" from="TextureRect/weapon1" to="TextureRect/weapon1" method="_on_weapon_gui_input"]
-[connection signal="gui_input" from="TextureRect/weapon1" to="TextureRect/weapon1" method="_on_weapon_gui_inpu1t"]
-[connection signal="mouse_entered" from="TextureRect/weapon1" to="TextureRect/weapon1" method="_on_weapon_gui_input"]
-[connection signal="focus_entered" from="TextureRect/weapon2" to="TextureRect/weapon2" method="_on_weapon_gui_input"]
-[connection signal="gui_input" from="TextureRect/weapon2" to="TextureRect/weapon2" method="_on_weapon_gui_inpu1t"]
-[connection signal="mouse_entered" from="TextureRect/weapon2" to="TextureRect/weapon2" method="_on_weapon_gui_input"]
+[connection signal="focus_entered" from="TextureRect/items/weapon1" to="TextureRect/items/weapon1" method="_on_weapon_gui_input"]
+[connection signal="gui_input" from="TextureRect/items/weapon1" to="TextureRect/items/weapon1" method="_on_weapon_gui_inpu1t"]
+[connection signal="mouse_entered" from="TextureRect/items/weapon1" to="TextureRect/items/weapon1" method="_on_weapon_gui_input"]
+[connection signal="focus_entered" from="TextureRect/items/weapon2" to="TextureRect/items/weapon2" method="_on_weapon_gui_input"]
+[connection signal="gui_input" from="TextureRect/items/weapon2" to="TextureRect/items/weapon2" method="_on_weapon_gui_inpu1t"]
+[connection signal="mouse_entered" from="TextureRect/items/weapon2" to="TextureRect/items/weapon2" method="_on_weapon_gui_input"]
