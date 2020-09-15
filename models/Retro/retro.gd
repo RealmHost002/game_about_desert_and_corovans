@@ -41,6 +41,7 @@ func _load():
 				counter2 += 1
 			else:	
 				i.inf_from_dict = "empty"
+
 func change_item(item):
 	if item.type == "weapon":
 		weapon = item

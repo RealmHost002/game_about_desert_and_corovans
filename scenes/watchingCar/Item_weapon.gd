@@ -52,7 +52,9 @@ func _input(event):
 		super_parent.update()
 		call_deferred('queue_free')
 		pass
-	
+
+func pop_one():
+	super_parent.invetoryData[i]['count'] -= 1
 	
 func _take(event):
 	if event.is_action_pressed('left_click'):
@@ -69,28 +71,7 @@ func _take(event):
 		super_parent.invetoryData[i]['count'] -= 1
 		is_taken = true
 		super_parent.taken_node = self
-		
-			
 		super_parent.update()
-	
-#		else:
-#			var new_node = self.duplicate()
-#			super_parent.add_child(new_node)
-#			new_node.is_taken = true
-#			super_parent.taken_node = new_node
-#			new_node.i = self.i
-#			new_node.type = self.type
-#			new_node.mouse_filter = MOUSE_FILTER_PASS
-#			new_node.get_node("item_icon").mouse_filter = MOUSE_FILTER_IGNORE
-#			new_node.get_node("item_icon/ReferenceRect").mouse_filter = MOUSE_FILTER_IGNORE
-#			new_node.get_node("description").hide()
-#			new_node.get_node("RichTextLabel").hide()
-			
-			
-			
-			
-			
-			
-		
+
 
 

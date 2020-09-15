@@ -12,6 +12,7 @@ var corpusData
 var weapon_data
 var container 
 var taken_node
+var current_button
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	container = get_node("Panel/ScrollContainer/hcontainer")
@@ -129,6 +130,13 @@ func update():
 	invetory_file.store_string(to_json(invetoryData))
 	invetory_file.close()
 
+func _input(event):
+	if event.is_action_released("left_click") and current_button and taken_node:
+		taken_node.pop_one()
+		current_button.change_item(taken_node)
+		update()
+
+#		taken_node.pop_one()
 
 #func _input(event):
 #	if event.is_action_pressed("open_inventory"):
