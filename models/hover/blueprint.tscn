@@ -24,13 +24,13 @@ __meta__ = {
 position = Vector2( 514.104, 357.633 )
 points = PoolVector2Array( 333.172, -231.002, 268.359, -231.67, 131.007, -209.686 )
 width = 2.0
-default_color = Color( 0.52549, 0.00392157, 0.00392157, 1 )
+default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="Line2D2" type="Line2D" parent="TextureRect"]
 position = Vector2( 514.104, 357.633 )
 points = PoolVector2Array( -1.36829, -2.38058, 63.8499, -2.16287, 126.558, -119.297 )
 width = 2.0
-default_color = Color( 0.52549, 0.00392157, 0.00392157, 1 )
+default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="Line2D" type="Line2D" parent="TextureRect"]
 position = Vector2( 142.934, 171.526 )
@@ -73,10 +73,10 @@ __meta__ = {
 }
 
 [node name="item1" type="Panel" parent="TextureRect/items"]
-margin_left = 783.0
-margin_top = 62.0
-margin_right = 847.0
-margin_bottom = 126.0
+margin_left = 783.944
+margin_top = 58.2245
+margin_right = 847.944
+margin_bottom = 122.225
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,9 +101,9 @@ __meta__ = {
 
 [node name="item2" type="Panel" parent="TextureRect/items"]
 margin_left = 514.104
-margin_top = 290.633
+margin_top = 288.745
 margin_right = 578.104
-margin_bottom = 354.633
+margin_bottom = 352.745
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
