@@ -1,19 +1,18 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 var weapon_type = "small"
 var weapon
-var inf_from_dict
+var inf_from_dict #stroke about current car from save.json
 var current_car
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_load()
-	pass # Replace with function body.
+	pass 
 
 func _load():
+
 	var other_items = inf_from_dict["shields"]
 	if !other_items[-1]:
 		other_items.pop_back()

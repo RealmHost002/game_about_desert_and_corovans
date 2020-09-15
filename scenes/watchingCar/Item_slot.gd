@@ -24,6 +24,19 @@ func change_item(item):
 #		master_node.taken_node.pop_one()
 		get_node("TextureRect").texture = load(Saveload.weapon_data[item.i]["image_path"])
 		master_node.taken_node.queue_free()
+	if inf_from_dict != "empty":
+		master_node.invetoryData[inf_from_dict]["count"] += 1
+		inf_from_dict = slot.i #the name of weapon
+		var number_of_car = get_parent().get_parent().get_parent().inf_from_dict["cars"] - 1
+		var number_of_weapon = self.name.to_int() - 1
+#		print(number_of_weapon)
+		master_node.get_node("Panel2/GridContainer").get_child(number_of_car).car_inf["weapons"][number_of_weapon] = inf_from_dict
+		print("///////////////////////////////////////")
+		print(Saveload.ourTeamData)
+		print("///////////////////////////////////////")
+		print("number_of_car ", number_of_car," number_of_weapon ",number_of_weapon )
+		Saveload.ourTeamData["config"][number_of_car]["weapons"][number_of_weapon] = inf_from_dict
+		Saveload._update()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -61,7 +61,11 @@ func read_data(ourTeamData):
 			position -= Vector3(0,0,3)
 		c += 1
 #	pass # Replace with function body.
-
+func _update():
+	var save_file = File.new()
+	save_file.open("res://data/save.json", File.WRITE)
+	save_file.store_string(to_json(ourTeamData))
+	save_file.close()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

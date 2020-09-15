@@ -27,7 +27,6 @@ func _on_TextureButton_pressed():
 		get_parent().get_parent().get_parent().get_node("TextureRect").get_child(0).queue_free()
 	scene.inf_from_dict = car_inf
 	get_parent().get_parent().get_parent().get_node("TextureRect").add_child(scene)	
-
 #	print(car_inf)
-	items = car_inf["weapons"]
+	items = car_inf["weapons"]#car_inf is the stroke from the save.json file
 	pass # Replace with function body.
