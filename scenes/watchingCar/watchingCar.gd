@@ -70,7 +70,7 @@ func add_from_data():
 	read_data()
 	read_extra_data()
 	update()
-	print(invetoryData)
+#	print(invetoryData)
 #	print(generators_data)
 func update():
 	for child in get_node("Panel/ScrollContainer/hcontainer").get_children():
@@ -120,9 +120,9 @@ func update():
 					current_item.get_node("item_icon").texture = icon
 					current_item.i = i
 				"money":
-					print(invetoryData[i])
+#					print(invetoryData[i])
 					get_node("money").text = "Money: " + str(invetoryData[i]["count"])
-	print(get_node("Panel/ScrollContainer/hcontainer").get_child_count())
+#	print(get_node("Panel/ScrollContainer/hcontainer").get_child_count())
 
 	var invetory_file = File.new()
 	invetory_file.open("res://data/inventory.json", File.WRITE)

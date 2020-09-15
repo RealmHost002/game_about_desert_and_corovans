@@ -6,7 +6,7 @@ extends TextureRect
 # var b = "text"
 var car_inf
 var scene
-
+var items
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	print(car_inf["cars"])
@@ -25,6 +25,9 @@ func _on_TextureButton_pressed():
 	scene = load(Saveload.corpusData[car_inf["corpus"]]["blueprint"]).instance()
 	if get_parent().get_parent().get_parent().get_node("TextureRect").get_child(0):
 		get_parent().get_parent().get_parent().get_node("TextureRect").get_child(0).queue_free()
+	scene.inf_from_dict = car_inf
 	get_parent().get_parent().get_parent().get_node("TextureRect").add_child(scene)	
-	
+
+#	print(car_inf)
+	items = car_inf["weapons"]
 	pass # Replace with function body.
