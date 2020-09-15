@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bak.obj-a3221755ec57a0ced79fad6e1f39afaf.mesh"
+
+[deps]
+
+files=[ "res://.import/bak.obj-a3221755ec57a0ced79fad6e1f39afaf.mesh" ]
+
+source_file="res://models/shields/front_shield_mk1/bak.obj"
+dest_files=[ "res://.import/bak.obj-a3221755ec57a0ced79fad6e1f39afaf.mesh", "res://.import/bak.obj-a3221755ec57a0ced79fad6e1f39afaf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 5, 5, 5 )
+offset_mesh=Vector3( 0, 0, 0.7 )
+optimize_mesh=true

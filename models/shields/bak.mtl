@@ -1,0 +1,31 @@
+# Blender MTL File: 'bak.blend'
+# Material Count: 3
+
+newmtl Material
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.400000
+d 1.000000
+illum 3
+map_Kd E:\\blender_works\\textures\\ImphenziaPalette01.png
+
+newmtl Material.001
+Ns 225.000000
+Ka 0.283688 0.283688 0.283688
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.061445 0.330994 1.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl None
+Ns 500
+Ka 0.8 0.8 0.8
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2

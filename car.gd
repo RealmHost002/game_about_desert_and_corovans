@@ -140,6 +140,7 @@ func destroy():
 	
 func take_damage(damage, weaponType, status = "no"):
 	hp -= damage
+	print(damage)
 	if hp <= 0:
 		destroy()
 	if status != 'no':
@@ -336,9 +337,7 @@ func load_modules(params):
 
 			gen._load(Saveload.generators_data[g])
 			abilities.append('generator')
-#			self.energy_production += Saveload.generators_data[g]['energy_production']
-			
-			
+
 	for s in params['shields']:
 		if s:
 			var sh = load("res://models/shield.tscn").instance()
