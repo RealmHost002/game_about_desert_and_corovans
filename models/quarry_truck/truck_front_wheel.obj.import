@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/truck_front_wheel.obj-368a54b5e12049bcd6f81e2203c9d38c.mesh"
+
+[deps]
+
+files=[ "res://.import/truck_front_wheel.obj-368a54b5e12049bcd6f81e2203c9d38c.mesh" ]
+
+source_file="res://models/quarry_truck/truck_front_wheel.obj"
+dest_files=[ "res://.import/truck_front_wheel.obj-368a54b5e12049bcd6f81e2203c9d38c.mesh", "res://.import/truck_front_wheel.obj-368a54b5e12049bcd6f81e2203c9d38c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( -1, 1, -1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

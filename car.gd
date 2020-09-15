@@ -35,6 +35,7 @@ var shield_limit = 0
 var energy = 100
 var energy_production = 0
 var max_energy = 0
+var wheel_height = 0
 #var direction = Vector3()
 
 
@@ -73,21 +74,28 @@ func _process(delta):
 	speed -= resistance * pow(speed, 2) * delta
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
-	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * rotation_speed)
-#	* clamp(angle_to_destination, 0.5, 1) * rotation_speed)
-#	self.global_transform.origin += forward * delta * speed
+	var s_buff = sign(forward.cross(destination - self.global_transform.origin).y)
+	var f = forward.rotated(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * rotation_speed)
+	var after_rot_s_buff = sign(f.cross(destination - self.global_transform.origin).y)
+	if s_buff == after_rot_s_buff:
+		var r = rotation_speed
+		if speed <= 0.5:
+			r *= speed
+		self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * r)
+#	print(speed)
 	var s_height = 0
 	if image:
 #		var s_height = 0
 		for wheel in get_node('wheels').get_children():
 			var some_pos = Vector2(wheel.global_transform.origin.x, wheel.global_transform.origin.z) / 20.0 * 1024
+			wheel.rotate_x(delta * speed)
 			while some_pos.x >= 1024:
 				some_pos.x -= 1024
 			while some_pos.y >= 1024:
 				some_pos.y -= 1024
-			wheel.global_transform.origin.y = image.get_pixelv(some_pos).r * 3
+			wheel.global_transform.origin.y = image.get_pixelv(some_pos).r * 3 + wheel_height / 10.0
 			if wheel.name == 'fl' or wheel.name == 'fr' or wheel.name == 'rl' or wheel.name == 'rr':
-				s_height += wheel.global_transform.origin.y
+				s_height += image.get_pixelv(some_pos).r * 3
 		s_height = s_height/4.0 + clearance
 #		self.global_transform.origin.y = s_height
 	var vec1 = get_node("wheels/fr").global_transform.origin - get_node("wheels/rl").global_transform.origin
@@ -286,7 +294,7 @@ func _load(params):
 	get_node("wheels/mr").transform.origin = Vector3(-wp[4], 0, wp[5])
 	
 	
-	
+	self.wheel_height = params['wheel_height']
 	self.engine_energy_cost = params['engine_cost']
 	self.hp = params['hp']
 #	max_hp 
