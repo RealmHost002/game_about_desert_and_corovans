@@ -5,7 +5,7 @@
     "wheelBack": "res://models/bigfoot/wheel.tres",
     "cont_of_items": 3,
     "cont_of_weapon": 2,
-    "hp": 150,
+    "hp": 200,
     "weapon_positions": [
       0.966,
       2.898,
@@ -39,7 +39,11 @@
     ],
     "engine_cost": 40,
     "blueprint": "res://models/bigfoot/blueprint.tscn",
-    "wheel_height": 0.875
+    "wheel_height": 0.875,
+    "type": "combat",
+    "effectivness": 367.3320053068151,
+    "mobility": 0.6363636363636364,
+    "cost": 367
   },
   "hover": {
     "body": "res://models/hover/body.tres",
@@ -56,8 +60,8 @@
     "col_shape": "res://models/hover/col_shape.tres",
     "col_shape_pos": [
       0,
-      1.496,
-      -0.097
+      0.283,
+      -0.319
     ],
     "rot_speed": 0.7,
     "acc_multiplyer": 1.3,
@@ -78,7 +82,11 @@
     ],
     "engine_cost": 26,
     "blueprint": "res://models/hover/blueprint.tscn",
-    "wheel_height": 0
+    "wheel_height": 0,
+    "type": "support",
+    "effectivness": 198.6591757935306,
+    "mobility": 0.7,
+    "cost": 199
   },
   "retro": {
     "body": "res://models/retro/body.tres",
@@ -95,8 +103,8 @@
     "col_shape": "res://models/retro/col_shape.tres",
     "col_shape_pos": [
       0,
-      1.496,
-      -0.098
+      0.666,
+      -0.309
     ],
     "rot_speed": 1.8,
     "acc_multiplyer": 2.2,
@@ -117,15 +125,19 @@
     ],
     "engine_cost": 40,
     "blueprint": "res://models/retro/blueprint.tscn",
-    "wheel_height": 0.44
+    "wheel_height": 0.44,
+    "type": "support",
+    "effectivness": 237.32131246511904,
+    "mobility": 2.2,
+    "cost": 237
   },
   "the_toad": {
     "body": "res://models/the_toad/body.tres",
     "wheelFront": "res://models/the_toad/wheel.tres",
     "wheelBack": "res://models/the_toad/wheel.tres",
     "cont_of_items": null,
-    "cont_of_weapon": null,
-    "hp": 100,
+    "cont_of_weapon": 2,
+    "hp": 180,
     "weapon_positions": [
       0.604,
       1.596,
@@ -137,8 +149,8 @@
     "col_shape": "res://models/the_toad/col_shape.tres",
     "col_shape_pos": [
       0,
-      1.496,
-      -0.099
+      1.265,
+      0
     ],
     "rot_speed": 2.2,
     "acc_multiplyer": 1.8,
@@ -159,7 +171,11 @@
     ],
     "engine_cost": 36,
     "blueprint": "res://models/the_toad/blueprint.tscn",
-    "wheel_height": 0.57
+    "wheel_height": 0.57,
+    "type": "combat",
+    "effectivness": 285.3972078784416,
+    "mobility": 1.8857142857142857,
+    "cost": 285
   },
   "quarry_truck": {
     "body": "res://models/quarry_truck/body.tres",
@@ -167,7 +183,7 @@
     "wheelBack": "res://models/quarry_truck/wheel.tres",
     "cont_of_items": null,
     "cont_of_weapon": null,
-    "hp": 300,
+    "hp": 400,
     "weapon_positions": [
       0,
       7.492,
@@ -176,11 +192,11 @@
     "col_shape": "res://models/quarry_truck/col_shape.tres",
     "col_shape_pos": [
       0,
-      1.496,
-      -0.1
+      3.854,
+      -0.675
     ],
     "rot_speed": 0.4,
-    "acc_multiplyer": 1.8,
+    "acc_multiplyer": 0.6,
     "resistance": 1.1,
     "wheel_pos": [
       3.156,
@@ -198,6 +214,10 @@
     ],
     "engine_cost": 40,
     "blueprint": "res://models/quarry_truck/blueprint.tscn",
-    "wheel_height": 1.7
+    "wheel_height": 1.7,
+    "type": "truck",
+    "effectivness": 400,
+    "mobility": 0.34285714285714286,
+    "cost": 400
   }
 }

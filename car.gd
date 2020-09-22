@@ -5,6 +5,7 @@ extends  KinematicBody
 
 
 var path = []
+var path_visible = true
 var energy_drain = 0
 var weapon_positions = []
 var acc_multiplyer = 2.0
@@ -23,9 +24,22 @@ var rotation_speed = 1
 var abilities = ['engine']
 var sliders = []
 
+#patterns [truck, close_range_combat, mid_range_combat, far_range_combat
+#mid_range_support, far_range_support]
+
+#moves [follow, escape, follow_and_attack, escape_and_attack]
+var is_enemy = true
+var combat_bodies = []
+var support_bodies = []
+var enemy_combats = []
 var current_pattern = 'truck'
-var current_move = 'follow'
+var current_move = 'escort'
+var body_type = 'combat'
+var weapon_type = 'close'
+var current_target
 var target_to_follow
+var truck = self
+
 
 var engine_energy_cost = 20.0
 var hp = 100
@@ -44,6 +58,7 @@ var wheel_height = 0
 
 func _ready():
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
+	right = (get_node("dirs/right").global_transform.origin - self.global_transform.origin).normalized() 
 	ntex = preload("res://noise.tres")
 	yield(ntex, "changed")
 	image = ntex.get_data()
@@ -58,12 +73,26 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if is_enemy:
+		do_think(delta)
+	if energy < max_energy:
+		energy += energy_production * delta / constants.step_time
+	else:
+		energy = max_energy
+	if energy > 0:
+		energy -= engine_energy_cost * acc * delta / constants.step_time
+	if energy <= 0:
+		acc = 0.0
+		
+	
 	if path:
 		destination = path[0]
 		
 		if (Vector3(self.global_transform.origin.x, 0, self.global_transform.origin.z) - Vector3(path[0].x, 0, path[0].z)).length() < 0.1:
 			path.pop_front()
-	if current_move == 'follow' and target_to_follow:
+	
+	if current_move == 'follow' or current_move == 'escort' and target_to_follow:
 		destination = target_to_follow.global_transform.origin
 		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0,0 , 1.0)
 	
@@ -73,16 +102,18 @@ func _process(delta):
 	speed += pow(acc, 1) * delta * acc_multiplyer
 	speed -= resistance * pow(speed, 2) * delta
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
-	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
-	var s_buff = sign(forward.cross(destination - self.global_transform.origin).y)
-	var f = forward.rotated(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * rotation_speed)
-	var after_rot_s_buff = sign(f.cross(destination - self.global_transform.origin).y)
-	if s_buff == after_rot_s_buff:
-		var r = rotation_speed
-		if speed <= 0.5:
-			r *= speed
-		self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * r)
-#	print(speed)
+	right = (get_node("dirs/right").global_transform.origin - self.global_transform.origin).normalized() 
+	if !is_enemy:
+		var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
+		var s_buff = sign(forward.cross(destination - self.global_transform.origin).y)
+		var f = forward.rotated(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * rotation_speed)
+		var after_rot_s_buff = sign(f.cross(destination - self.global_transform.origin).y)
+		if s_buff == after_rot_s_buff:
+			var r = rotation_speed
+			if speed <= 0.5:
+				r *= speed
+			self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * delta * r)
+
 	var s_height = 0
 	if image:
 #		var s_height = 0
@@ -119,28 +150,121 @@ func _process(delta):
 #	move_and_collide(speed * (forward) * delta)
 
 #	if Input.is_action_pressed("function_1"):
-#		print('popa')
+
 	
 #	if shield < shield_limit:
 #		shield += shield_production
-	if energy < max_energy:
-		energy += energy_production * delta / constants.step_time
-	else:
-		energy = max_energy
-	if energy > 0:
-		energy -= engine_energy_cost * acc * delta / constants.step_time
-	if energy <= 0:
-		acc = 0.0
+#	if energy < max_energy:
+#		energy += energy_production * delta / constants.step_time
+#	else:
+#		energy = max_energy
+#	if energy > 0:
+#		energy -= engine_energy_cost * acc * delta / constants.step_time
+#	if energy <= 0:
+#		acc = 0.0
 	get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
 
+func _input(event):
+	if event.is_action_pressed('path_visibility'):
+		if path_visible:
+			hide_path()
+			path_visible = false
+		else:
+			show_path()
+			path_visible = true
+
+
+
+func do_think(d):
+	var distance_to_dest = (destination - self.global_transform.origin).length()
+	var dest_behind = sign((destination - self.global_transform.origin).cross(right).y)
+#	enemy_combats = []
+#	for enemy
+#	self.speed > truck.speed
+	var angle_to_destination = forward.angle_to(destination - self.global_transform.origin)
+	var s_buff = sign(forward.cross(destination - self.global_transform.origin).y)
+	var f = forward.rotated(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * d * rotation_speed)
+	var after_rot_s_buff = sign(f.cross(destination - self.global_transform.origin).y)
+	var r = 0
+	if s_buff == after_rot_s_buff:
+		r = rotation_speed
+		var close_combat_enemies_position = Vector3(0,0,0)
 	
+	
+	
+	var close_combat_count = 0.0
+	var close_combat_enemies_position = Vector3(0,0,0)
+	enemy_combats = []
+	for enemy in get_tree().get_nodes_in_group('ally'):
+#		if enemy.current_pattern[0] == 'combat' and enemy.current_pattern[1] != 'far':
+		close_combat_count += 1
+		close_combat_enemies_position += enemy.global_transform.origin
+		enemy_combats.append(enemy)
+	close_combat_enemies_position /= enemy_combats.size()
+	
+
+	
+	
+	if self.current_move == 'escort':
+		if dest_behind > 0:
+			self.acc = 0.0
+#			r *= 0.1
+		else:
+			self.acc = clamp(distance_to_dest / 2.0, 0, 1.0)
+	
+
+
+	if self.current_pattern[0] == 'truck':
+		self.current_move = 'escape'
+		for ally in get_tree().get_nodes_in_group('enemy'):
+			ally.truck = self
+		destination = Vector3(100, 0, 100)
+	else:
+		var enemy_to_block = enemy_combats[self.get_index() - 4]
+		
+		var to_truck = truck.global_transform.origin - enemy_to_block.global_transform.origin
+		self.destination = truck.global_transform.origin - to_truck.normalized() * 3 + (to_truck).cross(Vector3(0, 1,0)).normalized() * (self.get_index() - 6) * 0
+		for w in get_node("body/weapons").get_children():
+			if w.type == 'weapon':
+				if w.distance_tex.curve.max_value > (enemy_to_block.global_transform.origin - self.global_transform.origin).length():
+					w.slider_changed(100.0)
+					w.target = enemy_to_block
+				else:
+					w.slider_changed(1.0)
+					w.target = 0
+					for enemy in get_tree().get_nodes_in_group('ally'):
+						if w.distance_tex.curve.max_value > (enemy.global_transform.origin - self.global_transform.origin).length():
+							w.slider_changed(100.0)
+							w.target = enemy
+	if speed <= 0.5:
+		r *= speed
+	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * d * r)
+
+	
+	
+#func closest_enemy():
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func destroy():
 	self.queue_free()
 	pass
 	
 func take_damage(damage, weaponType, status = "no"):
 	hp -= damage
-	print(damage)
 	if hp <= 0:
 		destroy()
 	if status != 'no':
@@ -241,36 +365,20 @@ func show_path():
 
 
 func _on_input_event(camera, event, click_position, click_normal, shape_idx, from_gui = 0):
-	if !(self in get_tree().get_nodes_in_group('ally')):
-		return
-	if constants.input_mode != 'car_select':
-		return
-#	get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
+	if self in get_tree().get_nodes_in_group('ally'):
+		if constants.input_mode != 'car_select':
+			return
+		if from_gui:
+			constants.selectedCar = self
+		elif event.is_action('left_click'):
+			constants.selectedCar = self
+			get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
 	
-	
-	
-	if from_gui:
-		constants.selectedCar = self
-#		is_active = true
-#		for node in get_parent().get_children():
-#			if node != self:
-#				node.is_active = false
-	elif event.is_action('left_click'):
-		constants.selectedCar = self
-		get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
-	
-	elif event.is_action('right_click'):
-		constants.selectedCar.target_to_follow = self
-		constants.selectedCar.destination = self.global_transform.origin
-		constants.selectedCar.show_path()
-
-
-#		if event.is_action('left_click'):
-#			is_active = true
-#			for node in get_parent().get_children():
-#				if node != self:
-#					node.is_active = false
-#		constants.selectedCar = self
+	if !from_gui:
+		if event.is_action('right_click') and constants.selectedCar:
+			constants.selectedCar.target_to_follow = self
+			constants.selectedCar.destination = self.global_transform.origin
+			constants.selectedCar.show_path()
 
 
 
@@ -288,7 +396,6 @@ func _load(params):
 	if wp[4] == 0:
 		get_node("wheels/ml").hide()
 		get_node("wheels/mr").hide()
-	
 	get_node("wheels/ml").mesh = load(params['wheelBack'])
 	get_node("wheels/ml").transform.origin = Vector3(wp[4], 0, wp[5])
 	get_node("wheels/mr").mesh = load(params['wheelBack'])
@@ -313,7 +420,14 @@ func _load(params):
 	get_node("CollisionShape").transform.origin = Vector3(v[0], v[1], v[2])
 	v = params['death_zones']
 	get_node("body/weapons").death_zones = [0, Vector2(v[0], v[1]), Vector2(v[2], v[3])]
-
+	
+	body_type = params['type']
+#	if params['type'] in combat_bodies:
+#		body_type = 'combat'
+#	elif params['type'] in support_bodies:
+#		body_type = 'support'
+#	else:
+#		body_type = 'truck'
 	
 func load_modules(params):
 	var modules_node = get_node("body/weapons")
@@ -351,7 +465,20 @@ func load_modules(params):
 	constants.sliders[name] = self.sliders
 
 
-
+	var ranges = []
+	for m in modules_node.get_children():
+		if m.type == 'weapon':
+			ranges.append(m.distance_tex.curve.max_value)
+	var min_range = ranges.min()
+	if min_range < 6.0:
+		weapon_type = 'close'
+	elif min_range < 12:
+		weapon_type = 'mid'
+	else:
+		weapon_type = 'far'
+	
+	current_pattern = [body_type, weapon_type]
+	
 func calc_en_drain():
 	energy_drain = 0
 	var c = 0

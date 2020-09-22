@@ -1,32 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://models/area.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://trash textures/laser.tres" type="Material" id=2]
+[ext_resource path="res://models/area3.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://models/weapons/bullet_path_final.tres" type="Material" id=2]
 [ext_resource path="res://models/weapons/lasergun/laser_beam.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=1]
-resource_name = "New Anim"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:material/0:uv1_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0.07, 0, 0 ), Vector3( 0.8, 0, 0 ), Vector3( 0.95, 0, 0 ) ]
-}
-
 [node name="MeshInstance" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11253, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )
 script = ExtResource( 3 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "New Anim"
-playback_speed = 3.0
-"anims/New Anim" = SubResource( 1 )

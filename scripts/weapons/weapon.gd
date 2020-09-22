@@ -92,11 +92,16 @@ func fire():
 
 
 	var material = lb.get_surface_material(0).duplicate(true)
-	material.albedo_color = anim_color
+#	material.albedo_color = anim_color
+	
+#	print(anim_color.r)
+	material.set_shader_param('albedo', Color(anim_color))
+	
+#	lb.get_node('AnimationPlayer').play()
 	lb.set_surface_material(0, material)
-
+#	print(lb.get_node('AnimationPlayer').is_playing())
 #	lb.scale.z *= clamp((target.global_transform.origin - self.global_transform.origin).length(), 0, distance)
-	lb.scale.x *= 0.2
+	lb.scale.x *= 0.1
 #	lb.mesh.surface_set_material(0, lb.mesh.surface_get_material(0).duplicate(true))
 #	lb.mesh.surface_set_material(0, preload()
 #	lb.mesh.surface_get_material(0).albedo_color = Color(0, 1.0, 0, 1)
@@ -143,7 +148,7 @@ func fire():
 			result['collider'].take_damage(damage, damage_type)
 		dist_to_ray_end = (result['position'] - get_node("dot").global_transform.origin).length()
 	#IVAN PIDARAS
-	lb.scale.z *= dist_to_ray_end
+	lb.scale.z *= -dist_to_ray_end
 	if current_clip <= 0:
 		current_cd_time = max_cd_time
 		return
@@ -203,14 +208,14 @@ func _input(event):
 		var space_state = get_world().direct_space_state
 		var result = space_state.intersect_ray(from, to, [self, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')])
 		if result:
-			if !(result['collider'].get_parent().get_parent().get_parent() in get_tree().get_nodes_in_group('ally')):
-				return
+#			if !(result['collider'].get_parent().get_parent().get_parent() in get_tree().get_nodes_in_group('ally')):
+#				return
+#			else:
+			if result['collider'] in get_tree().get_nodes_in_group('shields'):
+				target = result['collider'].get_parent().get_parent().get_parent().get_node('CollisionShape')
 			else:
-				if result['collider'] in get_tree().get_nodes_in_group('shields'):
-					target = result['collider'].get_parent().get_parent().get_parent().get_node('CollisionShape')
-				else:
-					target = result['collider'].get_node('CollisionShape')
-				unactivate()
+				target = result['collider'].get_node('CollisionShape')
+			unactivate()
 	if event.is_action_pressed("tb2"):
 		fire()
 
