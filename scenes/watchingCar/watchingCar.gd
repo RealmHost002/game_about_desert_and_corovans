@@ -107,15 +107,17 @@ func update():
 				"shield":
 					var icon = load(shields_data[i]["image_path"])
 					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
+					current_item.type = "item"
 					container.add_child(current_item)
 					print(str(invetoryData[i]["count"]))
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
 					current_item.i = i
+				
 				"generator":
-					
 					var icon = load(generators_data[i]["image_path"])
 					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
+					current_item.type = "item"
 					container.add_child(current_item)
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
@@ -133,7 +135,11 @@ func update():
 func _input(event):
 	if event.is_action_released("left_click") and current_button and taken_node:
 		taken_node.pop_one()
+#		print("zalupa")
+#		print(taken_node.type)
+#		print(typeof(taken_node))
 		current_button.change_item(taken_node)
+	
 		update()
 
 #		taken_node.pop_one()

@@ -14,16 +14,17 @@ func _ready():
 func _load():
 
 	var other_items = inf_from_dict["shields"]
-	if !other_items[-1]:
-		other_items.pop_back()
+	if other_items:
+		if !other_items[-1]:
+			other_items.pop_back()
 	other_items = other_items + inf_from_dict["generator"]
-	if !other_items[-1]:
-		other_items.pop_back()
+	if other_items:	
+		if !other_items[-1]:
+			other_items.pop_back()
 	var counter = 0
 	var counter2 = 0
 	for i in get_node("TextureRect/items").get_children():
 		if i.slot_type == "weapon":
-#			print("................................")
 			if inf_from_dict["weapons"].size() - 1 >= counter:
 				i.inf_from_dict = inf_from_dict["weapons"][counter]
 				counter += 1
@@ -51,4 +52,8 @@ func change_item(item):
 
 
 func _on_weapon_gui_input(event):
+	pass # Replace with function body.
+
+
+func _on_item1_mouse_entered():
 	pass # Replace with function body.

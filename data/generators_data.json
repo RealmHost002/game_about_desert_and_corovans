@@ -2,21 +2,36 @@
   "Convergenator_mk1": {
     "energy_production": 20,
     "image_path": "res://gui/textures/weaponIcons/Convergenator_mk1.png",
-    "max_energy": 40
+    "max_energy": 40,
+    "tier": 1,
+    "effectivness": 28
   },
   "Convergenator_mk2": {
     "energy_production": 30,
     "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png",
-    "max_energy": 90
+    "max_energy": 90,
+    "tier": 1,
+    "effectivness": 48
   },
   "sublimation_streaming_generator": {
     "energy_production": 40,
     "image_path": "res://gui/textures/weaponIcons/sublimation_streaming_generator.png",
-    "max_energy": 60
+    "max_energy": 60,
+    "tier": 1.8,
+    "effectivness": 28.88888888888889
+  },
+  "speedy_waggon_generator": {
+    "energy_production": 150,
+    "image_path": "res://gui/textures/weaponIcons/speedy_waggon_generator.png",
+    "max_energy": 600,
+    "tier": 3.24,
+    "effectivness": 83.33333333333333
   },
   "zzzConvergenator_mk3": {
     "energy_production": 30,
     "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png",
-    "max_energy": 100
+    "max_energy": 100,
+    "tier": 2,
+    "effectivness": 25
   }
 }

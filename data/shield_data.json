@@ -5,7 +5,10 @@
     "energy_cost": 20,
     "shape": "res://models/shields/protector_mk1/collision.tres",
     "mesh": "res://models/shields/protector_mk1/body.tres",
-    "prot_per_en": 1
+    "prot_per_en": 1,
+    "tyre": 1,
+    "shape_coeff": 1,
+    "effectivness": 20
   },
   "protector_mk2": {
     "max_value": 50,
@@ -13,14 +16,42 @@
     "energy_cost": 30,
     "shape": "res://models/shields/protector_mk2/collision.tres",
     "mesh": "res://models/shields/protector_mk2/body.tres",
-    "prot_per_en": 1.6666666666666667
+    "prot_per_en": 1.6666666666666667,
+    "tyre": 1.8,
+    "shape_coeff": 1,
+    "effectivness": 27.77777777777778
   },
   "ion_inversive_shield": {
-    "max_value": 100,
+    "max_value": 60,
     "image_path": "res://gui/textures/weaponIcons/ion_inversive_shield.png",
-    "energy_cost": 40,
+    "energy_cost": 30,
     "shape": "res://models/shields/ion_inversive_shield/collision.tres",
     "mesh": "res://models/shields/ion_inversive_shield/body.tres",
-    "prot_per_en": 2.5
+    "prot_per_en": 2,
+    "tyre": 1,
+    "shape_coeff": 0.5,
+    "effectivness": 30
+  },
+  "front_shield_mk1": {
+    "max_value": 30,
+    "image_path": "res://gui/textures/weaponIcons/front_shield_mk1.png",
+    "energy_cost": 15,
+    "shape": "res://models/shields/front_shield_mk1/collision.tres",
+    "mesh": "res://models/shields/front_shield_mk1/body.tres",
+    "prot_per_en": 2,
+    "tyre": 1,
+    "shape_coeff": 0.7,
+    "effectivness": 21
+  },
+  "front_shield_mk2": {
+    "max_value": 80,
+    "image_path": "res://gui/textures/weaponIcons/front_shield_mk2.png",
+    "energy_cost": 40,
+    "shape": "res://models/shields/front_shield_mk2/collision.tres",
+    "mesh": "res://models/shields/front_shield_mk2/body.tres",
+    "prot_per_en": 2,
+    "tyre": 1.8,
+    "shape_coeff": 0.7,
+    "effectivness": 31.111111111111107
   }
 }
