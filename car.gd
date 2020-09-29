@@ -28,6 +28,7 @@ var sliders = []
 #mid_range_support, far_range_support]
 
 #moves [follow, escape, follow_and_attack, escape_and_attack]
+var min_range
 var is_enemy = true
 var combat_bodies = []
 var support_bodies = []
@@ -97,9 +98,18 @@ func _process(delta):
 		if (Vector3(self.global_transform.origin.x, 0, self.global_transform.origin.z) - Vector3(path[0].x, 0, path[0].z)).length() < 0.1:
 			path.pop_front()
 	
-	if current_move == 'follow' or current_move == 'escort' and target_to_follow:
+	if current_move == 'approach' and target_to_follow:
+#	 or current_move == 'escort' and target_to_follow:
 		destination = target_to_follow.global_transform.origin
-		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0,0 , 1.0)
+		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0 + 1.0 ,0 , 1.0)
+	
+	elif current_move == 'follow' and target_to_follow:
+		destination = target_to_follow.global_transform.origin
+		if (target_to_follow.global_transform.origin - self.global_transform.origin).length() < min_range * 0.8:
+			self.acc = 0
+		else:
+			self.acc = 1.0
+#		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0 - 0.5 ,0 , 1.0)
 	
 	
 	
@@ -514,7 +524,7 @@ func load_modules(params):
 	for m in modules_node.get_children():
 		if m.type == 'weapon':
 			ranges.append(m.distance_tex.curve.max_value)
-	var min_range = ranges.min()
+	min_range = ranges.min()
 	if min_range < 6.0:
 		weapon_type = 'close'
 	elif min_range < 12:
@@ -540,6 +550,7 @@ func show_enemies():
 				var s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height
 				w.target.get_node('target_obj').scale = Vector3(s, s, s)
 				w.target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_car.tres"))
+
 func hide_enemies():
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':

@@ -4,7 +4,7 @@
 octaves = 2
 period = 256.0
 persistence = 0.331
-lacunarity = 2.83
+lacunarity = 2.87
 
 [resource]
 width = 1024
