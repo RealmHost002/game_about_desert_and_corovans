@@ -196,6 +196,8 @@ func _process(delta):
 
 func _input(event):
 	if event.is_action_pressed("drag_camera") and is_active:
+		if target:
+			target.get_node('target_obj').hide()
 		unactivate()
 		target = 0
 
@@ -210,14 +212,19 @@ func _input(event):
 		if result:
 #			if !(result['collider'].get_parent().get_parent().get_parent() in get_tree().get_nodes_in_group('ally')):
 #				return
-#			else:
+			if target:
+				target.get_node('target_obj').hide()
 			if result['collider'] in get_tree().get_nodes_in_group('shields'):
-				target = result['collider'].get_parent().get_parent().get_parent().get_node('CollisionShape')
+				target = result['collider'].get_parent().get_parent().get_parent()
+#				.get_node('CollisionShape')
 			else:
-				target = result['collider'].get_node('CollisionShape')
+				target = result['collider']
+#				.get_node('CollisionShape')
+			mastercar.hide_enemies()
+			mastercar.show_enemies()
+#			target.get_node('target_obj').hide()
 			unactivate()
-	if event.is_action_pressed("tb2"):
-		fire()
+
 
 func unactivate():
 	constants.input_mode = 'car_select'
@@ -241,6 +248,11 @@ func activate():
 	is_active = true
 	m.set_shader_param('death_zone1', death_zone)
 	m.set_shader_param('death_zone2', death_zone)
+	if target:
+		target.get_node('target_obj').show()
+		var s = target.get_node('CollisionShape').shape.radius + target.get_node('CollisionShape').shape.height
+		target.get_node('target_obj').scale = Vector3(s, s, s)
+		target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_weapon.tres"))
 	pass
 
 func _load(params):

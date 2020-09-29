@@ -62,6 +62,11 @@ func _ready():
 	ntex = preload("res://noise.tres")
 	yield(ntex, "changed")
 	image = ntex.get_data()
+	image.save_png("res://noise.png")
+	print(image)
+#	Image
+#	var rsv = ResourceSaver
+#	rsv.save("res://noise.png", ntex)
 	if image:
 		image.lock()
 	noise = ntex.noise
@@ -172,7 +177,24 @@ func _input(event):
 		else:
 			show_path()
 			path_visible = true
-
+	if self != constants.selectedCar:
+		return
+	if event.is_action_pressed('attack'):
+		self.attack_with_all_weapons()
+	if event.is_action_pressed('active_1'):
+		var w = get_node("body/weapons").get_child(0)
+		if w.is_pressable:
+			w.activate()
+	if event.is_action_pressed('active_2'):
+		var w = get_node("body/weapons").get_child(1)
+		if w.is_pressable:
+			print('some')
+			w.activate()
+	if event.is_action_pressed('active_3'):
+		var w = get_node("body/weapons").get_child(2)
+		if w.is_pressable:
+			w.activate()
+		pass
 
 
 func do_think(d):
@@ -270,6 +292,19 @@ func take_damage(damage, weaponType, status = "no"):
 	if status != 'no':
 		pass
 
+func attack_with_all_weapons(target = 0):
+	if target:
+		for w in get_node("body/weapons").get_children():
+			if w.type == 'weapon':
+				w.target = target
+	else:
+		for w in get_node("body/weapons").get_children():
+			if w.type == 'weapon':
+				w.activate()
+
+
+
+
 func ability_used(id):
 	if abilities[id] == 'weap':
 		var w = get_node("body/weapons").get_child(id)
@@ -343,12 +378,16 @@ func show_path():
 		spd -= resistance * pow(spd, 2) * 0.1
 		
 		var m = MeshInstance.new()
+
 		if c < 10 * constants.step_time:
 			m.mesh = load("res://new_cubemesh_green.tres")
 		else:
 			m.mesh = load("res://new_cubemesh.tres")
 		get_node("Mypath").add_child(m)
 		m.global_transform.origin = p
+#		if image:
+#			var some_pos = Vector2(m.global_transform.origin.x, m.global_transform.origin.z) / 20.0 * 1024
+#			m.global_transform.origin.y = image.get_pixelv(some_pos).r * 3
 		f = f.rotated(Vector3(0,1,0), sign(f.cross(pa[0] - p).y) * 0.1 * rotation_speed)
 		p += f * 0.1 * spd
 		c += 1
@@ -370,17 +409,23 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 			return
 		if from_gui:
 			constants.selectedCar = self
+			for car in get_tree().get_nodes_in_group('ally'):
+				car.hide_enemies()
+			show_enemies()
 		elif event.is_action('left_click'):
 			constants.selectedCar = self
 			get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
-	
+			for car in get_tree().get_nodes_in_group('ally'):
+				car.hide_enemies()
+			show_enemies()
+
+		
 	if !from_gui:
 		if event.is_action('right_click') and constants.selectedCar:
-			constants.selectedCar.target_to_follow = self
-			constants.selectedCar.destination = self.global_transform.origin
-			constants.selectedCar.show_path()
-
-
+			var radial_menu = load("res://gui/radial_menu.tscn").instance()
+			get_parent().get_parent().get_node('GUI').add_child(radial_menu)
+			radial_menu.rect_position = event.position
+			radial_menu.choosen_car = self
 
 func _load(params):
 	get_node("body").mesh = load(params['body'])
@@ -485,4 +530,25 @@ func calc_en_drain():
 	for module in get_node("body/weapons").get_children():
 		energy_drain += sliders[c] * module.energy_cost
 		c += 1
+	pass
+
+func show_enemies():
+	for w in get_node("body/weapons").get_children():
+		if w.type == 'weapon':
+			if w.target:
+				w.target.get_node('target_obj').show()
+				var s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height
+				w.target.get_node('target_obj').scale = Vector3(s, s, s)
+				w.target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_car.tres"))
+func hide_enemies():
+	for w in get_node("body/weapons").get_children():
+		if w.type == 'weapon':
+			if w.target:
+				w.target.get_node('target_obj').hide()
+#				var s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height
+#				w.target.get_node('target_obj').scale = Vector3(s, s, s)
+#				w.target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_car.tres"))
+
+	
+	
 	pass
