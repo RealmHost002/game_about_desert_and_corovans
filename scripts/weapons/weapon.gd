@@ -3,12 +3,12 @@ extends Position3D
 
 
 var is_pressable = true
-var have_slider = true
+var have_slider = false
 var image_path = "res://icon.png"
 var type = 'weapon'
 var damage_type = 'laser'
 var energy = 100
-var step = 0.1
+var step = 0.03
 var mastercar
 var ntex
 var _name = "Pistrunchik))"
@@ -66,7 +66,7 @@ func _ready():
 	death_zone = get_parent().death_zones[self.get_index()]
 	print(death_zone)
 #	m.set_shader_param('death_zone1', death_zone)
-
+	slider_changed(100.0)
 #	set_process(false)
 #	death_zone = get_parent().death_zones
 	pass # Replace with function body.
@@ -76,11 +76,11 @@ func fire():
 		ntex = mastercar.image
 	var final_scale = Vector3(0,0,0)
 	
-	if mastercar.energy < energy_cost / float(burst_size) * s_value:
-		return
-	else:
-		mastercar.energy -= energy_cost / float(burst_size) * s_value
-		current_clip -= 1
+#	if mastercar.energy < energy_cost / float(burst_size) * s_value:
+#		return
+#	else:
+#		mastercar.energy -= energy_cost / float(burst_size) * s_value
+	current_clip -= 1
 	
 #	for node in get_parent().get_parent().get_parent().get_parent().get_children():
 #		if node != get_parent().get_parent().get_parent():
@@ -115,7 +115,7 @@ func fire():
 		while some_pos.y >= 1024:
 			some_pos.y -= 1024
 
-		s_p += (target.global_transform.origin - lb.global_transform.origin) * step * 0.1
+		s_p += (target.global_transform.origin - lb.global_transform.origin) * step
 		if (s_p - lb.global_transform.origin).length() > (target.global_transform.origin - lb.global_transform.origin).length():
 			break
 
@@ -198,8 +198,9 @@ func _input(event):
 	if event.is_action_pressed("drag_camera") and is_active:
 		if target:
 			target.get_node('target_obj').hide()
-		unactivate()
 		target = 0
+		unactivate()
+#		target = 0
 
 
 	var ray_length = 100
@@ -230,15 +231,21 @@ func unactivate():
 	constants.input_mode = 'car_select'
 	get_node("area").hide()
 	is_active = false
+	if !target:
+		mastercar.energy_drain -= self.energy_cost
 
 func slider_changed(value):
 	distance = distance_tex.curve.interpolate(value / 100.0)
 	damage = damage_tex.curve.interpolate(value / 100.0)
-	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
+
+#	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
+
 	get_node("area").scale = Vector3(distance, distance, -distance)
 	s_value = value / 100.0
 
 func activate():
+	if !target:
+		mastercar.energy_drain += self.energy_cost
 	constants.input_mode = 'target_select'
 	get_node("area").global_transform.basis = Basis(Vector3(1,0,0), Vector3(0,1,0), Vector3(0,0,1))
 #	get_node("area").get_surface_material(0).set_shader_param("death_zone1", death_zone)

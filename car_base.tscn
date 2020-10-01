@@ -198,34 +198,34 @@ script = ExtResource( 1 )
 [node name="wheels" type="Spatial" parent="."]
 
 [node name="fl" type="MeshInstance" parent="wheels"]
-transform = Transform( 1, 0, 0, 0, 0.122438, -0.992476, 0, 0.992476, 0.122438, 1.92808, -1.83481, 2.89661 )
+transform = Transform( 1, 0, 0, 0, 0.685482, -0.72809, 0, 0.72809, 0.685482, 1.92808, -1.83481, 2.89661 )
 mesh = ExtResource( 5 )
 material/0 = null
 material/1 = null
 
 [node name="fr" type="MeshInstance" parent="wheels"]
-transform = Transform( -1, 0, 0, 0, -0.122438, 0.992476, 0, -0.992476, -0.122438, -1.8298, -2.70991, 2.84449 )
+transform = Transform( -1, 0, 0, 0, -0.685482, 0.72809, 0, -0.72809, -0.685482, -1.8298, -2.70991, 2.84449 )
 mesh = SubResource( 1 )
 material/0 = null
 material/1 = null
 
 [node name="ml" type="MeshInstance" parent="wheels"]
-transform = Transform( 1, 0, 0, 0, 0.122438, -0.992476, 0, 0.992476, 0.122438, 4.38044, -0.988837, -1.28689 )
+transform = Transform( 1, 0, 0, 0, 0.685482, -0.72809, 0, 0.72809, 0.685482, 4.38044, -0.988837, -1.28689 )
 mesh = ExtResource( 7 )
 material/0 = null
 material/1 = null
 
 [node name="mr" type="MeshInstance" parent="wheels"]
-transform = Transform( -1, 0, 0, 0, -0.122438, 0.992476, 0, -0.992476, -0.122438, -0.801832, -2.70991, 0.0293492 )
+transform = Transform( -1, 0, 0, 0, -0.685482, 0.72809, 0, -0.72809, -0.685482, -0.801832, -2.70991, 0.0293492 )
 
 [node name="rl" type="MeshInstance" parent="wheels"]
-transform = Transform( 1, 0, 0, 0, 0.122438, -0.992476, 0, 0.992476, 0.122438, 4.66522, -1.00296, -5.64707 )
+transform = Transform( 1, 0, 0, 0, 0.685482, -0.72809, 0, 0.72809, 0.685482, 4.66522, -1.00296, -5.64707 )
 mesh = ExtResource( 7 )
 material/0 = null
 material/1 = null
 
 [node name="rr" type="MeshInstance" parent="wheels"]
-transform = Transform( -1, 0, 0, 0, -0.122438, 0.992476, 0, -0.992476, -0.122438, -1.8298, -2.9679, -2.41419 )
+transform = Transform( -1, 0, 0, 0, -0.685482, 0.72809, 0, -0.72809, -0.685482, -1.8298, -2.9679, -2.41419 )
 
 [node name="dirs" type="Spatial" parent="."]
 

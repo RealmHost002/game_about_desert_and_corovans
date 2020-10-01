@@ -33,6 +33,9 @@ var is_enemy = true
 var combat_bodies = []
 var support_bodies = []
 var enemy_combats = []
+var enemy_clusters = []
+var ally_clusters = []
+var enemies_who_in_clusters = []
 var current_pattern = 'truck'
 var current_move = 'escort'
 var body_type = 'combat'
@@ -114,8 +117,11 @@ func _process(delta):
 	
 	
 
-	speed += pow(acc, 1) * delta * acc_multiplyer
+	speed += pow(acc , 1) * delta * acc_multiplyer
 	speed -= resistance * pow(speed, 2) * delta
+	if speed != 0 and self in get_tree().get_nodes_in_group('ally'):
+		print(speed)
+	
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	right = (get_node("dirs/right").global_transform.origin - self.global_transform.origin).normalized() 
 	if !is_enemy:
@@ -177,7 +183,8 @@ func _process(delta):
 #		energy -= engine_energy_cost * acc * delta / constants.step_time
 #	if energy <= 0:
 #		acc = 0.0
-	get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
+	if shield_limit:
+		get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
 
 func _input(event):
 	if event.is_action_pressed('path_visibility'):
@@ -198,7 +205,6 @@ func _input(event):
 	if event.is_action_pressed('active_2'):
 		var w = get_node("body/weapons").get_child(1)
 		if w.is_pressable:
-			print('some')
 			w.activate()
 	if event.is_action_pressed('active_3'):
 		var w = get_node("body/weapons").get_child(2)
@@ -221,9 +227,9 @@ func do_think(d):
 	if s_buff == after_rot_s_buff:
 		r = rotation_speed
 		var close_combat_enemies_position = Vector3(0,0,0)
-	
-	
-	
+
+
+
 	var close_combat_count = 0.0
 	var close_combat_enemies_position = Vector3(0,0,0)
 	enemy_combats = []
@@ -233,17 +239,16 @@ func do_think(d):
 		close_combat_enemies_position += enemy.global_transform.origin
 		enemy_combats.append(enemy)
 	close_combat_enemies_position /= enemy_combats.size()
-	
 
-	
-	
+
+
 	if self.current_move == 'escort':
 		if dest_behind > 0:
 			self.acc = 0.0
 #			r *= 0.1
 		else:
 			self.acc = clamp(distance_to_dest / 2.0, 0, 1.0)
-	
+
 
 
 	if self.current_pattern[0] == 'truck':
@@ -255,7 +260,7 @@ func do_think(d):
 		var enemy_to_block = enemy_combats[self.get_index() - 4]
 		
 		var to_truck = truck.global_transform.origin - enemy_to_block.global_transform.origin
-		self.destination = truck.global_transform.origin - to_truck.normalized() * 3 + (to_truck).cross(Vector3(0, 1,0)).normalized() * (self.get_index() - 6) * 0
+#		self.destination = truck.global_transform.origin - to_truck.normalized() * 3 + (to_truck).cross(Vector3(0, 1,0)).normalized() * (self.get_index() - 6) * 0
 		for w in get_node("body/weapons").get_children():
 			if w.type == 'weapon':
 				if w.distance_tex.curve.max_value > (enemy_to_block.global_transform.origin - self.global_transform.origin).length():
@@ -271,18 +276,6 @@ func do_think(d):
 	if speed <= 0.5:
 		r *= speed
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * d * r)
-
-	
-	
-#func closest_enemy():
-	
-		
-
-
-
-
-
-
 
 
 
@@ -319,27 +312,33 @@ func ability_used(id):
 	if abilities[id] == 'weap':
 		var w = get_node("body/weapons").get_child(id)
 		w.activate()
-	if abilities[id] == 'engine':
-		pass
+	if abilities[id] == 'shield':
+		var s = get_node("body/weapons").get_child(id)
+		s.activate()
+	print(id)
 
 
 func slider_changed(id, value):
 	constants.sliders[name][id] = value
 
 	if abilities[id] == 'engine':
+		self.energy_drain = sliders[id] * get_node("body/weapons").get_child(id).energy_cost
 		sliders[id] = value / 100.0
 		acc = value / 100.0
+		self.energy_drain = sliders[id] * get_node("body/weapons").get_child(id).energy_cost
 		show_path()
 	elif abilities[id] == 'weap' or 'shield':
 		var w = get_node("body/weapons").get_child(id)
 		w.slider_changed(value)
 		sliders[id] = value / 100.0
-	calc_en_drain()
+#	calc_en_drain()
 
 func pause():
 	self.set_process(false)
 	for w in get_node("body/weapons").get_children():
 		w.set_process(false)
+	if self in get_tree().get_nodes_in_group('ally'):
+		self.path.append(destination + (destination - self.global_transform.origin).normalized() * 20.0)
 	show_path()
 
 func unpause():
@@ -349,9 +348,14 @@ func unpause():
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
 			if w.target:
-				w.set_process(true)
+				if self.energy >= w.energy_cost:
+					self.energy -= w.energy_cost
+					w.set_process(true)
+				else:
+					pass
 		elif w.type == 'shield':
 			w.enable_shield()
+			pass
 
 #			self.shield += w.current_sh_gen
 #				self.energy -= w.current_en_cost
@@ -538,7 +542,7 @@ func calc_en_drain():
 	energy_drain = 0
 	var c = 0
 	for module in get_node("body/weapons").get_children():
-		energy_drain += sliders[c] * module.energy_cost
+		energy_drain += sliders[c] * module.energy_cost * 0
 		c += 1
 	pass
 
@@ -559,7 +563,4 @@ func hide_enemies():
 #				var s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height
 #				w.target.get_node('target_obj').scale = Vector3(s, s, s)
 #				w.target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_car.tres"))
-
-	
-	
 	pass
