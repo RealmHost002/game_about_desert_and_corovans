@@ -67,7 +67,6 @@ func _ready():
 	yield(ntex, "changed")
 	image = ntex.get_data()
 	image.save_png("res://noise.png")
-	print(image)
 #	Image
 #	var rsv = ResourceSaver
 #	rsv.save("res://noise.png", ntex)
@@ -119,8 +118,8 @@ func _process(delta):
 
 	speed += pow(acc , 1) * delta * acc_multiplyer
 	speed -= resistance * pow(speed, 2) * delta
-	if speed != 0 and self in get_tree().get_nodes_in_group('ally'):
-		print(speed)
+#	if speed != 0 and self in get_tree().get_nodes_in_group('ally'):
+#		print(speed)
 	
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	right = (get_node("dirs/right").global_transform.origin - self.global_transform.origin).normalized() 
@@ -340,6 +339,7 @@ func pause():
 	if self in get_tree().get_nodes_in_group('ally'):
 		self.path.append(destination + (destination - self.global_transform.origin).normalized() * 20.0)
 	show_path()
+	get_node("CPUParticles").emitting = false
 
 func unpause():
 	self.set_process(true)
@@ -366,7 +366,8 @@ func unpause():
 	if self.shield:
 		get_node("body/weapons").get_child(sliders.size()-1).show()
 	hide_path()
-	
+	get_node("CPUParticles").emitting = true
+
 	
 func hide_path():
 	for child in get_node("Mypath").get_children():

@@ -27,7 +27,7 @@ func create_cluster(first_car, dist, chain = 1, arr = []):
 		if (p_car.global_transform.origin - pos).length() < dist and p_car != first_car and !(p_car in player_cars_which_in_clusters):
 			player_cars_which_in_clusters.append(p_car)
 			if chain:
-				var result = create_cluster(p_car, dist, 0, arr)
+				var result = create_cluster(p_car, dist, 1, arr)
 				if result:
 					arr = result
 #			else:
@@ -41,14 +41,25 @@ func create_cluster(first_car, dist, chain = 1, arr = []):
 func create_counter_cluster(cluster_to_counter):
 	var arr = []
 	var c = 0
-	while arr.size() < cluster_to_counter.size():
-		if !(get_tree().get_nodes_in_group('enemy')[c] in machine_cars_which_in_clusters):
-			arr.append(get_tree().get_nodes_in_group('enemy')[c])
-			machine_cars_which_in_clusters.append(get_tree().get_nodes_in_group('enemy')[c])
-		c += 1
-		if c >=4:
-			break
+	for p_car in cluster_to_counter:
+		for m_car in get_tree().get_nodes_in_group('enemy'):
+			if !(m_car in machine_cars_which_in_clusters):
+				if m_car.body_type != 'truck' and p_car.weapon_type == 'close' and (m_car.weapon_type == 'close' or m_car.weapon_type == 'mid'):
+					arr.append(m_car)
+					machine_cars_which_in_clusters.append(m_car)
+					break
+	print(arr)
 	machine_clusters.append(arr)
+#	while arr.size() < cluster_to_counter.size():
+#		if !(get_tree().get_nodes_in_group('enemy')[c] in machine_cars_which_in_clusters):
+#			arr.append(get_tree().get_nodes_in_group('enemy')[c])
+#			machine_cars_which_in_clusters.append(get_tree().get_nodes_in_group('enemy')[c])
+#		c += 1
+#		if c >= get_tree().get_nodes_in_group('enemy').size()-1:
+#			break
+#	machine_clusters.append(arr)
+
+
 
 func calc_midpont(arr):
 	var pos = Vector3(0,0,0)
@@ -71,11 +82,13 @@ func _process(delta):
 			var result = create_cluster(p_car, 3.0)
 			if result:
 				player_clusters.append(result)
+				
 #	print('p   ',player_clusters)
+
 	for cluster in player_clusters:
 		player_clusters_midpoints.append(calc_midpont(cluster))
 		create_counter_cluster(cluster)
-
+		
 #	print('m     ',machine_clusters)
 
 	truck_pos = truck.global_transform.origin
