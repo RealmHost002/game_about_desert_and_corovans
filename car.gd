@@ -186,7 +186,11 @@ func _process(delta):
 		get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
 
 func _input(event):
+	if !(self in get_tree().get_nodes_in_group('ally')):
+		return
 	if event.is_action_pressed('path_visibility'):
+#		if !(self in get_tree().get_nodes_in_group('ally')):
+#			return
 		if path_visible:
 			hide_path()
 			path_visible = false
@@ -304,6 +308,15 @@ func attack_with_all_weapons(target = 0):
 			if w.type == 'weapon':
 				w.activate()
 
+func set_target_to_follow(target):
+	self.target_to_follow = target
+	self.current_move = 'follow'
+	self.destination = target.global_transform.origin
+
+func set_target_to_approach(target):
+	self.target_to_follow = target
+	self.current_move = 'approach'
+	self.destination = target.global_transform.origin
 
 
 
@@ -338,7 +351,8 @@ func pause():
 		w.set_process(false)
 	if self in get_tree().get_nodes_in_group('ally'):
 		self.path.append(destination + (destination - self.global_transform.origin).normalized() * 20.0)
-	show_path()
+	if self in get_tree().get_nodes_in_group('ally'):
+		show_path()
 	get_node("CPUParticles").emitting = false
 
 func unpause():

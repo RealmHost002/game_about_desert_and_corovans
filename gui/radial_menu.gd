@@ -20,22 +20,23 @@ func _input(event):
 func _on_TextureButton1_pressed():
 	constants.selectedCar.hide_enemies()
 	constants.selectedCar.attack_with_all_weapons(choosen_car)
-#	constants.selectedCar.hide_enemies()
 	constants.selectedCar.show_enemies()
 	pass # Replace with function body.
 
 
 func _on_TextureButton2_pressed():
-	constants.selectedCar.target_to_follow = choosen_car
-	constants.selectedCar.current_move = 'follow'
-	constants.selectedCar.destination = choosen_car.global_transform.origin
+#	constants.selectedCar.target_to_follow = choosen_car
+#	constants.selectedCar.current_move = 'follow'
+#	constants.selectedCar.destination = choosen_car.global_transform.origin
+	constants.selectedCar.set_target_to_follow(choosen_car)
 	constants.selectedCar.show_path()
 	pass # Replace with function body.
 
 
 func _on_TextureButton3_pressed():
-	constants.selectedCar.target_to_follow = choosen_car
-	constants.selectedCar.current_move = 'approach'
-	constants.selectedCar.destination = choosen_car.global_transform.origin
+#	constants.selectedCar.target_to_follow = choosen_car
+#	constants.selectedCar.current_move = 'approach'
+#	constants.selectedCar.destination = choosen_car.global_transform.origin
+	constants.selectedCar.set_target_to_approach(choosen_car)
 	constants.selectedCar.show_path()
 	pass # Replace with function body.

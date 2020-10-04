@@ -8,6 +8,9 @@ var machine_cars_which_in_clusters = []
 var player_clusters_midpoints = []
 var machine_clusters_midpoints = []
 
+var machine_clusters_behaviour = []
+var machine_behaviour = 'defend'
+#var situatio
 
 var truck_pos = Vector3()
 var truck_pos_end_turn = Vector3()
@@ -36,8 +39,8 @@ func create_cluster(first_car, dist, chain = 1, arr = []):
 	if arr.size() > 0:
 		player_cars_which_in_clusters.append(first_car)
 		return(arr)
-		
-		
+
+
 func create_counter_cluster(cluster_to_counter):
 	var arr = []
 	var c = 0
@@ -50,6 +53,8 @@ func create_counter_cluster(cluster_to_counter):
 					break
 	print(arr)
 	machine_clusters.append(arr)
+	
+	
 #	while arr.size() < cluster_to_counter.size():
 #		if !(get_tree().get_nodes_in_group('enemy')[c] in machine_cars_which_in_clusters):
 #			arr.append(get_tree().get_nodes_in_group('enemy')[c])
@@ -82,18 +87,20 @@ func _process(delta):
 			var result = create_cluster(p_car, 3.0)
 			if result:
 				player_clusters.append(result)
-				
+
 #	print('p   ',player_clusters)
 
 	for cluster in player_clusters:
 		player_clusters_midpoints.append(calc_midpont(cluster))
 		create_counter_cluster(cluster)
-		
+
 #	print('m     ',machine_clusters)
 
 	truck_pos = truck.global_transform.origin
 	var c = 0
+#	if machine_behaviour == 'defend':
 	for cluster in machine_clusters:
+		machine_clusters_behaviour.append('passive')
 		var vec_to_p_cluster = player_clusters_midpoints[c] - truck_pos
 		var pos = truck_pos + vec_to_p_cluster.normalized() * 3.0
 		machine_clusters_midpoints.append(pos)
