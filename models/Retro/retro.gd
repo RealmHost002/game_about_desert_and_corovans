@@ -11,6 +11,9 @@ func _ready():
 	_load()
 	pass 
 
+
+
+	
 func _load():
 
 	var other_items = inf_from_dict["shields"]

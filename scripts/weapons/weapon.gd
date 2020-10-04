@@ -64,7 +64,7 @@ func _ready():
 	get_node("area").mesh.surface_set_material(0, m)
 
 	death_zone = get_parent().death_zones[self.get_index()]
-	print(death_zone)
+#	print(death_zone)
 #	m.set_shader_param('death_zone1', death_zone)
 	slider_changed(100.0)
 #	set_process(false)

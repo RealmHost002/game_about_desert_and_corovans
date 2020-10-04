@@ -76,7 +76,7 @@ func add_from_data():
 func update():
 	for child in get_node("Panel/ScrollContainer/hcontainer").get_children():
 		child.queue_free()
-	
+	print("piiiiiiiiiiiiiizda ",invetoryData)
 	for i in invetoryData:
 		if invetoryData[i]["count"] > 0:
 			match invetoryData[i]["type"]:
@@ -139,6 +139,10 @@ func _input(event):
 #		print(taken_node.type)
 #		print(typeof(taken_node))
 		current_button.change_item(taken_node)
+	
+		
+		
+		
 	
 		update()
 
