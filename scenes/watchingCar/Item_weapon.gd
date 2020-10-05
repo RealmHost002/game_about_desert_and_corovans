@@ -6,7 +6,7 @@ extends Control
 var super_parent
 var damimage
 var distimage 
-var i 
+var name_of_weapon_string 
 var weapon_data
 var type = "weapon"
 var is_taken = false
@@ -15,8 +15,8 @@ func _ready():
 	var desc = get_node("description")
 	desc.newline()
 	super_parent = get_parent().get_parent().get_parent().get_parent()
-	pass # Replace with function body.
-
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -32,8 +32,8 @@ func _on_HSlider_value_changed(value):
 	var desc = get_node("description")
 	if type == "weapon":
 		desc.clear()
-		desc.add_text(i  + ": ")
-		desc.add_text(weapon_data[i]["damage_type"])
+		desc.add_text(name_of_weapon_string   + ": ")
+		desc.add_text(weapon_data[name_of_weapon_string]["damage_type"])
 		desc.newline()
 	# kurva_poshla
 
@@ -48,13 +48,13 @@ func _input(event):
 	if is_taken and event is InputEventMouseMotion:
 		self.rect_position = event.position
 	if is_taken and event.is_action_released('left_click'):
-		super_parent.invetoryData[i]['count'] += 1
+		super_parent.invetoryData[name_of_weapon_string]['count'] += 1
 		super_parent.update()
 		call_deferred('queue_free')
 		pass
 
 func pop_one():
-	super_parent.invetoryData[i]['count'] -= 1
+	super_parent.invetoryData[name_of_weapon_string]['count'] -= 1
 	
 func _take(event):
 	if event.is_action_pressed('left_click'):
@@ -68,7 +68,7 @@ func _take(event):
 		get_node("item_icon/ReferenceRect").mouse_filter = MOUSE_FILTER_IGNORE
 		get_node("description").hide()
 		get_node("RichTextLabel").hide()
-		super_parent.invetoryData[i]['count'] -= 1
+		super_parent.invetoryData[name_of_weapon_string]['count'] -= 1
 		is_taken = true
 		super_parent.taken_node = self
 		super_parent.update()

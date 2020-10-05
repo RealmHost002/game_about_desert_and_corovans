@@ -1,9 +1,5 @@
 extends Control
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var car
 var invetoryData
 var generators_data
@@ -76,7 +72,7 @@ func add_from_data():
 func update():
 	for child in get_node("Panel/ScrollContainer/hcontainer").get_children():
 		child.queue_free()
-	print("piiiiiiiiiiiiiizda ",invetoryData)
+#	print("piiiiiiiiiiiiiizda ",invetoryData)
 	for i in invetoryData:
 		if invetoryData[i]["count"] > 0:
 			match invetoryData[i]["type"]:
@@ -91,7 +87,7 @@ func update():
 	#				print(curve_dam)
 					current_item.distimage = curve_dist
 					current_item.damimage = curve_dam
-					current_item.i = i
+					current_item.name_of_weapon_string = i
 					current_item.weapon_data = weapon_data
 					current_item.get_node("description").clear()
 					current_item.get_node("description").add_text(i  + ": ")
@@ -102,7 +98,7 @@ func update():
 					current_item.get_node("description").add_text("damage: 0")
 					current_item.get_node("description").newline()
 					current_item.get_node("description").add_text("distance: 0")
-					
+				
 					
 				"shield":
 					var icon = load(shields_data[i]["image_path"])
@@ -112,8 +108,9 @@ func update():
 					print(str(invetoryData[i]["count"]))
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
-					current_item.i = i
-				
+					current_item.name_of_weapon_string = i
+					if i == "zzzConvergenator_mk3":
+						current_item.hide()
 				"generator":
 					var icon = load(generators_data[i]["image_path"])
 					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
@@ -121,10 +118,13 @@ func update():
 					container.add_child(current_item)
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
-					current_item.i = i
+					current_item.name_of_weapon_string = i
+					if i == "zzzConvergenator_mk3":
+						current_item.hide()
 				"money":
 #					print(invetoryData[i])
 					get_node("money").text = "Money: " + str(invetoryData[i]["count"])
+			
 #	print(get_node("Panel/ScrollContainer/hcontainer").get_child_count())
 
 	var invetory_file = File.new()
@@ -134,16 +134,11 @@ func update():
 
 func _input(event):
 	if event.is_action_released("left_click") and current_button and taken_node:
-		taken_node.pop_one()
+		taken_node.pop_one() # invetoryData[i]['count'] -= 1
 #		print("zalupa")
 #		print(taken_node.type)
 #		print(typeof(taken_node))
 		current_button.change_item(taken_node)
-	
-		
-		
-		
-	
 		update()
 
 #		taken_node.pop_one()

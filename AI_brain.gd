@@ -51,7 +51,7 @@ func create_counter_cluster(cluster_to_counter):
 					arr.append(m_car)
 					machine_cars_which_in_clusters.append(m_car)
 					break
-	print(arr)
+#	print(arr)
 	machine_clusters.append(arr)
 	
 	

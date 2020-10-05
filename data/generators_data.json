@@ -29,7 +29,7 @@
   },
   "zzzConvergenator_mk3": {
     "energy_production": 30,
-    "image_path": "res://gui/textures/weaponIcons/Convergenator_mk2.png",
+    "image_path": "res://gui/textures/weaponIcons/empty.png",
     "max_energy": 100,
     "tier": 2,
     "effectivness": 25
