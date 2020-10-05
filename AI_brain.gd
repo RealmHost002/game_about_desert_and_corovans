@@ -47,7 +47,7 @@ func create_counter_cluster(cluster_to_counter):
 	for p_car in cluster_to_counter:
 		for m_car in get_tree().get_nodes_in_group('enemy'):
 			if !(m_car in machine_cars_which_in_clusters):
-				if m_car.body_type != 'truck' and p_car.weapon_type == 'close' and (m_car.weapon_type == 'close' or m_car.weapon_type == 'mid'):
+				if true or m_car.body_type != 'truck' and p_car.weapon_type == 'close' and (m_car.weapon_type == 'close' or m_car.weapon_type == 'mid'):
 					arr.append(m_car)
 					machine_cars_which_in_clusters.append(m_car)
 					break
