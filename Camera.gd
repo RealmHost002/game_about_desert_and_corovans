@@ -15,10 +15,14 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion and drag:
 		get_parent().global_transform.origin += (get_node("../x").global_transform.origin - get_parent().global_transform.origin) * event.relative.x / anti_speed + (get_node("../z").global_transform.origin - get_parent().global_transform.origin) * event.relative.y / anti_speed
+	
+	var close_up_vec = (self.global_transform.origin - get_parent().global_transform.origin).normalized()
 	if event.is_action_pressed('wheel_up'):
-		self.fov -= 7.0
+#		self.fov -= 7.0
+		self.global_transform.origin -= close_up_vec
 	if event.is_action_pressed('wheel_down'):
-		self.fov += 7.0
+#		self.fov += 7.0
+		self.global_transform.origin += close_up_vec
 	if event is InputEventMouseMotion:
 #		print(event.position.y)
 		if event.position.x == constants.machine_resolution.x - 1:

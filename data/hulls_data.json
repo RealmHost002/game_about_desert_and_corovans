@@ -34,10 +34,14 @@
     "death_zones": [
       -1.97,
       -1.17,
+      0,
+      0,
       1.17,
-      1.97
+      1.97,
+      0,
+      0
     ],
-    "engine_cost": 40,
+    "engine_cost": 30,
     "blueprint": "res://models/bigfoot/blueprint.tscn",
     "wheel_height": 0.875,
     "type": "combat",
@@ -78,9 +82,13 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
-    "engine_cost": 26,
+    "engine_cost": 13,
     "blueprint": "res://models/hover/blueprint.tscn",
     "wheel_height": 0,
     "type": "support",
@@ -121,9 +129,13 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
-    "engine_cost": 40,
+    "engine_cost": 25,
     "blueprint": "res://models/retro/blueprint.tscn",
     "wheel_height": 0.44,
     "type": "support",
@@ -167,9 +179,15 @@
       -3.14,
       -1.95,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
-    "engine_cost": 36,
+    "engine_cost": 25,
     "blueprint": "res://models/the_toad/blueprint.tscn",
     "wheel_height": 0.57,
     "type": "combat",
@@ -196,8 +214,8 @@
       -0.675
     ],
     "rot_speed": 0.4,
-    "acc_multiplyer": 0.6,
-    "resistance": 1.1,
+    "acc_multiplyer": 1.8,
+    "resistance": 3.1,
     "wheel_pos": [
       3.156,
       5.565,
@@ -210,6 +228,10 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "engine_cost": 40,
@@ -219,5 +241,56 @@
     "effectivness": 400,
     "mobility": 0.34285714285714286,
     "cost": 400
+  },
+  "stingray": {
+    "body": "res://models/stingray/body.tres",
+    "wheelFront": "res://models/stingray/wheel.tres",
+    "wheelBack": "res://models/stingray/wheel.tres",
+    "cont_of_items": null,
+    "cont_of_weapon": null,
+    "hp": 100,
+    "weapon_positions": [
+      -1.1,
+      1,
+      -0.06,
+      1.1,
+      1,
+      -0.06,
+      ""
+    ],
+    "col_shape": "res://models/stingray/col_shape.tres",
+    "col_shape_pos": [
+      0,
+      0.908,
+      0
+    ],
+    "rot_speed": 0.7,
+    "acc_multiplyer": 1.3,
+    "resistance": 0.3,
+    "wheel_pos": [
+      1.984,
+      2.844,
+      1.899,
+      -2.415,
+      0,
+      0
+    ],
+    "death_zones": [
+      0.28,
+      3,
+      -3,
+      -0.28,
+      0.28,
+      3,
+      -3,
+      -0.28
+    ],
+    "engine_cost": 20,
+    "blueprint": "res://models/stingray/blueprint.tscn",
+    "wheel_height": 0,
+    "type": "support",
+    "effectivness": null,
+    "mobility": null,
+    "cost": null
   }
 }

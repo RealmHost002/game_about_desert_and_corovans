@@ -47,11 +47,14 @@ func create_counter_cluster(cluster_to_counter):
 	for p_car in cluster_to_counter:
 		for m_car in get_tree().get_nodes_in_group('enemy'):
 			if !(m_car in machine_cars_which_in_clusters):
-				if true or m_car.body_type != 'truck' and p_car.weapon_type == 'close' and (m_car.weapon_type == 'close' or m_car.weapon_type == 'mid'):
+				if m_car.body_type != 'truck' and p_car.weapon_type == 'close' and (m_car.weapon_type == 'close' or m_car.weapon_type == 'mid'):
 					arr.append(m_car)
 					machine_cars_which_in_clusters.append(m_car)
 					break
-#	print(arr)
+				if m_car.body_type != 'truck' and p_car.weapon_type == 'mid' and m_car.weapon_type == 'mid':
+					arr.append(m_car)
+					machine_cars_which_in_clusters.append(m_car)
+					break
 	machine_clusters.append(arr)
 	
 	
@@ -99,6 +102,13 @@ func _process(delta):
 	truck_pos = truck.global_transform.origin
 	var c = 0
 #	if machine_behaviour == 'defend':
+	for m_car in get_tree().get_nodes_in_group('enemy'):
+		if !(m_car in machine_cars_which_in_clusters) and m_car.body_type != 'truck':
+			machine_clusters[0].append(m_car)
+			machine_cars_which_in_clusters.append(m_car)
+	
+	
+	
 	for cluster in machine_clusters:
 		machine_clusters_behaviour.append('passive')
 		var vec_to_p_cluster = player_clusters_midpoints[c] - truck_pos
@@ -112,3 +122,6 @@ func _process(delta):
 
 
 
+
+#	print('p:   ', player_clusters)
+#	print('m:    ', machine_clusters)

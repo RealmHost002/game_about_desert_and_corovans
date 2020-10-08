@@ -5,12 +5,12 @@
 [ext_resource path="res://gui/textures/hp.png" type="Texture" id=3]
 [ext_resource path="res://models/useful materials/rubber_wheel.tres" type="Material" id=4]
 [ext_resource path="res://models/bigfoot/wheel.tres" type="ArrayMesh" id=5]
-[ext_resource path="res://models/retro/body.tres" type="ArrayMesh" id=6]
+[ext_resource path="res://models/stingray/col_shape.tres" type="Shape" id=6]
 [ext_resource path="res://models/quarry_truck/wheel.tres" type="ArrayMesh" id=7]
 [ext_resource path="res://models/bigfoot/main_body.tres" type="Material" id=8]
-[ext_resource path="res://models/quarry_truck/col_shape.tres" type="Shape" id=9]
 [ext_resource path="res://gui/target_mesh.tres" type="ArrayMesh" id=10]
 [ext_resource path="res://dust/m.tres" type="ArrayMesh" id=11]
+[ext_resource path="res://models/stingray/body.tres" type="ArrayMesh" id=12]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -55,6 +55,9 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 uniform float a = 1.0;
 uniform float b = 1.0;
+//uniform float max_a = 1.0;
+//uniform float max_b = 1.0;
+
 
 void vertex() {
 	UV=UV*uv1_scale.xy+uv1_offset.xy;
@@ -186,16 +189,14 @@ _data = [ Vector2( 0, 0 ), 0.0, 5.28591, 0, 0, Vector2( 0.660919, 1 ), 0.0, 0.0,
 script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85378, -0.675016 )
-shape = ExtResource( 9 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.629904, -0.12587 )
+shape = ExtResource( 6 )
 
 [node name="body" type="MeshInstance" parent="."]
-mesh = ExtResource( 6 )
+mesh = ExtResource( 12 )
 material/0 = null
 material/1 = null
 material/2 = null
-material/3 = null
-material/4 = null
 
 [node name="weapons" type="Spatial" parent="body"]
 script = ExtResource( 1 )

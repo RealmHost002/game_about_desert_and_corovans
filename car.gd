@@ -42,12 +42,13 @@ var body_type = 'combat'
 var weapon_type = 'close'
 var current_target
 var target_to_follow
+var follow_arg = "DEFAULT"
 var truck = self
 
 
 var engine_energy_cost = 20.0
 var hp = 100
-var max_hp = 100
+var max_hp = 1000
 var shield = 0
 var shield_limit = 0
 var energy = 100
@@ -100,17 +101,28 @@ func _process(delta):
 		if (Vector3(self.global_transform.origin.x, 0, self.global_transform.origin.z) - Vector3(path[0].x, 0, path[0].z)).length() < 0.1:
 			path.pop_front()
 	
+	
+	var dest_behind = sign((destination - self.global_transform.origin).cross(right).y)
+	var some_for_rot = 1
 	if current_move == 'approach' and target_to_follow:
 #	 or current_move == 'escort' and target_to_follow:
 		destination = target_to_follow.global_transform.origin
 		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0 + 1.0 ,0 , 1.0)
 	
 	elif current_move == 'follow' and target_to_follow:
-		destination = target_to_follow.global_transform.origin
-		if (target_to_follow.global_transform.origin - self.global_transform.origin).length() < min_range * 0.8:
+#		destination = target_to_follow.global_transform.origin
+		follow()
+		dest_behind = sign((destination - self.global_transform.origin).cross(right).y)
+#		if (destination - self.global_transform.origin).length() < min_range * 0.01:
+#			self.acc = 0
+#		else:
+#			self.acc = 1.0
+		if dest_behind > 0 and (target_to_follow.global_transform.origin - self.global_transform.origin).length() < min_range * 2.0:
 			self.acc = 0
+			some_for_rot = -1
+#			self.rot
 		else:
-			self.acc = 1.0
+			self.acc = clamp((destination - self.global_transform.origin).length() / 2.0, 0, 1.0)
 #		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0 - 0.5 ,0 , 1.0)
 	
 	
@@ -260,22 +272,21 @@ func do_think(d):
 			ally.truck = self
 		destination = Vector3(100, 0, 100)
 	else:
-		var enemy_to_block = enemy_combats[self.get_index() - 4]
-		
-		var to_truck = truck.global_transform.origin - enemy_to_block.global_transform.origin
+#		var enemy_to_block = enemy_combats[self.get_index() - 4]
+#		var to_truck = truck.global_transform.origin - enemy_to_block.global_transform.origin
 #		self.destination = truck.global_transform.origin - to_truck.normalized() * 3 + (to_truck).cross(Vector3(0, 1,0)).normalized() * (self.get_index() - 6) * 0
 		for w in get_node("body/weapons").get_children():
 			if w.type == 'weapon':
-				if w.distance_tex.curve.max_value > (enemy_to_block.global_transform.origin - self.global_transform.origin).length():
-					w.slider_changed(100.0)
-					w.target = enemy_to_block
-				else:
-					w.slider_changed(1.0)
-					w.target = 0
-					for enemy in get_tree().get_nodes_in_group('ally'):
-						if w.distance_tex.curve.max_value > (enemy.global_transform.origin - self.global_transform.origin).length():
-							w.slider_changed(100.0)
-							w.target = enemy
+#				if w.distance_tex.curve.max_value > (enemy_to_block.global_transform.origin - self.global_transform.origin).length():
+#					w.slider_changed(100.0)
+#					w.target = enemy_to_block
+#				else:
+				w.slider_changed(1.0)
+				w.target = 0
+				for enemy in get_tree().get_nodes_in_group('ally'):
+					if w.distance_tex.curve.max_value > (enemy.global_transform.origin - self.global_transform.origin).length():
+						w.slider_changed(100.0)
+						w.target = enemy
 	if speed <= 0.5:
 		r *= speed
 	self.rotate(Vector3(0,1,0), sign(forward.cross(destination - self.global_transform.origin).y) * d * r)
@@ -290,9 +301,9 @@ func do_think(d):
 func destroy():
 	self.queue_free()
 	pass
-	
+
 func take_damage(damage, weaponType, status = "no"):
-	hp -= damage
+#	hp -= damage
 	if hp <= 0:
 		destroy()
 	if status != 'no':
@@ -308,10 +319,38 @@ func attack_with_all_weapons(target = 0):
 			if w.type == 'weapon':
 				w.activate()
 
-func set_target_to_follow(target):
+func follow():
+	destination = target_to_follow.global_transform.origin
+	if follow_arg == 'DEFAULT':
+		return
+	elif follow_arg == 'UP':
+		destination += target_to_follow.forward * min_range * 0.8
+	elif follow_arg == 'UP_RIGHT':
+		destination += (target_to_follow.right + target_to_follow.forward).normalized() * min_range * 0.8
+	elif follow_arg == 'RIGHT':
+		destination += target_to_follow.right * min_range * 0.8
+	elif follow_arg == 'DOWN_RIGHT':
+		destination += (target_to_follow.right - target_to_follow.forward).normalized() * min_range * 0.8
+	elif follow_arg == 'DOWN':
+		destination -= target_to_follow.forward * min_range * 0.8
+	elif follow_arg == 'DOWN_LEFT':
+		destination += (-target_to_follow.right - target_to_follow.forward).normalized() * min_range * 0.8
+	elif follow_arg == 'LEFT':
+		destination -= target_to_follow.right * min_range * 0.8
+	elif follow_arg == 'UP_LEFT':
+		destination += (-target_to_follow.right + target_to_follow.forward).normalized() * min_range * 0.8
+
+
+
+func set_target_to_follow(target, follow_mode):
 	self.target_to_follow = target
 	self.current_move = 'follow'
-	self.destination = target.global_transform.origin
+	self.follow_arg = follow_mode
+	follow()
+#	self.destination = target.global_transform.origin
+	print(follow_mode)
+#	call_deferred('show_path')
+	show_path()
 
 func set_target_to_approach(target):
 	self.target_to_follow = target
@@ -349,10 +388,18 @@ func pause():
 	self.set_process(false)
 	for w in get_node("body/weapons").get_children():
 		w.set_process(false)
+
 	if self in get_tree().get_nodes_in_group('ally'):
 		self.path.append(destination + (destination - self.global_transform.origin).normalized() * 20.0)
+
 	if self in get_tree().get_nodes_in_group('ally'):
+#		if current_move == 'approach' and target_to_follow:
+#			destination = target_to_follow.global_transform.origin
+#		elif current_move == 'follow' and target_to_follow:
+#			destination = target_to_follow.global_transform.origin
+
 		show_path()
+	
 	get_node("CPUParticles").emitting = false
 
 func unpause():
@@ -391,6 +438,11 @@ func hide_path():
 
 func show_path():
 	hide_path()
+#	print('some')
+	if current_move == 'approach' and target_to_follow:
+		destination = target_to_follow.global_transform.origin
+#	elif current_move == 'follow' and target_to_follow:
+#		destination = target_to_follow.global_transform.origin
 	var spd = speed
 	var f = forward
 	var p = self.global_transform.origin
@@ -493,7 +545,7 @@ func _load(params):
 	v = params['col_shape_pos']
 	get_node("CollisionShape").transform.origin = Vector3(v[0], v[1], v[2])
 	v = params['death_zones']
-	get_node("body/weapons").death_zones = [0, Vector2(v[0], v[1]), Vector2(v[2], v[3])]
+	get_node("body/weapons").death_zones = [0, Vector2(v[0], v[1]), Vector2(v[2], v[3]), Vector2(v[4], v[5]), Vector2(v[6], v[7])]
 	
 	body_type = params['type']
 #	if params['type'] in combat_bodies:

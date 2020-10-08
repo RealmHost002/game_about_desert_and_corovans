@@ -15,6 +15,7 @@ var _name = "Pistrunchik))"
 var burst_size = 6.0
 var step_time = 1.0
 var death_zone = Vector2()
+var second_death_zone = Vector2()
 var is_active = false
 var camera
 var target = 0
@@ -63,7 +64,8 @@ func _ready():
 	get_node("area").mesh = area
 	get_node("area").mesh.surface_set_material(0, m)
 
-	death_zone = get_parent().death_zones[self.get_index()]
+	death_zone = get_parent().death_zones[self.get_index() * 2]
+	second_death_zone = get_parent().death_zones[self.get_index() * 2 - 1]
 #	print(death_zone)
 #	m.set_shader_param('death_zone1', death_zone)
 	slider_changed(100.0)
@@ -72,6 +74,10 @@ func _ready():
 	pass # Replace with function body.
 
 func fire():
+	var crutch = target.get_node('CollisionShape')
+	var target = crutch
+	
+	
 	if !ntex:
 		ntex = mastercar.image
 	var final_scale = Vector3(0,0,0)
@@ -174,9 +180,9 @@ func _process(delta):
 		direction = direction.normalized()
 		to_target = target.global_transform.origin - get_node("dot").global_transform.origin
 		var f = true
-		if self.death_zone == Vector2(-1.2, 0.2):
-			print(self.rotation.y)
-		if (self.rotation.y) > self.death_zone.x and (self.rotation.y) < self.death_zone.y:
+#		if self.death_zone == Vector2(-1.2, 0.2):
+			
+		if (self.rotation.y > self.death_zone.x and self.rotation.y < self.death_zone.y) or (self.rotation.y > self.second_death_zone.x and self.rotation.y < self.second_death_zone.y):
 			if self.rotation.x > -0.3:
 				self.rotation.x -= 0.7 * delta
 			f = false
@@ -254,7 +260,7 @@ func activate():
 	get_node("area").scale = Vector3(distance, distance, -distance)
 	is_active = true
 	m.set_shader_param('death_zone1', death_zone)
-	m.set_shader_param('death_zone2', death_zone)
+	m.set_shader_param('death_zone2', second_death_zone)
 	if target:
 		target.get_node('target_obj').show()
 		var s = target.get_node('CollisionShape').shape.radius + target.get_node('CollisionShape').shape.height
@@ -278,7 +284,3 @@ func _load(params):
 	max_cd_time = params['cd_time']
 	max_clip = params['clip']
 	current_clip = max_clip
-	
-	
-	
-	
