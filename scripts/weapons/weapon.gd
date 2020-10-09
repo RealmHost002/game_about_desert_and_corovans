@@ -121,7 +121,7 @@ func fire():
 		while some_pos.y >= 1024:
 			some_pos.y -= 1024
 
-		s_p += (target.global_transform.origin - lb.global_transform.origin) * step
+		s_p += (target.global_transform.origin - lb.global_transform.origin).normalized() * step * distance
 		if (s_p - lb.global_transform.origin).length() > (target.global_transform.origin - lb.global_transform.origin).length():
 			break
 
@@ -134,6 +134,7 @@ func fire():
 		dist_to_ray_end = (s_p - lb.global_transform.origin).length()
 	else:
 		dist_to_ray_end = clamp((target.global_transform.origin - get_node("dot").global_transform.origin).length(), 0, distance)
+
 #		print('ds',(target.global_transform.origin - self.global_transform.origin).length(),'max', distance, 'scale', lb.scale.z )
 #	lb.scale.z *= dist_to_ray_end
 	

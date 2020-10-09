@@ -75,7 +75,7 @@ func _ready():
 		image.lock()
 	noise = ntex.noise
 	get_node("Sprite3D").material_override = get_node("Sprite3D").material_override.duplicate(true)
-#	take_damage(500, "laser")
+
 #	set_process(false)
 	pass # Replace with function body.
 
@@ -110,19 +110,15 @@ func _process(delta):
 		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0 + 1.0 ,0 , 1.0)
 	
 	elif current_move == 'follow' and target_to_follow:
-#		destination = target_to_follow.global_transform.origin
 		follow()
 		dest_behind = sign((destination - self.global_transform.origin).cross(right).y)
-#		if (destination - self.global_transform.origin).length() < min_range * 0.01:
-#			self.acc = 0
-#		else:
-#			self.acc = 1.0
 		if dest_behind > 0 and (target_to_follow.global_transform.origin - self.global_transform.origin).length() < min_range * 2.0:
 			self.acc = 0
 			some_for_rot = -1
 #			self.rot
-		else:
-			self.acc = clamp((destination - self.global_transform.origin).length() / 2.0, 0, 1.0)
+		elif self.hp > 0:
+			self.acc = clamp((destination - self.global_transform.origin).length() / 2.0 + 0.2, 0, 1.0)
+			
 #		self.acc = clamp((target_to_follow.global_transform.origin - self.global_transform.origin).length() / 2.0 - 0.5 ,0 , 1.0)
 	
 	
@@ -178,24 +174,33 @@ func _process(delta):
 
 	self.global_transform.origin.y = s_height
 	forward.y = 0.0
-	move_and_slide(speed * (forward))
-#	move_and_collide(speed * (forward) * delta)
-
-#	if Input.is_action_pressed("function_1"):
-
-	
-#	if shield < shield_limit:
-#		shield += shield_production
-#	if energy < max_energy:
-#		energy += energy_production * delta / constants.step_time
-#	else:
-#		energy = max_energy
-#	if energy > 0:
-#		energy -= engine_energy_cost * acc * delta / constants.step_time
-#	if energy <= 0:
-#		acc = 0.0
+	if self.hp >= 0:
+		move_and_slide(speed * (forward))
+	else:
+		get_node("CPUParticles").mesh = load("res://dust/m_smoke.tres")
+		get_node("CPUParticles").initial_velocity = 4
+		get_node("CPUParticles").lifetime = 2
+		var some_pos = Vector2(self.global_transform.origin.x, self.global_transform.origin.z) / 20.0 * 1024
+		while some_pos.x >= 1024:
+			some_pos.x -= 1024
+		while some_pos.y >= 1024:
+			some_pos.y -= 1024
+		self.global_transform.origin.y = image.get_pixelv(some_pos).r * 3 - wheel_height / 10.0
+		acc = 0
+		if speed > 0:
+			speed -= delta / 3.0
+		else:
+			speed = 0
+		move_and_slide(speed * (forward))
+		
 	if shield_limit:
 		get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
+
+
+
+
+
+
 
 func _input(event):
 	if !(self in get_tree().get_nodes_in_group('ally')):
@@ -299,12 +304,13 @@ func do_think(d):
 
 
 func destroy():
-	self.queue_free()
+#	self.queue_free()
 	pass
 
 func take_damage(damage, weaponType, status = "no"):
-#	hp -= damage
+	hp -= damage
 	if hp <= 0:
+		self.remove_from_group('ally')
 		destroy()
 	if status != 'no':
 		pass
@@ -371,7 +377,6 @@ func ability_used(id):
 
 func slider_changed(id, value):
 	constants.sliders[name][id] = value
-
 	if abilities[id] == 'engine':
 		self.energy_drain = sliders[id] * get_node("body/weapons").get_child(id).energy_cost
 		sliders[id] = value / 100.0
@@ -438,20 +443,24 @@ func hide_path():
 
 func show_path():
 	hide_path()
-#	print('some')
+
 	if current_move == 'approach' and target_to_follow:
 		destination = target_to_follow.global_transform.origin
 #	elif current_move == 'follow' and target_to_follow:
+#		follow()
 #		destination = target_to_follow.global_transform.origin
 	var spd = speed
 	var f = forward
 	var p = self.global_transform.origin
 	var pa
+
 	if path:
 		pa = path.duplicate()
 	else:
 		pa = [destination]
-	
+	if current_move == 'follow' and target_to_follow:
+		follow()
+		pa = [destination]
 	p.y = 2
 	var c = 0
 	while (p - pa[-1]).length() > 0.1:
