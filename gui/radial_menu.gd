@@ -9,14 +9,16 @@ func _ready():
 	pass # Replace with function body.
 
 func _input(event):
+	if second_button_expanded and event is InputEventMouseMotion:
+		if (event.position - (get_node("TextureButton2").rect_position + self.rect_position + Vector2(32, 32))).length() > 130:
+			second_button_expanded = false
+			get_node("TextureButton2/Control").hide()
 #	InputEventMouseMotion
 	if !(event is InputEventMouseMotion) and !event.is_action_pressed('left_click'):
 		self.queue_free()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
-func expand():
-	second_button_expanded = true
-	pass
+
 
 
 
@@ -42,7 +44,8 @@ func _on_TextureButton3_pressed():
 
 
 func _on_TextureButton2_mouse_entered():
-	pass # Replace with function body.
+	second_button_expanded = true
+	get_node("TextureButton2/Control").show()
 
 
 func _on_UP_pressed(extra_arg_0):
