@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://desert.tres" type="Material" id=1]
 [ext_resource path="res://scenes/watchingCar/watchingCar.tscn" type="PackedScene" id=2]
@@ -10,11 +10,41 @@
 [ext_resource path="res://deleteme.tscn" type="PackedScene" id=8]
 [ext_resource path="res://noise.obj" type="ArrayMesh" id=9]
 [ext_resource path="res://AI_brain.gd" type="Script" id=10]
+[ext_resource path="res://noise.tres" type="Texture" id=11]
+[ext_resource path="res://trash textures/1-fine-sand-seamless-texture.jpg" type="Texture" id=12]
+[ext_resource path="res://desert.shader" type="Shader" id=13]
+[ext_resource path="res://trash textures/d92zmi3-bc69cb5e-7180-4d45-85fe-377426f7c76b.jpg" type="Texture" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 20, 20 )
 subdivide_width = 200
 subdivide_depth = 200
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+seamless = true
+noise = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 13 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/specular = 0.874
+shader_param/metallic = 0.307
+shader_param/roughness = 0.828
+shader_param/point_size = 0.0
+shader_param/normal_scale = 1.0
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+shader_param/texelMaxHeight = 11.799
+shader_param/eps = 0.01
+shader_param/height_mdfy = 3.0
+shader_param/texture_albedo = ExtResource( 14 )
+shader_param/texture_albedo2 = ExtResource( 12 )
+shader_param/noise_mix = SubResource( 6 )
+shader_param/texture_height = ExtResource( 11 )
 
 [sub_resource type="SphereMesh" id=2]
 
@@ -52,7 +82,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="camera_look_at"]
 mesh = SubResource( 1 )
-material/0 = ExtResource( 1 )
+material/0 = SubResource( 4 )
 
 [node name="noise" type="MeshInstance" parent="camera_look_at/MeshInstance"]
 visible = false
