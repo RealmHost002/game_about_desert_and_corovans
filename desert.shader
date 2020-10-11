@@ -18,6 +18,7 @@ uniform vec3 uv2_offset;
 uniform float texelMaxHeight;
 uniform float eps = 0.001;
 uniform float height_mdfy;
+uniform float amount;
 
 float rand(vec2 co){
 	return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
@@ -55,13 +56,18 @@ void fragment() {
 //	vec4 flow_tex = texture(texture_normal,base_uv);
 //	base_uv += flow_tex.rg * (sin(1.0) / 2.0 + 1.0);
 
+//	vec4 heigh_tex = texture(texture_height,UV);
+
 //	float a = rand(ceil(UV * 10.0));
 //	base_uv *= mat2(vec2(cos(a), -sin(a)), vec2(sin(a), cos(a)));
 	vec4 noise_tex = texture(noise_mix, noise_uv);
-	vec4 albedo_tex = texture(texture_albedo,base_uv / 1.2);
+	float a = 0.0;
+	vec4 albedo_tex = texture(texture_albedo,base_uv / 1.2 * mat2(vec2(cos(a), -sin(a)), vec2(sin(a), cos(a))));
 	vec4 albedo_tex2 = texture(texture_albedo2,base_uv);
 //	albedo_tex.gb -= noise_tex.gb / 3.0;
-	vec4 mix_tex = albedo_tex * noise_tex.r / 1.0 + albedo_tex2 * (1.0 - noise_tex.r) / 1.0;
+
+//	vec4 mix_tex = albedo_tex * noise_tex.r / 1.0 + albedo_tex2 * (1.0 - noise_tex.r) / 1.0;
+	vec4 mix_tex = mix(albedo_tex2, albedo_tex, noise_tex.r);
 	
 	ALBEDO = albedo.rgb * mix_tex.rgb;
 	METALLIC = metallic;

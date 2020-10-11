@@ -627,9 +627,11 @@ func show_enemies():
 		if w.type == 'weapon':
 			if w.target:
 				w.target.get_node('target_obj').show()
-				var s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height
-				w.target.get_node('target_obj').scale = Vector3(s, s, s)
+				var s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height / 2.0
+				w.target.get_node('target_obj').scale = Vector3(s, s, s) * 0.8
+				w.target.get_node('target_obj').transform.origin.y = s * 0.8
 				w.target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_car.tres"))
+#				w.target.get_node('target_obj').get_surface_material(0).set_shader_param('albedo', Color(1.0, .0, .0, 1.0))
 
 func hide_enemies():
 	for w in get_node("body/weapons").get_children():

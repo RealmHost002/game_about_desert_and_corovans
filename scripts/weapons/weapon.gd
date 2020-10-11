@@ -264,8 +264,8 @@ func activate():
 	m.set_shader_param('death_zone2', second_death_zone)
 	if target:
 		target.get_node('target_obj').show()
-		var s = target.get_node('CollisionShape').shape.radius + target.get_node('CollisionShape').shape.height
-		target.get_node('target_obj').scale = Vector3(s, s, s)
+		var s = target.get_node('CollisionShape').shape.radius + target.get_node('CollisionShape').shape.height / 2.0
+		target.get_node('target_obj').scale = Vector3(s, s, s) * 0.8
 		target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_weapon.tres"))
 	pass
 

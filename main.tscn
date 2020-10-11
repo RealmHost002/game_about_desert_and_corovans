@@ -41,6 +41,7 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/texelMaxHeight = 11.799
 shader_param/eps = 0.01
 shader_param/height_mdfy = 3.0
+shader_param/amount = null
 shader_param/texture_albedo = ExtResource( 14 )
 shader_param/texture_albedo2 = ExtResource( 12 )
 shader_param/noise_mix = SubResource( 3 )

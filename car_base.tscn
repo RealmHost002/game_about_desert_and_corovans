@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/weapons/all_weapons.gd" type="Script" id=1]
 [ext_resource path="res://car.gd" type="Script" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://models/stingray/col_shape.tres" type="Shape" id=6]
 [ext_resource path="res://models/quarry_truck/wheel.tres" type="ArrayMesh" id=7]
 [ext_resource path="res://models/bigfoot/main_body.tres" type="Material" id=8]
-[ext_resource path="res://gui/target_mesh.tres" type="ArrayMesh" id=10]
+[ext_resource path="res://trash textures/arrows_mesh.tres" type="ArrayMesh" id=9]
+[ext_resource path="res://gui/target_material_weapon.tres" type="Material" id=10]
 [ext_resource path="res://dust/m.tres" type="ArrayMesh" id=11]
-[ext_resource path="res://models/stingray/body.tres" type="ArrayMesh" id=12]
+[ext_resource path="res://models/hover/body.tres" type="ArrayMesh" id=12]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -104,7 +105,6 @@ shader_param/a = 1.0
 shader_param/b = 0.0
 
 [sub_resource type="Animation" id=4]
-resource_name = "move"
 loop = true
 step = 0.01
 tracks/0/type = "value"
@@ -197,6 +197,7 @@ mesh = ExtResource( 12 )
 material/0 = null
 material/1 = null
 material/2 = null
+material/3 = null
 
 [node name="weapons" type="Spatial" parent="body"]
 script = ExtResource( 1 )
@@ -204,34 +205,34 @@ script = ExtResource( 1 )
 [node name="wheels" type="Spatial" parent="."]
 
 [node name="fl" type="MeshInstance" parent="wheels"]
-transform = Transform( 1, 0, 0, 0, 0.685482, -0.72809, 0, 0.72809, 0.685482, 1.92808, -1.83481, 2.89661 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92808, -1.83481, 2.89661 )
 mesh = ExtResource( 5 )
 material/0 = null
 material/1 = null
 
 [node name="fr" type="MeshInstance" parent="wheels"]
-transform = Transform( -1, 0, 0, 0, -0.685482, 0.72809, 0, -0.72809, -0.685482, -1.8298, -2.70991, 2.84449 )
+transform = Transform( -1, 0, 0, 0, -1, 0, 0, 0, -1, -1.8298, -2.70991, 2.84449 )
 mesh = SubResource( 1 )
 material/0 = null
 material/1 = null
 
 [node name="ml" type="MeshInstance" parent="wheels"]
-transform = Transform( 1, 0, 0, 0, 0.685482, -0.72809, 0, 0.72809, 0.685482, 4.38044, -0.988837, -1.28689 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38044, -0.988837, -1.28689 )
 mesh = ExtResource( 7 )
 material/0 = null
 material/1 = null
 
 [node name="mr" type="MeshInstance" parent="wheels"]
-transform = Transform( -1, 0, 0, 0, -0.685482, 0.72809, 0, -0.72809, -0.685482, -0.801832, -2.70991, 0.0293492 )
+transform = Transform( -1, 0, 0, 0, -1, 0, 0, 0, -1, -0.801832, -2.70991, 0.0293492 )
 
 [node name="rl" type="MeshInstance" parent="wheels"]
-transform = Transform( 1, 0, 0, 0, 0.685482, -0.72809, 0, 0.72809, 0.685482, 4.66522, -1.00296, -5.64707 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.66522, -1.00296, -5.64707 )
 mesh = ExtResource( 7 )
 material/0 = null
 material/1 = null
 
 [node name="rr" type="MeshInstance" parent="wheels"]
-transform = Transform( -1, 0, 0, 0, -0.685482, 0.72809, 0, -0.72809, -0.685482, -1.8298, -2.9679, -2.41419 )
+transform = Transform( -1, 0, 0, 0, -1, 0, 0, 0, -1, -1.8298, -2.9679, -2.41419 )
 
 [node name="dirs" type="Spatial" parent="."]
 
@@ -255,10 +256,10 @@ cast_shadow = 0
 texture = ExtResource( 3 )
 
 [node name="target_obj" type="MeshInstance" parent="."]
-transform = Transform( 10.5254, 0, -8.9095, 0, 13.79, 0, 8.9095, 0, 10.5254, 0, 0, 0 )
+transform = Transform( 13.7737, 0, -0.669337, 0, 13.79, 0, 0.669337, 0, 13.7737, 0, 0, 0 )
 visible = false
-mesh = ExtResource( 10 )
-material/0 = null
+mesh = ExtResource( 9 )
+material/0 = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
