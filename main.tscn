@@ -20,11 +20,11 @@ size = Vector2( 20, 20 )
 subdivide_width = 200
 subdivide_depth = 200
 
-[sub_resource type="OpenSimplexNoise" id=5]
+[sub_resource type="OpenSimplexNoise" id=2]
 
-[sub_resource type="NoiseTexture" id=6]
+[sub_resource type="NoiseTexture" id=3]
 seamless = true
-noise = SubResource( 5 )
+noise = SubResource( 2 )
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 13 )
@@ -43,12 +43,12 @@ shader_param/eps = 0.01
 shader_param/height_mdfy = 3.0
 shader_param/texture_albedo = ExtResource( 14 )
 shader_param/texture_albedo2 = ExtResource( 12 )
-shader_param/noise_mix = SubResource( 6 )
+shader_param/noise_mix = SubResource( 3 )
 shader_param/texture_height = ExtResource( 11 )
 
-[sub_resource type="SphereMesh" id=2]
+[sub_resource type="SphereMesh" id=5]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 10, 1, 10 )
 
 [node name="Spatial" type="Spatial"]
@@ -92,7 +92,7 @@ material/1 = null
 material/2 = null
 
 [node name="MeshInstance" type="MeshInstance" parent="camera_look_at/MeshInstance"]
-mesh = SubResource( 2 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="camera_look_at"]
@@ -102,7 +102,7 @@ collision_mask = 512
 
 [node name="CollisionShape" type="CollisionShape" parent="camera_look_at/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 mesh = ExtResource( 3 )

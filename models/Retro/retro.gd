@@ -31,16 +31,25 @@ func _load():
 			if inf_from_dict["weapons"].size() - 1 >= counter:
 				i.inf_from_dict = inf_from_dict["weapons"][counter]
 				counter += 1
-				i.get_node("TextureRect").texture = load(Saveload.weapon_data[i.inf_from_dict]["image_path"])
+				var my_texture = Saveload.weapon_data[i.inf_from_dict]["image_path"]
+				my_texture.erase(Saveload.weapon_data[i.inf_from_dict]["image_path"].find("."), 4)
+				my_texture += "_item.png"
+				i.get_node("TextureRect").texture = load(my_texture)
 			else:	
 				i.inf_from_dict = "empty"
 		else:
 			if other_items.size() - 1 >= counter2:
 				i.inf_from_dict = other_items[counter2]
 				if other_items[counter2] in Saveload.generators_data:
-					i.get_node("TextureRect").texture = load(Saveload.generators_data[i.inf_from_dict]["image_path"])
+					var my_texture = Saveload.generators_data[i.inf_from_dict]["image_path"]
+					my_texture.erase(Saveload.generators_data[i.inf_from_dict]["image_path"].find("."), 4)
+					my_texture += "_item.png"
+					i.get_node("TextureRect").texture = load(my_texture)
 				elif other_items[counter2] in Saveload.shields_data:
-					i.get_node("TextureRect").texture = load(Saveload.shields_data[i.inf_from_dict]["image_path"])		
+					var my_texture = Saveload.shields_data[i.inf_from_dict]["image_path"]
+					my_texture.erase(Saveload.shields_data[i.inf_from_dict]["image_path"].find("."), 4)
+					my_texture += "_item.png"
+					i.get_node("TextureRect").texture = load(my_texture)		
 				counter2 += 1
 			else:	
 				i.inf_from_dict = "empty"

@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/ion_inversive_shield_old.png-097d43c51a7c2b253d4eff2d32c15ff9.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://gui/textures/weaponIcons/ion_inversive_shield_old.png"
+dest_files=[ "res://.import/ion_inversive_shield_old.png-097d43c51a7c2b253d4eff2d32c15ff9.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

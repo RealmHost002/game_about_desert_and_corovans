@@ -271,19 +271,19 @@ scale = Vector2( 0.979099, 0.484272 )
 texture = ExtResource( 4 )
 
 [node name="podlojka" type="Sprite" parent="HBoxContainer2"]
-position = Vector2( 657.126, 20.5208 )
+position = Vector2( 657.126, 39.5208 )
 rotation = -7.01745e-10
-scale = Vector2( 0.995364, 1.51037 )
+scale = Vector2( 0.995364, 1.13037 )
 texture = ExtResource( 5 )
 
 [node name="weaponContainer" type="HBoxContainer" parent="HBoxContainer2"]
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = 1.0
-margin_right = 72.0
-margin_bottom = 25.0
+margin_left = -59.0
+margin_top = 33.0
+margin_right = 63.0
+margin_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3

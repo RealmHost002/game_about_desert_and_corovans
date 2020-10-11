@@ -34,13 +34,22 @@ func change_item(item):
 	if item.type == slot_type:
 		slot = item
 		if item.type == "weapon":
-			get_node("TextureRect").texture = load(Saveload.weapon_data[item.name_of_weapon_string]["image_path"])
+			var my_texture = Saveload.weapon_data[item.name_of_weapon_string]["image_path"]
+			my_texture.erase(Saveload.weapon_data[item.name_of_weapon_string]["image_path"].find("."), 4)
+			my_texture += "_item.png"
+			get_node("TextureRect").texture = load(my_texture)
 		else:
 			if Saveload.shields_data.get(item.name_of_weapon_string):
-				get_node("TextureRect").texture = load(Saveload.shields_data[item.name_of_weapon_string]["image_path"])
+				var my_texture = Saveload.shields_data[item.name_of_weapon_string]["image_path"]
+				my_texture.erase(Saveload.shields_data[item.name_of_weapon_string]["image_path"].find("."), 4)
+				my_texture += "_item.png"
+				get_node("TextureRect").texture = load(my_texture)
 				subtype = "shields_data"
 			if Saveload.generators_data.get(item.name_of_weapon_string):
-				get_node("TextureRect").texture = load(Saveload.generators_data[item.name_of_weapon_string]["image_path"])
+				var my_texture = Saveload.generators_data[item.name_of_weapon_string]["image_path"]
+				my_texture.erase(Saveload.generators_data[item.name_of_weapon_string]["image_path"].find("."), 4)
+				my_texture += "_item.png"
+				get_node("TextureRect").texture = load(my_texture)
 				subtype = "generators_data"
 		if watching_car_node.taken_node:
 			watching_car_node.taken_node.queue_free()
