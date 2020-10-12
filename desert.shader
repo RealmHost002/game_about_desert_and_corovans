@@ -62,7 +62,7 @@ void fragment() {
 //	base_uv *= mat2(vec2(cos(a), -sin(a)), vec2(sin(a), cos(a)));
 	vec4 noise_tex = texture(noise_mix, noise_uv);
 	float a = 0.0;
-	vec4 albedo_tex = texture(texture_albedo,base_uv / 1.2 * mat2(vec2(cos(a), -sin(a)), vec2(sin(a), cos(a))));
+	vec4 albedo_tex = texture(texture_albedo,base_uv / 1.0 * mat2(vec2(cos(a), -sin(a)), vec2(sin(a), cos(a))));
 	vec4 albedo_tex2 = texture(texture_albedo2,base_uv);
 //	albedo_tex.gb -= noise_tex.gb / 3.0;
 

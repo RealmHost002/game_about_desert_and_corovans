@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/The_Toad.png-24b330f6b3fe1c9a0a51c0b46a92df10.stex"
+path="res://.import/cyclopus.png-5db74c9cb597c3dad5eac7581e01d349.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gui/textures/portrets/The_Toad.png"
-dest_files=[ "res://.import/The_Toad.png-24b330f6b3fe1c9a0a51c0b46a92df10.stex" ]
+source_file="res://gui/textures/portrets/cyclopus.png"
+dest_files=[ "res://.import/cyclopus.png-5db74c9cb597c3dad5eac7581e01d349.stex" ]
 
 [params]
 

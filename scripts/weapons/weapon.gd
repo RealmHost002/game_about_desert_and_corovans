@@ -95,7 +95,7 @@ func fire():
 	get_parent().get_parent().get_parent().get_parent().get_parent().add_child(lb)
 	lb.global_transform = get_node("dot").global_transform
 	lb.look_at(target.global_transform.origin, Vector3(0,1,0))
-
+	lb.target = target
 
 	var material = lb.get_surface_material(0).duplicate(true)
 #	material.albedo_color = anim_color

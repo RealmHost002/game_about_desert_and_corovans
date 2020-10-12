@@ -2,7 +2,8 @@ extends MeshInstance
 
 
 #var speed = 1.0
-var lifetime = .3
+var lifetime = 0.3
+var target
 #var some_color = Color(1.0, 0.0, 0.0, 1.0)
 var some_vector = Vector2(0.0, 0.0)
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +21,8 @@ func _ready():
 func _process(delta):
 #	some_color.r -= delta / lifetime
 #	some_color.a -= delta / lifetime
+	if target:
+		look_at(target.global_transform.origin, Vector3(0,1,0))
 	some_vector.x += delta / lifetime
 #	 / lifetime
 #	print(some_vector.x)

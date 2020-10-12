@@ -45,7 +45,7 @@ var current_target
 var target_to_follow
 var follow_arg = "DEFAULT"
 var truck = self
-
+var anim = 'move'
 
 var engine_energy_cost = 20.0
 var hp = 100
@@ -83,6 +83,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	get_node("AnimationPlayer").playback_speed = speed
 	
 	if is_enemy:
 		do_think(delta)
@@ -148,7 +149,7 @@ func _process(delta):
 #		var s_height = 0
 		for wheel in get_node('wheels').get_children():
 			var some_pos = Vector2(wheel.global_transform.origin.x, wheel.global_transform.origin.z) / 20.0 * 1024
-			wheel.rotate_x(delta * speed)
+#			wheel.rotate_x(delta * speed)
 			while some_pos.x >= 1024:
 				some_pos.x -= 1024
 			while some_pos.y >= 1024:
@@ -231,9 +232,12 @@ func _input(event):
 		var w = get_node("body/weapons").get_child(2)
 		if w.is_pressable:
 			w.activate()
-		pass
-
-
+	if event.is_action_pressed('next_car'):
+		if self.get_index() + 1 < get_tree().get_nodes_in_group('ally').size():
+#		get_node("../../GUI/HBoxContainer").get_child(self.get_index() - 1)._on_TextureButton_pressed()
+			get_node("../../GUI/HBoxContainer").get_child(self.get_index() + 1).call_deferred("_on_TextureButton_pressed")
+		else:
+			get_node("../../GUI/HBoxContainer").get_child(0).call_deferred("_on_TextureButton_pressed")
 func do_think(d):
 	var distance_to_dest = (destination - self.global_transform.origin).length()
 	var dest_behind = sign((destination - self.global_transform.origin).cross(right).y)
@@ -392,6 +396,7 @@ func slider_changed(id, value):
 
 func pause():
 	self.set_process(false)
+	get_node("AnimationPlayer").stop()
 	for w in get_node("body/weapons").get_children():
 		w.set_process(false)
 
@@ -411,6 +416,8 @@ func pause():
 func unpause():
 	self.set_process(true)
 	self.shield = 0
+#	print(anim)
+	get_node("AnimationPlayer").play(anim)
 #	self.acc = sliders[0]
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
@@ -505,6 +512,7 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 			show_enemies()
 		elif event.is_action('left_click'):
 			constants.selectedCar = self
+			print(self.get_index())
 			get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
 			for car in get_tree().get_nodes_in_group('ally'):
 				car.hide_enemies()
@@ -521,6 +529,11 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 func _load(params):
 	get_node("body").mesh = load(params['body'])
 	var wp = params['wheel_pos']
+	if params['body'] == "res://models/cyclopus/body.tres":
+		anim = 'truck'
+	
+	
+	
 	get_node("wheels/fl").mesh = load(params['wheelFront'])
 	get_node("wheels/fl").transform.origin = Vector3(wp[0], 0, wp[1])
 	get_node("wheels/fr").mesh = load(params['wheelFront'])
