@@ -89,36 +89,29 @@ func update():
 					current_item.damimage = curve_dam
 					current_item.name_of_weapon_string = i
 					current_item.weapon_data = weapon_data
-					current_item.get_node("description").clear()
-					current_item.get_node("description").add_text(i  + ": ")
-					current_item.get_node("description").add_text(weapon_data[i]["damage_type"])
-					current_item.get_node("description").newline()
-					# kurva_poshla
-					current_item.get_node("description").newline()
-					current_item.get_node("description").add_text("damage: 0")
-					current_item.get_node("description").newline()
-					current_item.get_node("description").add_text("distance: 0")
-				
+					current_item.set_desc()
 					
 				"shield":
 					var icon = load(shields_data[i]["image_path"])
 					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
-					current_item.type = "item"
+					current_item.type = "shield"
 					container.add_child(current_item)
 					print(str(invetoryData[i]["count"]))
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
 					current_item.name_of_weapon_string = i
+					current_item.set_desc()
 					if i == "zzzConvergenator_mk3":
 						current_item.hide()
 				"generator":
 					var icon = load(generators_data[i]["image_path"])
 					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
-					current_item.type = "item"
+					current_item.type = "generator"
 					container.add_child(current_item)
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon
 					current_item.name_of_weapon_string = i
+					current_item.set_desc()
 					if i == "zzzConvergenator_mk3":
 						current_item.hide()
 				"money":

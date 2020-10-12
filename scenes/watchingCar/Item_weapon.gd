@@ -23,10 +23,7 @@ func _ready():
 #	pass
 
 
-
-
-
-func _on_HSlider_value_changed(value):
+func set_desc():
 	get_node("item_icon/HSlider/Label").text = str(get_node("item_icon/HSlider").value) + "%"
 		
 	var desc = get_node("description")
@@ -35,14 +32,46 @@ func _on_HSlider_value_changed(value):
 		desc.add_text(name_of_weapon_string   + ": ")
 		desc.add_text(weapon_data[name_of_weapon_string]["damage_type"])
 		desc.newline()
-	# kurva_poshla
-
-		var distance = distimage.curve.interpolate(value / 100.0)
-		var damage = damimage.curve.interpolate(value / 100.0)
+		var distance = distimage.curve.interpolate(100 / 100.0)
+		var damage = damimage.curve.interpolate(100 / 100.0)
 		desc.newline()
 		desc.add_text("damage: " + str(damage))
 		desc.newline()
 		desc.add_text("distance: " + str(distance))
+	if type == "shield":
+		desc.clear()
+		desc.add_text(name_of_weapon_string   + ": shield")
+		desc.newline()
+		desc.add_text("max_value: " + str(Saveload.shields_data[name_of_weapon_string]["max_value"]))
+		desc.newline()
+		desc.add_text("energy_cost: " + str(Saveload.shields_data[name_of_weapon_string]["energy_cost"]))
+		
+	if type == "generator":
+		desc.clear()
+		desc.add_text(name_of_weapon_string   + ": generator")
+		desc.newline()
+		desc.add_text("production: " +str(Saveload.generators_data[name_of_weapon_string]["energy_production"]))
+		desc.newline()
+		desc.add_text("max_energy: " + str(Saveload.generators_data[name_of_weapon_string]["max_energy"]))
+
+
+#func _on_HSlider_value_changed(value):
+#	get_node("item_icon/HSlider/Label").text = str(get_node("item_icon/HSlider").value) + "%"
+#
+#	var desc = get_node("description")
+#	if type == "weapon":
+#		desc.clear()
+#		desc.add_text(name_of_weapon_string   + ": ")
+#		desc.add_text(weapon_data[name_of_weapon_string]["damage_type"])
+#		desc.newline()
+#	# kurva_poshla
+#
+#		var distance = distimage.curve.interpolate(value / 100.0)
+#		var damage = damimage.curve.interpolate(value / 100.0)
+#		desc.newline()
+#		desc.add_text("damage: " + str(damage))
+#		desc.newline()
+#		desc.add_text("distance: " + str(distance))
 
 func _input(event):
 	if is_taken and event is InputEventMouseMotion:

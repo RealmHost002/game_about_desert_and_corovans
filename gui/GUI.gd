@@ -57,6 +57,7 @@ func setting_car_params():
 	
 	if constants.selectedCar:
 		get_node("HBoxContainer2/TextureRect").texture = load("res://gui/textures/portrets/" + constants.selectedCar.hull +".png")
+		get_node("HBoxContainer2/TextureRect/Label").text = constants.selectedCar.hull
 		labels_parent.get_node("hp_label").text = "Hp: " + str(constants.selectedCar.hp)
 		labels_parent.get_node("energy_label").text = "Energy: " + str(constants.selectedCar.energy)		
 		labels_parent.get_node("shield_label").text = "Shield: " + str(constants.selectedCar.shield)	
