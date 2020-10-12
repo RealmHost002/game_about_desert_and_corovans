@@ -15,6 +15,7 @@ var is_active = false
 var ntex
 var noise
 var image
+var hull 
 var clearance = 0.0
 var speed = 0
 var forward
@@ -568,6 +569,7 @@ func load_modules(params):
 	var modules_node = get_node("body/weapons")
 	var engine = load("res://models/engine.tscn").instance()
 	modules_node.add_child(engine)
+	hull = params['corpus']
 	engine.energy_cost = self.engine_energy_cost
 	var c = 0
 	for w in params['weapons']:
