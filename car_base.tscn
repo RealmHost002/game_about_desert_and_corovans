@@ -9,7 +9,7 @@
 [ext_resource path="res://models/quarry_truck/wheel.tres" type="ArrayMesh" id=7]
 [ext_resource path="res://models/Cyclopus/wheel.tres" type="ArrayMesh" id=8]
 [ext_resource path="res://trash textures/arrows_mesh.tres" type="ArrayMesh" id=9]
-[ext_resource path="res://gui/target_material_weapon.tres" type="Material" id=10]
+[ext_resource path="res://gui/target_material_car_ally.tres" type="Material" id=10]
 [ext_resource path="res://dust/m.tres" type="ArrayMesh" id=11]
 [ext_resource path="res://models/Cyclopus/body.tres" type="ArrayMesh" id=12]
 [ext_resource path="res://models/Cyclopus/front_wheel_material.tres" type="Material" id=13]

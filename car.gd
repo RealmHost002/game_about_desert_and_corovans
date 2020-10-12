@@ -505,6 +505,7 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 	if self in get_tree().get_nodes_in_group('ally'):
 		if constants.input_mode != 'car_select':
 			return
+
 		if from_gui:
 			constants.selectedCar = self
 			for car in get_tree().get_nodes_in_group('ally'):
@@ -517,7 +518,7 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 			for car in get_tree().get_nodes_in_group('ally'):
 				car.hide_enemies()
 			show_enemies()
-
+			
 		
 	if !from_gui:
 		if event.is_action('right_click') and constants.selectedCar:
@@ -638,17 +639,24 @@ func calc_en_drain():
 	pass
 
 func show_enemies():
+	self.get_node('target_obj').show()
+	var s = self.get_node('CollisionShape').shape.radius + self.get_node('CollisionShape').shape.height / 2.0
+	self.get_node('target_obj').scale = Vector3(s, s, s) * 0.8
+	self.get_node('target_obj').transform.origin.y = s * 0.8
+	self.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_car_ally.tres"))
+
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
 			if w.target:
 				w.target.get_node('target_obj').show()
-				var s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height / 2.0
+				s = w.target.get_node('CollisionShape').shape.radius + w.target.get_node('CollisionShape').shape.height / 2.0
 				w.target.get_node('target_obj').scale = Vector3(s, s, s) * 0.8
 				w.target.get_node('target_obj').transform.origin.y = s * 0.8
 				w.target.get_node('target_obj').set_surface_material(0, load("res://gui/target_material_car.tres"))
 #				w.target.get_node('target_obj').get_surface_material(0).set_shader_param('albedo', Color(1.0, .0, .0, 1.0))
 
 func hide_enemies():
+	self.get_node('target_obj').hide()
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
 			if w.target:
