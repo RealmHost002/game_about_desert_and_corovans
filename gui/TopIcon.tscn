@@ -25,7 +25,7 @@ __meta__ = {
 [node name="ReferenceRect" type="ReferenceRect" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-border_color = Color( 0.419608, 1, 0.0196078, 1 )
+border_color = Color( 0.203922, 0.0705882, 0.74902, 1 )
 editor_only = false
 __meta__ = {
 "_edit_use_anchors_": false

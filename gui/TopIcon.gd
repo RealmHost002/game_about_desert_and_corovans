@@ -26,8 +26,10 @@ func _on_TextureButton_pressed():
 		i.free()
 	get_tree().get_root().get_node("Spatial/cars").get_child(number)._on_input_event(0,0,0,0,0,1)
 	get_parent().get_parent().AddingWeaponButtons()
+	get_parent().get_child(get_parent().get_parent().selectedCar).get_node("TextureRect/ReferenceRect").border_color = Color("3412bf") 
 	get_parent().get_parent().selectedCar = number
 #	get_parent().get_parent().get_node("TextureRect").texture = load()
+	get_node("TextureRect/ReferenceRect").border_color = Color("6bff05")
 	var c = 0
 	for slider in constants.sliders[constants.selectedCar.name]:
 #		var sliderpos = constants.sliders[constants.selectedCar.name]
