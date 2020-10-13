@@ -69,3 +69,4 @@ func _on_weapon_gui_input(event):
 
 func _on_item1_mouse_entered():
 	pass # Replace with function body.
+

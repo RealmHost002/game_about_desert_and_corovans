@@ -94,7 +94,8 @@ func update():
 				"shield":
 					var icon = load(shields_data[i]["image_path"])
 					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
-					current_item.type = "shield"
+					current_item.type = "item"
+					current_item.subtype = "shield"
 					container.add_child(current_item)
 					print(str(invetoryData[i]["count"]))
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
@@ -106,7 +107,8 @@ func update():
 				"generator":
 					var icon = load(generators_data[i]["image_path"])
 					var current_item = load("res://scenes/watchingCar/Item_weapon.tscn").instance()
-					current_item.type = "generator"
+					current_item.type = "item"
+					current_item.subtype = "generator"
 					container.add_child(current_item)
 					current_item.get_node("item_icon/count").text = str(invetoryData[i]["count"])
 					current_item.get_node("item_icon").texture = icon

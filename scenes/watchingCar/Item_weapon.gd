@@ -9,6 +9,7 @@ var distimage
 var name_of_weapon_string 
 var weapon_data
 var type = "weapon"
+var subtype
 var is_taken = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,21 +39,22 @@ func set_desc():
 		desc.add_text("damage: " + str(damage))
 		desc.newline()
 		desc.add_text("distance: " + str(distance))
-	if type == "shield":
-		desc.clear()
-		desc.add_text(name_of_weapon_string   + ": shield")
-		desc.newline()
-		desc.add_text("max_value: " + str(Saveload.shields_data[name_of_weapon_string]["max_value"]))
-		desc.newline()
-		desc.add_text("energy_cost: " + str(Saveload.shields_data[name_of_weapon_string]["energy_cost"]))
-		
-	if type == "generator":
-		desc.clear()
-		desc.add_text(name_of_weapon_string   + ": generator")
-		desc.newline()
-		desc.add_text("production: " +str(Saveload.generators_data[name_of_weapon_string]["energy_production"]))
-		desc.newline()
-		desc.add_text("max_energy: " + str(Saveload.generators_data[name_of_weapon_string]["max_energy"]))
+	else:
+		if subtype == "shield":
+			desc.clear()
+			desc.add_text(name_of_weapon_string   + ": shield")
+			desc.newline()
+			desc.add_text("max_value: " + str(Saveload.shields_data[name_of_weapon_string]["max_value"]))
+			desc.newline()
+			desc.add_text("energy_cost: " + str(Saveload.shields_data[name_of_weapon_string]["energy_cost"]))
+			
+		if subtype == "generator":
+			desc.clear()
+			desc.add_text(name_of_weapon_string   + ": generator")
+			desc.newline()
+			desc.add_text("production: " +str(Saveload.generators_data[name_of_weapon_string]["energy_production"]))
+			desc.newline()
+			desc.add_text("max_energy: " + str(Saveload.generators_data[name_of_weapon_string]["max_energy"]))
 
 
 #func _on_HSlider_value_changed(value):
