@@ -19,7 +19,7 @@
 albedo_color = Color( 0.439216, 0.439216, 0.439216, 1 )
 metallic = 0.48
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 params_cull_mode = 2
 params_depth_draw_mode = 1
@@ -27,7 +27,7 @@ albedo_color = Color( 0.466667, 0.466667, 0.466667, 1 )
 albedo_texture = ExtResource( 5 )
 uv1_offset = Vector3( 0, 3.25528, 0 )
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=3]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform vec4 albedo : hint_color;
@@ -76,8 +76,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
 shader_param/specular = 0.5
 shader_param/metallic = 0.0
@@ -90,7 +90,7 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/a = 1.0
 shader_param/b = 0.0
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "truck"
 loop = true
 tracks/0/type = "value"
@@ -118,7 +118,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 5, 0 ), Vector3( 0, 10, 0 ) ]
 }
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0 ), 0.0, 5.28591, 0, 0, Vector2( 0.660919, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="KinematicBody " type="KinematicBody" groups=[
@@ -171,13 +171,13 @@ transform = Transform( -1, 0, 0, 0, -1, 0, 0, 0, -1, -0.801832, -2.70991, 0.0293
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99, 0, -1.79628 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 1 )
-material/1 = SubResource( 3 )
+material/1 = SubResource( 2 )
 
 [node name="rr" type="MeshInstance" parent="wheels"]
 transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9266, 0, -1.81144 )
 mesh = ExtResource( 4 )
 material/0 = null
-material/1 = SubResource( 3 )
+material/1 = SubResource( 2 )
 
 [node name="dirs" type="Spatial" parent="."]
 
@@ -196,7 +196,7 @@ editor_only = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50181, 5.34185, 0 )
-material_override = SubResource( 5 )
+material_override = SubResource( 4 )
 cast_shadow = 0
 texture = ExtResource( 3 )
 
@@ -208,7 +208,7 @@ material/0 = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/move = ExtResource( 14 )
-anims/truck = SubResource( 6 )
+anims/truck = SubResource( 5 )
 
 [node name="trailer" type="Spatial" parent="."]
 
@@ -225,7 +225,7 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
 angular_velocity = 2.0
 angular_velocity_random = 1.0
-scale_amount_curve = SubResource( 7 )
+scale_amount_curve = SubResource( 6 )
 __meta__ = {
 "_editor_description_": ""
 }

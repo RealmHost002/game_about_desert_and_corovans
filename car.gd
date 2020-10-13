@@ -77,7 +77,7 @@ func _ready():
 	noise = ntex.noise
 	get_node("Sprite3D").material_override = get_node("Sprite3D").material_override.duplicate(true)
 
-#	set_process(false)
+	set_process(false)
 	pass # Replace with function body.
 
 
@@ -528,6 +528,7 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 			radial_menu.choosen_car = self
 
 func _load(params):
+#	print(params)
 	get_node("body").mesh = load(params['body'])
 	var wp = params['wheel_pos']
 	if params['body'] == "res://models/cyclopus/body.tres":
@@ -580,6 +581,7 @@ func _load(params):
 #		body_type = 'truck'
 	
 func load_modules(params):
+#	print(params)
 	var modules_node = get_node("body/weapons")
 	var engine = load("res://models/engine.tscn").instance()
 	modules_node.add_child(engine)
@@ -589,10 +591,12 @@ func load_modules(params):
 	for w in params['weapons']:
 		if w:
 			var weap = load("res://models/weapons/weapon.tscn").instance()
+			weap._load(Saveload.weapon_data[w])
 			modules_node.add_child(weap)
 			weap.transform.origin = weapon_positions[c]
 			c += 1
-			weap._load(Saveload.weapon_data[w])
+#			weap._load(Saveload.weapon_data[w])
+#			modules_node.add_child(weap)
 			abilities.append('weap')
 			weap._name = str(w)
 	for g in params['generator']:

@@ -6,7 +6,7 @@
 albedo_color = Color( 0.439216, 0.439216, 0.439216, 1 )
 metallic = 0.48
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 params_cull_mode = 2
 params_depth_draw_mode = 1
@@ -35,7 +35,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 180,
-"material": SubResource( 3 ),
+"material": SubResource( 2 ),
 "name": "Material",
 "primitive": 4,
 "skeleton_aabb": [  ],

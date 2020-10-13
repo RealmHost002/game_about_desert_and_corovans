@@ -116,10 +116,10 @@
     "another_effectivness": 4.5
   },
   "zzzWeapon": {
-    "damimage": "res://models/weapons/plasma_dispencer/damage_tex.tres",
-    "distimage": "res://models/weapons/plasma_dispencer/distance_tex.tres",
-    "rot_speed": 1,
-    "mesh": "res://models/weapons/plasma_dispencer/body.tres",
+    "damimage": "res://models/weapons/zzzWeapon/damage_tex.tres",
+    "distimage": "res://models/weapons/zzzWeapon/distance_tex.tres",
+    "rot_speed": 0,
+    "mesh": "res://models/weapons/zzzWeapon/body.tres",
     "buletScene": "res://models/weapons/lasergun/laser_beam.tscn",
     "buletColor": "41DB01",
     "dot_position": [
@@ -130,18 +130,18 @@
     "image_path": "res://gui/textures/weaponIcons/empty.png",
     "damage_type": "laser",
     "burst_size": 3,
-    "energy_cost": 20,
+    "energy_cost": 0,
     "cd_time": 2,
-    "clip": 3,
-    "max_dist": 3,
-    "max_dmg": 10,
-    "dmg_per_energy": 1.5,
-    "dmg_per_turn(burst)": 30,
-    "dmg_per_turn(sustained)": 10,
-    "damage_per_clip": 30,
-    "energy_drain_sustained": 6.666666666666667,
+    "clip": 0,
+    "max_dist": 0,
+    "max_dmg": 0,
+    "dmg_per_energy": 0,
+    "dmg_per_turn(burst)": 0,
+    "dmg_per_turn(sustained)": 0,
+    "damage_per_clip": 0,
+    "energy_drain_sustained": 0,
     "tier": 1,
-    "effectivness": 45,
-    "another_effectivness": 4.5
+    "effectivness": 0,
+    "another_effectivness": 0
   }
 }

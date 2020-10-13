@@ -68,7 +68,9 @@ func _ready():
 	second_death_zone = get_parent().death_zones[self.get_index() * 2 - 1]
 #	print(death_zone)
 #	m.set_shader_param('death_zone1', death_zone)
+
 	slider_changed(100.0)
+	
 #	set_process(false)
 #	death_zone = get_parent().death_zones
 	pass # Replace with function body.
