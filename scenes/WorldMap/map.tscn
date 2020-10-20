@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/WorldMap/australia_continent_aerial_view.jpg" type="Texture" id=1]
+[ext_resource path="res://scenes/WorldMap/NormalMap.png" type="Texture" id=2]
+[ext_resource path="res://scenes/WorldMap/white.png" type="Texture" id=3]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 5250, 4320 )
+
+[node name="MeshInstance2D" type="MeshInstance2D"]
+position = Vector2( 2633.51, 2161.77 )
+mesh = SubResource( 1 )
+texture = ExtResource( 1 )
+normal_map = ExtResource( 2 )
+
+[node name="LightOccluder2D" type="Light2D" parent="."]
+position = Vector2( 268.94, 1110.1 )
+texture = ExtResource( 3 )
+texture_scale = 11.68

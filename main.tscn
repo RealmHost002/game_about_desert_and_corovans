@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/watchingCar/watchingCar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://new_cubemesh.tres" type="CubeMesh" id=3]
@@ -6,8 +6,6 @@
 [ext_resource path="res://Camera.gd" type="Script" id=5]
 [ext_resource path="res://default_env.tres" type="Environment" id=6]
 [ext_resource path="res://gui/GUI.tscn" type="PackedScene" id=7]
-[ext_resource path="res://deleteme.tscn" type="PackedScene" id=8]
-[ext_resource path="res://noise.obj" type="ArrayMesh" id=9]
 [ext_resource path="res://AI_brain.gd" type="Script" id=10]
 [ext_resource path="res://noise.tres" type="Texture" id=11]
 [ext_resource path="res://trash textures/1-fine-sand-seamless-texture.jpg" type="Texture" id=12]
@@ -80,13 +78,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 4 )
 
-[node name="noise" type="MeshInstance" parent="camera_look_at/MeshInstance"]
-visible = false
-mesh = ExtResource( 9 )
-material/0 = null
-material/1 = null
-material/2 = null
-
 [node name="MeshInstance2" type="MeshInstance" parent="camera_look_at/MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0 )
 mesh = SubResource( 1 )
@@ -134,9 +125,6 @@ script = ExtResource( 4 )
 [node name="StepTimer" type="Timer" parent="BGMASTER"]
 wait_time = 2.0
 one_shot = true
-
-[node name="Spatial" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78515, 1.06858, 1.74316 )
 
 [node name="invetory" parent="." instance=ExtResource( 2 )]
 visible = false
