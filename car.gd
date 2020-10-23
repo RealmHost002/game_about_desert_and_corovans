@@ -451,7 +451,7 @@ func hide_path():
 
 func show_path():
 	hide_path()
-#	var line = []
+
 	if current_move == 'approach' and target_to_follow:
 		destination = target_to_follow.global_transform.origin
 #	elif current_move == 'follow' and target_to_follow:
@@ -488,9 +488,6 @@ func show_path():
 #			m.global_transform.origin.y = image.get_pixelv(some_pos).r * 3
 		f = f.rotated(Vector3(0,1,0), sign(f.cross(pa[0] - p).y) * 0.1 * rotation_speed)
 		p += f * 0.1 * spd
-		drawline3d.Lines = []
-		drawline3d.DrawLine(m.global_transform.origin, p, Color(1.0, 0, 0, 1), 10)
-#		drawline3d.Lines = []
 		c += 1
 		if (p - pa[0]).length() < 0.1:
 			pa.pop_front()
