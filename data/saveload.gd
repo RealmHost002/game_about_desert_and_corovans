@@ -74,8 +74,10 @@ func read_data(ourTeamData):
 		c += 1
 #	pass # Replace with function body.
 func _load_on_map():
-	for corovan in save_world:
-		corovan.car_for_map._load()
+	for corovan_record in save_world:
+		var buf = null
+		get_tree().get_root().get_node("Spatial/map/corovans").add_child(buf)
+		buf.car_for_map._load(corovan_record)
 		
 func _save_on_map():
 	var save_file = File.new()
