@@ -50,6 +50,7 @@ func _ready():
 	
 	
 func read_data(ourTeamData):
+	print("ourTeamData",ourTeamData)
 	var c = 0
 	for i in ourTeamData['config']:
 		var base_scene = load("res://car_base.tscn").instance()

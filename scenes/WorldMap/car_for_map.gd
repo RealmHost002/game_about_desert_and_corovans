@@ -60,6 +60,9 @@ func _load_body(params):
 
 func _encounter(camera, event, click_position, click_normal, shape_idx):
 	if event.is_action('left_click'):
+		for car in cars:
+			Saveload.ourTeamData["config"].append(car)
+		Saveload.read_data(Saveload.ourTeamData)
 		print('ivan_pidras')
 		pass
 	pass # Replace with function body.
