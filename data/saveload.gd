@@ -46,6 +46,8 @@ func _ready():
 	weapon_data = weaponDataJson.result
 #	call_deferred('read_data', ourTeamData)
 	read_data(ourTeamData)
+	_load_on_map()
+	
 	
 func read_data(ourTeamData):
 	var c = 0
@@ -75,20 +77,25 @@ func read_data(ourTeamData):
 #	pass # Replace with function body.
 func _load_on_map():
 	for corovan_record in save_world:
-		var buf = null
+		var buf = load("res://car_for_map.tscn").instance()
 		get_tree().get_root().get_node("Spatial/map/corovans").add_child(buf)
-		buf.car_for_map._load(corovan_record)
+		buf._load(corovan_record)
 		
 func _save_on_map():
 	var save_file = File.new()
 	save_file.open("res://data/save_world.json", File.WRITE)
+	save_file.store_string('[')
 	var corovans_on_map = []
-	for corovan in get_tree().get_root().get_node("Spatial/map/corovans"):
-		var position = [corovan.map_position.x, corovan.map_position.z]
-		var destination = [corovan.destination.x, corovan.destination.y]
+	for corovan in get_tree().get_root().get_node("Spatial/map/corovans").get_children():
+		var position = [corovan.global_transform.origin.x, corovan.global_transform.origin.z]
+		var destination = [corovan.destination.x, corovan.destination.z]
 		var cars = corovan.cars 
-		corovans_on_map.append({"position":position,"destination":destination,"enemy_cars":cars})
-	save_file.store_string(to_json(corovans_on_map))
+#		corovans_on_map.append({"position":position,"destination":destination,"enemy_cars":cars})
+		var some = {"position":position,"destination":destination,"enemy_cars":cars}
+		save_file.store_string(to_json(some))
+		save_file.store_string(',\n')
+	save_file.store_string(']')
+#	save_file.store_string(to_json(corovans_on_map))
 	save_file.close()
 	
 	
@@ -97,6 +104,14 @@ func _update():
 	save_file.open("res://data/save.json", File.WRITE)
 	save_file.store_string(to_json(ourTeamData))
 	save_file.close()
+
+func _input(event):
+	if event.is_action_pressed("test_button"):
+		print('pipiska')
+		_save_on_map()
+	pass
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

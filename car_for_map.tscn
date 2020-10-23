@@ -4,12 +4,14 @@
 [ext_resource path="res://scenes/WorldMap/car_for_map.gd" type="Script" id=2]
 [ext_resource path="res://gui/textures/hp.png" type="Texture" id=3]
 [ext_resource path="res://models/quarry_truck/body.tres" type="ArrayMesh" id=4]
-[ext_resource path="res://models/Cyclopus/col_shape.tres" type="Shape" id=6]
 [ext_resource path="res://models/quarry_truck/wheel.tres" type="ArrayMesh" id=7]
 [ext_resource path="res://trash textures/arrows_mesh.tres" type="ArrayMesh" id=9]
 [ext_resource path="res://gui/target_material_car_ally.tres" type="Material" id=10]
 [ext_resource path="res://dust/m.tres" type="ArrayMesh" id=11]
 [ext_resource path="res://trash textures/move_anim.tres" type="Animation" id=14]
+
+[sub_resource type="SphereShape" id=5]
+radius = 8.97053
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -110,7 +112,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-shape = ExtResource( 6 )
+shape = SubResource( 5 )
 
 [node name="body" type="MeshInstance" parent="."]
 mesh = ExtResource( 4 )
@@ -212,3 +214,4 @@ scale_amount_curve = SubResource( 4 )
 __meta__ = {
 "_editor_description_": ""
 }
+[connection signal="input_event" from="." to="." method="_encounter"]

@@ -180,5 +180,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -40 )
 transform = Transform( -1.31134e-10, 0, 0.003, 0, 0.003, 0, -0.003, 0, -1.31134e-10, 8, 0, 6 )
 
 [node name="corovans" type="Spatial" parent="map"]
+transform = Transform( 0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0, 0 )
 [connection signal="input_event" from="camera_look_at/StaticBody" to="BGMASTER" method="_on_StaticBody_input_event"]
 [connection signal="timeout" from="BGMASTER/StepTimer" to="BGMASTER" method="_on_StepTimer_timeout"]

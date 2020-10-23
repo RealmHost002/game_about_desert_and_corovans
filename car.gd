@@ -531,7 +531,8 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 			radial_menu.choosen_car = self
 
 func _load(params):
-#	print(params)
+#	print('piiska  ', params)
+	
 	get_node("body").mesh = load(params['body'])
 	var wp = params['wheel_pos']
 	if params['body'] == "res://models/cyclopus/body.tres":

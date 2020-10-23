@@ -5,7 +5,6 @@
 [ext_resource path="res://gui/textures/hp.png" type="Texture" id=3]
 [ext_resource path="res://models/Cyclopus/wheel_back.tres" type="ArrayMesh" id=4]
 [ext_resource path="res://models/Cyclopus/truck_wheel.png" type="Texture" id=5]
-[ext_resource path="res://models/Cyclopus/col_shape.tres" type="Shape" id=6]
 [ext_resource path="res://models/quarry_truck/wheel.tres" type="ArrayMesh" id=7]
 [ext_resource path="res://models/Cyclopus/wheel.tres" type="ArrayMesh" id=8]
 [ext_resource path="res://trash textures/arrows_mesh.tres" type="ArrayMesh" id=9]
@@ -14,6 +13,9 @@
 [ext_resource path="res://models/Cyclopus/body.tres" type="ArrayMesh" id=12]
 [ext_resource path="res://models/Cyclopus/front_wheel_material.tres" type="Material" id=13]
 [ext_resource path="res://trash textures/move_anim.tres" type="Animation" id=14]
+
+[sub_resource type="SphereShape" id=7]
+radius = 7.30317
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.439216, 0.439216, 0.439216, 1 )
@@ -128,7 +130,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-shape = ExtResource( 6 )
+shape = SubResource( 7 )
 
 [node name="body" type="MeshInstance" parent="."]
 mesh = ExtResource( 12 )
