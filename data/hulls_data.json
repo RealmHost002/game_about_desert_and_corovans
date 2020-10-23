@@ -45,17 +45,9 @@
     "blueprint": "res://models/bigfoot/blueprint.tscn",
     "wheel_height": 0.875,
     "type": "combat",
-    "able_attack_zones": [
-      0,
-      1,
-      3,
-      4,
-      5,
-      7
-    ],
-    "effectivness": 359.5448070434931,
+    "effectivness": 367.3320053068151,
     "mobility": 0.6363636363636364,
-    "cost": 360
+    "cost": 367
   },
   "hover": {
     "body": "res://models/hover/body.tres",
@@ -100,10 +92,9 @@
     "blueprint": "res://models/hover/blueprint.tscn",
     "wheel_height": 0,
     "type": "support",
-    "able_attack_zones": null,
-    "effectivness": 146.93280212272606,
+    "effectivness": 198.6591757935306,
     "mobility": 0.7,
-    "cost": 147
+    "cost": 199
   },
   "retro": {
     "body": "res://models/retro/body.tres",
@@ -148,10 +139,9 @@
     "blueprint": "res://models/retro/blueprint.tscn",
     "wheel_height": 0.44,
     "type": "support",
-    "able_attack_zones": null,
-    "effectivness": 248.32396974191326,
+    "effectivness": 237.32131246511904,
     "mobility": 2.2,
-    "cost": 248
+    "cost": 237
   },
   "the_toad": {
     "body": "res://models/the_toad/body.tres",
@@ -201,10 +191,9 @@
     "blueprint": "res://models/the_toad/blueprint.tscn",
     "wheel_height": 0.57,
     "type": "combat",
-    "able_attack_zones": null,
-    "effectivness": 427.1783624372142,
+    "effectivness": 285.3972078784416,
     "mobility": 1.8857142857142857,
-    "cost": 427
+    "cost": 285
   },
   "quarry_truck": {
     "body": "res://models/quarry_truck/body.tres",
@@ -224,9 +213,9 @@
       3.854,
       -0.675
     ],
-    "rot_speed": 0.8,
-    "acc_multiplyer": 0.4,
-    "resistance": 1.7,
+    "rot_speed": 0.4,
+    "acc_multiplyer": 1.8,
+    "resistance": 3.1,
     "wheel_pos": [
       3.156,
       5.565,
@@ -249,10 +238,9 @@
     "blueprint": "res://models/quarry_truck/blueprint.tscn",
     "wheel_height": 1.7,
     "type": "truck",
-    "able_attack_zones": null,
-    "effectivness": 634.216017507648,
+    "effectivness": 400,
     "mobility": 0.34285714285714286,
-    "cost": 634
+    "cost": 400
   },
   "stingray": {
     "body": "res://models/stingray/body.tres",
@@ -301,56 +289,8 @@
     "blueprint": "res://models/stingray/blueprint.tscn",
     "wheel_height": 0,
     "type": "support",
-    "able_attack_zones": null,
-    "effectivness": 183.66600265340756,
-    "mobility": 0.7,
-    "cost": 184
-  },
-  "cyclopus": {
-    "body": "res://models/cyclopus/body.tres",
-    "wheelFront": "res://models/cyclopus/wheel.tres",
-    "wheelBack": "res://models/cyclopus/wheel_back.tres",
-    "cont_of_items": null,
-    "cont_of_weapon": null,
-    "hp": 250,
-    "weapon_positions": [
-      0,
-      3.5,
-      0
-    ],
-    "col_shape": "res://models/cyclopus/col_shape.tres",
-    "col_shape_pos": [
-      0,
-      2,
-      0
-    ],
-    "rot_speed": 1.5,
-    "acc_multiplyer": 3,
-    "resistance": 1.8,
-    "wheel_pos": [
-      2.871,
-      2.605,
-      2.99,
-      -1.8,
-      0, 0
-    ],
-    "death_zones": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ],
-    "engine_cost": 40,
-    "blueprint": "res://models/cyclopus/blueprint.tscn",
-    "wheel_height": 0,
-    "type": "combat",
-    "able_attack_zones": null,
-    "effectivness": 822.82196186948,
-    "mobility": 5.25,
-    "cost": 823
+    "effectivness": null,
+    "mobility": null,
+    "cost": null
   }
 }
