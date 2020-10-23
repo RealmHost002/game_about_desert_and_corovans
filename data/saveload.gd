@@ -5,6 +5,7 @@ var corpusData
 var weapon_data
 var generators_data
 var shields_data
+var save_world
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -17,6 +18,11 @@ func _ready():
 	var ourTeamDataJson =JSON.parse(saveFile.get_as_text())
 	saveFile.close()
 	ourTeamData = ourTeamDataJson.result
+	var save_worldFile = File.new()
+	save_worldFile.open("res://data/save_world.json", File.READ)
+	var save_world_json =JSON.parse(save_worldFile.get_as_text())
+	save_worldFile.close()
+	save_world = save_world_json.result
 	var generators_file = File.new()
 	generators_file.open("res://data/generators_data.json", File.READ)
 	var generators_json =JSON.parse(generators_file.get_as_text())
