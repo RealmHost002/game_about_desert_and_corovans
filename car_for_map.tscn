@@ -11,7 +11,7 @@
 [ext_resource path="res://dust/m.tres" type="ArrayMesh" id=11]
 [ext_resource path="res://trash textures/move_anim.tres" type="Animation" id=14]
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
 uniform vec4 albedo : hint_color;
@@ -60,8 +60,8 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
 shader_param/specular = 0.5
 shader_param/metallic = 0.0
@@ -74,7 +74,7 @@ shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/a = 1.0
 shader_param/b = 0.0
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "truck"
 loop = true
 tracks/0/type = "value"
@@ -102,7 +102,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 5, 0 ), Vector3( 0, 10, 0 ) ]
 }
 
-[sub_resource type="Curve" id=6]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 5.28591, 0, 0, Vector2( 0.568965, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="KinematicBody " type="KinematicBody"]
@@ -178,7 +178,7 @@ editor_only = true
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50181, 5.34185, 0 )
 visible = false
-material_override = SubResource( 4 )
+material_override = SubResource( 2 )
 cast_shadow = 0
 texture = ExtResource( 3 )
 
@@ -190,7 +190,7 @@ material/0 = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/move = ExtResource( 14 )
-anims/truck = SubResource( 5 )
+anims/truck = SubResource( 3 )
 
 [node name="trailer" type="Spatial" parent="."]
 
@@ -208,7 +208,7 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
 angular_velocity = 2.0
 angular_velocity_random = 1.0
-scale_amount_curve = SubResource( 6 )
+scale_amount_curve = SubResource( 4 )
 __meta__ = {
 "_editor_description_": ""
 }

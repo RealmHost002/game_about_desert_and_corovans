@@ -18,10 +18,10 @@ func _ready():
 	var ourTeamDataJson =JSON.parse(saveFile.get_as_text())
 	saveFile.close()
 	ourTeamData = ourTeamDataJson.result
-	var save_worldFile = File.new()
-	save_worldFile.open("res://data/save_world.json", File.READ)
-	var save_world_json =JSON.parse(save_worldFile.get_as_text())
-	save_worldFile.close()
+	var save_world_file = File.new()
+	save_world_file.open("res://data/save_world.json", File.READ)
+	var save_world_json =JSON.parse(save_world_file.get_as_text())
+	save_world_file.close()
 	save_world = save_world_json.result
 	var generators_file = File.new()
 	generators_file.open("res://data/generators_data.json", File.READ)
@@ -73,6 +73,23 @@ func read_data(ourTeamData):
 			position += Vector3(0,0,3)
 		c += 1
 #	pass # Replace with function body.
+func _load_on_map():
+	for corovan in save_world:
+		corovan.car_for_map._load()
+		
+func _save_on_map():
+	var save_file = File.new()
+	save_file.open("res://data/save_world.json", File.WRITE)
+	var corovans_on_map = []
+	for corovan in get_tree().get_root().get_node("Spatial/map/corovans"):
+		var position = [corovan.map_position.x, corovan.map_position.z]
+		var destination = [corovan.destination.x, corovan.destination.y]
+		var cars = corovan.cars 
+		corovans_on_map.append({"position":position,"destination":destination,"enemy_cars":cars})
+	save_file.store_string(to_json(corovans_on_map))
+	save_file.close()
+	
+	
 func _update():
 	var save_file = File.new()
 	save_file.open("res://data/save.json", File.WRITE)
