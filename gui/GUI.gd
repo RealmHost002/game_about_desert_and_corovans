@@ -5,8 +5,7 @@ extends Control
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
-#var counter = 0
+var mode = 'game'
 var selectedCar = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -93,11 +92,20 @@ func _input(event):
 			get_node("../invetory").hide()
 		else:
 			get_node("../invetory").show()
-#		var inventory_scene = load("res://scenes/watchingCar/watchingCar.tscn").instance()
-#		get_tree().get_root().get_node("Spatial").add_child(inventory_scene)
-		
+
+	if event.is_action_pressed("map"):
+		if get_node("../map/camera_look_at/Camera").current:
+			get_node("../camera_look_at/Camera").current = true
+			get_node("../map/camera_look_at/Camera").current = false
+			get_node("../camera_look_at/Camera").drag_speed = 10.0
+			get_node("../map/camera_look_at/Camera").anti_speed = 20.0
+		else:
+			get_node("../camera_look_at/Camera").current = false
+			get_node("../map/camera_look_at/Camera").current = true
+			get_node("../map/camera_look_at/Camera").drag_speed = 1.0
+			get_node("../map/camera_look_at/Camera").anti_speed = 200.0
 func _process(delta):
 	setting_car_params()
-	
+	get_node('Label').text = str(Engine.get_frames_per_second())
    
 	pass
