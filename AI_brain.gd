@@ -98,8 +98,8 @@ func _process(delta):
 		create_counter_cluster(cluster)
 
 #	print('m     ',machine_clusters)
-
-	truck_pos = truck.global_transform.origin
+	if truck:
+		truck_pos = truck.global_transform.origin
 	var c = 0
 #	if machine_behaviour == 'defend':
 	for m_car in get_tree().get_nodes_in_group('enemy'):

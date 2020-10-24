@@ -26,8 +26,7 @@ func _load(params):
 
 
 func _load_body(params):
-#	print('siska  ', params)
-	print(Saveload.corpusData[params['corpus']])
+
 	params = Saveload.corpusData[params['corpus']]
 	get_node("body").mesh = load(params['body'])
 	var wp = params['wheel_pos']
@@ -63,6 +62,6 @@ func _encounter(camera, event, click_position, click_normal, shape_idx):
 		for car in cars:
 			Saveload.ourTeamData["config"].append(car)
 		Saveload.read_data(Saveload.ourTeamData)
-		print('ivan_pidras')
+
 		pass
 	pass # Replace with function body.

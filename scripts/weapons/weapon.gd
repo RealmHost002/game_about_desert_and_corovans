@@ -82,6 +82,7 @@ func fire():
 	
 	if !ntex:
 		ntex = mastercar.image
+	
 	var final_scale = Vector3(0,0,0)
 	
 #	if mastercar.energy < energy_cost / float(burst_size) * s_value:
@@ -115,21 +116,21 @@ func fire():
 #	lb.mesh.surface_get_material(0).albedo_color = Color(0, 1.0, 0, 1)
 #	Mesh
 	var s_p = lb.global_transform.origin
-	var c = 1.0 / step
-	while c:
-		var some_pos = Vector2(s_p.x, s_p.z) / 20.0 * 1024
-		while some_pos.x >= 1024:
-			some_pos.x -= 1024
-		while some_pos.y >= 1024:
-			some_pos.y -= 1024
-
-		s_p += (target.global_transform.origin - lb.global_transform.origin).normalized() * step * distance
-		if (s_p - lb.global_transform.origin).length() > (target.global_transform.origin - lb.global_transform.origin).length():
-			break
-
-		if s_p.y < ntex.get_pixelv(some_pos).r * 3:
-			break
-		c -= 1
+	var c = 1.0 / step * 0
+#	while c:
+#		var some_pos = Vector2(s_p.x, s_p.z) / 20.0 * 1024
+#		while some_pos.x >= 1024:
+#			some_pos.x -= 1024
+#		while some_pos.y >= 1024:
+#			some_pos.y -= 1024
+#
+#		s_p += (target.global_transform.origin - lb.global_transform.origin).normalized() * step * distance
+#		if (s_p - lb.global_transform.origin).length() > (target.global_transform.origin - lb.global_transform.origin).length():
+#			break
+#
+#		if s_p.y < ntex.get_pixelv(some_pos).r * 3:
+#			break
+#		c -= 1
 	
 	var dist_to_ray_end = 0
 	if c:

@@ -20,7 +20,7 @@ var clearance = 0.0
 var speed = 0
 var forward
 var right
-var destination = Vector3(20,20,20)
+var destination = Vector3(100,0,100)
 var rotation_speed = 1
 var abilities = ['engine']
 var sliders = []
@@ -63,26 +63,40 @@ var wheel_height = 0
 
 
 func _ready():
+#	print('some')
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	right = (get_node("dirs/right").global_transform.origin - self.global_transform.origin).normalized() 
-	ntex = preload("res://noise.tres")
-	yield(ntex, "changed")
-	image = ntex.get_data()
-	image.save_png("res://noise.png")
+	ntex = load("res://noise.tres")
+
+#	yield(ntex, "changed")
+#	image = ntex.get_data()
+	
+#	image.save_png("res://noise.png") ########################
+
 #	Image
 #	var rsv = ResourceSaver
 #	rsv.save("res://noise.png", ntex)
 	if image:
 		image.lock()
-	noise = ntex.noise
+		
+#	noise = ntex.noise
+	
 	get_node("Sprite3D").material_override = get_node("Sprite3D").material_override.duplicate(true)
-
+	
+#	print(noise)
+	
 	set_process(false)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+#	print(image)
+	if !image:
+		image = ntex.get_data()
+		image = Saveload.image
+		image.lock()
+	
 	get_node("AnimationPlayer").playback_speed = speed
 	
 	if is_enemy:
@@ -281,6 +295,7 @@ func do_think(d):
 		for ally in get_tree().get_nodes_in_group('enemy'):
 			ally.truck = self
 		destination = Vector3(100, 0, 100)
+		print('some', self.name, self.speed,'  sp   tr  ' ,self.global_transform.origin)
 	else:
 #		var enemy_to_block = enemy_combats[self.get_index() - 4]
 #		var to_truck = truck.global_transform.origin - enemy_to_block.global_transform.origin

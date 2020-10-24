@@ -9,10 +9,11 @@ var save_world
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var position = Vector3(3, 3, 3)
-
+var position = Vector3(3, 5, 3)
+var image
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	var saveFile = File.new()
 	saveFile.open("res://data/save.json", File.READ)
 	var ourTeamDataJson =JSON.parse(saveFile.get_as_text())
@@ -48,9 +49,19 @@ func _ready():
 	read_data(ourTeamData)
 	_load_on_map()
 	
+	var ntex = load("res://noise.tres")
+	yield(ntex, "changed")
+	image = ntex.get_data()
 	
+	
+	
+var c = 0
 func read_data(ourTeamData):
-	print("ourTeamData",ourTeamData)
+#	print("ourTeamData",ourTeamData)
+	for child in get_tree().get_root().get_node("Spatial/cars").get_children():
+		get_tree().get_root().get_node("Spatial/cars").remove_child(child)
+		child.queue_free()
+		print('after delete all  ',get_tree().get_root().get_node("Spatial/cars").get_children())
 	var c = 0
 	for i in ourTeamData['config']:
 		var base_scene = load("res://car_base.tscn").instance()
@@ -67,14 +78,23 @@ func read_data(ourTeamData):
 		base_scene.load_modules(i)
 		base_scene.global_transform.origin = position
 		base_scene.scale = Vector3(0.1, 0.1, 0.1)
-		if c == 3:
-			position += Vector3(20,0,-10)
-		if c < 4:
+#		if c == 3:
+#			position += Vector3(20,0,-10)
+		if c < 4 or true:
 			position += Vector3(0,0,3)
 #			base_scene.add_to_group
-		else:
-			position += Vector3(0,0,3)
+#		else:
+#			position += Vector3(0,0,3)
 		c += 1
+#		base_scene.call_deferred("_ready")
+	print(get_tree().get_nodes_in_group('enemy'))
+	
+	get_tree().get_root().get_node("Spatial/cars").truck = get_tree().get_root().get_node("Spatial/cars").get_children()[-1]
+#	print('TRUCK      ', get_tree().get_root().get_node("Spatial/cars").truck)
+#	get_tree().get_root().get_node("Spatial/BGMASTER").GAME_PAUSE()
+	for child in get_tree().get_root().get_node("Spatial/cars").get_children():
+		print(child)
+#	print(get_tree().get_root().get_node("Spatial/cars").get_children())
 #	pass # Replace with function body.
 func _load_on_map():
 	for corovan_record in save_world:
