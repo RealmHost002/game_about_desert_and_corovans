@@ -22,6 +22,10 @@ func _ready():
 
 
 func _on_Node2D_pressed():
+#	print(self.name)
+	if constants.input_mode == 'only_move':
+		return
+	print(self.name)
 	is_pressable = constants.selectedCar.get_node("body/weapons").get_child(selectedWeapon).is_pressable
 	if constants.selectedCar and is_pressable:
 		constants.selectedCar.ability_used(selectedWeapon)

@@ -5,6 +5,7 @@ var type = 'generator'
 var image_path = "res://icon.png"
 var is_pressable = false
 var have_slider = false
+var toggle = false
 var energy_production = 0.0
 var max_energy = 0.0
 var energy_cost = 0

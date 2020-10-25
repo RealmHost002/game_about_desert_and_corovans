@@ -4,6 +4,7 @@ extends Position3D
 
 var is_pressable = true
 var have_slider = false
+var toggle = false
 var image_path = "res://icon.png"
 var type = 'weapon'
 var damage_type = 'laser'
@@ -254,7 +255,7 @@ func slider_changed(value):
 	s_value = value / 100.0
 
 func activate():
-	if !target:
+	if !target and !is_active:
 		mastercar.energy_drain += self.energy_cost
 	constants.input_mode = 'target_select'
 	get_node("area").global_transform.basis = Basis(Vector3(1,0,0), Vector3(0,1,0), Vector3(0,0,1))

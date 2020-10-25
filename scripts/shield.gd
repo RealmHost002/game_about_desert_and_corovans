@@ -4,6 +4,7 @@ var type = 'shield'
 var image_path = "res://icon.png"
 var is_pressable = true
 var have_slider = false
+var toggle = true
 var shield_production = 0
 var max_value = 0
 var energy_cost = 0
@@ -35,16 +36,21 @@ func activate():
 		mastercar.shield += current_sh_gen
 		mastercar.energy_drain += current_en_cost
 
-	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 func enable_shield():
+	if !active:
+		return
 #	mastercar.shield -= current_sh_gen
+#	print(active)
 	if mastercar.energy > current_en_cost:
+		print('activated')
 		shield = current_sh_gen
 		mastercar = get_parent().get_parent().get_parent()
 		mastercar.energy -= current_en_cost
 		mastercar.shield += current_sh_gen
+#		mastercar.shield_limit += current_sh_gen
 		if current_sh_gen > 0:
 			self.show()
 	else:

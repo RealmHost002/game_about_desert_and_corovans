@@ -1,6 +1,6 @@
 extends Spatial
 
-var gamestate = true #true if unpause, false if pause
+var gamestate = 1 #true if unpause, false if pause
 var path = false
 
 # Called when the node enters the scene tree for the first time.
@@ -22,12 +22,18 @@ func _input(event):
 
 
 func GAME_UNPAUSE():
+	if gamestate != 0:
+		return
+	constants.input_mode = 'only_move'
 	for node in get_node("../cars").get_children():
 		node.unpause()
 		gamestate = 1
 		get_node("StepTimer").start()
-
+	
 func GAME_PAUSE():
+
+#	print("pipiska")
+	constants.input_mode = 'car_select'
 	for node in get_node("../cars").get_children():
 		node.pause()
 #		node.set_process(false)

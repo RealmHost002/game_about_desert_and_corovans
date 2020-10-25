@@ -9,7 +9,7 @@ var save_world
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var position = Vector3(3, 5, 3)
+var position = Vector3(3, 3, 3)
 var image
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -48,7 +48,9 @@ func AddingWeaponButtons():
 		WeaponIconScene.set_pressed_texture(texture_click)
 		if not i.have_slider:
 			WeaponIconScene.get_node("HSlider").hide()
-		
+		if i.toggle:
+			WeaponIconScene.toggle_mode = true
+			WeaponIconScene.pressed = i.active
 		counter += 1
 		
 func setting_car_params():
@@ -104,8 +106,15 @@ func _input(event):
 			get_node("../map/camera_look_at/Camera").current = true
 			get_node("../map/camera_look_at/Camera").drag_speed = 1.0
 			get_node("../map/camera_look_at/Camera").anti_speed = 200.0
+
 func _process(delta):
 	setting_car_params()
 	get_node('Label').text = str(Engine.get_frames_per_second())
-   
+	for button in get_node("HBoxContainer2/weaponContainer").get_children():
+		if constants.input_mode == 'only_move':
+			button.button_mask = 0
+			button.set_enabled_focus_mode(false)
+		else:
+			button.button_mask = BUTTON_MASK_LEFT
+			
 	pass

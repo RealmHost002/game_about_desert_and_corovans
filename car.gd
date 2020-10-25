@@ -48,6 +48,8 @@ var truck = self
 var anim = 'move'
 
 var engine_energy_cost = 20.0
+var engine_working = 0
+
 var hp = 100
 var max_hp = 1000
 var shield = 0
@@ -91,7 +93,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#	print(image)
+
 	if !image:
 		image = ntex.get_data()
 		image = Saveload.image
@@ -105,8 +107,8 @@ func _process(delta):
 		energy += energy_production * delta / constants.step_time
 	else:
 		energy = max_energy
-	if energy > 0:
-		energy -= engine_energy_cost * acc * delta / constants.step_time
+#	if energy > 0:
+#		energy -= engine_energy_cost * acc * delta / constants.step_time
 	if energy <= 0:
 		acc = 0.0
 		
@@ -140,11 +142,10 @@ func _process(delta):
 	
 	
 
-	speed += pow(acc , 1) * delta * acc_multiplyer
+	speed += pow(acc , 1) * delta * acc_multiplyer * engine_working
 	speed -= resistance * pow(speed, 2) * delta
 #	if speed != 0 and self in get_tree().get_nodes_in_group('ally'):
-#		print(speed)
-	
+
 	forward = (get_node("dirs/forward").global_transform.origin - self.global_transform.origin).normalized()
 	right = (get_node("dirs/right").global_transform.origin - self.global_transform.origin).normalized() 
 	if !is_enemy:
@@ -295,7 +296,6 @@ func do_think(d):
 		for ally in get_tree().get_nodes_in_group('enemy'):
 			ally.truck = self
 		destination = Vector3(100, 0, 100)
-		print('some', self.name, self.speed,'  sp   tr  ' ,self.global_transform.origin)
 	else:
 #		var enemy_to_block = enemy_combats[self.get_index() - 4]
 #		var to_truck = truck.global_transform.origin - enemy_to_block.global_transform.origin
@@ -392,16 +392,19 @@ func ability_used(id):
 	if abilities[id] == 'shield':
 		var s = get_node("body/weapons").get_child(id)
 		s.activate()
-	print(id)
+	if abilities[id] == 'engine':
+		var e = get_node("body/weapons").get_child(id)
+		e.activate()
+#	print(abilities)
 
 
 func slider_changed(id, value):
 	constants.sliders[name][id] = value
 	if abilities[id] == 'engine':
-		self.energy_drain = sliders[id] * get_node("body/weapons").get_child(id).energy_cost
+#		self.energy_drain = sliders[id] * get_node("body/weapons").get_child(id).energy_cost
 		sliders[id] = value / 100.0
 		acc = value / 100.0
-		self.energy_drain = sliders[id] * get_node("body/weapons").get_child(id).energy_cost
+#		self.energy_drain = sliders[id] * get_node("body/weapons").get_child(id).energy_cost
 		show_path()
 	elif abilities[id] == 'weap' or 'shield':
 		var w = get_node("body/weapons").get_child(id)
@@ -431,9 +434,16 @@ func pause():
 func unpause():
 	self.set_process(true)
 	self.shield = 0
-#	print(anim)
+
 	get_node("AnimationPlayer").play(anim)
 #	self.acc = sliders[0]
+	if self.energy > engine_energy_cost:
+		self.energy -= engine_energy_cost
+	else:
+		self.slider_changed(0, 0)
+		if self == constants.selectedCar:
+			get_node("../../GUI/HBoxContainer2/weaponContainer").get_child(0).get_node("HSlider").value = 0
+	
 	for w in get_node("body/weapons").get_children():
 		if w.type == 'weapon':
 			if w.target:
@@ -452,8 +462,10 @@ func unpause():
 		elif w.type == 'generator':
 #			self.energy_production += w.energy_production
 			pass
-	if self.shield:
-		get_node("body/weapons").get_child(sliders.size()-1).show()
+
+#	if self.shield:
+#		get_node("body/weapons").get_child(sliders.size()-1).show()
+
 	hide_path()
 	get_node("CPUParticles").emitting = true
 
@@ -521,7 +533,7 @@ func show_path():
 
 func _on_input_event(camera, event, click_position, click_normal, shape_idx, from_gui = 0):
 	if self in get_tree().get_nodes_in_group('ally'):
-		if constants.input_mode != 'car_select':
+		if !(constants.input_mode == 'car_select' or constants.input_mode == 'only_move'):
 			return
 
 		if from_gui:
