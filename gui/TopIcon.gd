@@ -22,6 +22,12 @@ func _ready():
 
 func _on_TextureButton_pressed():
 #	print("hui" + str(number))
+	
+	if get_node("TextureRect/ReferenceRect").border_color == Color("6bff05"):
+		get_parent().get_parent().get_parent().get_node('camera_look_at').global_transform.origin = Vector3(constants.selectedCar.global_transform.origin.x, 0, constants.selectedCar.global_transform.origin.z)
+
+	
+#	print(get_node("TextureRect/ReferenceRect").border_color)
 	for i in get_parent().get_parent().get_node("HBoxContainer2/weaponContainer").get_children():
 		i.free()
 	get_tree().get_root().get_node("Spatial/cars").get_child(number)._on_input_event(0,0,0,0,0,1)

@@ -150,13 +150,17 @@ func fire():
 	for s in mastercar.get_node('body/weapons').get_children():
 		if s.type == 'shield':
 			shields_exceptions.append(s)
-
-	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar, get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody')] + shields_exceptions)
+		#add exception to next line if u want to change ground colllision for weapons
+	var result = space_state.intersect_ray(get_node("dot").global_transform.origin, get_node("dot").global_transform.origin + (target.global_transform.origin - get_node("dot").global_transform.origin).normalized() * dist_to_ray_end, [mastercar] + shields_exceptions)
 	if result:
-		if result['collider'].name == 'shield':
-			result['collider'].take_damage(damage, damage_type)
+		if result['collider'] == get_tree().get_root().get_node('Spatial/camera_look_at/StaticBody'):
+			pass
 		else:
 			result['collider'].take_damage(damage, damage_type)
+#		if result['collider'].name == 'shield':
+#			result['collider'].take_damage(damage, damage_type)
+#		else:
+#			result['collider'].take_damage(damage, damage_type)
 		dist_to_ray_end = (result['position'] - get_node("dot").global_transform.origin).length()
 	#IVAN PIDARAS
 	lb.scale.z *= -dist_to_ray_end

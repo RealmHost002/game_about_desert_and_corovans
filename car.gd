@@ -254,6 +254,11 @@ func _input(event):
 		else:
 			get_node("../../GUI/HBoxContainer").get_child(0).call_deferred("_on_TextureButton_pressed")
 func do_think(d):
+	if get_node("body/weapons").get_child(0).active == false:
+		ability_used(0)
+	
+	
+	
 	var distance_to_dest = (destination - self.global_transform.origin).length()
 	var dest_behind = sign((destination - self.global_transform.origin).cross(right).y)
 #	enemy_combats = []

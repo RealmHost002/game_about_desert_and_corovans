@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/map.obj-aa51d863ef07c86a4da2e8e6be5c2148.mesh"
+
+[deps]
+
+files=[ "res://.import/map.obj-aa51d863ef07c86a4da2e8e6be5c2148.mesh" ]
+
+source_file="res://scenes/WorldMap/sahara/map.obj"
+dest_files=[ "res://.import/map.obj-aa51d863ef07c86a4da2e8e6be5c2148.mesh", "res://.import/map.obj-aa51d863ef07c86a4da2e8e6be5c2148.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
