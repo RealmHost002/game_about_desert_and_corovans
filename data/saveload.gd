@@ -45,6 +45,10 @@ func _ready():
 	var weaponDataJson = JSON.parse(weapon_file.get_as_text())
 	weapon_file.close()
 	weapon_data = weaponDataJson.result
+	
+	ourTeamData = {}
+	ourTeamData['config'] = save_world[0]['enemy_cars']
+	
 #	call_deferred('read_data', ourTeamData)
 	read_data(ourTeamData)
 	_load_on_map()
