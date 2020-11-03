@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://answer_button.gd" type="Script" id=1]
+
+[node name="Control" type="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.24408
+margin_top = -2.24747
+margin_right = -864.244
+margin_bottom = -529.247
+text = "fef"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="." to="." method="_on_Control_pressed"]
