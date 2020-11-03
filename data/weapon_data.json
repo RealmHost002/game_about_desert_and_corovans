@@ -115,6 +115,35 @@
     "effectivness": 45,
     "another_effectivness": 4.5
   },
+  "flak_cannon": {
+    "damimage": "res://models/weapons/flak_cannon/damage_tex.tres",
+    "distimage": "res://models/weapons/flak_cannon/distance_tex.tres",
+    "rot_speed": 0.5,
+    "mesh": "res://models/weapons/flak_cannon/body.tres",
+    "buletScene": "res://models/weapons/lasergun/laser_beam.tscn",
+    "buletColor": "120B29",
+    "dot_position": [
+      0,
+      0.58,
+      1.4
+    ],
+    "image_path": "res://gui/textures/weaponIcons/flak_cannon.png",
+    "damage_type": "bullet",
+    "burst_size": 12,
+    "energy_cost": 20,
+    "cd_time": 1,
+    "clip": 12,
+    "max_dist": 8,
+    "max_dmg": 1.5,
+    "dmg_per_energy": 0.9,
+    "dmg_per_turn(burst)": 18,
+    "dmg_per_turn(sustained)": 9,
+    "damage_per_clip": 18,
+    "energy_drain_sustained": 10,
+    "tier": 1,
+    "effectivness": 64.8,
+    "another_effectivness": 7.2
+  },
   "zzzWeapon": {
     "damimage": "res://models/weapons/zzzWeapon/damage_tex.tres",
     "distimage": "res://models/weapons/zzzWeapon/distance_tex.tres",
@@ -127,7 +156,7 @@
       0.417,
       0.762
     ],
-    "image_path": "res://gui/textures/weaponIcons/empty.png",
+    "image_path": "res://gui/textures/weaponIcons/plasma_dispencer.png",
     "damage_type": "laser",
     "burst_size": 3,
     "energy_cost": 0,

@@ -27,12 +27,12 @@ func _input(event):
 	if event.is_action_pressed('wheel_down'):
 #		self.fov += 7.0
 		self.global_transform.origin += close_up_vec * drag_speed / 10.0
-		print((self.global_transform.origin - get_parent().global_transform.origin).length())
+#		print((self.global_transform.origin - get_parent().global_transform.origin).length())
 	
 	#camera limits
 	if (self.global_transform.origin - get_parent().global_transform.origin).length() < pow(drag_speed, 1.3) * 0.14:
 		self.global_transform.origin += close_up_vec * drag_speed / 10.0
-	if (self.global_transform.origin - get_parent().global_transform.origin).length() > drag_speed * 1.1:
+	if (self.global_transform.origin - get_parent().global_transform.origin).length() > pow(drag_speed, 0.8) * 1.9:
 		self.global_transform.origin -= close_up_vec * drag_speed / 10.0
 	
 	

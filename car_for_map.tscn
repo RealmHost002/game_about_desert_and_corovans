@@ -213,4 +213,11 @@ scale_amount_curve = SubResource( 5 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+shape = SubResource( 1 )
 [connection signal="input_event" from="." to="." method="_encounter"]
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]

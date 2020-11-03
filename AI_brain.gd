@@ -43,16 +43,20 @@ func create_cluster(first_car, dist, chain = 1, arr = []):
 
 func create_counter_cluster(cluster_to_counter):
 	var arr = []
+	
 	var c = 0
 	for p_car in cluster_to_counter:
 		for m_car in get_tree().get_nodes_in_group('enemy'):
+#			print(m_car.body_type)
 			if !(m_car in machine_cars_which_in_clusters):
-				if m_car.body_type != 'truck' and p_car.weapon_type == 'close' and (m_car.weapon_type == 'close' or m_car.weapon_type == 'mid'):
+				if m_car.body_type != 'truck' and p_car.body_type != 'truck' and p_car.weapon_type == 'close' and (m_car.weapon_type == 'close' or m_car.weapon_type == 'mid'):
 					arr.append(m_car)
 					machine_cars_which_in_clusters.append(m_car)
+#					print('999999999999')
 					break
-				if m_car.body_type != 'truck' and p_car.weapon_type == 'mid' and m_car.weapon_type == 'mid':
+				if m_car.body_type != 'truck' and m_car.body_type != 'truck' and p_car.weapon_type == 'mid' and m_car.weapon_type == 'mid':
 					arr.append(m_car)
+#					print('999999999999')
 					machine_cars_which_in_clusters.append(m_car)
 					break
 	machine_clusters.append(arr)
@@ -87,12 +91,11 @@ func _process(delta):
 	
 	for p_car in get_tree().get_nodes_in_group('ally'):
 		if !(p_car in player_cars_which_in_clusters):
-			var result = create_cluster(p_car, 3.0)
+			var result = create_cluster(p_car, 7.0)
 			if result:
 				player_clusters.append(result)
 
 #	print('p   ',player_clusters)
-
 	for cluster in player_clusters:
 		player_clusters_midpoints.append(calc_midpont(cluster))
 		create_counter_cluster(cluster)

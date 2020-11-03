@@ -1,0 +1,174 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/watchingCar/Item_slot.gd" type="Script" id=1]
+[ext_resource path="res://models/Retro/retro.gd" type="Script" id=2]
+[ext_resource path="res://gui/textures/car_scheme/turtle_waggon_blueprint.png" type="Texture" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 2.06068
+margin_top = -1.0
+margin_right = 962.061
+margin_bottom = 379.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D3" type="Line2D" parent="TextureRect"]
+position = Vector2( 458.714, 454.594 )
+scale = Vector2( 1.43194, 1.46686 )
+points = PoolVector2Array( 308.3, -234.947, 260.532, -234.608, 165.667, -178.336 )
+width = 2.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="Line2D2" type="Line2D" parent="TextureRect"]
+position = Vector2( 513.234, 357.514 )
+points = PoolVector2Array( -490.795, -75.0139, -408.295, -75.0139, -180.295, -43.514 )
+width = 2.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="Line2D" type="Line2D" parent="TextureRect"]
+position = Vector2( 142.934, 172.94 )
+points = PoolVector2Array( 741.005, 129.06, 652.005, 129.06, 537.005, 67.06 )
+width = 2.0
+default_color = Color( 0.52549, 0.00392157, 0.00392157, 1 )
+
+[node name="Line2D5" type="Line2D" parent="TextureRect"]
+position = Vector2( 840.243, 199.855 )
+points = PoolVector2Array( -792.304, -86.855, -725.304, -86.855, -501.304, -133.855 )
+width = 2.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="items" type="Control" parent="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="weapon1" type="Panel" parent="TextureRect/items"]
+margin_left = 810.934
+margin_top = 232.526
+margin_right = 874.934
+margin_bottom = 296.526
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect/items/weapon1"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "weapon 1"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/weapon1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.749161
+margin_right = 0.749161
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="item1" type="Panel" parent="TextureRect/items"]
+margin_left = 834.226
+margin_top = 42.7751
+margin_right = 898.226
+margin_bottom = 106.775
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect/items/item1"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "item 1"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/item1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.749161
+margin_right = 0.749161
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="item2" type="Panel" parent="TextureRect/items"]
+margin_left = 31.5865
+margin_top = 213.221
+margin_right = 95.5865
+margin_bottom = 277.221
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect/items/item2"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "item 2"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/item2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.749161
+margin_right = 0.749161
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="item3" type="Panel" parent="TextureRect/items"]
+margin_left = 50.356
+margin_top = 46.17
+margin_right = 114.356
+margin_bottom = 110.169
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect/items/item3"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+margin_bottom = -1.52588e-05
+text = "item 3"
+align = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/items/item3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.749161
+margin_top = 0.667419
+margin_right = 0.749161
+margin_bottom = 0.667419
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="TextureRect/items/weapon1" to="TextureRect/items/weapon1" method="_on_weapon_gui_input"]
+[connection signal="mouse_exited" from="TextureRect/items/weapon1" to="TextureRect/items/weapon1" method="_on_weapon1_mouse_exited"]
+[connection signal="mouse_entered" from="TextureRect/items/item1" to="TextureRect/items/item1" method="_on_item1_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect/items/item1" to="TextureRect/items/item1" method="_on_item1_mouse_exited"]
+[connection signal="mouse_entered" from="TextureRect/items/item2" to="TextureRect/items/item2" method="_on_item2_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect/items/item2" to="TextureRect/items/item2" method="_on_item2_mouse_exited"]
+[connection signal="mouse_entered" from="TextureRect/items/item3" to="TextureRect/items/item3" method="_on_item3_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect/items/item3" to="TextureRect/items/item3" method="_on_item3_mouse_exited"]

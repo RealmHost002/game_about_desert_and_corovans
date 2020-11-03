@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/wheel.obj-43de53876a0ffafba660a733aaf08ae9.mesh"
+
+[deps]
+
+files=[ "res://.import/wheel.obj-43de53876a0ffafba660a733aaf08ae9.mesh" ]
+
+source_file="res://models/turtle_waggon/wheel.obj"
+dest_files=[ "res://.import/wheel.obj-43de53876a0ffafba660a733aaf08ae9.mesh", "res://.import/wheel.obj-43de53876a0ffafba660a733aaf08ae9.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( -1, 1, -1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

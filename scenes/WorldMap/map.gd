@@ -12,11 +12,11 @@ func _ready():
 	
 
 func PAUSE():
-	for child in get_node("corovans"):
+	for child in get_node("corovans").get_children():
 		child.pause()
 
 func UNPAUSE():
-	for child in get_node("corovans"):
+	for child in get_node("corovans").get_children():
 		child.unpause()
 
 
@@ -26,6 +26,7 @@ func UNPAUSE():
 
 
 func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
-
-	print(click_position - m_pos)
+	if event.is_action('left_click'):
+		get_node('corovans').get_child(0).set_path(click_position - m_pos)
+		print(click_position - m_pos)
 	pass # Replace with function body.

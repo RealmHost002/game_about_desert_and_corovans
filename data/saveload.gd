@@ -13,7 +13,6 @@ var position = Vector3(3, 3, 3)
 var image
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
 	var saveFile = File.new()
 	saveFile.open("res://data/save.json", File.READ)
 	var ourTeamDataJson =JSON.parse(saveFile.get_as_text())
@@ -73,10 +72,12 @@ func read_data(ourTeamData):
 		base_scene.set_owner(get_tree().get_root().get_node("Spatial/cars"))
 		base_scene._load(corpusData[i["corpus"]])
 #		base_scene.remove_from_group("enemy")
-		if c < 4:
-			base_scene.remove_from_group("enemy")
+		if c < 2:
+#			base_scene.remove_from_group("enemy")
 			base_scene.add_to_group('ally')
 			base_scene.is_enemy = false
+		else:
+			base_scene.add_to_group('enemy')
 #		else:
 #			base_scene.add
 		base_scene.load_modules(i)

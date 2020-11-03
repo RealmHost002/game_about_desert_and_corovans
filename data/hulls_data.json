@@ -224,7 +224,7 @@
       3.854,
       -0.675
     ],
-    "rot_speed": 0.8,
+    "rot_speed": 0.4,
     "acc_multiplyer": 0.4,
     "resistance": 1.7,
     "wheel_pos": [
@@ -250,9 +250,9 @@
     "wheel_height": 1.7,
     "type": "truck",
     "able_attack_zones": null,
-    "effectivness": 634.216017507648,
-    "mobility": 0.34285714285714286,
-    "cost": 634
+    "effectivness": 497.37289911202953,
+    "mobility": 0.05925925925925926,
+    "cost": 497
   },
   "stingray": {
     "body": "res://models/stingray/body.tres",
@@ -324,15 +324,16 @@
       2,
       0
     ],
-    "rot_speed": 1.5,
+    "rot_speed": 1.6,
     "acc_multiplyer": 3,
-    "resistance": 1.8,
+    "resistance": 1.9,
     "wheel_pos": [
       2.871,
       2.605,
       2.99,
       -1.8,
-      0, 0
+      0,
+      0
     ],
     "death_zones": [
       0,
@@ -349,8 +350,104 @@
     "wheel_height": 0,
     "type": "combat",
     "able_attack_zones": null,
-    "effectivness": 822.82196186948,
-    "mobility": 5.25,
-    "cost": 823
+    "effectivness": 571.6337604513385,
+    "mobility": 1.6551724137931036,
+    "cost": 572
+  },
+  "turtle_waggon": {
+    "body": "res://models/turtle_waggon/body.tres",
+    "wheelFront": "res://models/turtle_waggon/wheel.tres",
+    "wheelBack": "res://models/turtle_waggon/wheel.tres",
+    "cont_of_items": null,
+    "cont_of_weapon": null,
+    "hp": 250,
+    "weapon_positions": [
+      -1.092,
+      3.342,
+      5.557
+    ],
+    "col_shape": "res://models/turtle_waggon/col_shape.tres",
+    "col_shape_pos": [
+      0,
+      2.714,
+      -0.491
+    ],
+    "rot_speed": 0.4,
+    "acc_multiplyer": 0.4,
+    "resistance": 1.7,
+    "wheel_pos": [
+      2.141,
+      5.824,
+      2.837,
+      -5.789,
+      2.916,
+      -2.115
+    ],
+    "death_zones": [
+      1.57,
+      3.14,
+      -3.14,
+      -1.57,
+      0,
+      0,
+      0,
+      1
+    ],
+    "engine_cost": 40,
+    "blueprint": "res://models/turtle_waggon/blueprint.tscn",
+    "wheel_height": 1.13,
+    "type": "truck",
+    "able_attack_zones": null,
+    "effectivness": 310.85806194501845,
+    "mobility": 0.05925925925925926,
+    "cost": 311
+  },
+  "turtle": {
+    "body": "res://models/turtle/body.tres",
+    "wheelFront": "res://models/turtle/wheel.tres",
+    "wheelBack": "res://models/turtle/wheel.tres",
+    "cont_of_items": null,
+    "cont_of_weapon": null,
+    "hp": 90,
+    "weapon_positions": [
+      -0.031,
+      1.513,
+      -0.632
+    ],
+    "col_shape": "res://models/turtle/col_shape.tres",
+    "col_shape_pos": [
+      0,
+      0.754,
+      -0.034
+    ],
+    "rot_speed": 1.0,
+    "acc_multiplyer": 3.0,
+    "resistance": 1.9,
+    "wheel_pos": [
+      0.811,
+      1.355,
+      0.811,
+      -1.314,
+      0,
+      0
+    ],
+    "death_zones": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "engine_cost": 15,
+    "blueprint": "res://models/turtle/blueprint.tscn",
+    "wheel_height": 0.429,
+    "type": "combat",
+    "able_attack_zones": null,
+    "effectivness": 310.85806194501845,
+    "mobility": 0.05925925925925926,
+    "cost": 311
   }
 }

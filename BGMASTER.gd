@@ -41,6 +41,10 @@ func GAME_PAUSE():
 		gamestate = 0
 
 func _on_StaticBody_input_event(camera, event, click_position, click_normal, shape_idx):
+	if !(constants.input_mode == 'car_select'):
+		return
+
+
 	if constants.selectedCar and event.is_action('left_click') and event.pressed and !path:
 		constants.selectedCar.path = []
 		constants.selectedCar.destination = click_position

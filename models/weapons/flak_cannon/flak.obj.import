@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/flak.obj-f1b76945ff4cfa8fd9c3b56441c72111.mesh"
+
+[deps]
+
+files=[ "res://.import/flak.obj-f1b76945ff4cfa8fd9c3b56441c72111.mesh" ]
+
+source_file="res://models/weapons/flak_cannon/flak.obj"
+dest_files=[ "res://.import/flak.obj-f1b76945ff4cfa8fd9c3b56441c72111.mesh", "res://.import/flak.obj-f1b76945ff4cfa8fd9c3b56441c72111.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( -1, 1, -1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

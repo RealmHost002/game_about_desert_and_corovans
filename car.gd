@@ -2,7 +2,7 @@ extends  KinematicBody
 #RigidBody
 #KinematicBody 
 #Spatial
-
+var global_speed_multiplyer = 1.0
 
 var path = []
 var path_visible = true
@@ -191,8 +191,8 @@ func _process(delta):
 
 	self.global_transform.origin.y = s_height
 	forward.y = 0.0
-	if self.hp >= 0:
-		move_and_slide(speed * (forward))
+	if self.hp > 0:
+		move_and_slide(speed * (forward) * global_speed_multiplyer)
 	else:
 		get_node("CPUParticles").mesh = load("res://dust/m_smoke.tres")
 		get_node("CPUParticles").initial_velocity = 4
@@ -208,7 +208,9 @@ func _process(delta):
 			speed -= delta / 3.0
 		else:
 			speed = 0
-		move_and_slide(speed * (forward))
+		self.energy = 0
+		self.max_energy = 0
+		move_and_slide(speed * (forward) * global_speed_multiplyer)
 		
 	if shield_limit:
 		get_node("Sprite3D").material_override.set_shader_param("b", float(shield)/shield_limit)
@@ -248,11 +250,18 @@ func _input(event):
 		if w.is_pressable:
 			w.activate()
 	if event.is_action_pressed('next_car'):
-		if self.get_index() + 1 < get_tree().get_nodes_in_group('ally').size():
-#		get_node("../../GUI/HBoxContainer").get_child(self.get_index() - 1)._on_TextureButton_pressed()
-			get_node("../../GUI/HBoxContainer").get_child(self.get_index() + 1).call_deferred("_on_TextureButton_pressed")
-		else:
-			get_node("../../GUI/HBoxContainer").get_child(0).call_deferred("_on_TextureButton_pressed")
+		next_car()
+
+func next_car():
+	if self.get_index() + 1 < get_tree().get_nodes_in_group('ally').size():
+#	get_node("../../GUI/HBoxContainer").get_child(self.get_index() - 1)._on_TextureButton_pressed()
+		get_node("../../GUI/HBoxContainer").get_child(self.get_index() + 1).call_deferred("_on_TextureButton_pressed")
+	else:
+		get_node("../../GUI/HBoxContainer").get_child(0).call_deferred("_on_TextureButton_pressed")
+
+
+
+
 func do_think(d):
 	if get_node("body/weapons").get_child(0).active == false:
 		ability_used(0)
@@ -300,6 +309,7 @@ func do_think(d):
 		self.current_move = 'escape'
 		for ally in get_tree().get_nodes_in_group('enemy'):
 			ally.truck = self
+			get_parent().truck = self
 		destination = Vector3(100, 0, 100)
 	else:
 #		var enemy_to_block = enemy_combats[self.get_index() - 4]
@@ -336,6 +346,7 @@ func take_damage(damage, weaponType, status = "no"):
 	hp -= damage
 	if hp <= 0:
 		self.remove_from_group('ally')
+		self.remove_from_group('enemy')
 		destroy()
 	if status != 'no':
 		pass
@@ -537,6 +548,11 @@ func show_path():
 
 
 func _on_input_event(camera, event, click_position, click_normal, shape_idx, from_gui = 0):
+#	if !(constants.input_mode == 'car_select' or constants.input_mode == 'only_move'):
+#		return
+
+
+
 	if self in get_tree().get_nodes_in_group('ally'):
 		if !(constants.input_mode == 'car_select' or constants.input_mode == 'only_move'):
 			return
@@ -546,7 +562,7 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 			for car in get_tree().get_nodes_in_group('ally'):
 				car.hide_enemies()
 			show_enemies()
-		elif event.is_action('left_click'):
+		elif event.is_action('left_click') and event.pressed:
 			constants.selectedCar = self
 			print(self.get_index())
 			get_node("../../GUI/HBoxContainer").get_child(self.get_index())._on_TextureButton_pressed()
@@ -556,6 +572,8 @@ func _on_input_event(camera, event, click_position, click_normal, shape_idx, fro
 			
 		
 	if !from_gui:
+		if !(constants.input_mode == 'car_select'):
+			return
 		if event.is_action('right_click') and constants.selectedCar:
 			var radial_menu = load("res://gui/radial_menu.tscn").instance()
 			get_parent().get_parent().get_node('GUI').add_child(radial_menu)
@@ -639,7 +657,6 @@ func load_modules(params):
 		if g:
 			var gen = load("res://models/generator.tscn").instance()
 			modules_node.add_child(gen)
-
 			gen._load(Saveload.generators_data[g])
 			abilities.append('generator')
 

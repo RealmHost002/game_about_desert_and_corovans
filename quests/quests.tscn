@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://quests/introduction.gd" type="Script" id=1]
+
+[node name="quests" type="Node"]
+
+[node name="introduction" type="Node" parent="."]
+script = ExtResource( 1 )

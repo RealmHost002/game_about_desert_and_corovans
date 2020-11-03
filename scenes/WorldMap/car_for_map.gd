@@ -8,31 +8,44 @@ var wheel_height = 0
 var cars = []
 var path = []
 var nav
+
+var player = false
+var active = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	nav = get_parent().get_parent().get_node('Navigation')
+	if get_index() == 0:
+		player = true
+		speed = 30
 	pass # Replace with function body.
+
+
+func set_path(dest):
+	path = nav.get_simple_path(self.transform.origin / 333, dest)
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !path and nav:
-#		print(self.transform.origin)
-		path = nav.get_simple_path(self.transform.origin / 333, destination)
+	if !path and nav and !player:
 
-		print(path)
+#		path = nav.get_simple_path(self.transform.origin / 333, destination)
+		set_path(destination)
+
 		
 	if !path:
 		return
 		
 	if (self.transform.origin / 333.0 - path[0]).length() < 0.0001:
 		path.remove(0)
+		if !path:
+			return
 	var d = path[0]
 	self.look_at(d + m_pos, Vector3(0,1,0))
 	self.rotate_y(PI)
 	self.transform.origin += (d - self.transform.origin / 333).normalized() * delta * speed
-#	print(self.transform.origin)
-#	print(self.global_transform.origin)
+
 
 
 
@@ -56,7 +69,7 @@ func unpause():
 
 func _load(params):
 	destination = Vector3(params['destination'][0],0, params['destination'][1])
-	self.global_transform.origin = Vector3(params['position'][0],0, params['position'][1])
+	self.transform.origin = Vector3(params['position'][0],0, params['position'][1]) * 333
 	cars = params['enemy_cars']
 	_load_body(cars[0])
 	pass
@@ -95,10 +108,22 @@ func _load_body(params):
 
 
 func _encounter(camera, event, click_position, click_normal, shape_idx):
+	return
 	if event.is_action('left_click'):
 		for car in cars:
 			Saveload.ourTeamData["config"].append(car)
 		Saveload.read_data(Saveload.ourTeamData)
 
 		pass
+	pass # Replace with function body.
+
+
+func _on_Area_area_entered(area):
+	if active and player:
+		active = false
+		get_parent().get_parent().PAUSE()
+		for car in area.get_parent().cars:
+			Saveload.ourTeamData["config"].append(car)
+		Saveload.read_data(Saveload.ourTeamData)
+
 	pass # Replace with function body.

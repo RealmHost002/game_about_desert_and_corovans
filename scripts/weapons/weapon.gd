@@ -70,7 +70,7 @@ func _ready():
 #	print(death_zone)
 #	m.set_shader_param('death_zone1', death_zone)
 
-	slider_changed(100.0)
+#	slider_changed(100.0)
 	
 #	set_process(false)
 #	death_zone = get_parent().death_zones
@@ -250,9 +250,10 @@ func unactivate():
 		mastercar.energy_drain -= self.energy_cost
 
 func slider_changed(value):
+	return
 	distance = distance_tex.curve.interpolate(value / 100.0)
 	damage = damage_tex.curve.interpolate(value / 100.0)
-
+#	print(value)
 #	m.set_shader_param('albedo', Color(1 - damage / damage_tex.curve.max_value, 0.9 * damage / damage_tex.curve.max_value,0,0.5))
 
 	get_node("area").scale = Vector3(distance, distance, -distance)
@@ -280,6 +281,8 @@ func activate():
 func _load(params):
 	damage_tex = load(params['damimage'])
 	distance_tex = load(params['distimage'])
+	damage = params['max_dmg']
+	distance = params['max_dist']
 	rot_speed = params['rot_speed']
 	get_child(0).mesh = load(params['mesh'])
 	path_to_fire_anim_node = params['buletScene']
