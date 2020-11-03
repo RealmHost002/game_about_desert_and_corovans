@@ -14,9 +14,9 @@ func _ready():
 	var Parse_result = JSON.parse(saveFile.get_as_text())
 	saveFile.close()
 	data = Parse_result.result
-	print(data)
-#	_load()
-	_save()
+#	print(data)
+	self.add_child(load("res://scenes/dialog/Node2D.tscn").instance())
+#	_save()
 	pass # Replace with function body.
 
 

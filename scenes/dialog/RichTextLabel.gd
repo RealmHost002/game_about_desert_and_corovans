@@ -20,7 +20,7 @@ var quest
 func _ready():
 	get_node("textTimer").wait_time = default_time
 	var textdata = File.new()
-	textdata.open("res://example.txt", File.READ)
+	textdata.open("res://scenes/dialog/example.txt", File.READ)
 	my_text = textdata.get_as_text()
 	textdata.close()
 	start()
@@ -100,7 +100,7 @@ func parse_code():
 	read_dialog(char_counter)
 
 func make_buttons(inf):
-	var new_button = load("res://answer_button.tscn").instance()
+	var new_button = load("res://scenes/dialog/answer_button.tscn").instance()
 	get_node("ButtonContainer").add_child(new_button)
 	new_button.link = inf.split("&")[0]
 	new_button.text = inf.split("&")[1]
