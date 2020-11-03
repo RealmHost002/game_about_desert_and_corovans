@@ -101,11 +101,11 @@ func parse_code():
 
 func make_buttons(inf):
 	var new_button = load("res://scenes/dialog/answer_button.tscn").instance()
-	get_node("ButtonContainer").add_child(new_button)
+	get_parent().get_node("ButtonContainer").add_child(new_button)
 	var mass_inf = inf.split("&")
 	new_button.link = mass_inf[0]
 	new_button.text = mass_inf[1]
-	if mass_inf[2]:
+	if mass_inf.size() > 2:
 		new_button.value = mass_inf[2]
 	tag = "none"
 	mode = "text"
@@ -139,7 +139,7 @@ func making():
 			char_counter = my_text.find(substring)
 			read_dialog(char_counter)
 		"c":
-			get_node("Label").text = tag_value
+			get_parent().get_node("Label").text = tag_value
 			print("MenyauChara")
 			mode = "text"
 			tag = "none"
@@ -183,7 +183,7 @@ func read_dialog(char_counter):
 
 func remove_buttons():
 	self.clear()
-	for button in get_node("ButtonContainer").get_children():
+	for button in get_parent().get_node("ButtonContainer").get_children():
 		button.queue_free()
 		
 func start():
