@@ -102,8 +102,11 @@ func parse_code():
 func make_buttons(inf):
 	var new_button = load("res://scenes/dialog/answer_button.tscn").instance()
 	get_node("ButtonContainer").add_child(new_button)
-	new_button.link = inf.split("&")[0]
-	new_button.text = inf.split("&")[1]
+	var mass_inf = inf.split("&")
+	new_button.link = mass_inf[0]
+	new_button.text = mass_inf[1]
+	if mass_inf[2]:
+		new_button.value = mass_inf[2]
 	tag = "none"
 	mode = "text"
 	tag_value = ""
@@ -191,91 +194,5 @@ func start():
 	else:
 		mode = "text"
 		read_dialog(char_counter)
-
-
-	
-#func _on_Timer_timeout():
-#	if char_counter < my_text.length():
-#		if buf_pause:
-#			get_node("Timer").wait_time = buf_pause
-##			get_node("Timer").wait_time = buf_pause
-#			buf_pause = null
-#		read_dialog(my_text[char_counter])
-#		char_counter += 1
-#		if char_counter < my_text.length():
-#			if my_text[char_counter] == "<":
-#				buf_time = get_node("Timer").wait_time
-#				get_node("Timer").wait_time = 0.0001
-#
-#	else:
-#		get_node("Timer").stop()
-##		self.append_bbcode("[shake]else: [/shake]")
-
-#func read_dialog():
-#	for i in my_text:
-#		if mode == "text":
-#			if i == "<":
-#				mode = "script"
-#			elif i == ">":
-#				print("Error, missed open bracked <")
-#				self.append_bbcode("[color=red]Error, missed open bracked <[/color]")
-#			else:
-#				self.append_bbcode(i)
-#		elif mode == "script":
-#			if tag == "none":
-#				match i:
-#					"t": tag = "t"
-#					"p": tag = "p"
-#					"c": tag = "c"
-#					"a": tag = "a"
-#					"g": tag = "g"
-#					_: 
-#						print("Error, can't find this tag:'", i, "'")
-#						self.append_bbcode("[color=red]Error, can't find this tag[/color]")
-#				tag_value = ""
-#			else:
-#				match tag:
-#					"t":
-#						if i == ">":
-#							mode = "making"
-#						else:
-#							tag_value += i
-#					"p":
-#						if i == ">":
-#							mode = "making"
-#						else:
-#							tag_value += i
-#					"c":
-#						if i == ">":
-#							mode = "making"
-#						else:
-#							tag_value += i
-#					"a":
-#						if i == ">":
-#							mode = "making"
-#						else:
-#							tag_value += i
-#					"g":
-#						if i == ">":
-#							mode = "making"
-#						else:
-#							tag_value += i
-#		if mode == "making":
-#			get_node("Timer").wait_time = buf_time
-#			match tag:
-#				"t":
-#					if tag_value == "":
-#						get_node("Timer").wait_time = default_time
-#					else:
-#						 get_node("Timer").wait_time = float(tag_value)
-#				"p":
-#					buf_pause = get_node("Timer").wait_time
-#					if tag_value == "":					 
-#						get_node("Timer").wait_time = 1
-#					else:
-#	#					get_node("Timer").wait_time = float(tag_value)
-#						get_node("Timer").start(float(tag_value))
-#			tag = "none"
-#			mode = "text"
 
 
