@@ -1,9 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/dialog/RichTextLabel.gd" type="Script" id=1]
+[ext_resource path="res://scenes/dialog/font/Merriweather-Italic.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/dialog/font/Merriweather-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.215686, 0.0117647, 0.203922, 1 )
+bg_color = Color( 0.0627451, 0.0588235, 0.0627451, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=2]
 GridContainer/colors/GridContainer1 = Color( 0.458824, 0.0392157, 0.0392157, 1 )
@@ -22,16 +31,24 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 50.0
-margin_top = 31.0
-margin_right = 463.0
+margin_left = 39.3213
+margin_top = 30.9999
+margin_right = 452.321
 margin_bottom = 430.0
 rect_rotation = 0.107069
+rect_scale = Vector2( 4.52677, 2.55352 )
 custom_styles/normal = SubResource( 1 )
+custom_fonts/italics_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_selected = Color( 0.517647, 0.121569, 0.121569, 1 )
-custom_colors/font_color_shadow = Color( 0.992157, 1, 0.996078, 1 )
+custom_colors/font_color_shadow = Color( 0.129412, 0.137255, 0.133333, 1 )
+custom_constants/shadow_offset_x = 7
+custom_constants/shadow_offset_y = 6
+custom_constants/table_hseparation = 16
+custom_constants/line_separation = 20
 bbcode_enabled = true
+override_selected_font_color = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
